@@ -1,10 +1,10 @@
 Status: Geaccepteerd
 
-Versie: 0.4
+Versie: 0.6
 
 Laatst gewijzigd: 2026-10-31
 
-Gerelateerd: [Masterprompt](00-masterprompt.md)
+Gerelateerd: [Masterprompt](00-masterprompt.md), [scope](01-product-vision-scope.md), [spelregels](02-game-rules.md), [stories](03-user-stories.md), [begrippen](glossary.md)
 
 # SinkTheShip — leeswijzer en voortgang
 
@@ -27,22 +27,40 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 |---|---|
 | Fase 0 — intake | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 1 — plan | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
-| Fase 2 — batches A–F | Nog niet gestart |
+| Fase 2 — batch A | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
+| Fase 2 — batches B–F | Nog niet gestart |
 | Fase 3 — consistentiecheck | Nog niet gestart |
 | Fase 4 — MCP-verificatie, bord en handboek | Nog niet gestart |
 
-De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Volgende actie: batch A schrijven. Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten. Dit plan keurt de latere uitgewerkte ADR's en specificaties niet vooraf goed.
+De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Volgende actie: batch B schrijven (architectuur, engine, tegenstanders en bijbehorende ADR’s). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten.
 
-Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). De goedgekeurde fase 1 wordt als afzonderlijke commit vastgelegd. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
+Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
 
 ## Documentinventaris en plan voor fase 1
 
-Alle paden hieronder zijn relatief aan de repositoryroot. Alleen de twee gelinkte bestanden bestaan al; de andere paden zijn geplande leveringen, geen lege documenten. Elk document krijgt status, versie, wijzigingsdatum en gerelateerde documenten. `docs/11-multiplayer-future.md` krijgt status **Toekomst**; nieuwe uitwerkingen beginnen als **Concept**.
+Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de statusinventaris bestaan; de overige paden in de documentstructuur zijn geplande leveringen, geen lege documenten. Elk document krijgt status, versie, wijzigingsdatum en gerelateerde documenten. `docs/11-multiplayer-future.md` krijgt status **Toekomst**; nieuwe uitwerkingen beginnen als **Concept**.
 
 | Document | Documentstatus | Toelichting |
 |---|---|---|
-| [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd als opdracht | Volledige originele opdracht, voorafgegaan door metadata |
-| [README.md](README.md) | Concept | Goedgekeurde intake en goedgekeurd plan voor fase 1 |
+| [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd | Ongewijzigde bronopdracht met metadata |
+| [README.md](README.md) | Geaccepteerd | Voortgang, goedgekeurd plan en traceerbaarheid van batch A |
+| [01-product-vision-scope.md](01-product-vision-scope.md) | Geaccepteerd | 25 functionele eisen en 14 kwaliteitsnormen, releases en MoSCoW |
+| [02-game-rules.md](02-game-rules.md) | Geaccepteerd | Datacontract, validatie, presets, plaatsbaarheidsbewijs en 22 referentiegevallen |
+| [03-user-stories.md](03-user-stories.md) | Geaccepteerd | 29 stories met 87 geplande acceptatietests |
+| [glossary.md](glossary.md) | Geaccepteerd | Domein-/ML-/samenwerkingstermen, identifiers en eenheden |
+| [adr/0000-template.md](adr/0000-template.md) | Geaccepteerd | ADR-template |
+| [adr/0006-configurable-rules.md](adr/0006-configurable-rules.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0007-four-difficulties.md](adr/0007-four-difficulties.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0008-multiplayer-later.md](adr/0008-multiplayer-later.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0009-anonymous-identity.md](adr/0009-anonymous-identity.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0011-repo-and-handbook.md](adr/0011-repo-and-handbook.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0014-document-and-code-language.md](adr/0014-document-and-code-language.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0015-ui-languages.md](adr/0015-ui-languages.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0017-v1-privacy.md](adr/0017-v1-privacy.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0019-project-name.md](adr/0019-project-name.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0022-v1-presets.md](adr/0022-v1-presets.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0023-rule-signatures.md](adr/0023-rule-signatures.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0024-ruleset-validation.md](adr/0024-ruleset-validation.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
 
 ### Documentstructuur
 
@@ -84,36 +102,15 @@ De leesroute voor productreview is 01 → 02 → 03 → 13 → 14. Voor technisc
 
 Het genereren van het Figma-design hoort bij M3 in de bouwroadmap. Deze opdracht levert de brief en het playbook; een stijlkeuze en designgeneratie zijn geen impliciet onderdeel van het akkoord op fase 1.
 
-## Voorstel voor de v1-regelpresets
+## Goedgekeurde presetrichting en uitwerking
 
-Alle vier keuzes gebruiken een bord van 10 × 10 en dezelfde vijf schepen: vliegdekschip 5, slagschip 4, kruiser 3, onderzeeër 3 en torpedobootjager 2. De twee schepen van lengte 3 behouden verschillende stabiele IDs. Coördinaten zijn intern `{ row, col }`, beide 0-based; de weergave gebruikt letters voor kolommen en cijfers voor rijen: A1 = `{ row: 0, col: 0 }`, J10 = `{ row: 9, col: 9 }`.
+Fase 1 heeft Klassiek, Nog eens bij raak, Ruimte tussen schepen en de beperkte modus Aangepast goedgekeurd, met een gelote starter. De concrete, nu te reviewen norm staat in [document 02](02-game-rules.md#v1-vloot-en-presets); daar staan ook coördinaten, informatievrijgave, enginegrenzen en het plaatsbaarheidsbewijs. Deze leeswijzer onderhoudt geen tweede versie van het schema.
 
-| Preset / keuzemodus | Schepen mogen raken | Schoten en beurtwisseling | Informatie bij zinken |
-|---|---|---|---|
-| Klassiek (`classic`) | Ja, ook diagonaal | Eén schot, daarna de andere speler | Het scheepstype; geen volledige positie |
-| Nog eens bij raak (`hit-again`) | Ja, ook diagonaal | Eén schot; bij raak blijft dezelfde speler aan de beurt | Het scheepstype; geen volledige positie |
-| Ruimte tussen schepen (`spaced`) | Nee, ook niet diagonaal | Eén schot, daarna de andere speler | Het scheepstype; geen volledige positie |
-| Aangepast (`custom`) | Keuze tussen de twee bovenstaande aanraakregels | Extra schot bij raak aan of uit | Vast: het scheepstype; geen volledige positie |
-
-Voorgestelde preciseringen voor review in fase 1:
-
-1. De starter wordt voor alle v1-keuzes met een seedbare loting bepaald en vóór het eerste schot getoond. Een herstart behoudt die keuze; een rematch krijgt een nieuwe seed. Het schema kan ook een expliciete starter vastleggen, maar de v1-UI krijgt hiervoor geen extra instelling.
-2. Een gewone treffer onthult alleen `hit`, zonder scheepstype. Het zinkbericht voegt het scheepstype toe. Een zinkend schot telt als raak voor de extra-schotregel, behalve wanneer het spel daarmee eindigt.
-3. Aangepast is een samensteller, geen vierde uniek regelsysteem: twee booleaanse keuzes leveren vier combinaties, waarvan drie al een benoemde preset hebben. De vierde combinatie is afstand tussen schepen plus nog eens bij raak. Namen, vertalingen en de gekozen UI-modus veranderen de `rulesSignature` niet.
-4. Bordgrootte, vloot, schoten per beurt en informatievrijgave zijn in de v1-UI begrensd zoals hierboven. Het `RuleSet`-contract beschrijft ook de derde aanraakregel (geen orthogonaal contact), andere informatievormen en de ruimte voor andere bordgroottes, vloten en Salvo; nieuwe spelmodi worden later vrijgegeven met bijbehorende validatie en fixtures.
-5. Batch A geeft een expliciete geldige plaatsing voor de strengste v1-aanraakregel. Dezelfde opstelling bewijst ook plaatsbaarheid voor de lossere varianten; de beurtregels veranderen de plaatsbaarheid niet. Voor toekomstige uitgebreidere regelsets moet de validator bestaan van een geldige plaatsing vaststellen, niet alleen totale scheepsoppervlakte tellen.
-
-### Compatibiliteit van tegenstanders en modellen
-
-Easy, Normal en Hard ondersteunen elke geldige regelset binnen het gedocumenteerde enginecontract. Hun benchmarkacceptatie geldt voor de vrijgegeven presets en combinaties; toekomstige afwijkende bord- of vlootconfiguraties krijgen eigen metingen.
-
-Voorstel: gebruik `rulesSignature` voor de volledige spelregels en een afzonderlijke, geversioneerde `strategySignature` voor bord, vloot, aanraakregel en vrijgegeven treffer-/zinkinformatie. Starter en extra schot bij raak blijven onderdeel van de volledige signatuur. Het modelmanifest specificeert de strategiecompatibiliteit én de toegestane beurtvarianten; een onbekende toekomstige beurtpolicy wordt daardoor niet automatisch compatibel verklaard.
-
-Het eerste model richt zich op Klassiek. Zodra export, compatibiliteit en benchmark voor beide varianten zijn aangetoond, mag hetzelfde model ook Nog eens bij raak en de equivalente aangepaste configuraties bedienen. Voor de aanraakvrije regels blijft Impossible zichtbaar uitgeschakeld totdat een daarvoor gevalideerd manifest bestaat. We meten de winrate per beurtvariant: hergebruik van dezelfde schietpolicy is geen bewijs van een identiek strategisch voordeel.
+De uitwerking van `rulesSignature` en `strategySignature` staat in [document 02](02-game-rules.md#stabiele-signaturen) en [ADR 0023](adr/0023-rule-signatures.md). Een strategiesignatuur alleen is onvoldoende om een model te activeren; encoding, runtime en expliciete beurtvarianten blijven voorwaarden.
 
 ## ADR-lijst
 
-De onderstaande bestandsnamen zijn gereserveerd voor fase 2; de ADR's zijn nog niet geschreven. **Vast** betekent een keuze uit de masterprompt die niet opnieuw ter discussie staat. **Voorstel** betekent een concrete voorkeursrichting om in de betreffende batch met alternatieven uit te werken. Akkoord op dit plan staat die uitwerking toe; de uiteindelijke tekst wordt bij de batchreview beoordeeld.
+De onderstaande 50 bestandsnamen vormen het goedgekeurde ADR-plan. De 12 ADR's met batch A zijn op 2026-10-31 goedgekeurd en staan in de statusinventaris; de overige ADR's volgen in hun batch. **Vast** betekent een keuze uit de masterprompt die niet opnieuw ter discussie staat. **Voorstel** betekent een concrete voorkeursrichting om in de betreffende batch met alternatieven uit te werken. Akkoord op dit plan staat die uitwerking toe; de uiteindelijke tekst wordt bij de batchreview beoordeeld.
 
 Alle bestanden staan onder `docs/adr/`. De kolom Batch bepaalt wanneer de ADR voor het eerst wordt opgeleverd. Vaste keuzes krijgen geen fictief besluitvormingsverhaal: de masterprompt is de bron, alternatieven worden beschreven als consequenties van een eventuele toekomstige wijziging.
 
@@ -257,15 +254,16 @@ Let op bij het latere Figma-playbook: `codex mcp add` schrijft volgens de via Co
 
 ## Centrale open punten
 
-De hoofdlijnen bij Q-01 en Q-05 zijn met fase 1 goedgekeurd. De uitgewerkte details worden bij hun batchreview beoordeeld. De overige punten hebben een later beslismoment en blokkeren batch A niet.
+De hoofdlijnen van fase 1 zijn goedgekeurd. Q-01 benoemt de nieuwe preciseringen van batch A; Q-05 houdt de technische vervolguitwerking zichtbaar. De overige punten hebben een later beslismoment en blokkeren de documentatie niet.
 
 | ID | Open punt | Moment van oplossen |
 |---|---|---|
-| Q-01 | Akkoord op het presetvoorstel, inclusief de gelote starter en begrensde custom-modus; voorkeursrichtingen voor hosting, packages, routing en tooling beoordelen | Voorstellen aanwezig in fase 1; volledige ADR's bij hun batchreview |
+| Q-01 | Opgelost: enginegrenzen, validatie met witness/inconclusive en canonieke JSON-signaturen zijn goedgekeurd | Goedgekeurd op 2026-10-31 |
 | Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; uit drie nog te beschrijven stijlrichtingen kiezen | Rechten vóór fase 4; stijl vóór designgeneratie |
 | Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Projectconfiguratie in batch F; volledige verificatie vóór inrichting in fase 4 |
 | Q-04 | GitHub-repository en eigenaar/zichtbaarheid, Notion-parentpagina, Figma-bestand en W&B-projectbestemming vaststellen | Vóór de betreffende externe handelingen in fase 4; repository aanmaken alleen na het daarvoor gevraagde akkoord |
-| Q-05 | De voorgestelde signaturen en grenzen rond informatie, uniforme plaatsing, sessieautoriteit en modelacceptatie beoordelen | Voorstellen aanwezig in fase 1; precieze contracten en ADR's in batches A–E |
+| Q-05 | Algoritmen voor uniforme plaatsing, filtering van ambigue zinkinformatie, sessieautoriteit, compatibiliteitsresolver en benchmarkstatistiek uitwerken | Signatuurnorm in batch A; overige contracten en ADR’s in batches B–E |
+| Q-06 | Referentietelefoon, mobiele Lighthouse-instellingen en traceprotocol voor de voorgestelde performancebudgetten vastleggen | Profiel kiezen bij kwaliteitsuitwerking in batch E; vóór metingen vastzetten |
 
 ## Aannames voor het plan
 
@@ -277,10 +275,49 @@ De hoofdlijnen bij Q-01 en Q-05 zijn met fase 1 goedgekeurd. De uitgewerkte deta
 
 ## Traceerbaarheid
 
-De requirements en user stories worden in batch A vastgelegd, de teststrategie in batch E en de taken in batch F. De matrix wordt dan aangevuld en in fase 3 op dekking gecontroleerd. Er zijn nog geen definitieve IDs of testresultaten voor productrequirements toegekend.
+Batch A definieert 25 FR's, 14 NFR's, 29 stories en 87 acceptatietestgevallen. Deze tests zijn beschreven, nog niet geïmplementeerd of uitgevoerd. De tabel toont ontwerpdekking; zij claimt geen gerealiseerde testdekking. Taak-IDs worden in batch F toegewezen, inclusief expliciet optionele Could-taken. Uitvoeringsstatus blijft op het toekomstige bord.
 
-| Requirement (`FR-xx` / `NFR-xx`) | User story (`US-xx`) | Taak (`Txx`) | Test / verificatie |
+| Requirement | User stories | Taak (`Txx`) | Geplande acceptatietests |
 |---|---|---|---|
+| FR-01 | [US-01](03-user-stories.md#us-01) | Batch F | AT-01-01, AT-01-02, AT-01-03 |
+| FR-02 | [US-02](03-user-stories.md#us-02) | Batch F | AT-02-01, AT-02-02, AT-02-03 |
+| FR-03 | [US-02](03-user-stories.md#us-02) | Batch F | AT-02-01, AT-02-02, AT-02-03 |
+| FR-04 | [US-03](03-user-stories.md#us-03) | Batch F | AT-03-01, AT-03-02, AT-03-03 |
+| FR-05 | [US-04](03-user-stories.md#us-04) | Batch F | AT-04-01, AT-04-02, AT-04-03 |
+| FR-06 | [US-05](03-user-stories.md#us-05) | Batch F | AT-05-01, AT-05-02, AT-05-03 |
+| FR-07 | [US-04](03-user-stories.md#us-04) | Batch F | AT-04-01, AT-04-02, AT-04-03 |
+| FR-08 | [US-06](03-user-stories.md#us-06) | Batch F | AT-06-01, AT-06-02, AT-06-03 |
+| FR-09 | [US-07](03-user-stories.md#us-07), [US-17](03-user-stories.md#us-17) | Batch F | AT-07-01, AT-07-02, AT-07-03; AT-17-01, AT-17-02, AT-17-03 |
+| FR-10 | [US-08](03-user-stories.md#us-08) | Batch F | AT-08-01, AT-08-02, AT-08-03 |
+| FR-11 | [US-09](03-user-stories.md#us-09) | Batch F | AT-09-01, AT-09-02, AT-09-03 |
+| FR-12 | [US-10](03-user-stories.md#us-10) | Batch F | AT-10-01, AT-10-02, AT-10-03 |
+| FR-13 | [US-11](03-user-stories.md#us-11) | Batch F | AT-11-01, AT-11-02, AT-11-03 |
+| FR-14 | [US-12](03-user-stories.md#us-12) | Batch F | AT-12-01, AT-12-02, AT-12-03 |
+| FR-15 | [US-03](03-user-stories.md#us-03), [US-13](03-user-stories.md#us-13) | Batch F | AT-03-01, AT-03-02, AT-03-03; AT-13-01, AT-13-02, AT-13-03 |
+| FR-16 | [US-14](03-user-stories.md#us-14) | Batch F | AT-14-01, AT-14-02, AT-14-03 |
+| FR-17 | [US-15](03-user-stories.md#us-15) | Batch F | AT-15-01, AT-15-02, AT-15-03 |
+| FR-18 | [US-16](03-user-stories.md#us-16) | Batch F | AT-16-01, AT-16-02, AT-16-03 |
+| FR-19 | [US-12](03-user-stories.md#us-12) | Batch F | AT-12-01, AT-12-02, AT-12-03 |
+| FR-20 | [US-17](03-user-stories.md#us-17) | Batch F | AT-17-01, AT-17-02, AT-17-03 |
+| FR-21 | [US-18](03-user-stories.md#us-18) | Batch F | AT-18-01, AT-18-02, AT-18-03 |
+| FR-22 | [US-19](03-user-stories.md#us-19) | Batch F | AT-19-01, AT-19-02, AT-19-03 |
+| FR-23 | [US-25](03-user-stories.md#us-25) | Batch F | AT-25-01, AT-25-02, AT-25-03 |
+| FR-24 | [US-26](03-user-stories.md#us-26) | Batch F | AT-26-01, AT-26-02, AT-26-03 |
+| FR-25 | [US-27](03-user-stories.md#us-27) | Batch F | AT-27-01, AT-27-02, AT-27-03 |
+| NFR-01 | [US-20](03-user-stories.md#us-20) | Batch F | AT-20-01, AT-20-02, AT-20-03 |
+| NFR-02 | [US-28](03-user-stories.md#us-28) | Batch F | AT-28-01, AT-28-02, AT-28-03 |
+| NFR-03 | [US-07](03-user-stories.md#us-07) | Batch F | AT-07-01, AT-07-02, AT-07-03 |
+| NFR-04 | [US-05](03-user-stories.md#us-05), [US-21](03-user-stories.md#us-21) | Batch F | AT-05-01, AT-05-02, AT-05-03; AT-21-01, AT-21-02, AT-21-03 |
+| NFR-05 | [US-21](03-user-stories.md#us-21) | Batch F | AT-21-01, AT-21-02, AT-21-03 |
+| NFR-06 | [US-22](03-user-stories.md#us-22) | Batch F | AT-22-01, AT-22-02, AT-22-03 |
+| NFR-07 | [US-13](03-user-stories.md#us-13) | Batch F | AT-13-01, AT-13-02, AT-13-03 |
+| NFR-08 | [US-15](03-user-stories.md#us-15), [US-23](03-user-stories.md#us-23) | Batch F | AT-15-01, AT-15-02, AT-15-03; AT-23-01, AT-23-02, AT-23-03 |
+| NFR-09 | [US-08](03-user-stories.md#us-08) | Batch F | AT-08-01, AT-08-02, AT-08-03 |
+| NFR-10 | [US-23](03-user-stories.md#us-23) | Batch F | AT-23-01, AT-23-02, AT-23-03 |
+| NFR-11 | [US-29](03-user-stories.md#us-29) | Batch F | AT-29-01, AT-29-02, AT-29-03 |
+| NFR-12 | [US-19](03-user-stories.md#us-19) | Batch F | AT-19-01, AT-19-02, AT-19-03 |
+| NFR-13 | [US-20](03-user-stories.md#us-20), [US-24](03-user-stories.md#us-24) | Batch F | AT-20-01, AT-20-02, AT-20-03; AT-24-01, AT-24-02, AT-24-03 |
+| NFR-14 | [US-24](03-user-stories.md#us-24) | Batch F | AT-24-01, AT-24-02, AT-24-03 |
 
 ## Externe projectlinks
 
@@ -298,8 +335,19 @@ De opdracht is volledig bewaard en de intakebevindingen zijn vastgelegd. Er zijn
 
 ## Review van fase 1
 
-Deze wijziging bevat de complete documentstructuur, 50 gereserveerde ADR's, de v1-presets, concrete architectuurvoorstellen en de schrijf-/reviewvolgorde. De 19 vaste hoofdkeuzes zijn herkenbaar gescheiden van de verdere keuzes en preciseringen. Er zijn nog geen ADR-bestanden of implementatiebestanden aangemaakt.
+Deze wijziging bevat de complete documentstructuur, 50 gereserveerde ADR's, de v1-presets, concrete architectuurvoorstellen en de schrijf-/reviewvolgorde. De 19 vaste hoofdkeuzes zijn herkenbaar gescheiden van de verdere keuzes en preciseringen. Bij afsluiting van fase 1 waren nog geen ADR-bestanden of implementatiebestanden aangemaakt.
 
 Review vooral de grenzen van Aangepast, de gelote starter, de betekenis van modelcompatibiliteit en het voorstel voor `packages/game-session`. Hosting, libraries en overige voorgestelde details krijgen hun volledige onderbouwing en alternatieven in de gekoppelde ADR's. Fase 1 is op 2026-10-31 goedgekeurd. Batch A mag worden geschreven; de reeds vastgelegde herstelvoorwaarden vóór fase 4 blijven gelden.
 
 Verificatie: alle vereiste documentpaden staan in het plan, de 50 ADR-IDs zijn uniek en doorlopend, lokale links bestaan en Markdown-codeblokken zijn gesloten. De opgeslagen bronopdracht is ongewijzigd. Er is geen applicatiecode om in deze fase te testen.
+
+
+## Review van batch A
+
+Geleverd: documenten 01, 02 en 03, de glossary, het ADR-template en de 12 bij batch A geplande ADR’s. De bestaande leeswijzer is bijgewerkt. De ontwikkelaar heeft batch A op 2026-10-31 goedgekeurd; de bronopdracht en het goedgekeurde fase-1-plan blijven leidend.
+
+De belangrijkste preciseringen zijn de runtimevalidatie met afzonderlijke onbesliste uitkomst, de canonieke regelsignaturen zonder hashingdependency, de exacte informatievrijgave bij zinken en de grenzen tussen engineconfiguratie en v1-editor. De volledige no-touch-opstelling levert een controleerbaar plaatsbaarheidsbewijs voor alle vier v1-combinaties. De requirements en stories maken ook de MVP/ML-grens en het onderscheid tussen Must-instellingen en Should-effecten expliciet.
+
+Controleer bij review vooral document 02 en ADR’s 0022–0024. Q-01 is met het akkoord op batch A opgelost; Q-02 t/m Q-06 blijven op hun aangegeven momenten open. Deze batch voegt uitsluitend Markdown toe, zonder implementatiecode, configuratieactivatie of externe projectupdates.
+
+Verificatie uitgevoerd: metadata, lokale links inclusief anchors, gesloten codeblokken, ontbreken van oningevulde tekst, unieke requirement-/story-/test-IDs en volledige koppeling van 39 requirements aan 29 stories en 87 geplande tests. Alle 12 voor batch A geplande ADR’s bestaan. De klassieke JSON en de 17-cellige no-touch-witness zijn gecontroleerd; de vier regelcombinaties leveren vier volledige en twee strategiesignaturen, terwijl namen en volgorde die niet veranderen. De bronopdracht is ongewijzigd. Dit zijn documentatie- en voorbeeldcontroles; er zijn nog geen applicatie-, engine- of browsertests uitgevoerd.
