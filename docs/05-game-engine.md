@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-10-31
 
@@ -313,7 +313,7 @@ Een checkpoint is één geversioneerd privaat JSON-document, bestaande uit:
 |---|---|
 | `checkpointVersion` | 1; los van engine- en RuleSet-schemaversie |
 | `game` | Volledige gevalideerde `GameState` |
-| `opponents` | Per speler controller-ID/versie en eventueel exact model-ID/versie/digest; wijzigingen tijdens herstel worden geregistreerd |
+| `opponents` | Per speler controller-ID/versie en eventueel exact model-ID/versie/digest en runtimeprofiel-ID volgens [07](07-neural-network.md#export-en-numerieke-pariteit); wijzigingen tijdens herstel worden geregistreerd |
 | `randomStreams` | Plaatsings- en schot-RNG-state per speler; starter staat in `game` |
 | `receipts` | Laatste maximaal 256 geaccepteerde request-IDs, canonieke intentinhoud en geaccepteerde revision |
 | `insights` | Optionele postgame-inzichtdata per schot, gekoppeld aan de observatie vóór dat schot |

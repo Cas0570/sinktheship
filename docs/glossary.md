@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-10-31
 
@@ -8,7 +8,7 @@ Gerelateerd: [Scope](01-product-vision-scope.md), [spelregels](02-game-rules.md)
 
 # Begrippen Nederlands ↔ Engels
 
-Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde namen uit batch A en de geaccepteerde contracten uit batch B. Exacte model-/encodingdetails volgen in batch C.
+Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde begrippen uit batches A/B en de geaccepteerde ML-contracten uit batch C; hun exacte definities staan in document 07.
 
 | Nederlands | Engels / code | Betekenis |
 |---|---|---|
@@ -75,9 +75,15 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Encoder | observation encoder | Zet uitsluitend de beschikbare observatie om naar modelinput. |
 | Logit | logit | Ruwe modelscore vóór een eventuele omzetting naar kans. |
 | Actiemasker | legal-action mask | Markering van cellen waarop volgens de huidige view geschoten mag worden. |
+| Dilation | dilation | Afstand tussen filterpunten in een convolutie; vergroot het contextbereik zonder extra gewichten. |
+| Ontwikkelset | development set | Data voor modelvergelijking en experimentselectie; niet de definitieve holdout. |
+| Holdout | release holdout | Vooraf afgezonderde evaluatieset die geen training, early stopping of modelselectie heeft gestuurd. |
+| Numerieke pariteit | numerical parity | Outputs vallen per waarde binnen vooraf bepaalde toleranties. |
+| Beslispariteit | decision parity | Dezelfde input en RNG leveren dezelfde gekozen actie én volgende RNG-state. |
 | Label | label / target | Gewenst trainingsantwoord, bijvoorbeeld de echte schepenkaart; geen toegestane modelinput. |
 | Supervised learning | supervised learning | Leren uit invoer met bekende labels. |
 | Reinforcement learning | reinforcement learning | Optioneel vervolg waarin beleid leert uit beloning; alleen na gemeten verbetering. |
+| Runtimeprofiel | runtime profile / `RuntimeProfile` | Exacte inferentieruntime, provider, flags en assetset waarvoor het model is gekwalificeerd. |
 | Modelmanifest | `ModelManifest` | Geversioneerde metadata over artefact, compatibiliteit, encoding, training en evaluatie. |
 | Modeluitvoerder | `ModelRunner` | Runtimeport voor dezelfde modelinterface in browser en Node. |
 | Modelkaart | model card / `MODEL_CARD.md` | Menselijke toelichting op doel, trainingsdata, beperkingen en evaluatie van een model. |

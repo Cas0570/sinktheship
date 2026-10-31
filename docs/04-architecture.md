@@ -1,10 +1,10 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-10-31
 
-Gerelateerd: [Scope](01-product-vision-scope.md), [regels](02-game-rules.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [leeswijzer](README.md)
+Gerelateerd: [Scope](01-product-vision-scope.md), [regels](02-game-rules.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [neural network](07-neural-network.md), [leeswijzer](README.md)
 
 # Architectuur
 
@@ -89,7 +89,7 @@ Alle publieke TypeScript-API's worden via de package-root `index.ts` geëxportee
 | `packages/eslint-config` | Gedeelde lintregels, inclusief toegestane imports/globals | Geen productpackages | Regel met positieve en negatieve configfixture |
 | `apps/web` | Routes, containers, registraties, view-store, main/worker-compositie en browseradapters | Alle bovenstaande behalve benchmark | Route plus registratie; e2e, transport- en browseradaptertests |
 | `apps/server` | In v1 uitsluitend README over toekomstige serverautoriteit | Geen v1-code | Later apart ontwerp en adapter; nu geen serverruntime of servertaak |
-| `ml` | Python-simulator, dataset, training, evaluatie en export | Geen TS-imports; leest gedeelde fixtures | Trainingsconfig; pytest en TS/Python-pariteit |
+| `ml` | Python-simulator, dataset, training, evaluatie en export | Geen TS-imports; leest gedeelde fixtures en Node-rolloutbestanden | Trainingsconfig; pytest en TS/Python-pariteit |
 | `models` | Per versie `model.onnx`, `manifest.json`, `MODEL_CARD.md` | Data, geen code | Nieuwe modelmap; manifest-/integriteits-/promotiecontrole |
 | `fixtures` | Gedeelde JSON-gevallen met schema-/encodingversies | Data, geen code | Golden vector; beide talen moeten dezelfde verwachting halen |
 
@@ -119,7 +119,7 @@ Bronnen via Context7, geraadpleegd op 2026-10-31: [pnpm workspaces](https://gith
 | `GameState`, `GameCommand`, `GameEvent`, `ShotOutcome`, `PlayerView`, `TurnPolicy`, `Rng` | [05-game-engine](05-game-engine.md) |
 | `Opponent`, `OpponentRegistry`, `Cancellation`, `Clock`, `WorkScheduler` en inzichtdata | [06-opponents](06-opponents.md#tegenstandercontract); package `opponents` |
 | `SessionPort`, `StorageAdapter`, `IdentityProvider` | Hieronder; package `game-session`, concrete checkpointsemantiek in 05 |
-| `ModelManifest`, `ModelRunner` | De minimale grens hieronder; batch C verhuist de definitie naar 07 en vervangt deze sectie door een verwijzing |
+| `ModelManifest`, `ModelRunner`, `TensorSpec`, encoding en runtimeprofielen | [07-neural-network](07-neural-network.md#modelmanifest-en-runnercontract); package `opponent-neural` |
 
 De namen uit andere documenten in onderstaande signatures verwijzen naar die contracten. Er worden geen afwijkende kopieën van coretypen gemaakt. De minimale tijd-/annuleringsports wonen bij `opponents`, omdat de denkpauzedecorator daar hun eerste afnemer is; `game-session` mag die package al importeren. Zo ontstaat geen omgekeerde import of nieuwe gedeelde-infrastructuurpackage.
 
@@ -178,43 +178,11 @@ interface SessionPort {
 
 `randomize-placement` laat de sessie de gedeelde sampler aanroepen met de private plaatsingsstroom van de mens; daarna commit zij een gewone `set-placement`-corecommand plus RNG. Reset gebruikt een lege `PlacementDraft`. `events` bevat de laatste publieke eventbatch uit 05. Abonnees dedupliceren op event-ID en initialiseren bij inschrijven hun cursor met de al aanwezige IDs; bij herstel start de batch leeg, zodat oude geluiden en live-regionmeldingen niet opnieuw afspelen.
 
-### Minimale modelgrens voor batch C
+### Modelgrens
 
-```ts
-interface TensorSpec {
-  readonly name: string;
-  readonly dtype: "float32";
-  readonly shape: readonly number[];
-}
+De voorlopige modeltypen uit batch B zijn vervangen door het complete [manifest-/runnercontract in 07](07-neural-network.md#modelmanifest-en-runnercontract). `opponent-neural` bezit die contracten en de encoder. Browser-/Node-adapters implementeren `ModelRunner`; de sessie gebruikt publieke laadstatus en bewaart de exacte model-/profielreferentie. Alle typed arrays blijven buiten de JSON-checkpoints.
 
-interface ModelManifest {
-  readonly schemaVersion: 1;
-  readonly id: string;
-  readonly version: string;
-  readonly createdAt: string;
-  readonly modelPath: string;
-  readonly sha256: string;
-  readonly byteLength: number;
-  readonly encodingVersion: string;
-  readonly compatibility: readonly {
-    readonly strategySignature: string;
-    readonly turns: readonly TurnConfiguration[];
-  }[];
-  readonly input: TensorSpec;
-  readonly output: TensorSpec;
-  readonly trainingConfigPath: string;
-  readonly evaluationReportPath: string;
-  readonly runReference: string;
-}
-
-interface ModelRunner {
-  load(manifest: ModelManifest, cancellation: Cancellation): Promise<void>;
-  infer(input: Float32Array, cancellation: Cancellation): Promise<Float32Array>;
-  dispose(): Promise<void>;
-}
-```
-
-Dit is een grens voor dependencyplanning, nog geen publiceerbaar manifestschema. Batch C specificeert exacte shapes, kanalen, runtime-/providervereisten, trainingsconfig, metrics, toleranties, selectie en online/offline-runreferenties. Tot dat schema en een gevalideerd artefact bestaan is er geen compatibel productiemodel. De primitive typed arrays vragen geen DOM of Node. De runner is gebonden aan één geladen manifest; de adapter valideert lengte, shape en eindige outputwaarden.
+De Python-dataset-CLI kan de Node-rolloutproducer aanroepen via geversioneerde JSONL-bestanden. Klassieke strategieën blijven daardoor in `opponents`; Python replayt/valideert onafhankelijk en encodeert voor training. Dit is een proces-/datagrens, geen TS-import vanuit Python. Het model-/locale-buildcatalogusontwerp staat in [ADR 0036](adr/0036-model-and-locale-discovery.md).
 
 ## Verborgen informatie en veilige compositie
 
