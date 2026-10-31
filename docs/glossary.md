@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-10-31
 
@@ -8,7 +8,7 @@ Gerelateerd: [Scope](01-product-vision-scope.md), [spelregels](02-game-rules.md)
 
 # Begrippen Nederlands ↔ Engels
 
-Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan definitieve namen uit batch A en geplande contractnamen uit de masterprompt; de exacte signaturen van die laatste volgen in batches B en C.
+Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde namen uit batch A en de geaccepteerde contracten uit batch B. Exacte model-/encodingdetails volgen in batch C.
 
 | Nederlands | Engels / code | Betekenis |
 |---|---|---|
@@ -21,7 +21,7 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Schip | ship / `ShipSpec` | Eén uniek benoemd vlootexemplaar met lengte; gelijke lengtes hoeven geen gelijk ID te hebben. |
 | Vloot | fleet | De volledige verzameling vereiste schepen van een speler. |
 | Plaatsing | placement / `Placement` | Complete vloot met positie en oriëntatie per schip. |
-| Conceptplaatsing | draft placement | Nog bewerkbare, mogelijk onvolledige vloot in de editor. |
+| Conceptplaatsing | draft placement / `PlacementDraft` | Nog bewerkbare, mogelijk onvolledige vloot in de editor. |
 | Oriëntatie | orientation | `horizontal` naar rechts of `vertical` naar beneden vanaf de startcel. |
 | Aanraakregel | contact rule / `ContactRule` | Overlap is altijd verboden; de regel bepaalt zij-/hoekcontact tussen verschillende schepen. |
 | Opstellingsbewijs | witness | Eén gecontroleerde geldige complete plaatsing die aantoont dat een regelset plaatsbaar is. |
@@ -41,7 +41,7 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Beurtconfiguratie | `TurnConfiguration` | Serialiseerbare instellingen voor een geversioneerde beurtpolicy. |
 | Salvo | salvo | Toekomstige beurtvariant met meerdere schoten; het plan reserveert sequentiële schoten met feedback. |
 | Schot | shot | Eén geaccepteerde poging op een nog niet door die speler beschoten cel. |
-| Schotuitkomst | shot outcome / `ShotOutcome` | Mis, raak of gezonken, plus uitsluitend de toegestane onthullingen; exact contract volgt in batch B. |
+| Schotuitkomst | shot outcome / `ShotOutcome` | Mis, raak of gezonken, plus uitsluitend de toegestane onthullingen; contract in document 05. |
 | Mis | miss | Een geaccepteerd schot op water. |
 | Raak / treffer | hit | Een schot op een nog ongeraakte scheepscel; een zinkend schot telt ook als treffer. |
 | Gezonken | sunk | Alle cellen van één schip zijn geraakt; welke posities de schutter kent is een afzonderlijke vraag. |
@@ -52,7 +52,11 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Publieke observatie | observation | Beschikbare informatie van één schutter op een bepaald moment; input voor bot en encoder. |
 | Command | `GameCommand` | Verzoek om een actie; kan worden afgewezen zonder statewijziging. |
 | Gebeurtenis | domain event / `GameEvent` | Vastgelegd gevolg van een geaccepteerde actie; interne en publieke payloads kunnen verschillen. |
-| Momentopname | snapshot | Geversioneerde opgeslagen state voor hervatten; niet hetzelfde als een spelersview. |
+| Momentopname | snapshot | Vastgelegde toestand op één moment; `SessionSnapshot` is de publieke sessieweergave, een checkpoint bevat private hervatdata. |
+| Hervatpunt | checkpoint | Geversioneerde private game-state, RNG-stromen, controller-/modelversies, receipts en eventuele inzichtdata. |
+| Publieke gebeurtenis | `PublicGameEvent` | Gefilterd event met uitsluitend toegestane payload en een publiek herleidbaar ID. |
+| Requestbewijs | receipt | Opgeslagen request-ID, intentinhoud en revision om herhaalde verwerking te voorkomen. |
+| Annulering | cancellation / `Cancellation` | Signaal om onafgemaakt werk te stoppen; stale resultaten worden ook bij late reactie genegeerd. |
 | Replay | replay | Dezelfde beginsituatie en commandvolgorde opnieuw uitvoeren met dezelfde versies en randomness. |
 | Tegenstander | opponent / `Opponent` | Strategie die via publieke contracten acties kiest. |
 | Register | registry | Verzameling modules of configuraties die via IDs worden gevonden. |
@@ -81,6 +85,7 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Golden fixture | golden fixture | Gedeeld geval met vastgelegde invoer en verwachte uitvoer, gebruikt in TS en Python. |
 | Pariteit tussen runtimes | export parity | Overeenkomst tussen modeloutputs binnen een vooraf vastgelegde tolerantie. |
 | Benchmark | benchmark | Reproduceerbare vergelijking met gelijke omstandigheden en vastgelegde metrics. |
+| Blokbootstrap | block bootstrap | Herhaald trekken van volledige gepaarde benchmarkblokken; de twee starters blijven samen. |
 | Head-to-head | head-to-head | Twee tegenstanders in een volledige wedstrijd vergelijken, met gebalanceerde starter. |
 | p90 / p95 | percentile | Grens waaronder 90% / 95% van de gemeten waarden ligt; niet het gemiddelde. |
 | Betrouwbaarheidsinterval | confidence interval | Statistische onzekerheidsmarge volgens een vooraf gekozen methode. |

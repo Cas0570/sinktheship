@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.6
+Versie: 0.8
 
 Laatst gewijzigd: 2026-10-31
 
@@ -28,13 +28,14 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 | Fase 0 — intake | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 1 — plan | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 2 — batch A | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
-| Fase 2 — batches B–F | Nog niet gestart |
+| Fase 2 — batch B | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
+| Fase 2 — batches C–F | Nog niet gestart |
 | Fase 3 — consistentiecheck | Nog niet gestart |
 | Fase 4 — MCP-verificatie, bord en handboek | Nog niet gestart |
 
-De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Volgende actie: batch B schrijven (architectuur, engine, tegenstanders en bijbehorende ADR’s). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten.
+De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Volgende actie: batch C schrijven (neural network, encoding, training, compatibiliteit en bijbehorende ADR’s). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten.
 
-Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
+Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
 
 ## Documentinventaris en plan voor fase 1
 
@@ -43,11 +44,14 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | Document | Documentstatus | Toelichting |
 |---|---|---|
 | [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd | Ongewijzigde bronopdracht met metadata |
-| [README.md](README.md) | Geaccepteerd | Voortgang, goedgekeurd plan en traceerbaarheid van batch A |
+| [README.md](README.md) | Geaccepteerd | Voortgang, goedgekeurd plan en traceerbaarheid van batches A/B |
 | [01-product-vision-scope.md](01-product-vision-scope.md) | Geaccepteerd | 25 functionele eisen en 14 kwaliteitsnormen, releases en MoSCoW |
 | [02-game-rules.md](02-game-rules.md) | Geaccepteerd | Datacontract, validatie, presets, plaatsbaarheidsbewijs en 22 referentiegevallen |
 | [03-user-stories.md](03-user-stories.md) | Geaccepteerd | 29 stories met 87 geplande acceptatietests |
-| [glossary.md](glossary.md) | Geaccepteerd | Domein-/ML-/samenwerkingstermen, identifiers en eenheden |
+| [04-architecture.md](04-architecture.md) | Geaccepteerd | C4, packagegrenzen, ports, Worker-compositie en uitbreidingsimpact |
+| [05-game-engine.md](05-game-engine.md) | Geaccepteerd | State/commands/events, views, RNG, transacties, checkpoints en replay |
+| [06-opponents.md](06-opponents.md) | Geaccepteerd | Vier algoritmen, uniforme plaatsing, contracten en benchmark-/promotieprotocol |
+| [glossary.md](glossary.md) | Geaccepteerd | Geaccepteerde begrippen uit A, aangevuld met contractnamen uit B |
 | [adr/0000-template.md](adr/0000-template.md) | Geaccepteerd | ADR-template |
 | [adr/0006-configurable-rules.md](adr/0006-configurable-rules.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
 | [adr/0007-four-difficulties.md](adr/0007-four-difficulties.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
@@ -61,6 +65,18 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | [adr/0022-v1-presets.md](adr/0022-v1-presets.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
 | [adr/0023-rule-signatures.md](adr/0023-rule-signatures.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
 | [adr/0024-ruleset-validation.md](adr/0024-ruleset-validation.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
+| [adr/0001-frontend-stack.md](adr/0001-frontend-stack.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0002-pnpm-monorepo.md](adr/0002-pnpm-monorepo.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0003-framework-free-core.md](adr/0003-framework-free-core.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0005-static-v1.md](adr/0005-static-v1.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0020-static-host.md](adr/0020-static-host.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0021-package-boundaries.md](adr/0021-package-boundaries.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0025-hidden-information.md](adr/0025-hidden-information.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0026-opponent-and-turn-contract.md](adr/0026-opponent-and-turn-contract.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0027-rng-and-fleet-sampling.md](adr/0027-rng-and-fleet-sampling.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0028-state-events-and-replay.md](adr/0028-state-events-and-replay.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0030-benchmark-and-promotion.md](adr/0030-benchmark-and-promotion.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
+| [adr/0043-dependency-enforcement.md](adr/0043-dependency-enforcement.md) | Geaccepteerd | Batch B; besluitbasis en verificatie in het document |
 
 ### Documentstructuur
 
@@ -254,7 +270,7 @@ Let op bij het latere Figma-playbook: `codex mcp add` schrijft volgens de via Co
 
 ## Centrale open punten
 
-De hoofdlijnen van fase 1 zijn goedgekeurd. Q-01 benoemt de nieuwe preciseringen van batch A; Q-05 houdt de technische vervolguitwerking zichtbaar. De overige punten hebben een later beslismoment en blokkeren de documentatie niet.
+De hoofdlijnen van fase 1 en batch A zijn goedgekeurd. Q-01 is opgelost; Q-05 maakt zichtbaar welke technische uitwerking is goedgekeurd en wat later volgt. De overige punten hebben een later beslismoment en blokkeren de documentatie niet.
 
 | ID | Open punt | Moment van oplossen |
 |---|---|---|
@@ -262,7 +278,7 @@ De hoofdlijnen van fase 1 zijn goedgekeurd. Q-01 benoemt de nieuwe preciseringen
 | Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; uit drie nog te beschrijven stijlrichtingen kiezen | Rechten vóór fase 4; stijl vóór designgeneratie |
 | Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Projectconfiguratie in batch F; volledige verificatie vóór inrichting in fase 4 |
 | Q-04 | GitHub-repository en eigenaar/zichtbaarheid, Notion-parentpagina, Figma-bestand en W&B-projectbestemming vaststellen | Vóór de betreffende externe handelingen in fase 4; repository aanmaken alleen na het daarvoor gevraagde akkoord |
-| Q-05 | Algoritmen voor uniforme plaatsing, filtering van ambigue zinkinformatie, sessieautoriteit, compatibiliteitsresolver en benchmarkstatistiek uitwerken | Signatuurnorm in batch A; overige contracten en ADR’s in batches B–E |
+| Q-05 | Batch B goedgekeurd: uniforme sampler, zinkprojectie, lokale sessieautoriteit, RNG en benchmarkprotocol. Nog uit te werken: modelresolver/encoding en remote sessieprotocol | B goedgekeurd op 2026-10-31; modeldetails C; remote sessie E |
 | Q-06 | Referentietelefoon, mobiele Lighthouse-instellingen en traceprotocol voor de voorgestelde performancebudgetten vastleggen | Profiel kiezen bij kwaliteitsuitwerking in batch E; vóór metingen vastzetten |
 
 ## Aannames voor het plan
@@ -351,3 +367,21 @@ De belangrijkste preciseringen zijn de runtimevalidatie met afzonderlijke onbesl
 Controleer bij review vooral document 02 en ADR’s 0022–0024. Q-01 is met het akkoord op batch A opgelost; Q-02 t/m Q-06 blijven op hun aangegeven momenten open. Deze batch voegt uitsluitend Markdown toe, zonder implementatiecode, configuratieactivatie of externe projectupdates.
 
 Verificatie uitgevoerd: metadata, lokale links inclusief anchors, gesloten codeblokken, ontbreken van oningevulde tekst, unieke requirement-/story-/test-IDs en volledige koppeling van 39 requirements aan 29 stories en 87 geplande tests. Alle 12 voor batch A geplande ADR’s bestaan. De klassieke JSON en de 17-cellige no-touch-witness zijn gecontroleerd; de vier regelcombinaties leveren vier volledige en twee strategiesignaturen, terwijl namen en volgorde die niet veranderen. De bronopdracht is ongewijzigd. Dit zijn documentatie- en voorbeeldcontroles; er zijn nog geen applicatie-, engine- of browsertests uitgevoerd.
+
+
+## Review van batch B
+
+Geleverd: documenten 04–06 en de 12 voor batch B geplande ADR’s. De glossary en leeswijzer zijn bijgewerkt. De ontwikkelaar heeft batch B op 2026-10-31 goedgekeurd; het akkoord op batch A blijft ongewijzigd. Er zijn nu 34 Markdown-documenten, waaronder het ADR-template, 12 geaccepteerde ADR’s uit A en 12 geaccepteerde ADR’s uit B.
+
+Review vooral de volgende keuzes:
+
+- [Architectuur](04-architecture.md): één Game Worker, een aparte sessiepackage, geprivilegieerde opslagbridge en automatisch te bewaken importgrenzen.
+- [Engine](05-game-engine.md): onderscheid tussen private en publieke events, immutable transities, PCG32-stromen, idempotentie, stale-resultaatcontrole en atomair opgeslagen checkpoints.
+- [Tegenstanders](06-opponents.md): conservatieve omgang met ambigue zinkinformatie, uniforme volledige-vloot-rejection met exacte fallback en de vier schotstrategieën.
+- [Benchmarkbesluit](adr/0030-benchmark-and-promotion.md): 5.000 startergebalanceerde blokken per vergelijking/configuratie, afzonderlijke solo-metingen, blokbootstrap en expliciete release-/promotiepoorten.
+
+De uniforme sampler kan voor extreme engineconfiguraties duur zijn. De v1-snelheid, de moeilijkheidsvolgorde en het neural releasecriterium zijn nog te meten tijdens de bouw. De minimale modelports in 04 dienen alleen de dependencygrens; batch C maakt het complete manifest-/encodingcontract en wordt daarna de eigenaar daarvan. Q-02/03/04/06 blijven op hun bestaande beslismomenten staan.
+
+Verificatie uitgevoerd: metadata, lokale links en anchors, gesloten codeblokken, aanwezigheid van alle 12 geplande B-ADR’s, document-/contractverwijzingen en ongewijzigde bronopdracht. Een tijdelijke rekencontrole bevestigt de zes PCG-referentiewaarden, Easy’s verwachte 95,389 schoten/mediaan 97 en de uniforme gewichten op een 2 × 3-bord met gelabelde lengtes 1 en 2: 28 geldige vloten bij allow, 8 bij no-orthogonal en 4 bij no-touch. Deze controles testen documentvoorbeelden en wiskundige eigenschappen; er zijn geen applicatie-/bot-/browser-/performancetests uitgevoerd. TypeScript-signaturen zijn inhoudelijk gecontroleerd, niet gecompileerd; er is geen compiler geïnstalleerd voor deze documentatiebatch.
+
+Volgens de afgesproken [schrijf- en reviewvolgorde](#schrijfvolgorde-en-reviewmomenten) is batch B goedgekeurd. Batch C mag nu worden geschreven en wordt daarna afzonderlijk ter review aangeboden. Deze batch bevat uitsluitend Markdown, geen implementatiecode, geactiveerde configuratie of externe projectupdates.
