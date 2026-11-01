@@ -1,0 +1,60 @@
+# Status: Geaccepteerd
+# Version: 1.0
+# Last modified: 2026-11-01
+# Related: ../docs/16-tooling-mcp.md, ../AGENTS.md, ../docs/README.md
+# Review artifact. Enable all seven servers during phase 4, then restart and verify.
+# Trust, OAuth credentials and token values belong outside this repository.
+# Proposed defaults: uncomment during phase 4, subject to host policy.
+# approval_policy = "on-request"
+# sandbox_mode = "workspace-write"
+# [sandbox_workspace_write]
+# network_access = true
+
+[mcp_servers.github]
+enabled = false
+url = "https://api.githubcopilot.com/mcp/"
+bearer_token_env_var = "GITHUB_PAT"
+http_headers = { "X-MCP-Toolsets" = "default,projects,actions" }
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+
+[mcp_servers.notion]
+enabled = false
+url = "https://mcp.notion.com/mcp"
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+
+[mcp_servers.figma]
+enabled = false
+url = "https://mcp.figma.com/mcp"
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+
+[mcp_servers.context7]
+enabled = false
+url = "https://mcp.context7.com/mcp"
+# Anonymous by default. Enable only after provisioning this process variable:
+# bearer_token_env_var = "CONTEXT7_API_KEY"
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+
+[mcp_servers.playwright]
+enabled = false
+command = "npx"
+args = ["-y", "@playwright/mcp@latest", "--headless", "--isolated"]
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.chrome-devtools]
+enabled = false
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest", "--headless=true", "--isolated", "--no-usage-statistics", "--no-performance-crux"]
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.wandb]
+enabled = false
+url = "https://mcp.withwandb.com/mcp"
+bearer_token_env_var = "WANDB_API_KEY"
+startup_timeout_sec = 30
+tool_timeout_sec = 120

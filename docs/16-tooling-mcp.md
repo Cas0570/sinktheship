@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-01
 
@@ -8,7 +8,7 @@ Gerelateerd: [Intake en open punten](README.md#mcp-controle-bij-intake), [master
 
 # Projecttooling en zeven MCP-servers
 
-Dit document levert setup-, verificatie- en herstelstappen. Batch F maakt de reviewbare `.codex/config.toml`; fase 4 activeert en verifieert de verbindingen voordat GitHub Projects en Notion worden ingericht. Deze batch installeert niets, wijzigt geen authenticatie en voert geen externe writes uit.
+Dit document levert setup-, verificatie- en herstelstappen. Batch F levert de reviewbare [.codex/config.toml](../.codex/config.toml); fase 4 activeert en verifieert de verbindingen voordat GitHub Projects en Notion worden ingericht. De configuratie is voorbereid zonder installatie, authenticatiewijziging of externe writes.
 
 ## Scope en configuratiegrens
 
@@ -17,6 +17,12 @@ De toegestane projectservers zijn exact `github`, `notion`, `figma`, `context7`,
 Controleer bij activatie de effectieve serverlijst, origin van de instellingen en dubbelen uit persoonlijke configuratie/plugins. Gebruik voor dit project alleen de zeven bedoelde serververbindingen; schakel ongewenste extra verbindingen voor de projectsessie uit zonder andere projecten te beschadigen. Projectconfig overschrijft niet automatisch alle globale entries. Wanneer een host/plugin die scheiding niet aanbiedt, leg de beperking vast en los haar op in de gekozen clientomgeving vóór het fase-4-akkoord.
 
 De lokaal aanwezige CLI is op 2026-11-01 `codex-cli 0.166.0`. `codex mcp --help` bevestigt list/get/add/remove/login/logout. `codex mcp add` biedt geen projectscopeflag en de eerder gecontroleerde broncode schrijft de globale configuratie. Daarom komt de projectsetup rechtstreeks in het repo-bestand; geen globale add-opdrachten als stil alternatief. Zie de [officiële configuratiegids](https://learn.chatgpt.com/docs/config-file/config-basic), [MCP-gids](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) en [referentie](https://learn.chatgpt.com/docs/config-file/config-reference), geraadpleegd op 2026-11-01.
+
+### Voorbereid bestand uit batch F
+
+Het projectbestand bevat exact zeven serverentries met `enabled = false`. De voorgestelde globale permissieregels staan als comments bovenaan. Zo wordt deze documentreview niet automatisch een serveractivatie of wijziging van het huidige runtimeprofiel. Het bestand pinnt geen model of persoonlijke instelling en bevat uitsluitend tokenvariabelenamen. Context7 gebruikt voorlopig anonieme toegang; de optionele keyregel blijft een comment totdat de variabele voor het Codex-proces is ingesteld.
+
+Fase 4 zet de zeven entries aan, activeert de gereviewde permissieregels binnen het hostbeleid, regelt trust/auth en herstart. Controleer daarna ook geërfde entries en duplicaten: het bestand is geen bewijs dat de effectieve omgeving slechts zeven verbindingen heeft. `enabled = false` wordt ondersteund door de [Codex-configuratiereferentie](https://learn.chatgpt.com/docs/config-file/config-reference) en [configuratiebron](https://github.com/openai/codex/blob/main/codex-rs/config/src/mcp_types.rs), gecontroleerd met Context7 op 2026-11-01. Het parsen van TOML is alleen een documentcontrole, geen verbindingstest.
 
 ### Voorgesteld Codex-permissieprofiel
 
@@ -51,7 +57,7 @@ Laat `GITHUB_PAT`, `WANDB_API_KEY` en eventueel `CONTEXT7_API_KEY` beschikbaar z
 | Chrome DevTools | Lokale stdio-server via npx; headless in deze omgeving | Console/netwerk, performance en vóór release |
 | W&B | Remote HTTP; API-key; gekozen entity/project | Runs vergelijken bij training/evaluatie/promotie; SDK doet experimentlogging |
 
-De exacte taak-lifecycle komt in batch F in `AGENTS.md`. De aangeleverde Context7-regel blijft behouden: eerst resolve-library-id, daarna gerichte query-docs, ook als de API bekend lijkt. Geen Context7 voor louter businesslogica of algemene refactoring zonder platform-API. Deel geen private data/secrets in documentatiequeries.
+De exacte taak-lifecycle staat in [AGENTS.md](../AGENTS.md). De aangeleverde Context7-regel blijft behouden: eerst resolve-library-id, daarna gerichte query-docs, ook als de API bekend lijkt. Geen Context7 voor louter businesslogica of algemene refactoring zonder platform-API. Deel geen private data/secrets in documentatiequeries.
 
 ## GitHub MCP
 
@@ -114,7 +120,7 @@ startup_timeout_sec = 30
 tool_timeout_sec = 60
 ```
 
-Bij een bewust anoniem profiel laat batch F de bearerregel weg; bij een keyprofiel staat de key extern. Bearer-auth is ondersteund volgens de actuele [Context7-clientdocumentatie](https://github.com/upstash/context7/blob/master/docs/clients/cursor.mdx). Gebruik niet tegelijk conflicterende OAuth-/headercredentials of een literal key in de repo.
+Batch F kiest een anoniem Context7-profiel: de bearerregel staat alleen als comment in het projectbestand. Als dit bij verificatie onvoldoende toegang biedt, schakel dan met extern ingestelde key naar het beschreven keyprofiel en test opnieuw. Bearer-auth is ondersteund volgens de actuele [Context7-clientdocumentatie](https://github.com/upstash/context7/blob/master/docs/clients/cursor.mdx). Gebruik niet tegelijk conflicterende OAuth-/headercredentials of een literal key in de repo.
 
 Test: resolve React met een vraag over externe stores; kies de officiële React-library en vraag documentatie over `useSyncExternalStore` op. Geslaagd: een actueel fragment met bron en relevante API. Herstel bij quota/auth: keymodus/limiet controleren, niet herhaald dezelfde brede vraag sturen. Bij irrelevante resultaten: betere librarynaam en gerichte conceptquery; maximaal de door de tool toegestane retries. Bewaar bron/versie in de relevante doc of review.
 
@@ -171,7 +177,7 @@ Herstel: 401/keyomgeving, verkeerde entity/projectrechten of netwerk. Python-tra
 ## Fase 4: volgorde en verplicht verificatierapport
 
 1. Lees de goedgekeurde documenten en configdiff; controleer dat uitsluitend de zeven bedoelde projectservers zijn voorbereid en dat er geen secrets in staan.
-2. Regel de open bestemmingen/rechten, kies het Context7-keyprofiel, vertrouw de projectmap en stel externe procesvariabelen/OAuth in. Installeer noodzakelijke lokale server-/browserdependencies binnen de afgesproken setup.
+2. Regel de open bestemmingen/rechten, vertrouw de projectmap en stel externe procesvariabelen/OAuth in. Zet alle zeven `enabled`-waarden in het projectbestand op `true` en activeer de voorgestelde permissieregels voor zover het hostbeleid dat toestaat. Test het gekozen anonieme Context7-profiel of stel vooraf het keyprofiel in. Installeer noodzakelijke lokale server-/browserdependencies binnen de afgesproken setup.
 3. Start een nieuwe Codex-sessie. Controleer `codex mcp list` of de effectieve IDE-instellingen en toolinventaris; de lijst alleen is geen testresultaat.
 4. Voer alle zeven onderstaande lezende tests uit en noteer per server datum/client-/serverversie, identiteit/bestemming, testcall, geredigeerd resultaat en status.
 5. Ga pas na zeven geslaagde controles door met repository-/Projects-/Notion-inrichting. Als een voorwaarde faalt: beschrijf exact oorzaak, benodigde gebruikersactie en hervatpunt; stop vóór die externe inrichting zoals de masterprompt voorschrijft.

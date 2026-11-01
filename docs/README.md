@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.14
+Versie: 0.16
 
 Laatst gewijzigd: 2026-11-01
 
@@ -32,22 +32,25 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 | Fase 2 — batch C | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 2 — batch D | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
 | Fase 2 — batch E | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
-| Fase 2 — batch F | Nog niet gestart |
+| Fase 2 — batch F | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
 | Fase 3 — consistentiecheck | Nog niet gestart |
 | Fase 4 — MCP-verificatie, bord en handboek | Nog niet gestart |
 
-De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Batch E is op 2026-11-01 goedgekeurd. Volgende actie: batch F schrijven (roadmap, backlog, werkinstructies en projectconfiguratie). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
+De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Batch E is op 2026-11-01 goedgekeurd. Batch F is op 2026-11-01 goedgekeurd. Volgende actie na de commit: fase 3 uitvoeren. Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
 
-Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D staat in commit `a741986` (`docs: approve batch D frontend design brief and Figma workflow`). Batch E wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
+Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D staat in commit `a741986` (`docs: approve batch D frontend design brief and Figma workflow`). Batch E staat in commit `67cdbd3` (`docs: approve batch E multiplayer quality extension and tooling specifications`). Batch F voegt een uitgeschakelde projectconfiguratie toe. Er zijn geen dependencies geïnstalleerd, verbindingen geactiveerd of externe projectgegevens aangemaakt.
 
 ## Documentinventaris en plan voor fase 1
 
-Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de statusinventaris bestaan; de overige paden in de documentstructuur zijn geplande leveringen, geen lege documenten. Elk document krijgt status, versie, wijzigingsdatum en gerelateerde documenten. `docs/11-multiplayer-future.md` krijgt status **Toekomst**; nieuwe uitwerkingen beginnen als **Concept**.
+Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 geplande repo-documenten en de projectconfiguratie bestaan nu. Alle batches A–F zijn goedgekeurd; de statusinventaris toont de geaccepteerde uitwerkingen en het toekomstontwerp. Elk document krijgt status, versie, wijzigingsdatum en gerelateerde documenten. `docs/11-multiplayer-future.md` krijgt status **Toekomst**; nieuwe uitwerkingen beginnen als **Concept**.
 
 | Document | Documentstatus | Toelichting |
 |---|---|---|
 | [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd | Ongewijzigde bronopdracht met metadata |
-| [README.md](README.md) | Geaccepteerd | Goedgekeurde batches A–E |
+| [README.md](README.md) | Geaccepteerd | Batches A–F goedgekeurd; volledige taaktraceerbaarheid |
+| [Root-README](../README.md) | Geaccepteerd | Projectingang en eerlijk onderscheid tussen huidige docs en toekomstige quick start |
+| [AGENTS.md](../AGENTS.md) | Geaccepteerd | Eén taak per keer, reviews, MCP-momenten en ongewijzigde Context7-regel |
+| [.codex/config.toml](../.codex/config.toml) | Geaccepteerd | Zeven uitgeschakelde serverprofielen; activatie in fase 4 |
 | [01-product-vision-scope.md](01-product-vision-scope.md) | Geaccepteerd | 25 functionele eisen en 14 kwaliteitsnormen, releases en MoSCoW |
 | [02-game-rules.md](02-game-rules.md) | Geaccepteerd | Datacontract, validatie, presets, plaatsbaarheidsbewijs en 22 referentiegevallen |
 | [03-user-stories.md](03-user-stories.md) | Geaccepteerd | 29 stories met 87 geplande acceptatietests |
@@ -59,9 +62,11 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | [09-design-brief.md](09-design-brief.md) | Geaccepteerd | Drie nog te kiezen stijlen, tokens, 19 componenten, schermstates en prototypeflows |
 | [10-figma-mcp-playbook.md](10-figma-mcp-playbook.md) | Geaccepteerd | Actuele mogelijkheden, stappen/prompts, skillgebruik, publicatie, mapping en visuele controle |
 | [11-multiplayer-future.md](11-multiplayer-future.md) | Toekomst | Serverautoriteit, rooms, typed protocol, reconnect, timers en misbruikgrenzen; niet bouwen in v1 |
-| [12-quality-testing.md](12-quality-testing.md) | Geaccepteerd | Testlagen, CI, budget-/toestelprofielen, veiligheid, commando-contract en DoD |
+| [12-quality-testing.md](12-quality-testing.md) | Geaccepteerd | E goedgekeurd; F koppelt het commitvoorbeeld aan de definitieve T14 en de werkinstructies |
+| [13-roadmap.md](13-roadmap.md) | Geaccepteerd | M0–M6, MVP/v1.0, ML-dependencies en externe releasevoorwaarden |
+| [14-backlog.md](14-backlog.md) | Geaccepteerd | 59 taakdefinities, volledige AC-/test-/dependencykoppeling; nog geen issues |
 | [15-extension-guides.md](15-extension-guides.md) | Geaccepteerd | Zes zelfstandige uitbreidingsgidsen, minimale impact en verificatieproeven |
-| [16-tooling-mcp.md](16-tooling-mcp.md) | Geaccepteerd | Zeven serverprofielen, auth, projectscope, testcalls en herstel vóór fase 4 |
+| [16-tooling-mcp.md](16-tooling-mcp.md) | Geaccepteerd | E goedgekeurd; F beschrijft het concrete uitgeschakelde bestand en activatie |
 | [glossary.md](glossary.md) | Geaccepteerd | A–D goedgekeurd; aangevuld met netwerk-, kwaliteits- en toolingbegrippen uit E |
 | [adr/0000-template.md](adr/0000-template.md) | Geaccepteerd | ADR-template |
 | [adr/0006-configurable-rules.md](adr/0006-configurable-rules.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
@@ -112,6 +117,8 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | [adr/0046-authoritative-session.md](adr/0046-authoritative-session.md) | Geaccepteerd | Batch E; remote sessies naast een eventuele server-side Opponent-adapter |
 | [adr/0048-quality-budgets.md](adr/0048-quality-budgets.md) | Geaccepteerd | Batch E; iPhone 16 Pro, labprofiel en aanvullende middenklassekwalificatie |
 | [adr/0049-extension-scaffolding.md](adr/0049-extension-scaffolding.md) | Geaccepteerd | Batch E; kleine generator en menselijke uitbreidingsproeven |
+| [adr/0012-github-projects.md](adr/0012-github-projects.md) | Geaccepteerd | Batch F; enige statusbron, velden/labels en ingebouwde workflows |
+| [adr/0050-review-and-task-workflow.md](adr/0050-review-and-task-workflow.md) | Geaccepteerd | Batch F; één taak, reviewbewijs, leerproeven en overdracht |
 
 ### Documentstructuur
 
@@ -311,7 +318,7 @@ De hoofdlijnen van fase 1 en batch A zijn goedgekeurd. Q-01 is opgelost; Q-05 ma
 |---|---|---|
 | Q-01 | Opgelost: enginegrenzen, validatie met witness/inconclusive en canonieke JSON-signaturen zijn goedgekeurd | Goedgekeurd op 2026-10-31 |
 | Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; expliciet kiezen uit [Harbor, Radar of Paper Fleet](09-design-brief.md#drie-stijlrichtingen) | Rechten vóór fase 4; stijl vóór designgeneratie; nog niet gekozen |
-| Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Projectconfiguratie in batch F; volledige verificatie vóór inrichting in fase 4 |
+| Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Headlessprofiel voorbereid in F; volledige verificatie vóór inrichting in fase 4 |
 | Q-04 | GitHub-repository en eigenaar/zichtbaarheid, Notion-parentpagina, Figma-bestand en W&B-projectbestemming vaststellen | Vóór de betreffende externe handelingen in fase 4; repository aanmaken alleen na het daarvoor gevraagde akkoord |
 | Q-05 | B/C/D-contracten goedgekeurd. [Remote sessieprotocol](11-multiplayer-future.md) en [ADR 0046](adr/0046-authoritative-session.md) zijn met E goedgekeurd | Goedgekeurd op 2026-11-01; toekomstige serverimplementatie blijft buiten v1 |
 | Q-06 | Deels opgelost: ontwikkelaar koos op 2026-11-01 iPhone 16 Pro. [Meetprotocollen](12-quality-testing.md#budgetten-en-vaste-meetprofielen) zijn met E goedgekeurd. Toegang tot middenklassetoestel en eventuele Safari-traceomgeving nog vaststellen | Profielen goedgekeurd; fysieke middenklasse-/Safari-tracevoorziening vóór betreffende release-/ML-kwalificatie, niet nodig om documentatie af te ronden |
@@ -326,49 +333,49 @@ De hoofdlijnen van fase 1 en batch A zijn goedgekeurd. Q-01 is opgelost; Q-05 ma
 
 ## Traceerbaarheid
 
-Batch A definieert 25 FR's, 14 NFR's, 29 stories en 87 acceptatietestgevallen. Deze tests zijn beschreven, nog niet geïmplementeerd of uitgevoerd. De tabel toont ontwerpdekking; zij claimt geen gerealiseerde testdekking. Taak-IDs worden in batch F toegewezen, inclusief expliciet optionele Could-taken. Uitvoeringsstatus blijft op het toekomstige bord.
+Batch A definieert 25 FR's, 14 NFR's, 29 stories en 87 acceptatietestgevallen. Deze tests zijn beschreven, nog niet geïmplementeerd of uitgevoerd. De tabel toont ontwerpdekking; zij claimt geen gerealiseerde testdekking. Batch F koppelt alle eisen via de stories aan 59 [taakdefinities](14-backlog.md), inclusief expliciet optionele Could-taken T57–T59. Uitvoeringsstatus blijft op het toekomstige bord.
 
 | Requirement | User stories | Taak (`Txx`) | Geplande acceptatietests |
 |---|---|---|---|
-| FR-01 | [US-01](03-user-stories.md#us-01) | Batch F | AT-01-01, AT-01-02, AT-01-03 |
-| FR-02 | [US-02](03-user-stories.md#us-02) | Batch F | AT-02-01, AT-02-02, AT-02-03 |
-| FR-03 | [US-02](03-user-stories.md#us-02) | Batch F | AT-02-01, AT-02-02, AT-02-03 |
-| FR-04 | [US-03](03-user-stories.md#us-03) | Batch F | AT-03-01, AT-03-02, AT-03-03 |
-| FR-05 | [US-04](03-user-stories.md#us-04) | Batch F | AT-04-01, AT-04-02, AT-04-03 |
-| FR-06 | [US-05](03-user-stories.md#us-05) | Batch F | AT-05-01, AT-05-02, AT-05-03 |
-| FR-07 | [US-04](03-user-stories.md#us-04) | Batch F | AT-04-01, AT-04-02, AT-04-03 |
-| FR-08 | [US-06](03-user-stories.md#us-06) | Batch F | AT-06-01, AT-06-02, AT-06-03 |
-| FR-09 | [US-07](03-user-stories.md#us-07), [US-17](03-user-stories.md#us-17) | Batch F | AT-07-01, AT-07-02, AT-07-03; AT-17-01, AT-17-02, AT-17-03 |
-| FR-10 | [US-08](03-user-stories.md#us-08) | Batch F | AT-08-01, AT-08-02, AT-08-03 |
-| FR-11 | [US-09](03-user-stories.md#us-09) | Batch F | AT-09-01, AT-09-02, AT-09-03 |
-| FR-12 | [US-10](03-user-stories.md#us-10) | Batch F | AT-10-01, AT-10-02, AT-10-03 |
-| FR-13 | [US-11](03-user-stories.md#us-11) | Batch F | AT-11-01, AT-11-02, AT-11-03 |
-| FR-14 | [US-12](03-user-stories.md#us-12) | Batch F | AT-12-01, AT-12-02, AT-12-03 |
-| FR-15 | [US-03](03-user-stories.md#us-03), [US-13](03-user-stories.md#us-13) | Batch F | AT-03-01, AT-03-02, AT-03-03; AT-13-01, AT-13-02, AT-13-03 |
-| FR-16 | [US-14](03-user-stories.md#us-14) | Batch F | AT-14-01, AT-14-02, AT-14-03 |
-| FR-17 | [US-15](03-user-stories.md#us-15) | Batch F | AT-15-01, AT-15-02, AT-15-03 |
-| FR-18 | [US-16](03-user-stories.md#us-16) | Batch F | AT-16-01, AT-16-02, AT-16-03 |
-| FR-19 | [US-12](03-user-stories.md#us-12) | Batch F | AT-12-01, AT-12-02, AT-12-03 |
-| FR-20 | [US-17](03-user-stories.md#us-17) | Batch F | AT-17-01, AT-17-02, AT-17-03 |
-| FR-21 | [US-18](03-user-stories.md#us-18) | Batch F | AT-18-01, AT-18-02, AT-18-03 |
-| FR-22 | [US-19](03-user-stories.md#us-19) | Batch F | AT-19-01, AT-19-02, AT-19-03 |
-| FR-23 | [US-25](03-user-stories.md#us-25) | Batch F | AT-25-01, AT-25-02, AT-25-03 |
-| FR-24 | [US-26](03-user-stories.md#us-26) | Batch F | AT-26-01, AT-26-02, AT-26-03 |
-| FR-25 | [US-27](03-user-stories.md#us-27) | Batch F | AT-27-01, AT-27-02, AT-27-03 |
-| NFR-01 | [US-20](03-user-stories.md#us-20) | Batch F | AT-20-01, AT-20-02, AT-20-03 |
-| NFR-02 | [US-28](03-user-stories.md#us-28) | Batch F | AT-28-01, AT-28-02, AT-28-03 |
-| NFR-03 | [US-07](03-user-stories.md#us-07) | Batch F | AT-07-01, AT-07-02, AT-07-03 |
-| NFR-04 | [US-05](03-user-stories.md#us-05), [US-21](03-user-stories.md#us-21) | Batch F | AT-05-01, AT-05-02, AT-05-03; AT-21-01, AT-21-02, AT-21-03 |
-| NFR-05 | [US-21](03-user-stories.md#us-21) | Batch F | AT-21-01, AT-21-02, AT-21-03 |
-| NFR-06 | [US-22](03-user-stories.md#us-22) | Batch F | AT-22-01, AT-22-02, AT-22-03 |
-| NFR-07 | [US-13](03-user-stories.md#us-13) | Batch F | AT-13-01, AT-13-02, AT-13-03 |
-| NFR-08 | [US-15](03-user-stories.md#us-15), [US-23](03-user-stories.md#us-23) | Batch F | AT-15-01, AT-15-02, AT-15-03; AT-23-01, AT-23-02, AT-23-03 |
-| NFR-09 | [US-08](03-user-stories.md#us-08) | Batch F | AT-08-01, AT-08-02, AT-08-03 |
-| NFR-10 | [US-23](03-user-stories.md#us-23) | Batch F | AT-23-01, AT-23-02, AT-23-03 |
-| NFR-11 | [US-29](03-user-stories.md#us-29) | Batch F | AT-29-01, AT-29-02, AT-29-03 |
-| NFR-12 | [US-19](03-user-stories.md#us-19) | Batch F | AT-19-01, AT-19-02, AT-19-03 |
-| NFR-13 | [US-20](03-user-stories.md#us-20), [US-24](03-user-stories.md#us-24) | Batch F | AT-20-01, AT-20-02, AT-20-03; AT-24-01, AT-24-02, AT-24-03 |
-| NFR-14 | [US-24](03-user-stories.md#us-24) | Batch F | AT-24-01, AT-24-02, AT-24-03 |
+| FR-01 | [US-01](03-user-stories.md#us-01) | [T08](14-backlog.md#t08), [T20](14-backlog.md#t20), [T23](14-backlog.md#t23), [T27](14-backlog.md#t27), [T28](14-backlog.md#t28), [T29](14-backlog.md#t29), [T30](14-backlog.md#t30) | AT-01-01, AT-01-02, AT-01-03 |
+| FR-02 | [US-02](03-user-stories.md#us-02) | [T05](14-backlog.md#t05), [T06](14-backlog.md#t06), [T28](14-backlog.md#t28) | AT-02-01, AT-02-02, AT-02-03 |
+| FR-03 | [US-02](03-user-stories.md#us-02) | [T05](14-backlog.md#t05), [T06](14-backlog.md#t06), [T28](14-backlog.md#t28) | AT-02-01, AT-02-02, AT-02-03 |
+| FR-04 | [US-03](03-user-stories.md#us-03) | [T12](14-backlog.md#t12), [T13](14-backlog.md#t13), [T14](14-backlog.md#t14), [T28](14-backlog.md#t28), [T39](14-backlog.md#t39), [T41](14-backlog.md#t41) | AT-03-01, AT-03-02, AT-03-03 |
+| FR-05 | [US-04](03-user-stories.md#us-04) | [T06](14-backlog.md#t06), [T11](14-backlog.md#t11), [T19](14-backlog.md#t19), [T22](14-backlog.md#t22), [T29](14-backlog.md#t29) | AT-04-01, AT-04-02, AT-04-03 |
+| FR-06 | [US-05](03-user-stories.md#us-05) | [T18](14-backlog.md#t18), [T19](14-backlog.md#t19), [T21](14-backlog.md#t21), [T22](14-backlog.md#t22), [T29](14-backlog.md#t29), [T30](14-backlog.md#t30), [T33](14-backlog.md#t33), [T53](14-backlog.md#t53) | AT-05-01, AT-05-02, AT-05-03 |
+| FR-07 | [US-04](03-user-stories.md#us-04) | [T06](14-backlog.md#t06), [T11](14-backlog.md#t11), [T19](14-backlog.md#t19), [T22](14-backlog.md#t22), [T29](14-backlog.md#t29) | AT-04-01, AT-04-02, AT-04-03 |
+| FR-08 | [US-06](03-user-stories.md#us-06) | [T08](14-backlog.md#t08), [T23](14-backlog.md#t23), [T30](14-backlog.md#t30) | AT-06-01, AT-06-02, AT-06-03 |
+| FR-09 | [US-07](03-user-stories.md#us-07), [US-17](03-user-stories.md#us-17) | [T09](14-backlog.md#t09), [T12](14-backlog.md#t12), [T13](14-backlog.md#t13), [T14](14-backlog.md#t14), [T19](14-backlog.md#t19), [T23](14-backlog.md#t23), [T26](14-backlog.md#t26), [T30](14-backlog.md#t30), [T35](14-backlog.md#t35), [T46](14-backlog.md#t46), [T47](14-backlog.md#t47), [T55](14-backlog.md#t55) | AT-07-01, AT-07-02, AT-07-03; AT-17-01, AT-17-02, AT-17-03 |
+| FR-10 | [US-08](03-user-stories.md#us-08) | [T10](14-backlog.md#t10), [T20](14-backlog.md#t20), [T24](14-backlog.md#t24), [T25](14-backlog.md#t25), [T26](14-backlog.md#t26), [T30](14-backlog.md#t30), [T33](14-backlog.md#t33), [T41](14-backlog.md#t41), [T46](14-backlog.md#t46), [T55](14-backlog.md#t55) | AT-08-01, AT-08-02, AT-08-03 |
+| FR-11 | [US-09](03-user-stories.md#us-09) | [T08](14-backlog.md#t08), [T20](14-backlog.md#t20), [T24](14-backlog.md#t24), [T30](14-backlog.md#t30), [T41](14-backlog.md#t41) | AT-09-01, AT-09-02, AT-09-03 |
+| FR-12 | [US-10](03-user-stories.md#us-10) | [T20](14-backlog.md#t20), [T31](14-backlog.md#t31), [T47](14-backlog.md#t47) | AT-10-01, AT-10-02, AT-10-03 |
+| FR-13 | [US-11](03-user-stories.md#us-11) | [T25](14-backlog.md#t25), [T27](14-backlog.md#t27), [T31](14-backlog.md#t31), [T33](14-backlog.md#t33), [T53](14-backlog.md#t53) | AT-11-01, AT-11-02, AT-11-03 |
+| FR-14 | [US-12](03-user-stories.md#us-12) | [T18](14-backlog.md#t18), [T21](14-backlog.md#t21), [T31](14-backlog.md#t31), [T45](14-backlog.md#t45), [T53](14-backlog.md#t53) | AT-12-01, AT-12-02, AT-12-03 |
+| FR-15 | [US-03](03-user-stories.md#us-03), [US-13](03-user-stories.md#us-13) | [T12](14-backlog.md#t12), [T13](14-backlog.md#t13), [T14](14-backlog.md#t14), [T20](14-backlog.md#t20), [T28](14-backlog.md#t28), [T39](14-backlog.md#t39), [T40](14-backlog.md#t40), [T41](14-backlog.md#t41), [T42](14-backlog.md#t42), [T54](14-backlog.md#t54) | AT-03-01, AT-03-02, AT-03-03; AT-13-01, AT-13-02, AT-13-03 |
+| FR-16 | [US-14](03-user-stories.md#us-14) | [T20](14-backlog.md#t20), [T27](14-backlog.md#t27), [T31](14-backlog.md#t31), [T32](14-backlog.md#t32) | AT-14-01, AT-14-02, AT-14-03 |
+| FR-17 | [US-15](03-user-stories.md#us-15) | [T25](14-backlog.md#t25), [T31](14-backlog.md#t31), [T32](14-backlog.md#t32), [T55](14-backlog.md#t55) | AT-15-01, AT-15-02, AT-15-03 |
+| FR-18 | [US-16](03-user-stories.md#us-16) | [T44](14-backlog.md#t44) | AT-16-01, AT-16-02, AT-16-03 |
+| FR-19 | [US-12](03-user-stories.md#us-12) | [T18](14-backlog.md#t18), [T21](14-backlog.md#t21), [T31](14-backlog.md#t31), [T45](14-backlog.md#t45), [T53](14-backlog.md#t53) | AT-12-01, AT-12-02, AT-12-03 |
+| FR-20 | [US-17](03-user-stories.md#us-17) | [T14](14-backlog.md#t14), [T19](14-backlog.md#t19), [T46](14-backlog.md#t46), [T47](14-backlog.md#t47) | AT-17-01, AT-17-02, AT-17-03 |
+| FR-21 | [US-18](03-user-stories.md#us-18) | [T34](14-backlog.md#t34), [T36](14-backlog.md#t36), [T37](14-backlog.md#t37), [T38](14-backlog.md#t38), [T43](14-backlog.md#t43), [T52](14-backlog.md#t52) | AT-18-01, AT-18-02, AT-18-03 |
+| FR-22 | [US-19](03-user-stories.md#us-19) | [T11](14-backlog.md#t11), [T13](14-backlog.md#t13), [T14](14-backlog.md#t14), [T15](14-backlog.md#t15), [T16](14-backlog.md#t16), [T33](14-backlog.md#t33), [T36](14-backlog.md#t36), [T38](14-backlog.md#t38), [T42](14-backlog.md#t42), [T52](14-backlog.md#t52), [T56](14-backlog.md#t56) | AT-19-01, AT-19-02, AT-19-03 |
+| FR-23 | [US-25](03-user-stories.md#us-25) | [T57](14-backlog.md#t57) | AT-25-01, AT-25-02, AT-25-03 |
+| FR-24 | [US-26](03-user-stories.md#us-26) | [T58](14-backlog.md#t58) | AT-26-01, AT-26-02, AT-26-03 |
+| FR-25 | [US-27](03-user-stories.md#us-27) | [T59](14-backlog.md#t59) | AT-27-01, AT-27-02, AT-27-03 |
+| NFR-01 | [US-20](03-user-stories.md#us-20) | [T01](14-backlog.md#t01), [T02](14-backlog.md#t02), [T04](14-backlog.md#t04), [T12](14-backlog.md#t12), [T27](14-backlog.md#t27), [T33](14-backlog.md#t33), [T39](14-backlog.md#t39), [T43](14-backlog.md#t43), [T48](14-backlog.md#t48), [T49](14-backlog.md#t49), [T50](14-backlog.md#t50), [T51](14-backlog.md#t51), [T52](14-backlog.md#t52), [T56](14-backlog.md#t56) | AT-20-01, AT-20-02, AT-20-03 |
+| NFR-02 | [US-28](03-user-stories.md#us-28) | [T05](14-backlog.md#t05), [T07](14-backlog.md#t07), [T10](14-backlog.md#t10), [T11](14-backlog.md#t11), [T12](14-backlog.md#t12), [T15](14-backlog.md#t15), [T23](14-backlog.md#t23), [T24](14-backlog.md#t24) | AT-28-01, AT-28-02, AT-28-03 |
+| NFR-03 | [US-07](03-user-stories.md#us-07) | [T09](14-backlog.md#t09), [T12](14-backlog.md#t12), [T13](14-backlog.md#t13), [T14](14-backlog.md#t14), [T23](14-backlog.md#t23), [T26](14-backlog.md#t26), [T30](14-backlog.md#t30), [T35](14-backlog.md#t35), [T46](14-backlog.md#t46), [T55](14-backlog.md#t55) | AT-07-01, AT-07-02, AT-07-03 |
+| NFR-04 | [US-05](03-user-stories.md#us-05), [US-21](03-user-stories.md#us-21) | [T03](14-backlog.md#t03), [T17](14-backlog.md#t17), [T18](14-backlog.md#t18), [T19](14-backlog.md#t19), [T20](14-backlog.md#t20), [T21](14-backlog.md#t21), [T22](14-backlog.md#t22), [T29](14-backlog.md#t29), [T30](14-backlog.md#t30), [T33](14-backlog.md#t33), [T47](14-backlog.md#t47), [T51](14-backlog.md#t51), [T53](14-backlog.md#t53) | AT-05-01, AT-05-02, AT-05-03; AT-21-01, AT-21-02, AT-21-03 |
+| NFR-05 | [US-21](03-user-stories.md#us-21) | [T03](14-backlog.md#t03), [T17](14-backlog.md#t17), [T18](14-backlog.md#t18), [T19](14-backlog.md#t19), [T20](14-backlog.md#t20), [T21](14-backlog.md#t21), [T22](14-backlog.md#t22), [T33](14-backlog.md#t33), [T47](14-backlog.md#t47), [T51](14-backlog.md#t51), [T53](14-backlog.md#t53) | AT-21-01, AT-21-02, AT-21-03 |
+| NFR-06 | [US-22](03-user-stories.md#us-22) | [T26](14-backlog.md#t26), [T33](14-backlog.md#t33), [T40](14-backlog.md#t40), [T45](14-backlog.md#t45), [T54](14-backlog.md#t54) | AT-22-01, AT-22-02, AT-22-03 |
+| NFR-07 | [US-13](03-user-stories.md#us-13) | [T20](14-backlog.md#t20), [T39](14-backlog.md#t39), [T40](14-backlog.md#t40), [T41](14-backlog.md#t41), [T42](14-backlog.md#t42), [T54](14-backlog.md#t54) | AT-13-01, AT-13-02, AT-13-03 |
+| NFR-08 | [US-15](03-user-stories.md#us-15), [US-23](03-user-stories.md#us-23) | [T03](14-backlog.md#t03), [T25](14-backlog.md#t25), [T31](14-backlog.md#t31), [T32](14-backlog.md#t32), [T39](14-backlog.md#t39), [T40](14-backlog.md#t40), [T55](14-backlog.md#t55) | AT-15-01, AT-15-02, AT-15-03; AT-23-01, AT-23-02, AT-23-03 |
+| NFR-09 | [US-08](03-user-stories.md#us-08) | [T10](14-backlog.md#t10), [T20](14-backlog.md#t20), [T24](14-backlog.md#t24), [T25](14-backlog.md#t25), [T26](14-backlog.md#t26), [T30](14-backlog.md#t30), [T33](14-backlog.md#t33), [T41](14-backlog.md#t41), [T46](14-backlog.md#t46), [T55](14-backlog.md#t55) | AT-08-01, AT-08-02, AT-08-03 |
+| NFR-10 | [US-23](03-user-stories.md#us-23) | [T03](14-backlog.md#t03), [T25](14-backlog.md#t25), [T32](14-backlog.md#t32), [T39](14-backlog.md#t39), [T40](14-backlog.md#t40), [T55](14-backlog.md#t55) | AT-23-01, AT-23-02, AT-23-03 |
+| NFR-11 | [US-29](03-user-stories.md#us-29) | [T10](14-backlog.md#t10), [T34](14-backlog.md#t34), [T35](14-backlog.md#t35), [T36](14-backlog.md#t36), [T38](14-backlog.md#t38), [T40](14-backlog.md#t40), [T42](14-backlog.md#t42) | AT-29-01, AT-29-02, AT-29-03 |
+| NFR-12 | [US-19](03-user-stories.md#us-19) | [T11](14-backlog.md#t11), [T13](14-backlog.md#t13), [T14](14-backlog.md#t14), [T15](14-backlog.md#t15), [T16](14-backlog.md#t16), [T33](14-backlog.md#t33), [T36](14-backlog.md#t36), [T38](14-backlog.md#t38), [T42](14-backlog.md#t42), [T52](14-backlog.md#t52), [T56](14-backlog.md#t56) | AT-19-01, AT-19-02, AT-19-03 |
+| NFR-13 | [US-20](03-user-stories.md#us-20), [US-24](03-user-stories.md#us-24) | [T01](14-backlog.md#t01), [T02](14-backlog.md#t02), [T03](14-backlog.md#t03), [T04](14-backlog.md#t04), [T12](14-backlog.md#t12), [T17](14-backlog.md#t17), [T27](14-backlog.md#t27), [T33](14-backlog.md#t33), [T37](14-backlog.md#t37), [T39](14-backlog.md#t39), [T43](14-backlog.md#t43), [T48](14-backlog.md#t48), [T49](14-backlog.md#t49), [T50](14-backlog.md#t50), [T51](14-backlog.md#t51), [T52](14-backlog.md#t52), [T56](14-backlog.md#t56) | AT-20-01, AT-20-02, AT-20-03; AT-24-01, AT-24-02, AT-24-03 |
+| NFR-14 | [US-24](03-user-stories.md#us-24) | [T01](14-backlog.md#t01), [T02](14-backlog.md#t02), [T03](14-backlog.md#t03), [T04](14-backlog.md#t04), [T17](14-backlog.md#t17), [T33](14-backlog.md#t33), [T37](14-backlog.md#t37), [T43](14-backlog.md#t43), [T49](14-backlog.md#t49), [T56](14-backlog.md#t56) | AT-24-01, AT-24-02, AT-24-03 |
 
 ## Externe projectlinks
 
@@ -474,3 +481,22 @@ Open punten: Q-02/03/04 blijven op hun bestaande momenten staan. Q-05 heeft nu e
 Verificatie uitgevoerd: metadata, lokale links/anchors, gesloten codeblokken, whitespace buiten de letterlijk bewaarde bron, bekende AT-verwijzingen, unieke contractvindplaatsen en aanwezigheid/secties van de zeven E-ADR's. De gecombineerde TOML-voorbeelden parsen als precies zeven serverentries zonder literal secrets. Het roomalfabet bevat 31 unieke tekens en 31^6 mogelijke zes-tekensleutels. De oorspronkelijke masterprompt behoudt zijn SHA-256. Bronnen zijn geraadpleegd via Context7, officiële documentatie en lokale CLI-help. Er zijn geen dependencies geïnstalleerd, configuraties geactiveerd, volledige MCP-herverificaties of applicatie-/toesteltests uitgevoerd, of externe projectgegevens gewijzigd.
 
 Volgens de afgesproken [reviewvolgorde](#schrijfvolgorde-en-reviewmomenten) is E goedgekeurd. Na de commit start F met roadmap, traceerbare backlog, root-README, AGENTS.md, projectconfiguratie en de twee resterende ADR's. Fase 3/4 zijn nog niet gestart.
+
+
+## Review van batch F
+
+Geleverd: [roadmap](13-roadmap.md), [59 taakdefinities](14-backlog.md), [root-README](../README.md), [AGENTS.md](../AGENTS.md), [.codex/config.toml](../.codex/config.toml) en de resterende [ADR 0012](adr/0012-github-projects.md) en [ADR 0050](adr/0050-review-and-task-workflow.md). Batch F is door de ontwikkelaar goedgekeurd op 2026-11-01. Er zijn nu 72 Markdown-documenten, waaronder 50 uitgewerkte ADR's plus het template. De leeswijzer bevat voor alle 39 requirements de koppeling naar stories, taken en de 87 geplande acceptatietests.
+
+Review vooral:
+
+- **Volgorde en scope:** de 59 taken zijn S/M en hebben expliciete afhankelijkheden. T23, de publieke sessiecoördinator, hoort bij M2 omdat de head-to-head-benchmark in T15 de gewone sessie gebruikt. Het ML-spoor kan na M1 met simulator/encoding starten; de dataset gebruikt daarna de M2-gedragsstrategieën. De labels blijven echte bezetting volgens 07, geen teacher-imitatie.
+- **Releasevoorwaarden:** T33 levert de MVP-poort inclusief EN/NL, toetsenbord/touch, browsermatrix, budgetten en proeven van de beschikbare uitbreidingspunten. M6 voegt de geplande Should-functies en volledige v1-kwalificatie toe. T57–T59 zijn uitdrukkelijk Could voor na v1.0 en blokkeren die release niet.
+- **Zelfstandig onderhouden:** iedere taak documenteert haar publieke API; aparte taken controleren alle module-README's, de CPU-leerproef en de zes uitbreidingsgidsen door menselijke uitvoering zonder AI. De generieke DoD wordt via een centrale verwijzing toegepast.
+- **Taakworkflow:** het bord is de enige uitvoeringsstatusbron; issues linken naar repo-definities. PR's hebben een closing keyword naar de default branch en menselijke review. De ingebouwde Done-workflows worden in fase 4 gecontroleerd, met zo nodig concrete UI-stappen voor de ontwikkelaar. AGENTS behoudt de aangeleverde Context7-instructie letterlijk en onderscheidt de huidige documentatiefasen van de latere bouw.
+- **Configuratie:** exact zeven serverentries zijn voorbereid met `enabled = false`; het voorgestelde permissieprofiel staat als comment. Context7 begint anoniem, met optionele externe key na configuratie/verificatie. Toolingdocument 16 beschrijft nu de concrete activatievolgorde. Document 12 verwijst naar AGENTS en gebruikt het definitieve T14 in het commitvoorbeeld; kwaliteitsnormen zijn niet gewijzigd.
+
+Open punten blijven centraal Q-02/03/04/06: Figma-seat/bestemming en expliciete stijlkeuze, werkende Chrome-start, externe projectbestemmingen en meetvoorzieningen. De beschikbare iPhone 16 Pro blijft het fysieke iOS-referentietoestel; middenklasse-inferentie en Safari-traces vragen hun afzonderlijke voorziening vóór kwalificatie. Geen van deze punten verhindert deze documentreview.
+
+Verificatie uitgevoerd: metadata, lokale links inclusief anchors, gesloten codeblokken, whitespace, aanwezigheid/secties van alle 50 ADR's, 59 unieke taak-ID's met verplichte velden, bekende US-/AT-verwijzingen, volledige requirement-/testkoppeling en acyclische dependencies. AGENTS blijft onder 32 KiB en de Context7-brontekst is behouden. TOML parseert met precies zeven uitgeschakelde servers en zonder actieve permissieoverride of literal secrets. De oorspronkelijke masterprompt behoudt zijn SHA-256. GitHub-/Codex-/pnpm-details zijn via Context7 en officiële bronnen gecontroleerd.
+
+Er is geen applicatiecode gebouwd, geen applicatie-/browser-/toestelmeting uitgevoerd en geen externe projectinrichting gestart. Batch F is goedgekeurd en wordt volgens [masterprompt §15](00-masterprompt.md#15-werkwijze-voor-deze-opdracht) gecommit. Daarna volgt fase 3, de volledige inhoudelijke consistentiecheck; fase 4 en de bouw zijn nog niet gestart.

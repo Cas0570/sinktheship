@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-01
 
@@ -169,7 +169,7 @@ Training/evaluatie/export/publicatiecommando's blijven uitsluitend normatief in 
 
 Gebruik strict TypeScript, expliciete publieke API's, geen `any` als escape voor onbegrepen data, type-only imports waar passend, geen deep imports en geen niet-deterministische corecalls. Code/identifiers/comments/commits Engels; docs Nederlands. Comments leggen redenen en invarianten uit. Nieuwe dependencies vragen een ADR; nieuwe API's krijgen tegelijk module-README/docs/tests. Verborgen state komt niet in logs of diagnostics.
 
-Conventional Commits met taak-ID, bijvoorbeeld `feat(T05): add density target scoring`. Eén taakbranch en PR, `Closes #<issue>`, kleine reviewbare diff. Reviewsamenvatting: resultaat/reden, doc-/ADR-link, echte testcommando's en uitkomsten, reviewfocus, bijgewerkte docs en daadwerkelijke GitHub-/Notion-acties. Een mislukte externe update wordt expliciet gemeld. De exacte taak-lifecycle wordt in batch F in AGENTS.md en de backlog vastgelegd.
+Conventional Commits met taak-ID, bijvoorbeeld `feat(T14): add density target scoring`. Eén taakbranch en PR, `Closes #<issue>`, kleine reviewbare diff. Reviewsamenvatting: resultaat/reden, doc-/ADR-link, echte testcommando's en uitkomsten, reviewfocus, bijgewerkte docs en daadwerkelijke GitHub-/Notion-acties. Een mislukte externe update wordt expliciet gemeld. De exacte taak-lifecycle staat in [AGENTS.md](../AGENTS.md) en de [backlog](14-backlog.md); T14 is de definitieve density-taak uit batch F.
 
 ## Definition of Done
 
