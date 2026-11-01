@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-01
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [regels](02-game-rules.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [neural network](07-neural-network.md), [leeswijzer](README.md)
 
@@ -141,8 +141,29 @@ interface IdentityProvider {
   getIdentity(): Promise<GuestIdentity>;
 }
 
+interface PostgameDecision {
+  readonly shotIndex: number;
+  readonly observation: PlayerView;
+  readonly insight: DecisionInsight;
+}
+
+interface PostgameReview {
+  readonly decisions: readonly PostgameDecision[];
+  readonly omittedDecisionCount: number;
+}
+
+interface OpponentSummary {
+  readonly id: string;
+  readonly version: string;
+  readonly model: null | { readonly id: string; readonly version: string };
+  readonly changedDuringGame: boolean;
+}
+
 interface SessionSnapshot {
+  readonly rules: RuleSet;
+  readonly opponent: OpponentSummary;
   readonly view: PlayerView;
+  readonly postgame: PostgameReview | null;
   readonly events: readonly PublicGameEvent[];
   readonly activity: "idle" | "placing-opponent" | "thinking" | "loading-model";
   readonly persistence: "saved" | "saving" | "unavailable";
@@ -174,7 +195,9 @@ interface SessionPort {
 
 `PlayerIntent.set-placement` gebruikt `PlacementDraft` uit 05 en mag in de editor onvolledig zijn; complete plaatsbaarheid is pas vereist bij confirm. De sessie bindt de lokale actor bij constructie: de UI mag geen andere `PlayerId` meegeven. `replaceOpponent` is een expliciete fout-/herstelkeuze, geen stille fallback; de sessie bewaart de wijziging in haar matchmetadata en labelt het resultaat als gemengd niveau. Een benchmark staat dergelijke vervanging niet toe. Een nieuw spel/rematch wordt door de composition root via een nieuwe sessie gemaakt; `dispose` annuleert de oude requests.
 
-`getSnapshot()` geeft dezelfde objectreferentie terug zolang de zichtbare inhoud niet verandert. De snapshot bevat geen volledige engine-state of opslagpayload. `StorageAdapter.write` vervangt één key atomair of faalt; serialisatie, versies en migraties liggen bij de sessielaag. De browser-storagebridge mag volledige checkpoints verwerken maar is niet exporteerbaar naar schermen, UI-components of bots.
+`getSnapshot()` geeft dezelfde objectreferentie terug zolang de zichtbare inhoud niet verandert. `rules` zijn de actuele gevalideerde publieke sessieregels, immutable en overeenkomend met `view.rulesSignature`; een setupdraft kan die niet vervangen. De snapshot bevat geen volledige engine-state of opslagpayload. `StorageAdapter.write` vervangt één key atomair of faalt; serialisatie, versies en migraties van checkpoints liggen bij de sessielaag. De overige browserrecords vallen onder de betreffende app-/adapterservice uit 08. De browser-storagebridge mag volledige checkpoints verwerken maar is niet exporteerbaar naar schermen, UI-components of bots.
+
+Batch D preciseert de publieke frontendgrens: `opponent` benoemt de actuele controller en eventuele modelversie, zonder seeds, caches of runtimehandles. `changedDuringGame` wordt true bij een expliciete controllervervanging in dezelfde sessie en blijft dat na hervatten; de UI labelt het resultaat dan als gemengd niveau. `postgame` is altijd null tijdens placing/playing en ook null als geen inzicht beschikbaar is. Pas na finished mag de sessie de bewaarde computerbeslissingen publiceren. `PostgameDecision.observation` is een reconstructie van de botview onmiddellijk vóór het bijbehorende schot, met historische legalShots, turn en toegestane uitkomsten; nooit een eindview die als vroegere observatie wordt voorgesteld. Dit vraagt geen nieuwe modelinferentie en verbruikt geen RNG. `DecisionInsight` komt uit 06; de UI leidt het masker af uit de historische legalShots. De historische eigen botvloot is uitsluitend na afloop zichtbaar, wanneer de eindview die sowieso onthult. `omittedDecisionCount` telt eerder bewaarde maar vanwege de grens uit [08](08-frontend.md#opslag-migraties-en-meerdere-tabs) verwijderde beslissingen. Niet-geproduceerd inzicht wordt niet als gewist geteld. Alle gepubliceerde gegevens zijn immutable kopieën. Dit voegt geen dependency aan game-core of packages/ui toe.
 
 `randomize-placement` laat de sessie de gedeelde sampler aanroepen met de private plaatsingsstroom van de mens; daarna commit zij een gewone `set-placement`-corecommand plus RNG. Reset gebruikt een lege `PlacementDraft`. `events` bevat de laatste publieke eventbatch uit 05. Abonnees dedupliceren op event-ID en initialiseren bij inschrijven hun cursor met de al aanwezige IDs; bij herstel start de batch leeg, zodat oude geluiden en live-regionmeldingen niet opnieuw afspelen.
 

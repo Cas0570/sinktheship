@@ -1,14 +1,14 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-01
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [spelregels](02-game-rules.md), [stories](03-user-stories.md), [leeswijzer](README.md)
 
 # Begrippen Nederlands ↔ Engels
 
-Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde begrippen uit batches A/B en de geaccepteerde ML-contracten uit batch C; hun exacte definities staan in document 07.
+Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde begrippen uit batches A–C; de exacte ML-definities staan in document 07. Versie 1.3 voegt de goedgekeurde frontend-/designbegrippen uit batch D toe.
 
 | Nederlands | Engels / code | Betekenis |
 |---|---|---|
@@ -100,6 +100,17 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Acceptatietest | `AT-xx-yy` | Gegeven/Als/Dan-definitie in document 03; pas later uitvoerbare testcode of menselijke controle. |
 | Taak | `Txx` | Reviewbare eenheid werk in de backlog; uitvoeringstatus staat alleen in GitHub Projects. |
 | Architectuurbesluit | ADR | Afgebakend besluit met context, alternatieven, gevolgen en verificatie. |
+| Publieke view-store | external view-store | React-onafhankelijk abonnement op toegestane snapshots; bevat geen private checkpointdata. |
+| Verplaatsbare bordfocus | roving tabindex | Eén tabstop per bord; pijltjes verplaatsen de focus binnen het grid. |
+| Live-melding | live region | Vooraf aanwezige statusregio die nieuwe publieke uitkomsten voor hulpmiddelen aankondigt. |
+| Opslagmigratie | schema migration | Expliciete omzetting van een ondersteunde oudere recordversie, gevolgd door inhoudelijke validatie. |
+| Schrijvende tab | session writer | De tab die de exclusieve sessielock bezit en het actieve checkpoint mag bijwerken. |
+| Locale-bestand | `LocaleFile` | Geversioneerde taalmetadata en vertaalkeys; automatisch gevonden bij de build. |
+| Ontwerptoken | design token | Benoemde atomaire kleur-/maat-/stijlwaarde, als Figma-variable en overeenkomstige CSS-variable. |
+| Semantisch token | semantic alias | Token voor een gebruiksrol, bijvoorbeeld content of action, dat naar een primitive verwijst. |
+| Componentvoorbeeld | specimen | Reviewweergave van een componentstate; hoeft geen extra publieke React-prop te betekenen. |
+| Design-codemapping | design-code mapping | Vastgelegde relatie tussen een Figma-node en code-export, props, commit en verificatie. |
+| Werk-kopie | working copy | Afzonderlijk Figma-bestand/draft voor gecontroleerde wijzigingen vóór publicatie. |
 
 ## Eenheden en schrijfafspraken
 

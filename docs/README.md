@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 0.10
+Versie: 0.12
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-01
 
 Gerelateerd: [Masterprompt](00-masterprompt.md), [scope](01-product-vision-scope.md), [spelregels](02-game-rules.md), [stories](03-user-stories.md), [begrippen](glossary.md)
 
@@ -30,13 +30,14 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 | Fase 2 — batch A | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 2 — batch B | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 2 — batch C | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
-| Fase 2 — batches D–F | Nog niet gestart |
+| Fase 2 — batch D | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
+| Fase 2 — batches E–F | Nog niet gestart |
 | Fase 3 — consistentiecheck | Nog niet gestart |
 | Fase 4 — MCP-verificatie, bord en handboek | Nog niet gestart |
 
-De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Volgende actie: batch D schrijven (frontend, design brief en Figma-playbook). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten.
+De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Volgende actie: batch E schrijven (toekomstmultiplayer, kwaliteit, uitbreiden en tooling). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
 
-Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
+Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
 
 ## Documentinventaris en plan voor fase 1
 
@@ -45,15 +46,18 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | Document | Documentstatus | Toelichting |
 |---|---|---|
 | [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd | Ongewijzigde bronopdracht met metadata |
-| [README.md](README.md) | Geaccepteerd | Voortgang, goedgekeurd plan en goedgekeurde batches A–C |
+| [README.md](README.md) | Geaccepteerd | Voortgang en goedgekeurde batches A–D |
 | [01-product-vision-scope.md](01-product-vision-scope.md) | Geaccepteerd | 25 functionele eisen en 14 kwaliteitsnormen, releases en MoSCoW |
 | [02-game-rules.md](02-game-rules.md) | Geaccepteerd | Datacontract, validatie, presets, plaatsbaarheidsbewijs en 22 referentiegevallen |
 | [03-user-stories.md](03-user-stories.md) | Geaccepteerd | 29 stories met 87 geplande acceptatietests |
-| [04-architecture.md](04-architecture.md) | Geaccepteerd | B goedgekeurd; C verhuist modelcontracten naar 07 en preciseert de rolloutgrens |
+| [04-architecture.md](04-architecture.md) | Geaccepteerd | B/C goedgekeurd; D preciseert publieke sessieregels, tegenstandermetadata en de postgame-reviewprojectie |
 | [05-game-engine.md](05-game-engine.md) | Geaccepteerd | B goedgekeurd; C voegt de exacte neural runtimeprofielreferentie aan checkpoints toe |
 | [06-opponents.md](06-opponents.md) | Geaccepteerd | Vier algoritmen, uniforme plaatsing, contracten en benchmark-/promotieprotocol |
 | [07-neural-network.md](07-neural-network.md) | Geaccepteerd | Encoding, dataset, CPU-training, manifest, export/pariteit, discovery en browserruntime |
-| [glossary.md](glossary.md) | Geaccepteerd | Begrippen uit A/B, aangevuld met ML-termen uit C |
+| [08-frontend.md](08-frontend.md) | Geaccepteerd | Routes, bediening, publieke store, i18n, opslagmigraties, tabcoördinatie en budgetten |
+| [09-design-brief.md](09-design-brief.md) | Geaccepteerd | Drie nog te kiezen stijlen, tokens, 19 componenten, schermstates en prototypeflows |
+| [10-figma-mcp-playbook.md](10-figma-mcp-playbook.md) | Geaccepteerd | Actuele mogelijkheden, stappen/prompts, skillgebruik, publicatie, mapping en visuele controle |
+| [glossary.md](glossary.md) | Geaccepteerd | Geaccepteerde begrippen uit A–C, aangevuld met frontend-/designtermen uit D |
 | [adr/0000-template.md](adr/0000-template.md) | Geaccepteerd | ADR-template |
 | [adr/0006-configurable-rules.md](adr/0006-configurable-rules.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
 | [adr/0007-four-difficulties.md](adr/0007-four-difficulties.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
@@ -87,6 +91,15 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | [adr/0035-model-runtime.md](adr/0035-model-runtime.md) | Geaccepteerd | Batch C; besluitbasis en verificatie in het document |
 | [adr/0036-model-and-locale-discovery.md](adr/0036-model-and-locale-discovery.md) | Geaccepteerd | Batch C; besluitbasis en verificatie in het document |
 | [adr/0041-python-tooling.md](adr/0041-python-tooling.md) | Geaccepteerd | Batch C; besluitbasis en verificatie in het document |
+| [adr/0010-figma-design-workflow.md](adr/0010-figma-design-workflow.md) | Geaccepteerd | Batch D; vaste workflow en concrete bewijsvoering |
+| [adr/0016-devices-and-accessibility.md](adr/0016-devices-and-accessibility.md) | Geaccepteerd | Batch D; bediening, targets, focus en responsive controle |
+| [adr/0018-visual-direction-selection.md](adr/0018-visual-direction-selection.md) | Geaccepteerd | Batch D; keuzeprocedure; stijl nog expliciet te kiezen |
+| [adr/0029-local-persistence.md](adr/0029-local-persistence.md) | Geaccepteerd | Batch D; localStorage, migraties, fouten en één schrijvende sessie |
+| [adr/0037-react-router.md](adr/0037-react-router.md) | Geaccepteerd | Batch D; declaratieve router en lifecyclegrenzen |
+| [adr/0038-external-react-store.md](adr/0038-external-react-store.md) | Geaccepteerd | Batch D; publieke immutable view-store buiten React |
+| [adr/0039-react-i18next.md](adr/0039-react-i18next.md) | Geaccepteerd | Batch D; vertaalbestanden en sleutel-/pluralvalidatie |
+| [adr/0045-room-routes.md](adr/0045-room-routes.md) | Geaccepteerd | Batch D; gereserveerde routes zonder online transport |
+| [adr/0047-design-code-mapping.md](adr/0047-design-code-mapping.md) | Geaccepteerd | Batch D; gelijke namen, Code Connect en lokale fallback |
 
 ### Documentstructuur
 
@@ -136,7 +149,7 @@ De uitwerking van `rulesSignature` en `strategySignature` staat in [document 02]
 
 ## ADR-lijst
 
-De onderstaande 50 bestandsnamen vormen het goedgekeurde ADR-plan. De 12 ADR's met batch A zijn op 2026-10-31 goedgekeurd en staan in de statusinventaris; de overige ADR's volgen in hun batch. **Vast** betekent een keuze uit de masterprompt die niet opnieuw ter discussie staat. **Voorstel** betekent een concrete voorkeursrichting om in de betreffende batch met alternatieven uit te werken. Akkoord op dit plan staat die uitwerking toe; de uiteindelijke tekst wordt bij de batchreview beoordeeld.
+De onderstaande 50 bestandsnamen vormen het goedgekeurde ADR-plan. De 41 ADR's uit batches A–D zijn goedgekeurd en staan in de statusinventaris. De overige ADR's volgen in hun batch. **Vast** betekent een keuze uit de masterprompt die niet opnieuw ter discussie staat. **Voorstel** betekent een concrete voorkeursrichting om in de betreffende batch met alternatieven uit te werken. Akkoord op dit plan staat die uitwerking toe; de uiteindelijke tekst wordt bij de batchreview beoordeeld.
 
 Alle bestanden staan onder `docs/adr/`. De kolom Batch bepaalt wanneer de ADR voor het eerst wordt opgeleverd. Vaste keuzes krijgen geen fictief besluitvormingsverhaal: de masterprompt is de bron, alternatieven worden beschreven als consequenties van een eventuele toekomstige wijziging.
 
@@ -285,7 +298,7 @@ De hoofdlijnen van fase 1 en batch A zijn goedgekeurd. Q-01 is opgelost; Q-05 ma
 | ID | Open punt | Moment van oplossen |
 |---|---|---|
 | Q-01 | Opgelost: enginegrenzen, validatie met witness/inconclusive en canonieke JSON-signaturen zijn goedgekeurd | Goedgekeurd op 2026-10-31 |
-| Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; uit drie nog te beschrijven stijlrichtingen kiezen | Rechten vóór fase 4; stijl vóór designgeneratie |
+| Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; expliciet kiezen uit [Harbor, Radar of Paper Fleet](09-design-brief.md#drie-stijlrichtingen) | Rechten vóór fase 4; stijl vóór designgeneratie; nog niet gekozen |
 | Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Projectconfiguratie in batch F; volledige verificatie vóór inrichting in fase 4 |
 | Q-04 | GitHub-repository en eigenaar/zichtbaarheid, Notion-parentpagina, Figma-bestand en W&B-projectbestemming vaststellen | Vóór de betreffende externe handelingen in fase 4; repository aanmaken alleen na het daarvoor gevraagde akkoord |
 | Q-05 | B goedgekeurd. C goedgekeurd: encoding, modelresolver, dataset-/exportpariteit en promotieketen. Remote sessieprotocol volgt nog | C goedgekeurd op 2026-10-31; remote sessie E |
@@ -412,3 +425,21 @@ Reviewfocus:
 Verificatie: metadata, 312 lokale links/anchors, codeblokken, alle acht C-ADR’s, 65 unieke contractdefinities, 15 ML-verificatiegevallen, parsebare voorbeeld-TOML en ongewijzigde bronopdracht. Een tijdelijke rekencontrole valideert parameter-/gewichtsaantal, receptive field en twee complete geldige vloten die de beschreven ambigue schothistorie opleveren. Er zijn geen dependencies geïnstalleerd, modellen getraind, tensors door PyTorch/ONNX uitgevoerd of prestaties gemeten. De compiler-/runtimechecks zijn toekomstige bouwacceptatie; documentvoorbeelden zijn geen modelkwalificatie.
 
 Q-04 (externe bestemmingen) en Q-06 (referentietoestel/profiel) blijven op hun bestaande beslismoment staan. De volledige holdoutbenchmark en browsermetingen zijn vereist vóór modelpromotie. Volgens de afgesproken [reviewvolgorde](#schrijfvolgorde-en-reviewmomenten) is C goedgekeurd en mag D worden geschreven; die batch wordt daarna afzonderlijk ter review aangeboden. Er is uitsluitend Markdown gewijzigd.
+
+
+## Review van batch D
+
+Geleverd: [08-frontend](08-frontend.md), [09-design-brief](09-design-brief.md), [10-figma-mcp-playbook](10-figma-mcp-playbook.md) en alle negen voor D geplande ADR's. De leeswijzer en glossary zijn bijgewerkt. Document 04 krijgt als goedgekeurde versie 1.2 expliciete publieke sessieregels, actuele tegenstandermetadata en een uitsluitend na afloop beschikbare reviewprojectie. Er zijn nu 55 Markdown-documenten: 13 algemene documenten, het ADR-template en 41 uitgewerkte ADR's. De ontwikkelaar heeft batch D op 2026-11-01 goedgekeurd.
+
+Review vooral:
+
+- [Frontend](08-frontend.md): twaalf routes, hervatten en guards, keyboard-/pointerbediening, één publieke view-store en vertaalbestanden. De opslagkeuze bevat schemaversies, foutbehoud, begrensd optioneel inzicht en één schrijvende tab via Web Locks.
+- [Publieke sessiegrens](04-architecture.md#contractcatalogus): rules en opponentmetadata komen uit de actuele sessie. Historische AI-observaties en scores gaan pas na afloop naar React; de UI leest daarvoor nooit private checkpoints.
+- [Design brief](09-design-brief.md): Harbor, Radar en Paper Fleet, berekende paletteparen, tokenexport, 19 componentfamilies, alle vereiste schermstates op drie breedtes en acht prototypeflows.
+- [Figma-playbook](10-figma-mcp-playbook.md): concrete prompts, projectscope versus het globale CLI-voorbeeld, actuele seat-/toolbeperkingen, skills, publicatie en Code Connect/mappingfallback. De huidige documentatie noemt `create_design_system_rules` een prompt; de sessie biedt hem niet als tool aan.
+
+**Stijlkeuze blijft open.** Harbor is aanbevolen, maar een algemeen akkoord op D kiest Harbor niet. De ontwikkelaar noemt vóór designgeneratie expliciet A/Harbor, B/Radar of C/Paper Fleet; ADR 0018 krijgt dan dat besluit. Rechten, designbestemming en de andere open punten blijven op hun bestaande beslismomenten staan. Figma-generatie hoort bij M3.
+
+Verificatie uitgevoerd: metadata, lokale links/anchors, gesloten codeblokken, whitespace buiten de letterlijk bewaarde bronopdracht, aanwezigheid en secties van de negen D-ADR's, unieke contractvindplaatsen, bekende acceptatietestverwijzingen en een exacte 19-op-19-componentmapping. De sRGB-contrastparen zijn berekend; de minimale bordgeometrie op 320 px is gecontroleerd. De oorspronkelijke masterprompt heeft dezelfde SHA-256. Er zijn geen dependencies geïnstalleerd, app-/browser-/performancetests uitgevoerd, fonts in een remote design geladen, Figma-objecten gegenereerd of externe projectgegevens geschreven.
+
+Volgens de afgesproken [schrijf- en reviewvolgorde](#schrijfvolgorde-en-reviewmomenten) is D goedgekeurd en volgt na de commit batch E: toekomstmultiplayer, kwaliteitsstrategie, uitbreidingsgidsen en MCP-tooling. Die documenten zijn in D nog niet gestart.
