@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
 Laatst gewijzigd: 2026-11-01
 
@@ -8,7 +8,7 @@ Gerelateerd: [Scope](01-product-vision-scope.md), [spelregels](02-game-rules.md)
 
 # Begrippen Nederlands ↔ Engels
 
-Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde begrippen uit batches A–C; de exacte ML-definities staan in document 07. Versie 1.3 voegt de goedgekeurde frontend-/designbegrippen uit batch D toe.
+Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde begrippen uit batches A–D; de exacte ML-definities staan in document 07. Versie 1.4 voegt de goedgekeurde netwerk-, kwaliteits- en toolingbegrippen uit batch E toe.
 
 | Nederlands | Engels / code | Betekenis |
 |---|---|---|
@@ -111,6 +111,19 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Componentvoorbeeld | specimen | Reviewweergave van een componentstate; hoeft geen extra publieke React-prop te betekenen. |
 | Design-codemapping | design-code mapping | Vastgelegde relatie tussen een Figma-node en code-export, props, commit en verificatie. |
 | Werk-kopie | working copy | Afzonderlijk Figma-bestand/draft voor gecontroleerde wijzigingen vóór publicatie. |
+| Serverautoriteit | server authority | De server valideert en commit acties en bepaalt toegestane projecties; clients melden geen eigen schotuitkomst. |
+| Spelkamer | room | Toekomstige tijdelijke lobby en matchcoördinatie; een room kan meerdere afzonderlijke rematch-games omvatten. |
+| Room key | room key | Korte deelbare vindcode voor een private room; geen credential voor een bestaand spelersslot. |
+| Hervattoken | resume token | Tijdelijk geheim waarmee dezelfde anonieme online sessie haar slot herneemt; niet de lokale gast-ID. |
+| Publiek volgnummer | view sequence | Monotone volgorde per room/ontvanger; private wijzigingen van de ander verhogen die niet. |
+| Opgeven | resign / forfeit | Afsluiten op sessieniveau met expliciete reden; geen fictieve vlootvernietiging in de core. |
+| Verkleinen tegenvoorbeeld | shrinking | Propertytest reduceert een falende invoer tot een kleiner reproduceerbaar geval. |
+| Instabiele test | flaky test | Test die zonder inhoudelijke wijziging afwisselend slaagt/faalt; een geslaagde retry verbergt die fout niet. |
+| Labprofiel | synthetic profile | Vastgelegde emulatie/throttling en toolchain; geen bewijs van fysieke telefoonprestaties. |
+| Fysiek referentieprofiel | device profile | Werkelijk toestel, OS/browser en meetcondities waarop ruwe resultaten zijn verzameld. |
+| Vereiste eindcontrole | aggregate gate | Controle die bevestigt dat alle voor deze release vereiste jobs/bewijsstukken geslaagd en aanwezig zijn. |
+| Projectconfiguratie | project-scoped configuration | Codex-instellingen uit de vertrouwde repository, onderscheiden van globale/host-/plugininstellingen. |
+| Toolmogelijkheid | capability | Aangeboden tool of feature; aanwezigheid alleen bewijst geen werkende auth, rechten of geslaagde handeling. |
 
 ## Eenheden en schrijfafspraken
 

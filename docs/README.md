@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.12
+Versie: 0.14
 
 Laatst gewijzigd: 2026-11-01
 
@@ -31,13 +31,14 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 | Fase 2 — batch B | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 2 — batch C | Goedgekeurd door de ontwikkelaar op 2026-10-31 |
 | Fase 2 — batch D | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
-| Fase 2 — batches E–F | Nog niet gestart |
+| Fase 2 — batch E | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
+| Fase 2 — batch F | Nog niet gestart |
 | Fase 3 — consistentiecheck | Nog niet gestart |
 | Fase 4 — MCP-verificatie, bord en handboek | Nog niet gestart |
 
-De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Volgende actie: batch E schrijven (toekomstmultiplayer, kwaliteit, uitbreiden en tooling). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
+De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Batch E is op 2026-11-01 goedgekeurd. Volgende actie: batch F schrijven (roadmap, backlog, werkinstructies en projectconfiguratie). Tijdens fase 2 na iedere batch deze leeswijzer bijwerken en de batch ter review aanbieden; pas na goedkeuring committen en de volgende batch starten. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
 
-Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
+Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D staat in commit `a741986` (`docs: approve batch D frontend design brief and Figma workflow`). Batch E wordt als goedgekeurde batch gecommit. Er zijn geen dependencies geïnstalleerd, MCP-configuraties gewijzigd of externe projectgegevens aangemaakt.
 
 ## Documentinventaris en plan voor fase 1
 
@@ -46,18 +47,22 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | Document | Documentstatus | Toelichting |
 |---|---|---|
 | [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd | Ongewijzigde bronopdracht met metadata |
-| [README.md](README.md) | Geaccepteerd | Voortgang en goedgekeurde batches A–D |
+| [README.md](README.md) | Geaccepteerd | Goedgekeurde batches A–E |
 | [01-product-vision-scope.md](01-product-vision-scope.md) | Geaccepteerd | 25 functionele eisen en 14 kwaliteitsnormen, releases en MoSCoW |
 | [02-game-rules.md](02-game-rules.md) | Geaccepteerd | Datacontract, validatie, presets, plaatsbaarheidsbewijs en 22 referentiegevallen |
 | [03-user-stories.md](03-user-stories.md) | Geaccepteerd | 29 stories met 87 geplande acceptatietests |
-| [04-architecture.md](04-architecture.md) | Geaccepteerd | B/C goedgekeurd; D preciseert publieke sessieregels, tegenstandermetadata en de postgame-reviewprojectie |
+| [04-architecture.md](04-architecture.md) | Geaccepteerd | B–D goedgekeurd; E preciseert de remote sessiegrens en verwijst naar de uitbreidingsgidsen |
 | [05-game-engine.md](05-game-engine.md) | Geaccepteerd | B goedgekeurd; C voegt de exacte neural runtimeprofielreferentie aan checkpoints toe |
 | [06-opponents.md](06-opponents.md) | Geaccepteerd | Vier algoritmen, uniforme plaatsing, contracten en benchmark-/promotieprotocol |
 | [07-neural-network.md](07-neural-network.md) | Geaccepteerd | Encoding, dataset, CPU-training, manifest, export/pariteit, discovery en browserruntime |
 | [08-frontend.md](08-frontend.md) | Geaccepteerd | Routes, bediening, publieke store, i18n, opslagmigraties, tabcoördinatie en budgetten |
 | [09-design-brief.md](09-design-brief.md) | Geaccepteerd | Drie nog te kiezen stijlen, tokens, 19 componenten, schermstates en prototypeflows |
 | [10-figma-mcp-playbook.md](10-figma-mcp-playbook.md) | Geaccepteerd | Actuele mogelijkheden, stappen/prompts, skillgebruik, publicatie, mapping en visuele controle |
-| [glossary.md](glossary.md) | Geaccepteerd | Geaccepteerde begrippen uit A–C, aangevuld met frontend-/designtermen uit D |
+| [11-multiplayer-future.md](11-multiplayer-future.md) | Toekomst | Serverautoriteit, rooms, typed protocol, reconnect, timers en misbruikgrenzen; niet bouwen in v1 |
+| [12-quality-testing.md](12-quality-testing.md) | Geaccepteerd | Testlagen, CI, budget-/toestelprofielen, veiligheid, commando-contract en DoD |
+| [15-extension-guides.md](15-extension-guides.md) | Geaccepteerd | Zes zelfstandige uitbreidingsgidsen, minimale impact en verificatieproeven |
+| [16-tooling-mcp.md](16-tooling-mcp.md) | Geaccepteerd | Zeven serverprofielen, auth, projectscope, testcalls en herstel vóór fase 4 |
+| [glossary.md](glossary.md) | Geaccepteerd | A–D goedgekeurd; aangevuld met netwerk-, kwaliteits- en toolingbegrippen uit E |
 | [adr/0000-template.md](adr/0000-template.md) | Geaccepteerd | ADR-template |
 | [adr/0006-configurable-rules.md](adr/0006-configurable-rules.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
 | [adr/0007-four-difficulties.md](adr/0007-four-difficulties.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
@@ -100,6 +105,13 @@ Alle paden hieronder zijn relatief aan de repositoryroot. De bestanden in de sta
 | [adr/0039-react-i18next.md](adr/0039-react-i18next.md) | Geaccepteerd | Batch D; vertaalbestanden en sleutel-/pluralvalidatie |
 | [adr/0045-room-routes.md](adr/0045-room-routes.md) | Geaccepteerd | Batch D; gereserveerde routes zonder online transport |
 | [adr/0047-design-code-mapping.md](adr/0047-design-code-mapping.md) | Geaccepteerd | Batch D; gelijke namen, Code Connect en lokale fallback |
+| [adr/0013-project-mcp-servers.md](adr/0013-project-mcp-servers.md) | Geaccepteerd | Batch E; zeven projectservers en volledige verificatiegate |
+| [adr/0040-test-tooling.md](adr/0040-test-tooling.md) | Geaccepteerd | Batch E; middelen per testlaag en gedeelde contractsuite |
+| [adr/0042-lint-and-format.md](adr/0042-lint-and-format.md) | Geaccepteerd | Batch E; ESLint/Prettier en ongewijzigde bronmasterprompt |
+| [adr/0044-ci-and-artifacts.md](adr/0044-ci-and-artifacts.md) | Geaccepteerd | Batch E; aparte jobs en herleidbaar releasebewijs |
+| [adr/0046-authoritative-session.md](adr/0046-authoritative-session.md) | Geaccepteerd | Batch E; remote sessies naast een eventuele server-side Opponent-adapter |
+| [adr/0048-quality-budgets.md](adr/0048-quality-budgets.md) | Geaccepteerd | Batch E; iPhone 16 Pro, labprofiel en aanvullende middenklassekwalificatie |
+| [adr/0049-extension-scaffolding.md](adr/0049-extension-scaffolding.md) | Geaccepteerd | Batch E; kleine generator en menselijke uitbreidingsproeven |
 
 ### Documentstructuur
 
@@ -149,7 +161,7 @@ De uitwerking van `rulesSignature` en `strategySignature` staat in [document 02]
 
 ## ADR-lijst
 
-De onderstaande 50 bestandsnamen vormen het goedgekeurde ADR-plan. De 41 ADR's uit batches A–D zijn goedgekeurd en staan in de statusinventaris. De overige ADR's volgen in hun batch. **Vast** betekent een keuze uit de masterprompt die niet opnieuw ter discussie staat. **Voorstel** betekent een concrete voorkeursrichting om in de betreffende batch met alternatieven uit te werken. Akkoord op dit plan staat die uitwerking toe; de uiteindelijke tekst wordt bij de batchreview beoordeeld.
+De onderstaande 50 bestandsnamen vormen het goedgekeurde ADR-plan. De 48 ADR's uit batches A–E zijn goedgekeurd en staan in de statusinventaris. De twee overige ADR's volgen in F. **Vast** betekent een keuze uit de masterprompt die niet opnieuw ter discussie staat. **Voorstel** betekent een concrete voorkeursrichting om in de betreffende batch met alternatieven uit te werken. Akkoord op dit plan staat die uitwerking toe; de uiteindelijke tekst wordt bij de batchreview beoordeeld.
 
 Alle bestanden staan onder `docs/adr/`. De kolom Batch bepaalt wanneer de ADR voor het eerst wordt opgeleverd. Vaste keuzes krijgen geen fictief besluitvormingsverhaal: de masterprompt is de bron, alternatieven worden beschreven als consequenties van een eventuele toekomstige wijziging.
 
@@ -301,8 +313,8 @@ De hoofdlijnen van fase 1 en batch A zijn goedgekeurd. Q-01 is opgelost; Q-05 ma
 | Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; expliciet kiezen uit [Harbor, Radar of Paper Fleet](09-design-brief.md#drie-stijlrichtingen) | Rechten vóór fase 4; stijl vóór designgeneratie; nog niet gekozen |
 | Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Projectconfiguratie in batch F; volledige verificatie vóór inrichting in fase 4 |
 | Q-04 | GitHub-repository en eigenaar/zichtbaarheid, Notion-parentpagina, Figma-bestand en W&B-projectbestemming vaststellen | Vóór de betreffende externe handelingen in fase 4; repository aanmaken alleen na het daarvoor gevraagde akkoord |
-| Q-05 | B goedgekeurd. C goedgekeurd: encoding, modelresolver, dataset-/exportpariteit en promotieketen. Remote sessieprotocol volgt nog | C goedgekeurd op 2026-10-31; remote sessie E |
-| Q-06 | Referentietelefoon, mobiele Lighthouse-instellingen en traceprotocol voor de voorgestelde performancebudgetten vastleggen | Profiel kiezen bij kwaliteitsuitwerking in batch E; vóór metingen vastzetten |
+| Q-05 | B/C/D-contracten goedgekeurd. [Remote sessieprotocol](11-multiplayer-future.md) en [ADR 0046](adr/0046-authoritative-session.md) zijn met E goedgekeurd | Goedgekeurd op 2026-11-01; toekomstige serverimplementatie blijft buiten v1 |
+| Q-06 | Deels opgelost: ontwikkelaar koos op 2026-11-01 iPhone 16 Pro. [Meetprotocollen](12-quality-testing.md#budgetten-en-vaste-meetprofielen) zijn met E goedgekeurd. Toegang tot middenklassetoestel en eventuele Safari-traceomgeving nog vaststellen | Profielen goedgekeurd; fysieke middenklasse-/Safari-tracevoorziening vóór betreffende release-/ML-kwalificatie, niet nodig om documentatie af te ronden |
 
 ## Aannames voor het plan
 
@@ -443,3 +455,22 @@ Review vooral:
 Verificatie uitgevoerd: metadata, lokale links/anchors, gesloten codeblokken, whitespace buiten de letterlijk bewaarde bronopdracht, aanwezigheid en secties van de negen D-ADR's, unieke contractvindplaatsen, bekende acceptatietestverwijzingen en een exacte 19-op-19-componentmapping. De sRGB-contrastparen zijn berekend; de minimale bordgeometrie op 320 px is gecontroleerd. De oorspronkelijke masterprompt heeft dezelfde SHA-256. Er zijn geen dependencies geïnstalleerd, app-/browser-/performancetests uitgevoerd, fonts in een remote design geladen, Figma-objecten gegenereerd of externe projectgegevens geschreven.
 
 Volgens de afgesproken [schrijf- en reviewvolgorde](#schrijfvolgorde-en-reviewmomenten) is D goedgekeurd en volgt na de commit batch E: toekomstmultiplayer, kwaliteitsstrategie, uitbreidingsgidsen en MCP-tooling. Die documenten zijn in D nog niet gestart.
+
+
+## Review van batch E
+
+Geleverd: [11-multiplayer-future](11-multiplayer-future.md), [12-quality-testing](12-quality-testing.md), [15-extension-guides](15-extension-guides.md), [16-tooling-mcp](16-tooling-mcp.md) en de zeven voor E geplande ADR's. De leeswijzer en glossary zijn bijgewerkt; 04 preciseert in goedgekeurde versie 1.3 de remote sessiegrens en verwijst naar de nieuwe uitbreidingsgidsen. Er zijn nu 66 Markdown-documenten: 17 algemene documenten, één ADR-template en 48 uitgewerkte ADR's. Batch E is door de ontwikkelaar goedgekeurd op 2026-11-01.
+
+Review vooral:
+
+- **Serverautoriteit:** document 11 en ADR 0046 leggen uit waarom een online Opponent-adapter alleen onvoldoende is. De server beheert de volledige wedstrijd; clientviews, ontvangerspecifieke sequence, idempotentie, reconnect, timers en expliciete forfeit/abandoned-uitkomsten voorkomen verborgen-statelekkage en dubbel handelen. Dit blijft toekomstontwerp, zonder servercode in v1.
+- **Kwaliteitsbewijs:** document 12 maakt testlagen, CI-/releasepoorten, fouten, browser-/a11y-matrix, CSP en meetprotocollen concreet. De startbudgetten blijven behouden; initiële JS wordt ook over de eerste gewone spelstart geteld. Instabiele tests worden niet door een geslaagde retry verborgen.
+- **Referentietoestel:** de ontwikkelaar koos op 2026-11-01 de beschikbare iPhone 16 Pro. Het fysieke iOS-profiel is onderscheiden van Lighthouse-simulatie en een aanvullend middenklasseprofiel voor de neural-eis. Toegang tot een middenklassetoestel en eventuele Safari-traceomgeving blijft vóór kwalificatie te regelen; dit blokkeert het schrijven niet.
+- **Zelfstandig uitbreiden:** document 15 bevat zes gidsen met bestandsimpact, stappen en bewijsproeven, plus een klein voorstel voor `pnpm new:opponent`. Alle genoemde app-/scriptpaden zijn te bouwen contracten, geen bestaande functionaliteit.
+- **MCP-setup:** document 16 bevat de zeven parseerbare profielen, secretverwijzingen, OAuth-/trust-/herstartstappen, testcalls en gericht herstel. Het onderscheid tussen zichtbare tools, werkende verbinding en voldoende rechten blijft expliciet. Configbestand/activatie volgen in F/fase 4.
+
+Open punten: Q-02/03/04 blijven op hun bestaande momenten staan. Q-05 heeft nu een goedgekeurd toekomstcontract. Q-06 is deels opgelost door de iPhonekeuze; de aanvullende profielvoorzieningen staan hierboven. Er is nog geen visuele stijl gekozen.
+
+Verificatie uitgevoerd: metadata, lokale links/anchors, gesloten codeblokken, whitespace buiten de letterlijk bewaarde bron, bekende AT-verwijzingen, unieke contractvindplaatsen en aanwezigheid/secties van de zeven E-ADR's. De gecombineerde TOML-voorbeelden parsen als precies zeven serverentries zonder literal secrets. Het roomalfabet bevat 31 unieke tekens en 31^6 mogelijke zes-tekensleutels. De oorspronkelijke masterprompt behoudt zijn SHA-256. Bronnen zijn geraadpleegd via Context7, officiële documentatie en lokale CLI-help. Er zijn geen dependencies geïnstalleerd, configuraties geactiveerd, volledige MCP-herverificaties of applicatie-/toesteltests uitgevoerd, of externe projectgegevens gewijzigd.
+
+Volgens de afgesproken [reviewvolgorde](#schrijfvolgorde-en-reviewmomenten) is E goedgekeurd. Na de commit start F met roadmap, traceerbare backlog, root-README, AGENTS.md, projectconfiguratie en de twee resterende ADR's. Fase 3/4 zijn nog niet gestart.

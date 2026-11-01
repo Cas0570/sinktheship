@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
 Laatst gewijzigd: 2026-11-01
 
@@ -224,11 +224,11 @@ Deze grenzen voorkomen dat gewone productcode per ongeluk vals speelt. TypeScrip
 | Model | Nieuwe modelmap met ONNX, manifest en modelkaart; buildcatalogus opnieuw genereren. Geen handmatige wijziging in een level-picker of model-switch. |
 | Taal | Eén volledig vertaalbestand; buildvalidatie controleert ook de keys die module-descriptors leveren. |
 | Scherm | Eén route-module plus registratie in de routecatalogus. |
-| Online sessie | Later een remote `SessionPort`-/`Opponent`-adapter en transport in de composition root; geen WebSocket-imports in core of presentational UI. |
+| Online sessie | Later een remote sessieadapter met transport en roomfeaturecompositie; het publieke subscription-/intentpatroon blijft, maar lokale neural metadata is geen nepcontract voor twee mensen. Een eventuele `RemotePlayerOpponent` leeft server-side. Zie [11](11-multiplayer-future.md#autoriteit-en-bestaande-naden) en [ADR 0046](adr/0046-authoritative-session.md); geen WebSocket-imports in core of presentational UI. |
 
 De builtin-catalogus bevat alleen Easy/Normal/Hard en latere strategieën uit dezelfde package. Neural levert zijn descriptor via `opponent-neural`; de web- en Node-composities injecteren ieder hun runner. Die initiële runtimebedrading is infrastructuur, geen extra registratie bij iedere nieuwe gewone moeilijkheid. Descriptorlabels worden als vertaalkeys geregistreerd, met Engelse/Nederlandse basisteksten in de nieuwe module; zo vraagt een nieuwe bot geen wijzigingen aan UI-componenten.
 
-Nieuwe dependencies of een nieuwe runtimeport kunnen meer impact hebben en vereisen een eigen ADR; de extensieproef voor NFR-01 gebruikt de bestaande ports. De praktische gids en eventuele generator volgen in batch E. Geen speculatieve server-/authcode in v1.
+Nieuwe dependencies of een nieuwe runtimeport kunnen meer impact hebben en vereisen een eigen ADR; de extensieproef voor NFR-01 gebruikt de bestaande ports. De praktische [gids](15-extension-guides.md) en het [generatorvoorstel](adr/0049-extension-scaffolding.md) zijn in batch E uitgewerkt. E preciseert tevens dat volledige serverautoriteit meer omvat dan alleen een externe schotkeuze. Geen speculatieve server-/authcode in v1.
 
 ## Hosting en verificatie
 
