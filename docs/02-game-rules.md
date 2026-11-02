@@ -1,14 +1,14 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [stories](03-user-stories.md), [begrippen](glossary.md), [presets-ADR](adr/0022-v1-presets.md), [signaturen-ADR](adr/0023-rule-signatures.md), [validatie-ADR](adr/0024-ruleset-validation.md)
 
 # Spelregels en regelsets
 
-Dit document is de normatieve bron voor regels, regeldata en de betekenis van uitkomsten. Het beschrijft het enginecontract; de UI geeft in v1 uitsluitend de verderop genoemde configuraties vrij. Engine-state, commands en events worden in batch B vastgelegd zonder deze regels opnieuw te definiëren.
+Dit document is de normatieve bron voor regels, regeldata en de betekenis van uitkomsten. Het beschrijft het enginecontract; de UI geeft in v1 uitsluitend de verderop genoemde configuraties vrij. Engine-state, commands en events staan in [05](05-game-engine.md), zonder deze regels opnieuw te definiëren.
 
 ## Bord, vloot en coördinaten
 
@@ -118,7 +118,7 @@ Een regelset is **geldig voor gebruik** uitsluitend bij `status: valid`; schema-
 
 | Onderdeel | Norm |
 |---|---|
-| Invoer | Een JSON-object met uitsluitend de beschreven velden; geen impliciete defaults, coercion van strings naar getallen of stilzwijgend negeren van onbekende keys. Onbekende positieve gehele schemaversie geeft `unsupported`. |
+| Invoer | Eerst een JSON-object met een leesbare positieve gehele `schemaVersion` vereisen. Een onbekende versie geeft `unsupported` vóór controle tegen het v1-veldschema. Bij versie 1 uitsluitend de beschreven velden; geen impliciete defaults, coercion van strings naar getallen of stilzwijgend negeren van onbekende keys. |
 | Getallen | Alle dimensies, lengtes, quotums en versies zijn eindige gehele getallen. Canonieke coördinaten normaliseren `-0` naar `0`. |
 | Bord | `rows` en `cols` elk 2–26. Een toekomstig groter domein krijgt een schema-/contractreview. |
 | Vloot | 1–32 schepen; unieke IDs volgens `[a-z][a-z0-9-]{0,31}`; `nameKey` volgens `ships\.[a-z][a-z0-9-]{0,31}`. |
@@ -130,11 +130,11 @@ Een regelset is **geldig voor gebruik** uitsluitend bij `status: valid`; schema-
 | Informatie en starter | Alleen de genoemde enumwaarden; beide informatiekeuzes zijn onafhankelijk, eerdere onthullingen worden niet teruggedraaid. |
 | Plaatsbaarheid | Er moet een complete geldige vlootopstelling als witness bestaan. Oppervlaktecontrole alleen is niet voldoende. |
 
-Validatie gebeurt in vaste volgorde: vorm/velden → bekende versie → waarden en unieke IDs → bekende en consistente beurtpolicy → eenvoudige geometrische controles → plaatsbaarheidsbewijs. Een plaatsing wordt gecontroleerd op juiste IDs en aantallen, geldige coördinaten/oriëntatie, grenzen, overlap en contactregel. Fouten krijgen een vaste code en veldpad; UI-tekst komt uit vertalingen.
+Validatie gebeurt in vaste volgorde: JSON-object en geldige schemaVersion-vorm → bekende versie → volledige v1-vorm/velden → waarden en unieke IDs → bekende en consistente beurtpolicy → eenvoudige geometrische controles → plaatsbaarheidsbewijs. Zo kan `{ "schemaVersion": 2, "futureField": true }` als `unsupported` worden herkend zonder onbekende toekomstige velden aan v1-regels te toetsen. Een ontbrekende, niet-gehele of niet-positieve schemaVersion is `invalid`. Een plaatsing wordt gecontroleerd op juiste IDs en aantallen, geldige coördinaten/oriëntatie, grenzen, overlap en contactregel. Fouten krijgen een vaste code en veldpad; UI-tekst komt uit vertalingen.
 
-Plaatsbaarheid wordt bewezen met een gevalideerde preset-witness of een deterministische eindige zoekprocedure. De caller geeft een positief geheel `maxSearchNodes` op. Dezelfde regels en dezelfde limiet leveren dezelfde uitkomst; de zoeklimiet is een aantal knopen, geen tijdslimiet. Als de limiet vóór bewijs of uitputting wordt bereikt, volgt `inconclusive`, nooit `valid` en nooit de onjuiste claim dat geen plaatsing bestaat. De compositielaag biedt dan geen startknop. De zoekmethode en limiet worden in batch B uitgewerkt; de vier vrijgegeven v1-combinaties hebben al een witness en behoeven geen brede zoekopdracht.
+Plaatsbaarheid wordt bewezen met een gevalideerde preset-witness of een deterministische eindige zoekprocedure. De caller geeft een positief geheel `maxSearchNodes` op. Dezelfde regels en dezelfde limiet leveren dezelfde uitkomst; de zoeklimiet is een aantal knopen, geen tijdslimiet. Als de limiet vóór bewijs of uitputting wordt bereikt, volgt `inconclusive`, nooit `valid` en nooit de onjuiste claim dat geen plaatsing bestaat. De compositielaag biedt dan geen startknop. De zoekmethode en limiet staan in [05](05-game-engine.md#plaatsbaarheidsvalidatie); de vier vrijgegeven v1-combinaties hebben al een witness en behoeven geen brede zoekopdracht.
 
-Een validator-witness is alleen een bewijs, geen willekeurige spelersopstelling. Alle niveaus en de knop Willekeurig plaatsen gebruiken dezelfde uniforme verdeling over gelabelde complete geldige vloten. RNG en sampler worden in batch B gespecificeerd; willekeurig greedy plaatsen mag niet als uniform worden voorgesteld.
+Een validator-witness is alleen een bewijs, geen willekeurige spelersopstelling. Alle niveaus en de knop Willekeurig plaatsen gebruiken dezelfde uniforme verdeling over gelabelde complete geldige vloten. RNG en sampler staan in [05](05-game-engine.md#randomness-en-seeds) en [06](06-opponents.md#uniforme-plaatsingsstrategie); willekeurig greedy plaatsen mag niet als uniform worden voorgesteld.
 
 Willekeurig plaatsen vervangt na bevestiging de gehele conceptvloot; alleen de lege plekken vullen zou een andere, voorwaardelijke verdeling opleveren. Reset verwijdert de hele conceptvloot. Beide acties behouden regels en niveau; de computerplaatsing wordt niet aan de speler onthuld.
 
@@ -230,7 +230,7 @@ Een zinkuitkomst telt voor quota en statistieken als treffer. Bij zinken gelden 
 
 Klassiek onthult bij zinken het type, niet de volledige positie. Een trefferscluster bij rakende schepen mag dus niet volledig als dat gezonken schip worden gemarkeerd. Alleen ondubbelzinnig bekende cellen krijgen die betekenis; overige treffers blijven als niet-toegewezen treffers zichtbaar. Normal, Hard en Impossible werken met dezelfde ambiguïteit. Bij `sunk-only` mag de resterende vloot niet stilzwijgend met een geheim type worden bijgewerkt.
 
-Na afloop mag de eindview beide vloten tonen. Een heatmap bij een eerdere beurt blijft gebaseerd op de view die vóór dat schot beschikbaar was; zij wordt niet achteraf aangepast aan de onthulde vloot. De seed waarmee de vijandelijke plaatsing is gemaakt is geen publieke informatie. Het bewaken van views en events wordt in batch B uitgewerkt.
+Na afloop mag de eindview beide vloten tonen. Een heatmap bij een eerdere beurt blijft gebaseerd op de view die vóór dat schot beschikbaar was; zij wordt niet achteraf aangepast aan de onthulde vloot. De seed waarmee de vijandelijke plaatsing is gemaakt is geen publieke informatie. De informatiegrens voor views en events staat in [05](05-game-engine.md#playerview-en-projectie).
 
 ## Stabiele signaturen
 
@@ -283,4 +283,4 @@ Deze IDs zijn toekomstige golden-fixturegevallen, nog geen bestaande JSON-fixtur
 | RULE-21 | Onder `hit-only` en `sunk-only` zinkt een schip | Zinkfeit zonder schip-ID; geen verborgen vermindering van een specifiek vloottype |
 | RULE-22 | Rematch na einde | Zelfde regels/niveau, nieuw spel en nieuwe randomness; geen hergebruik van oude schoten |
 
-Een ingetrokken drag/touchactie verplaatst niets. Een ongeldige schotcoördinaat, niet-geheel getal of dubbele input door snel klikken wordt afgewezen vóór stateverandering; de UI gebruikt dezelfde validatie-uitkomst als de engine. Opslagmislukking draait een geaccepteerd schot niet terug, maar toont dat alleen de vorige succesvolle snapshot hervatbaar is. De sessielaag legt in batch B vast hoe UI, opslag en async tegenstanderacties deze volgorde bewaken.
+Een ingetrokken drag/touchactie verplaatst niets. Een ongeldige schotcoördinaat, niet-geheel getal of dubbele input door snel klikken wordt afgewezen vóór stateverandering; de UI gebruikt dezelfde validatie-uitkomst als de engine. Opslagmislukking draait een geaccepteerd schot niet terug, maar toont dat alleen de vorige succesvolle snapshot hervatbaar is. De sessielaag bewaakt deze volgorde volgens [05](05-game-engine.md#checkpoints-en-async-transacties).

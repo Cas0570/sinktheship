@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Frontend](../08-frontend.md#routes-en-schermflow), [multiplayer later](0008-multiplayer-later.md), [router](0037-react-router.md), [stories](../03-user-stories.md)
 
@@ -20,7 +20,7 @@ Een herkenbare toekomstige ingang voorkomt dat later navigatie en deeplinks voll
 
 ## Besluit
 
-Toon in v1 een Binnenkort-pagina op beide routes. `/multiplayer` noemt private match en quick play als toekomst. `/r/:roomKey` toont een veilig behandelde key of ongeldige-linkmelding; er gaat geen netwerkrequest uit en er ontstaat geen online sessie. De exacte v1-presentatievalidatie staat in 08; het toekomstige protocol volgt in 11.
+Toon in v1 een Binnenkort-pagina op beide routes. `/multiplayer` noemt private match en quick play als toekomst. `/r/:roomKey` toont een veilig behandelde key of ongeldige-linkmelding; er gaat geen netwerkrequest uit en er ontstaat geen online sessie. De exacte v1-presentatievalidatie staat in 08; het toekomstige protocol staat in [11](../11-multiplayer-future.md).
 
 ## Onderbouwing en alternatieven
 

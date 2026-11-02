@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Architectuur](04-architecture.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [ML](07-neural-network.md), [design brief](09-design-brief.md), [stories](03-user-stories.md), [leeswijzer](README.md)
 
@@ -29,7 +29,7 @@ Gebruik React Router in Declarative Mode met één routecatalogus, `BrowserRoute
 | `private-room` | `/r/:roomKey` | RoomFutureScreen; gereserveerde ingang; geldige key als tekst tonen, geen join |
 | `not-found` | `*` | NotFoundScreen; heldere 404 en link naar Home |
 
-Routes bevatten geen game-state, seed, modelpad of gast-ID. De enige dynamische routewaarde is de toekomstige room key. V1 accepteert voor de weergave zes ASCII-alfanumerieke tekens, maakt lowercase hoofdletters en toont anders een nette ongeldige-linkmelding. Geen HTML-interpretatie of uitgebreidere protocolclaim: het uiteindelijke room-key-/verloopcontract volgt in 11. Ontbrekende of extra URL-segmenten vallen op 404. [ADR 0045](adr/0045-room-routes.md).
+Routes bevatten geen game-state, seed, modelpad of gast-ID. De enige dynamische routewaarde is de toekomstige room key. V1 accepteert voor de weergave zes ASCII-alfanumerieke tekens, maakt lowercase hoofdletters en toont anders een nette ongeldige-linkmelding. Geen HTML-interpretatie of uitgebreidere protocolclaim: het toekomstige room-key-/verloopcontract staat in [11](11-multiplayer-future.md#rooms-sleutels-en-regels). Ontbrekende of extra URL-segmenten vallen op 404. [ADR 0045](adr/0045-room-routes.md).
 
 ```mermaid
 flowchart TD
@@ -70,7 +70,7 @@ Een nieuw spel vervangt een lopend spel pas na een expliciete productdialog. De 
 
 De app abonneert zich via `useSyncExternalStore`. `getSnapshot` houdt dezelfde referentie zolang zichtbare inhoud niet verandert; subscribe levert cleanup en houdt een stabiele functiereferentie. [React-documentatie](https://react.dev/reference/react/useSyncExternalStore). De composition root bezit de Worker en de sessie buiten routecomponenten. Mount/unmount of StrictMode-effectcontrole mag geen nieuwe match, dubbele abonnementen of dubbele botactie veroorzaken. [ADR 0038](adr/0038-external-react-store.md).
 
-Schermen vertalen de view naar gewone props en callbacks. Zij importeren geen private checkpointtypen. De definitieve spelregels en actuele tegenstander komen uit `SessionSnapshot.rules` en `.opponent`, niet uit een inmiddels gewijzigde setupdraft. Een vervangen tegenstander krijgt ook na refresh het label gemengd niveau. Postgame-inzicht komt uitsluitend uit het na afloop gevulde `SessionSnapshot.postgame` uit 04; de UI leest daarvoor geen storagepayload. Intenten krijgen een per-clientinstantie uniek request-ID; tijdens verwerking wordt dubbele activatie visueel geblokkeerd, terwijl sessie/core de echte idempotentie bewaken. Publieke event-IDs worden eenmaal verwerkt voor geluid/live-regions; bij inschrijven wordt de al aanwezige batch als gezien gemarkeerd.
+Schermen vertalen de view naar gewone props en callbacks. Zij importeren geen private checkpointtypen. De definitieve spelregels en actuele tegenstander komen uit `SessionSnapshot.rules` en `.opponent`, niet uit een inmiddels gewijzigde setupdraft. Een vervangen tegenstander krijgt ook na refresh het label gemengd niveau. Postgame-inzicht komt uitsluitend uit het na afloop gevulde `SessionSnapshot.postgame` uit 04; de UI leest daarvoor geen storagepayload. De dispatchproxy levert de clientprefix en oplopende requestvolgorde uit [05](05-game-engine.md#lokale-requestvolgorde), met hoogstens één onbeantwoord lokaal intent. Retry behoudt ID en payload; expired/stale-client wordt niet automatisch met een nieuw ID herhaald. Tijdens verwerking wordt dubbele activatie visueel geblokkeerd, terwijl de sessie heruitvoering ook na receipt-eviction weigert. Publieke event-IDs worden eenmaal verwerkt voor geluid/live-regions; bij inschrijven wordt de al aanwezige batch als gezien gemarkeerd.
 
 Alle modelvoorbereiding blijft in app-/runneradapters. De view-store kan `ModelLoadProgress` tonen zonder een neural-import aan `game-session` toe te voegen. Model laden is pas gereed na validatie en initialisatie uit 07, niet na alleen het netwerkpercentage. Bij navigatie blijft een geldig voorbereid model beschikbaar; rematch/ander niveau annuleert oude requests volgens generatiecontrole.
 
@@ -145,7 +145,7 @@ interface SettingsRecord {
 
 Eén JSON-bestand per taal onder de toekomstige locale-map. Locale is een gevalideerde BCP-47-tag; geen union die bij een nieuwe taal moet worden aangepast. De build ontdekt bestanden volgens ADR 0036. Keys zijn vlakke strings met punten, bijvoorbeeld `game.turn.yours`; configureer daarvoor `keySeparator: false`. De catalogus voegt geregistreerde EN/NL-moduleteksten toe zonder dubbele conflicterende keys. Een nieuwe taal moet de complete resulterende keyset leveren, inclusief modulelabels.
 
-Alle zichtbare tekst, errors, tooltips, `aria-labels`, live-regions, pluralen en documenttitels gebruiken keys. Geen zinnen bouwen door vertaalde brokjes samen te voegen. De build controleert ontbrekende/extra keys, de voor de taal vereiste pluralvormen en dezelfde interpolatievariabelen. Engelse fallback is alleen herstelgedrag, geen reden om een onvolledige Nederlandse release te accepteren.
+Alle zichtbare tekst, errors, tooltips, `aria-labels`, live-regions, pluralen en documenttitels gebruiken keys. Geen zinnen bouwen door vertaalde brokjes samen te voegen. De build vergelijkt logische basiskeys: gewone keys moeten exact overeenkomen; pluralgroepen worden per locale uitgebreid met de vereiste cardinal-categorieën uit `Intl.PluralRules` op de vastgelegde buildruntime en de gepinde i18next-versie. Gebruik JSON-v4-suffixen, bijvoorbeeld `_one`/`_other` voor EN/NL; een locale met andere categorieën mag de daarvoor benodigde keys hebben. Reserveer die suffixen voor pluralgroepen. Een expliciete `_zero`-variant mag aanvullend bestaan; onbekende basiskeys of ontbrekende vereiste categorieën falen. Alle varianten behouden de gedeclareerde interpolatievariabelen en pluralcalls leveren `count`. Ordinal-/contextpluralen vallen pas na een expliciete catalogusuitbreiding binnen het contract. Bron: [i18next-pluralen](https://www.i18next.com/translation-function/plurals), via Context7 en de officiële documentatie gecontroleerd op 2026-11-02. Engelse fallback is alleen herstelgedrag, geen reden om een onvolledige Nederlandse release te accepteren.
 
 `changeLanguage` wacht op het eigen locale-asset voordat de actieve taal wisselt; bij laadfout blijft de bestaande taal bruikbaar met uitleg. React rendert interpolaties als tekst; er zijn geen HTML-vertalingen of `dangerouslySetInnerHTML`-paden. De gebruikelijke `escapeValue: false` is alleen passend binnen die React-tekstgrens. [react-i18next-initialisatie](https://react.i18next.com/getting-started), via Context7 gecontroleerd op 2026-10-31. Zet ook documenttaal en lokale nummernotatie goed. EN mag in de startbundel zitten; andere talen laden van eigen origin.
 
@@ -187,12 +187,13 @@ Als de lockvoorziening ontbreekt kan een nieuw tijdelijk spel in geheugen draaie
 | Model faalt tijdens spel | Geen nieuw schot; actuele sessie en regels blijven staan | `retryPending` of expliciet `replaceOpponent` met Hard; registreer de niveauswitch volgens 05 |
 | Opslag onbeschikbaar | Blijvend compact bericht over beperkte hervatbaarheid | In-memory doorspelen of opnieuw bewaren |
 | Andere tab bezit sessie | Uitleg en read-only/niet-gestarte sessie | Andere tab sluiten of opnieuw proberen |
+| Verlopen request of oude clientbinding | Actuele sessie tonen met melding dat de oude actie niet opnieuw is uitgevoerd | Situatie inspecteren; alleen een nieuwe expliciete gebruikersactie krijgt een nieuw request-ID |
 | Routechunk ontbreekt na deployment | Herlaadactie met behoud van opgeslagen spel | Gecontroleerd opnieuw laden; geen automatische dataverwijdering |
 | Onverwachte UI-fout | Error boundary met veilige herstelactie | Herladen/Home; foutdetail bevat geen private state |
 
 ## Performance en verificatie
 
-De normen uit 01 blijven gelden: initiële JS ≤200 KiB gzip exclusief lazy neural-bestanden; Lighthouse Performance ≥90 en Accessibility 100 op het vast te leggen mobiele profiel; animatie-framewerk p95 ≤16,7 ms voor 60 fps. Rekenwerk en inference blijven in de Worker; JS/locale-/font-/modelkosten worden afzonderlijk gerapporteerd. Routechunking, stabiele views en kleine checkpointwrites ondersteunen deze doelen. Q-06 en document 12 leggen het meetprotocol vast; scores zijn nog niet gemeten.
+De normen uit 01 blijven gelden: initiële JS ≤200 KiB gzip exclusief lazy neural-bestanden; Lighthouse Performance ≥90 en Accessibility 100 op het vastgelegde LH-mobile-v1-profiel uit 12; animatie-framewerk p95 ≤16,7 ms voor 60 fps. Rekenwerk en inference blijven in de Worker; JS/locale-/font-/modelkosten worden afzonderlijk gerapporteerd. Routechunking, stabiele views en kleine checkpointwrites ondersteunen deze doelen. Document 12 legt de meetprotocollen vast; Q-06 betreft nog de fysieke voorzieningen. Scores zijn nog niet gemeten.
 
 | Geval | Koppeling en geplande verificatie |
 |---|---|
@@ -205,4 +206,4 @@ De normen uit 01 blijven gelden: initiële JS ≤200 KiB gzip exclusief lazy neu
 | UI-07 | US-13/22: cold/warm model-loading, annulering, chunkfout en bruikbare UI tijdens rekenen |
 | UI-08 | US-23: URL-/storage-invoer als data, eigen-origin assets en geen dev-only seedbediening in productie |
 
-Tests worden later geïmplementeerd met de tooling uit batch E. De flows in deze batch zijn productspecificaties, geen al werkende schermen.
+Tests worden tijdens de bouw geïmplementeerd met de [tooling en matrix uit 12](12-quality-testing.md). De flows zijn productspecificaties, geen al werkende schermen.

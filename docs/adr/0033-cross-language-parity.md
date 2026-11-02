@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Neural network](../07-neural-network.md#export-en-numerieke-pariteit), [engine](../05-game-engine.md), [benchmark](../06-opponents.md), [leeswijzer](../README.md)
 
@@ -10,7 +10,7 @@ Gerelateerd: [Neural network](../07-neural-network.md#export-en-numerieke-parite
 
 ## Besluitbasis
 
-TS/Python-golden fixtures en PyTorch/ONNX-pariteit zijn vast. De exacte controles en toleranties worden in batch C ter review aangeboden.
+TS/Python-golden fixtures en PyTorch/ONNX-pariteit zijn vast. De exacte controles en toleranties staan in [07](../07-neural-network.md#export-en-numerieke-pariteit).
 
 De tekst en uitwerking zijn met batch C goedgekeurd op 2026-10-31.
 

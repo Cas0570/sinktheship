@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](../01-product-vision-scope.md), [spelregels](../02-game-rules.md), [stories](../03-user-stories.md), [leeswijzer](../README.md), [masterprompt](../00-masterprompt.md)
 
@@ -26,7 +26,7 @@ Eerst één hardcoded taal is initieel eenvoudiger maar vergroot later de wijzig
 
 ## Gevolgen
 
-Een taalwissel verandert geen `RuleSet`, seed, beurt of signatuur. De concrete i18n-library en automatisch gevonden vertaalbestanden worden in batch D uitgewerkt. Toevoegen van één vertaalbestand moet voor een nieuwe taal volstaan.
+Een taalwissel verandert geen `RuleSet`, seed, beurt of signatuur. De concrete i18n-library en automatisch gevonden vertaalbestanden staan in [08](../08-frontend.md#i18n-en-locale-discovery). Toevoegen van één vertaalbestand moet voor een nieuwe taal volstaan.
 
 ## Verificatie
 

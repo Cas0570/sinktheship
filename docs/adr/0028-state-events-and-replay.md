@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Engine](../05-game-engine.md), [architectuur](../04-architecture.md), [tegenstanders](../06-opponents.md), [leeswijzer](../README.md)
 
@@ -20,7 +20,9 @@ Refresh kan tijdens een botberekening, opslagwrite of denkpauze gebeuren. Dubbel
 
 ## Besluit
 
-Immutable corestate met revision, geaccepteerde commands en geordende interne events; afwijzing verandert niets. De sessie commit state, RNG, requestreceipt en inzicht samen in geheugen, schrijft één volledig geversioneerd checkpoint en verwerkt writes in volgorde. Async werk krijgt een private RNG-clone en wordt alleen bij actuele game/generatie/revision gecommit. Snapshot is de primaire hervatbron; een commandlog dient voor replay/debugging.
+Immutable corestate met revision, geaccepteerde commands en geordende interne events; afwijzing verandert geen corestate, events of RNG. De sessie commit state, RNG en eventueel lokaal requestbewijs en inzicht samen in geheugen, schrijft één volledig geversioneerd checkpoint en verwerkt writes in volgorde. Async werk krijgt een private RNG-clone en wordt alleen bij actuele game/generatie/revision gecommit. Snapshot is de primaire hervatbron; een commandlog dient voor replay/debugging.
+
+Voor lokale UI-intenties geldt de clientbinding met oplopende ordinal uit 05. De hoogste ontvangen ordinal voorkomt heruitvoering wanneer een receipt uit de begrensde cache is verdwenen; een nieuwe proxy krijgt bij herstel een nieuwe prefix. Core-revision alleen kan een opnieuw ingepakte UI-intent niet herkennen. Een onbeperkte receiptcache is daarvoor niet nodig. SES-09/10 controleren deze precisering uit fase 3, inclusief gewijzigde payload en late requests.
 
 ## Onderbouwing en alternatieven
 
@@ -28,8 +30,8 @@ Volledige event sourcing vraagt eventmigraties en langdurige logs zonder noodzak
 
 ## Gevolgen
 
-Geen promises, timers of typed arrays in checkpoints. Onbekende/corrupte data wordt niet stil overschreven. Herstart rekent onafgemaakt werk opnieuw uit dezelfde invoer; eerder gecommitte schoten blijven staan. De bounded receiptcache en expected revision beschermen verschillende replaygevallen, zoals uitgewerkt in 05.
+Geen promises, timers of typed arrays in checkpoints. Onbekende/corrupte data wordt niet stil overschreven. Herstart rekent onafgemaakt werk opnieuw uit dezelfde invoer; eerder gecommitte schoten blijven staan. De bounded receiptcache, gebonden requestvolgorde en expected revision beschermen verschillende replaygevallen, zoals uitgewerkt in 05.
 
 ## Verificatie
 
-US-08, US-09, US-28; ENG-08/10 en SES-01 t/m SES-06. De lokale storagekeuze/migratiecatalogus volgt in batch D; races en herstel zijn nog niet in code getest.
+US-08, US-09, US-28; ENG-08/10 en SES-01 t/m SES-10. De lokale storagekeuze/migratiecatalogus staat in [08](../08-frontend.md#opslag-migraties-en-meerdere-tabs); races en herstel zijn nog niet in code getest.

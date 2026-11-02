@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [stories en tests](03-user-stories.md), [roadmap](13-roadmap.md), [kwaliteit](12-quality-testing.md), [werkinstructies](../AGENTS.md), [bordbesluit](adr/0012-github-projects.md)
 
@@ -213,7 +213,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T02](#t02)
 
-**Testaanpak:** Unit-/propertytests op grenzen, onbekende velden en canonieke fixture-uitvoer volgens 02. Bijdrage aan AT-02-01, AT-02-02, AT-02-03, AT-28-01.
+**Testaanpak:** Unit-/propertytests op grenzen, onbekende velden en canonieke fixture-uitvoer volgens 02; een onbekende positieve schemaVersion met toekomstige velden geeft unsupported vóór de v1-veldcontrole. Bijdrage aan AT-02-01, AT-02-02, AT-02-03, AT-28-01.
 
 **Reviewfocus:** Welke velden spelbetekenis hebben en welke uitsluitend presentatie zijn.
 
@@ -694,12 +694,12 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Acceptatiecriteria:**
 
-- [ ] Alleen publieke snapshots/events verlaten de sessie; herhaald request-ID voert een actie hoogstens eenmaal uit binnen de receiptsgrens.
+- [ ] Alleen publieke snapshots/events verlaten de sessie; herhaald request-ID voert een actie hoogstens eenmaal uit; clientbinding/ordinal weigert heruitvoering ook na de receiptsgrens.
 - [ ] Na dispose, reset of vervanging wordt een oude botrespons geweigerd; pending/retrystatus volgt het contract.
 
 **Afhankelijkheden:** [T10](#t10), [T12](#t12)
 
-**Testaanpak:** Fake clock/scheduler/opponent; races rond dubbel dispatch, late respons en cancellation. Bijdrage aan AT-01-03, AT-06-02, AT-07-03, AT-28-03.
+**Testaanpak:** Fake clock/scheduler/opponent; races rond dubbel dispatch, late respons en cancellation, plus SES-09/10 voor eviction, changed payload, ordinal en nieuwe clientbinding. Bijdrage aan AT-01-03, AT-06-02, AT-07-03, AT-28-03.
 
 **Reviewfocus:** Eigenaarschap van state en monotone revisies zonder afhankelijkheid van React.
 
@@ -726,7 +726,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T23](#t23)
 
-**Testaanpak:** Foutinjectie per opslagstap, crash tussen checkpoint/pointer, retry-idempotentie en deterministische hervatting. Bijdrage aan AT-08-01, AT-08-02, AT-08-03, AT-09-01, AT-28-02.
+**Testaanpak:** Foutinjectie per opslagstap, crash tussen checkpoint/pointer, retry-idempotentie en deterministische hervatting; een nieuwe proxy na restore weigert requests met de oude clientprefix. Bijdrage aan AT-08-01, AT-08-02, AT-08-03, AT-09-01, AT-28-02.
 
 **Reviewfocus:** Welke toestand is geaccepteerd versus duurzaam opgeslagen; geen private checkpoint in getSnapshot.
 
@@ -803,11 +803,11 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 **Acceptatiecriteria:**
 
 - [ ] Snapshots blijven referentieel stabiel tot wijziging; navigatie/hermount reset geen lopende sessie.
-- [ ] Engels is standaard; een opgeslagen taalkeuze gaat voor en live wisselen verandert geen RNG/state/signatuur; ontbrekende keys breken de build.
+- [ ] Engels is standaard; een opgeslagen taalkeuze gaat voor en live wisselen verandert geen RNG/state/signatuur; ontbrekende logische basiskeys of vereiste locale-pluralvormen breken de build; geldige taalspecifieke categorieën zijn toegestaan.
 
 **Afhankelijkheden:** [T26](#t26), [T21](#t21), [T20](#t20)
 
-**Testaanpak:** Store-/routercontracttests, incomplete locale-fixture en navigatie-e2e in beide talen. Bijdrage aan AT-01-01, AT-11-01, AT-11-02, AT-11-03, AT-14-03, AT-20-02.
+**Testaanpak:** Store-/routercontracttests, incomplete locale-fixture, een fixturetaal met andere pluralcategorieën en navigatie-e2e in beide producttalen. Bijdrage aan AT-01-01, AT-11-01, AT-11-02, AT-11-03, AT-14-03, AT-20-02.
 
 **Reviewfocus:** Geen tweede spelstate in React en toevoeging van één locale zonder extra registratiecode.
 
@@ -830,7 +830,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 **Acceptatiecriteria:**
 
 - [ ] De flow biedt exact de afgesproken vier configuraties en herkenbare niveaus; invalid/unsupported/inconclusive blokkeert starten.
-- [ ] Easy–Hard zijn bruikbaar; Impossible is zonder gevalideerd manifest zichtbaar uitgeschakeld met EN/NL-uitleg.
+- [ ] Easy–Hard zijn bruikbaar; Impossible is zonder gevalideerd gepromoveerd manifest zichtbaar uitgeschakeld met EN/NL-uitleg.
 
 **Afhankelijkheden:** [T27](#t27), [T12](#t12), [T13](#t13), [T14](#t14)
 
@@ -1132,7 +1132,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T38](#t38)
 
-**Testaanpak:** Compatibiliteitsmatrix, corrupte manifests, dubbele IDs/versies en een tweede modelmap zonder code-edit. Bijdrage aan AT-03-02, AT-03-03, AT-13-03, AT-20-02, AT-23-02.
+**Testaanpak:** Compatibiliteitsmatrix, corrupte manifests, dubbele IDs/versies en een tweede modelmap zonder code-edit; errors=0 is geldig, negatieve errors ongeldig, en een candidate met nog ontbrekend Web-/performancebewijs blijft buiten productie. Bijdrage aan AT-03-02, AT-03-03, AT-13-03, AT-20-02, AT-23-02.
 
 **Reviewfocus:** Het onderscheid tussen syntactisch geldig, compatibel en voor release gekwalificeerd.
 
@@ -1159,7 +1159,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T39](#t39), [T26](#t26)
 
-**Testaanpak:** Browser-/Workercontracttests, gecorrumpeerde cache, fetchfailure en web-runtimepariteit op vaste tensors. Bijdrage aan AT-13-01, AT-13-02, AT-13-03, AT-22-02, AT-23-01, AT-29-03.
+**Testaanpak:** Browser-/Workercontracttests, gecorrumpeerde cache, fetchfailure en web-runtimepariteit op vaste tensors; de testcompositie injecteert de exacte candidate zonder deze voortijdig te promoveren. Bijdrage aan AT-13-01, AT-13-02, AT-13-03, AT-22-02, AT-23-01, AT-29-03.
 
 **Reviewfocus:** CSP/WASM-paden, geheugeneigenaarschap en geen main-thread-inferentiefallback.
 
@@ -1186,7 +1186,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T40](#t40), [T30](#t30), [T31](#t31)
 
-**Testaanpak:** E2e van load/inferencefailure, offline cache, refresh tijdens denken, retry en rematch met verdwenen model. Bijdrage aan AT-03-03, AT-08-01, AT-09-03, AT-13-01, AT-13-02.
+**Testaanpak:** E2e in de aparte kwalificatiebuild van load/inferencefailure, offline cache, refresh tijdens denken, retry en rematch met verdwenen model. De productiebuild biedt een candidate nog niet aan. Bijdrage aan AT-03-03, AT-08-01, AT-09-03, AT-13-01, AT-13-02.
 
 **Reviewfocus:** Geen dubbel schot, verloren RNG of verborgen niveauwisseling tijdens herstel.
 
@@ -1213,7 +1213,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T16](#t16), [T38](#t38), [T41](#t41)
 
-**Testaanpak:** De volledige kwalificatiesuite, 20 warm-ups/1.000 inferenties per meetrun volgens 12 en negatieve promotiecontrole. Bijdrage aan AT-13-03, AT-19-01, AT-19-02, AT-19-03, AT-29-03.
+**Testaanpak:** De volledige kwalificatiesuite, 20 warm-ups/1.000 inferenties per meetrun volgens 12 en negatieve promotiecontrole; controleer na promotie ook de gewone productiecatalogus/-flow zonder candidate-selectie-ingang. Bijdrage aan AT-13-03, AT-19-01, AT-19-02, AT-19-03, AT-29-03.
 
 **Reviewfocus:** Geen iPhone 16 Pro-meting als vervanging voor de afgesproken gemiddelde telefoon; alle bewijslinks horen bij dezelfde digest.
 
@@ -1456,7 +1456,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Afhankelijkheden:** [T49](#t49)
 
-**Testaanpak:** Menselijke proeven met opgeslagen diff, keychecks, screenshotvergelijking en genoteerde verbeteringen. Bijdrage aan AT-20-01, AT-20-02, AT-20-03, AT-21-03.
+**Testaanpak:** Menselijke proeven met opgeslagen diff, key-/locale-pluralchecks, screenshotvergelijking en genoteerde verbeteringen. Bijdrage aan AT-20-01, AT-20-02, AT-20-03, AT-21-03.
 
 **Reviewfocus:** De gids geeft werkende stappen, geen kennis die alleen de oorspronkelijke AI had.
 

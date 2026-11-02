@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Masterprompt](../00-masterprompt.md), [architectuur](../04-architecture.md), [leeswijzer](../README.md)
 
@@ -20,7 +20,7 @@ De browserapp moet aansluiten op de gewenste React/Tailwind-uitvoer van Figma en
 
 ## Besluit
 
-Gebruik React, Vite, TypeScript met strict-controle en Tailwind CSS. React beheert presentatie; game-state en beslissingen liggen in de afzonderlijke core/sessie. Containers in `apps/web` vertalen toegestane views naar props voor de UI-package. Runtime-, router- en storeconfiguratie volgt in batch D; exacte versies worden bij setup gecontroleerd en vastgelegd.
+Gebruik React, Vite, TypeScript met strict-controle en Tailwind CSS. React beheert presentatie; game-state en beslissingen liggen in de afzonderlijke core/sessie. Containers in `apps/web` vertalen toegestane views naar props voor de UI-package. Runtime-, router- en storeconfiguratie staat in [08](../08-frontend.md); exacte versies worden bij setup gecontroleerd en vastgelegd.
 
 ## Onderbouwing en alternatieven
 

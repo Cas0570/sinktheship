@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Regels](02-game-rules.md), [architectuur](04-architecture.md), [engine](05-game-engine.md), [stories](03-user-stories.md), [ADR 0030](adr/0030-benchmark-and-promotion.md)
 
@@ -96,13 +96,13 @@ Alle methoden behandelen view/rules als immutable. Alleen de verstrekte lokale R
 
 `Cancellation.subscribe` meldt annulering precies eenmaal, ook direct wanneer de token al geannuleerd is. Een unsubscribe verwijdert de listener. Afwezigheid van context betekent een niet-annuleerbare call zonder inzicht. CPU-lussen controleren iedere 256 verwerkte kandidaten en gebruiken dan `WorkScheduler.yield` om de uitvoeradapter ruimte te laten geven aan andere taken, waaronder annulering. Browser- en Node-compositie injecteren elk een scheduler; de package importeert geen platformtimer. Die yieldfrequentie verandert geen kandidatenvolgorde of randomness; de klok bepaalt nooit welk spelresultaat wordt gekozen. `requestId` dient alleen voor correlatie en mag de strategie niet beïnvloeden.
 
-Bots zijn vanuit view, regels, eigen versie en schot-RNG reproduceerbaar. Een cache mag een berekening versnellen, maar mag geen noodzakelijk verborgen geheugen bevatten. Na refresh reconstrueert Normal zijn targetinformatie uit de historie en Hard zijn dichtheid uit dezelfde observatie. Neural heeft een vaste runtime-/modelversie; de numerieke en beslispariteit wordt in batch C gespecificeerd.
+Bots zijn vanuit view, regels, eigen versie en schot-RNG reproduceerbaar. Een cache mag een berekening versnellen, maar mag geen noodzakelijk verborgen geheugen bevatten. Na refresh reconstrueert Normal zijn targetinformatie uit de historie en Hard zijn dichtheid uit dezelfde observatie. Neural heeft een vaste runtime-/modelversie; de numerieke en beslispariteit staan in [07](07-neural-network.md#export-en-numerieke-pariteit).
 
 ## Uniforme plaatsingsstrategie
 
 Een vloot is **gelabeld**: cruiser en submarine hebben dezelfde lengte, maar verschillende IDs. Uniform betekent dat iedere complete geldige gelabelde vloot even waarschijnlijk is. De knop Willekeurig plaatsen gebruikt exact dezelfde sampler als de vier bots; deze vervangt de hele conceptvloot.
 
-Het voorgestelde algoritme:
+Het goedgekeurde algoritme:
 
 1. Sorteer schepen op ASCII-ID. Maak per schip de lijst van alle plaatsingen die individueel binnen het bord passen: horizontaal vóór verticaal, binnen die oriëntatie rij-major. Voor lengte 1 bestaat uitsluitend horizontaal.
 2. Trek per schip onafhankelijk één lijstindex met `Rng.int`. Dit levert een volledig tuple op zonder al rekening te houden met andere schepen.
@@ -163,7 +163,7 @@ De heatmap bewaart de gebruikte target- of hunt-density vóór de beslissing, me
 
 Impossible gebruikt dezelfde sampler, view en legal-actiongrens. Een compatibele modelinstance encodeert uitsluitend de observatie, laat de geïnjecteerde `ModelRunner` scores berekenen, maskeert ongeldige cellen en kiest de hoogste geldige score. Gelijke scores worden rij-major geordend en met de eigen schot-RNG gekozen. Niet-eindige output, verkeerde shape of geen geldig maximum is een fout.
 
-Batch C specificeert de kanalen, shapes, normalisatie, training, maskering, toleranties en manifestselectie. De `strategySignature` alleen is onvoldoende: ook beurtconfiguratie, encoding, modelintegriteit en runtime moeten compatibel zijn. Een manifest met vier ondersteunde v1-configuraties moet die vier afzonderlijk hebben geëvalueerd. Er is geen stille Hard-fallback bij laad- of inferentiefouten.
+[Document 07](07-neural-network.md) specificeert de kanalen, shapes, normalisatie, training, maskering, toleranties en manifestselectie. De `strategySignature` alleen is onvoldoende: ook beurtconfiguratie, encoding, modelintegriteit en runtime moeten compatibel zijn. Een manifest met vier ondersteunde v1-configuraties moet die vier afzonderlijk hebben geëvalueerd. Er is geen stille Hard-fallback bij laad- of inferentiefouten.
 
 De naam Impossible betekent moeilijk en verslaanbaar. Een model krijgt die productrol pas na de releasecriteria; een nog niet kwalificerend model blijft een experiment.
 
@@ -211,7 +211,7 @@ Dit is een vooraf gekozen benadering voor steekproefonzekerheid; het interval om
 
 De criteria gelden op de vrijgegeven v1-configuraties, niet als universele rangorde op iedere mogelijke engineconfiguratie. Een 2 × 2-bord kan bijvoorbeeld geen betekenisvol moeilijkheidsverschil toelaten. Houd algoritme/model, seeds, aantal blokken, methode en criteria vast vóór de holdout-run. Na tunen op zo'n resultaat is die set geen ongebruikte holdout meer; een volgende definitieve toets krijgt een nieuw vooraf vastgelegd seedplan.
 
-Een korte CI-run kan 100 blokken/200 partijen per vergelijking gebruiken voor reproduceerbaarheid en regressies. Zij vervangt nooit de releasebenchmark. De runtimecheck warmt iedere klassieke strategie/runner eerst op met 20 niet meegetelde beslissingen en rapporteert daarna p50/p95 plus hardware, OS, runtime, provider, threads en git/modelversie. Laadtijd, vlootsampling, inferentie en totale beslisduur zijn afzonderlijke metrics. Node-resultaten bewijzen geen telefoonbudget; batch E legt het browserreferentieprofiel vast.
+Een korte CI-run kan 100 blokken/200 partijen per vergelijking gebruiken voor reproduceerbaarheid en regressies. Zij vervangt nooit de releasebenchmark. De runtimecheck warmt iedere klassieke strategie/runner eerst op met 20 niet meegetelde beslissingen en rapporteert daarna p50/p95 plus hardware, OS, runtime, provider, threads en git/modelversie. Laadtijd, vlootsampling, inferentie en totale beslisduur zijn afzonderlijke metrics. Node-resultaten bewijzen geen telefoonbudget; [12](12-quality-testing.md#budgetten-en-vaste-meetprofielen) legt de browser-/toestelprofielen vast.
 
 ### Rapport en referentiecontrole
 

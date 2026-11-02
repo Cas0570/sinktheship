@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [regels](02-game-rules.md), [architectuur](04-architecture.md), [engine](05-game-engine.md), [tegenstanders en benchmark](06-opponents.md), [leeswijzer](README.md)
 
@@ -399,13 +399,15 @@ De runtimeadapter beheert één geladen model per runner. `infer` vóór succesv
 
 ### Manifestvalidatie
 
-- Valideer JSON strikt: alleen genoemde keys, bekende versies, eindige getallen, echte positieve gehele dimensies/aantallen en SHA-256 als 64 lowercase hextekens. IDs volgen de core-ID-vorm; modelversies gebruiken `major.minor.patch` zonder prerelease/buildsuffix. Datumvelden zijn UTC-ISO-8601 met `Z`.
+- Valideer JSON strikt: alleen genoemde keys, bekende versies, eindige getallen en SHA-256 als 64 lowercase hextekens. Dimensies, byteLength, opset/IR-versie en games/blocks in een aanwezige metric zijn positieve gehele getallen; wins/errors zijn niet-negatieve gehele getallen, elk hoogstens games. Winrate en de geordende intervalgrenzen liggen in [0,1]; pairedMeanDelta en zijn geordende interval mogen negatief zijn. Nul fouten is geldig en verplicht bij promotie. IDs volgen de core-ID-vorm; modelversies gebruiken `major.minor.patch` zonder prerelease/buildsuffix. Datumvelden zijn UTC-ISO-8601 met `Z`.
 - `modelPath` is exact `model.onnx` binnen de modelmap; geen absolute URL, `..`, redirect naar een andere origin of extern weightbestand. Provenancepaden zijn relatieve repository-/artefactpaden zonder traversal; de browser haalt die trainings-/rapportbestanden niet op. W&B-URLs zijn alleen metadata, geen input voor de loader.
-- V1 heeft exact één strategie-entry per model; daarin staan complete geldige RuleSets. Herbereken beide signaturen. `turns` moet precies de unieke beurtconfiguraties van die entries bevatten. Duplicaten en verklaringen zonder evaluatie zijn fouten.
+- V1 heeft exact één strategie-entry per model; daarin staan complete geldige RuleSets. Herbereken beide signaturen. `turns` moet precies de unieke beurtconfiguraties van die entries bevatten. Duplicaten zijn fouten. Bij een candidate beschrijven deze entries het te kwalificeren bereik; bij promoted moet iedere vrijgegeven variant door het evaluatiebewijs gedekt zijn.
 - Iedere aangeboden beurtvariant heeft entries voor `random`, `player-1` en `player-2`. De benchmark bewaart de random release-signatuur plus de twee uitvoeringssignaturen zoals in 06. Een willekeurige nieuwe quota wordt niet gedekt doordat de strategiesignatuur toevallig gelijk is.
 - Controleer input/output exact tegen de encoding, werkelijke graphmetadata, bestandsgrootte en digest. Profielversies zijn exact, geen `latest` of open range. Alleen Web/WASM en Node-of-Python/CPU zijn geldige package/providercombinaties. `assetSetSha256` beschrijft de gebruikte runtimebestanden/config in een reproduceerbaar profielartefact.
 - Metrics worden uit het volledige evaluatierapport afgeleid en gecontroleerd: aantallen, winrate, intervallen, fouten en bijbehorende controles moeten overeenkomen. Een handmatig getypt `promoted`-veld zonder rapporten is geen voldoende bewijs.
 - Een candidate mag een null-performancerapport en nog geen metrics hebben; de productiecatalogus neemt hem niet op. Promoted vereist alle rapporten, nul fouten, de poorten uit 06 en het model-/telefoonbudget. Q-06 moet dus zijn opgelost vóór promotie.
+
+Een geëxporteerde candidate heeft al echte training-, development-evaluatie- en exportpariteitsrapporten. `parityReport` mag in die fase expliciet gedeeltelijk zijn: PyTorch/Python/Node uitgevoerd, Web nog uit te voeren. Het rapport noemt ontbrekende runtimes; die worden niet als geslaagd behandeld. Voor promoted zijn ook Web-numerieke/beslispariteit, gesloten replay en fysieke kwalificatie verplicht. Zo hoeft de export geen verzonnen toekomstig rapportpad of voortijdige promotie te produceren.
 
 Het `RuntimeProfile.id` is een afzonderlijk geversioneerd profielkenmerk: `runtime/v1:` plus de SHA-256 van zijn canonieke JSON-inhoud zonder het veld `id`, met recursief gesorteerde objectkeys en zonder whitespace. De core-ID-beperking hierboven geldt voor model-IDs, niet voor dit profielkenmerk. Twee verschillende runtimeconfiguraties kunnen daardoor niet op basis van een handmatig hergebruikt label als hetzelfde profiel worden behandeld. De profile-digest wordt buiten de dependencyvrije core berekend.
 
@@ -416,6 +418,8 @@ Er is geen voorbeeldmanifest met verzonnen metrics, modeldigest of run-URL. De p
 De build scant uitsluitend `models/<id>/<version>/manifest.json`, met bijbehorende `model.onnx` en `MODEL_CARD.md`. De browser kan een statische servermap niet zelf enumereren. De build valideert de modellen en genereert een compacte catalogus met benodigde compatibiliteit, versie, digest en asset-URL; ruwe episodes, seeds, trainingcheckpoints en rapportinhoud worden niet meegekopieerd. Het runtime/modelbestand blijft lazy. Een nieuwe compatibele modelmap vereist een nieuwe build/release, geen wijziging van applicatiecode.
 
 Resolvervolgorde: valideer regels → volledige regelentry/strategy/turnmatch → ondersteunde encoding/policy → exact gekwalificeerd runtimeprofiel → geldige promotieketen. Een unsupported-uitkomst levert een vaste reasoncode voor vertaling, bijvoorbeeld `NO_MODEL_FOR_RULES`, `ENCODING_UNSUPPORTED`, `RUNTIME_UNQUALIFIED` of `CATALOG_INVALID`. De UI kiest niet zelf het nieuwste versienummer.
+
+Kwalificatie gebruikt een expliciete development-/testcompositie die één candidate op ID/versie/digest injecteert buiten de productiecatalogus. Zij gebruikt dezelfde encoder, policy, runner, integriteits- en foutcontroles, en registreert welke kwalificatiepoorten nog ontbreken. Het Node-evaluatiepad uit T38 en het browserpad uit T40/T41 kunnen zo het bewijs verzamelen dat T42 voor promotie nodig heeft. Er is geen productiequeryparameter, debugglobal of gebruikersoptie om een candidate toe te laten. De productiebuild sluit candidatecatalogi en deze selectie-invoer uit; na promotie wordt ook het gewone productiepad gecontroleerd. Zie de gescheiden builds in [12](12-quality-testing.md#kernflows-fouten-en-traceerbaarheid).
 
 Een promoted manifest noemt met `supersedes` de vorige standaard(en) op exacte ID/versie/digest. De eerste promotie heeft een lege lijst en een Hard-vergelijking. Een latere promotie vervangt de bestaande terminale standaard, met minstens dezelfde ondersteunde regelentries en de huidige productieprofielen. Meer compatibiliteit mag alleen met aanvullende kwalificatie. Per strategie/regel/runtime moet precies één terminale promoted kandidaat overblijven. Ontbrekende voorgangers, cycli of twee concurrerende uiteinden laten de build falen. Een hogere versie of recentere datum wint niet automatisch.
 
@@ -445,7 +449,7 @@ De composition root verbindt `ModelLoadProgress` aan de frontendvoorbereiding; `
 | Browser/Worker sluit tijdens inference | Laatste checkpoint herstellen; onafgemaakte actie opnieuw plannen met hetzelfde model/profile/RNG |
 | Stale resultaat na rematch | Geen zet, inzicht, geluid of RNG-commit |
 
-Het ONNX-budget telt uitsluitend `model.onnx`; rapporteer daarnaast alle lazy JS/MJS/WASM-bytes en gecomprimeerde netwerkbytes. Meet p95 `infer` in de Worker met batch 1 na 20 warm-upbeslissingen over 1.000 vaste observaties; dit omvat tensorinvoer, runtimeberekening en outputuitlezen, exclusief download/initialisatie, encoding en denkpauze. Rapporteer die overige kosten afzonderlijk. Q-06 legt telefoon/browser/temperatuur-/meetprofiel vast vóór de eerste kwalificatie. Geen Node-latency als bewijs voor ≤50 ms op telefoon gebruiken.
+Het ONNX-budget telt uitsluitend `model.onnx`; rapporteer daarnaast alle lazy JS/MJS/WASM-bytes en gecomprimeerde netwerkbytes. Meet p95 `infer` in de Worker met batch 1 na 20 warm-upbeslissingen over 1.000 vaste observaties; dit omvat tensorinvoer, runtimeberekening en outputuitlezen, exclusief download/initialisatie, encoding en denkpauze. Rapporteer die overige kosten afzonderlijk. De telefoon-/browser-/temperatuurprofielen staan in [12](12-quality-testing.md#budgetten-en-vaste-meetprofielen); Q-06 betreft nog de benodigde fysieke voorzieningen vóór kwalificatie. Geen Node-latency als bewijs voor ≤50 ms op telefoon gebruiken.
 
 AI-inzicht gebruikt de vóór de keuze gemaakte output plus masker. In `DecisionInsight.values` krijgen ongeldige cellen 0 volgens 06; het masker laat zien dat zij uitgesloten zijn, niet dat hun kans nul is. Voor geldige cellen mag de heatmap sigmoid tonen als modelscore tussen 0 en 1, met legenda dat deze niet als exacte kans is gekalibreerd. De gekozen cel volgt het oorspronkelijke geldige logitmaximum. De uiteindelijke onthulde vloot wordt nooit alsnog in deze berekening ingevoerd.
 

@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Leeswijzer](README.md), [spelregels](02-game-rules.md), [user stories](03-user-stories.md), [begrippen](glossary.md), [masterprompt](00-masterprompt.md)
 
@@ -20,7 +20,7 @@ Succes wordt aangetoond met uitvoerbare tests, benchmarks en zelfstandig uitgevo
 
 | Release | Verplicht resultaat | Buiten deze release |
 |---|---|---|
-| MVP na M4 | Volledige speelcyclus met Easy, Normal en Hard, alle vier regelcombinaties, plaatsing, hervatten en de basis voor i18n/toegankelijkheid | Neural tegenstander nog niet als speelbaar aanbieden; het scherm mag de toekomstige beschikbaarheid uitleggen |
+| MVP na M4 | Volledige speelcyclus met Easy, Normal en Hard, alle vier regelcombinaties, plaatsing, hervatten en volledige EN/NL-/toegankelijkheidsdekking voor de MVP-flows | Neural tegenstander nog niet als speelbaar aanbieden; het scherm mag de toekomstige beschikbaarheid uitleggen |
 | v1.0 na M6 | Alle Must-eisen, inclusief een gevalideerd Impossible-model voor ten minste Klassiek; kwaliteits- en benchmarkvoorwaarden gehaald | Geen online wedstrijden, chat of leaderboards |
 | Latere releases | Eerst private match en quick play; verdere productkeuzes krijgen eigen stories en ADR's | Geen multiplayer-implementatie in de v1-backlog |
 
@@ -43,14 +43,14 @@ Instellingen voor geluid en animatie zijn Must; de effecten zelf zijn Should. Zo
 
 ## Functionele requirements
 
-De IDs blijven stabiel. Een verwijderde eis behoudt zijn ID in de wijzigingshistorie. De [traceerbaarheidsmatrix](README.md#traceerbaarheid) koppelt iedere eis aan stories, geplande acceptatietests en later taken. Een eis hieronder is een norm voor de te bouwen software, geen claim dat zij al is gerealiseerd.
+De IDs blijven stabiel. Een verwijderde eis behoudt zijn ID in de wijzigingshistorie. De [traceerbaarheidsmatrix](README.md#traceerbaarheid) koppelt iedere eis aan stories, geplande acceptatietests en de taken uit 14. Een eis hieronder is een norm voor de te bouwen software, geen claim dat zij al is gerealiseerd.
 
 | ID | Prioriteit | Toetsbare eis |
 |---|---|---|
 | FR-01 | Must | De speler kan vanaf Home via regelkeuze, niveaukeuze en vlootplaatsing een lokale wedstrijd starten en een winst- of verliesresultaat bereiken. |
 | FR-02 | Must | De speler kan Klassiek, Nog eens bij raak, Ruimte tussen schepen of Aangepast kiezen; Aangepast levert exact de vier combinaties uit document 02. |
 | FR-03 | Must | Regels en plaatsingen worden runtime gevalideerd; een afgewezen actie verandert geen geaccepteerde spelstate. Tijdens een begonnen wedstrijd blijven de regels vast. |
-| FR-04 | Must | Easy, Normal, Hard en Impossible zijn herkenbaar; de eerste drie ondersteunen elke geldige regelset van het enginecontract. Impossible is alleen selecteerbaar bij een gevalideerd compatibel modelmanifest. |
+| FR-04 | Must | Easy, Normal, Hard en Impossible zijn herkenbaar; de eerste drie ondersteunen elke geldige regelset van het enginecontract. Impossible is in productie alleen selecteerbaar bij een gevalideerd compatibel en gepromoveerd modelmanifest. |
 | FR-05 | Must | De speler kan ieder schip met muis of touch plaatsen, verplaatsen en roteren, zowel via slepen als via selecteren en klikken/tikken, met feedback bij ongeldige plaatsing. |
 | FR-06 | Must | De volledige plaatsings- en schietflow is met uitsluitend toetsenbord te bedienen, inclusief roteren, herstellen van fouten en starten van een rematch. |
 | FR-07 | Must | Willekeurig plaatsen vult een volledige geldige vloot volgens dezelfde uniforme verdeling als bij de computer; reset verwijdert de conceptplaatsing zonder de regels te wijzigen. |
@@ -82,17 +82,17 @@ De IDs blijven stabiel. Een verwijderde eis behoudt zijn ID in de wijzigingshist
 | NFR-03 | Geen verborgen vloot, geheime schipkoppelingen of plaatsingsseeds in een tegenstanderview of publieke events. Views met identieke publieke geschiedenis zijn gelijk ongeacht nog onbekende plaatsingen; tests bewaken de grens. Lokale browserinspectie door de eigenaar valt buiten deze afscherming. |
 | NFR-04 | WCAG 2.2 AA voor alle v1-flows; toetsenbord, focusbeheer, screenreader-uitkomsten en niet-kleurgebonden celstates worden handmatig geverifieerd. Bordcellen zijn minimaal 24 × 24 CSS-pixels; overige primaire bediening minimaal 44 × 44. Een automatische accessibilityscore vervangt deze controles niet. |
 | NFR-05 | Alle Must-flows werken vanaf 320 CSS-pixels viewportbreedte, met één bord tegelijk waar nodig, en op 390/768/1440-pixelontwerpen. Releasecontrole op de actuele en vorige stabiele Chrome, Edge, Firefox en Safari, inclusief Safari op iOS en Chrome op Android; leg de geteste versies vast bij de release. |
-| NFR-06 | Startbudget: initiële gecomprimeerde JS maximaal 200 KiB gzip, exclusief pas later geladen neural runtime/model; Lighthouse Performance minimaal 90 en Accessibility 100 op het vast te leggen mobiele meetprofiel. Animaties richten zich op 60 fps met p95 framewerk ≤16,7 ms op het referentietoestel; meetmethode en profielen worden in batch E vastgesteld. |
+| NFR-06 | Startbudget: initiële gecomprimeerde JS maximaal 200 KiB gzip, exclusief pas later geladen neural runtime/model; Lighthouse Performance minimaal 90 en Accessibility 100 op het vaste LH-mobile-v1-meetprofiel uit 12. Animaties richten zich op 60 fps met p95 framewerk ≤16,7 ms op het referentietoestel; meetmethode en profielen staan in [12](12-quality-testing.md#budgetten-en-vaste-meetprofielen). |
 | NFR-07 | Startdoelen voor het model: maximaal 1.000.000 bytes ONNX en p95 inferentie ≤50 ms in een Worker op een vastgelegde gemiddelde telefoon; rapporteer cold load afzonderlijk. Afwijkingen vragen een onderbouwde ADR en akkoord. |
 | NFR-08 | Geen app-analytics, tracking of cookies van derden; gast-ID, spelstate en voorkeuren blijven lokaal. Geen W&B-client of trainingsdataupload vanuit de spelapp; modellen, fonts en geluid worden van eigen origin geladen. Hostingconfiguratie krijgt een aparte netwerk-/headercontrole. |
 | NFR-09 | Snapshots hebben schemaversie en validatie; corrupte, incompatibele of niet-opslagbare data veroorzaakt geen crash of stilzwijgend verlies. Na iedere bevestigde actie wordt opgeslagen; een opslagfout wordt zichtbaar en hervatten garandeert alleen de laatst succesvol bewaarde toestand. |
 | NFR-10 | Productie gebruikt HTTPS en een vastgelegde CSP, behandelt snapshots, URL-waarden en manifests als onbetrouwbare invoer en bevat geen dev-only cheat-/seedbediening. Geen secrets in repository of clientbundle; securitychecks maken deel uit van de releasecontrole. |
-| NFR-11 | TypeScript en Python doorstaan dezelfde regel- en encodingfixtures. Het model passeert PyTorch/ONNX Python/ONNX TypeScript-pariteit binnen vooraf vastgelegde toleranties; die numerieke toleranties worden in batch C gespecificeerd. |
+| NFR-11 | TypeScript en Python doorstaan dezelfde regel- en encodingfixtures. Het model passeert PyTorch/ONNX Python/ONNX TypeScript-pariteit binnen vooraf vastgelegde toleranties; de numerieke en beslispariteit staan in [07](07-neural-network.md#export-en-numerieke-pariteit). |
 | NFR-12 | De benchmark toont de volgorde Easy < Normal < Hard en, waar compatibel, Hard < Impossible met vooraf gekozen 95%-intervalmethode. Voor Impossible geldt als startdoel ≥55% head-to-head-winst over ≥10.000 wedstrijden én een lager gemiddeld schotenaantal met 95%-interval voor het verschil onder nul. Dataset-splits en evaluatieseeds zijn gescheiden van training en modelselectie. |
 | NFR-13 | Iedere package heeft een publieke `index.ts`, README met doel/API/voorbeeld/uitbreiden en eigen tests. Geen deep imports; documentatie en publieke API veranderen samen; de ontwikkelaar kan de beschreven uitbreidingsproeven uitvoeren zonder AI. |
 | NFR-14 | Iedere bouwtaak heeft een reviewbare diff, issue, PR, relevante checks en reviewsamenvatting. GitHub Projects is de enige taakstatusbron; de repo specificeert en Notion verwijst. Verplichte MCP-momenten, één actieve taak en herstel bij serveruitval worden in `AGENTS.md` uitgewerkt. |
 
-De waarden bij NFR-06 en NFR-07 zijn voorgestelde startbudgetten, geen meetresultaten. NFR-06 krijgt zijn definitieve meetprotocol en ADR in batch E; NFR-07 komt uit de masterprompt. Het referentietoestel en de profielkeuze staan als open punt in de [leeswijzer](README.md#centrale-open-punten). Een wijziging van een budget is zichtbaar en vereist review.
+De waarden bij NFR-06 en NFR-07 zijn de goedgekeurde startbudgetten, geen meetresultaten. Het meetprotocol staat in [12](12-quality-testing.md#budgetten-en-vaste-meetprofielen) en [ADR 0048](adr/0048-quality-budgets.md). De iPhone 16 Pro is gekozen; toegang tot het aanvullende middenklasseprofiel en de tracevoorziening blijft open in [Q-06](README.md#centrale-open-punten). Een wijziging van een budget is zichtbaar en vereist review.
 
 De norm voor niet-slepende pointerbediening en de 24-pixelgrens zijn gecontroleerd in de W3C-uitleg voor [Dragging Movements](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html) en [Target Size Minimum](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html). De algemene norm is [WCAG 2.2](https://www.w3.org/TR/WCAG22/); 44 pixels voor primaire bediening is een eigen projectkeuze.
 
@@ -104,8 +104,8 @@ Voor v1.0 geldt het volledige ML-criterium. Als het model Hard nog niet overtuig
 
 Het leerresultaat wordt getoetst door een menselijk experiment: een trainingsparameter aanpassen, opnieuw trainen/exporteren en het resultaat vergelijken met de benchmark. Daarnaast voegt de ontwikkelaar met de uitbreidingsgids een tegenstander of taal toe. De diff moet de modulariteitsgrenzen respecteren; een niet-uitvoerbare gids wordt gecorrigeerd vóór de taak gereed is.
 
-## Besluiten en nog te schrijven verdieping
+## Besluiten en verdere specificaties
 
 De productkeuzes staan in [ADR 0006](adr/0006-configurable-rules.md), [0007](adr/0007-four-difficulties.md), [0008](adr/0008-multiplayer-later.md), [0009](adr/0009-anonymous-identity.md), [0011](adr/0011-repo-and-handbook.md), [0014](adr/0014-document-and-code-language.md), [0015](adr/0015-ui-languages.md), [0017](adr/0017-v1-privacy.md) en [0019](adr/0019-project-name.md). Fase 1 keurde de hoofdlijnen goed; deze uitwerking is met batch A goedgekeurd op 2026-10-31.
 
-Architectuur, algoritmen, ML, UI, ontwerp, kwaliteit en backlog volgen in batches B–F volgens de leeswijzer. Daar worden de hier genoemde normen verfijnd, niet stilzwijgend gewijzigd.
+Architectuur, algoritmen, ML, UI, ontwerp, kwaliteit en backlog staan in documenten 04–16, geaccepteerd in batches B–F. Zij verfijnen deze normen; eventuele correcties uit de consistentiecheck worden expliciet ter review aangeboden.

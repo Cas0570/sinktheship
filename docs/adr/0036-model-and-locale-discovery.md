@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Neural network](../07-neural-network.md#discovery-standaardselectie-en-promotie), [architectuur](../04-architecture.md), [talen](0015-ui-languages.md), [leeswijzer](../README.md)
 
@@ -20,7 +20,9 @@ Een statische browserapp kan nieuwe servermappen niet zelf opsommen. Handmatige 
 
 ## Besluit
 
-Genereer tijdens de build een gevalideerde modelcatalogus uit manifestmappen en een taalcatalogus uit vertaalbestanden. Modellen moeten complete artefacten, compatibiliteit en promotiebewijs hebben. Een nieuw promoted manifest noemt zijn voorganger(s); per compatibele context is precies één terminale standaard toegestaan. Oude modellen blijven exact vindbaar voor hervatten. Talen worden uit één bestand per locale ontdekt en tegen dezelfde keys/placeholders gevalideerd; EN is standaard, NL verplicht. Details van vertaalstructuur en i18n volgen in batch D.
+Genereer tijdens de build een gevalideerde modelcatalogus uit manifestmappen en een taalcatalogus uit vertaalbestanden. Productiemodellen moeten complete artefacten, compatibiliteit en promotiebewijs hebben. Een nieuw promoted manifest noemt zijn voorganger(s); per compatibele context is precies één terminale standaard toegestaan. Oude modellen blijven exact vindbaar voor hervatten. Een expliciete ontwikkel-/testcompositie kan vóór promotie één candidate injecteren om het ontbrekende browserbewijs te verzamelen; die selectie-ingang en candidatecatalogus ontbreken in de productiebuild. De bestaande runner-/integriteitscontroles blijven gelden.
+
+Talen worden uit één bestand per locale ontdekt en tegen dezelfde logische basiskeys/placeholders gevalideerd; pluralgroepen krijgen per taal de vereiste categorieën. Identieke ruwe suffixkeys in iedere taal eisen zou de één-bestand-uitbreiding onterecht tot EN/NL-achtige talen beperken. EN is standaard, NL verplicht; de concrete structuur en validatie staan in [08](../08-frontend.md#i18n-en-locale-discovery).
 
 ## Onderbouwing en alternatieven
 

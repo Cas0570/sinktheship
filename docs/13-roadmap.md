@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [backlog](14-backlog.md), [kwaliteit](12-quality-testing.md), [neural network](07-neural-network.md), [leeswijzer](README.md), [ADR 0050](adr/0050-review-and-task-workflow.md)
 
@@ -12,7 +12,7 @@ De roadmap beschrijft opleveringen en afhankelijkheden, geen taakstatus. GitHub 
 
 ## Voorwaarde voor de bouw
 
-Eerst worden batch F, fase 3 en de fase-4-inrichting doorlopen volgens de masterprompt. Fase 4 verifieert alle zeven MCP-servers vóór repository-/bord-/handboekinrichting. De [voorbereide configuratie](../.codex/config.toml) schakelt nu geen server in. Daarna worden de 59 taakdefinities als issues gekoppeld en worden echte projectlinks vastgelegd. Deze inrichting is de huidige opdracht, geen bouwtaak die afhankelijk zou zijn van een nog niet bestaand bord.
+Batch F is goedgekeurd; de consistente documentset en de fase-4-inrichting moeten vóór de bouw zijn afgerond volgens de masterprompt. Fase 4 verifieert alle zeven MCP-servers vóór repository-/bord-/handboekinrichting. De [voorbereide configuratie](../.codex/config.toml) schakelt nu geen server in. Daarna worden de 59 taakdefinities als issues gekoppeld en worden echte projectlinks vastgelegd. Deze inrichting is de huidige opdracht, geen bouwtaak die afhankelijk zou zijn van een nog niet bestaand bord.
 
 De eerste bouwtaak is T01. T17 kan pas Ready worden na de expliciete stijlkeuze en de vereiste Figma-rechten. Uitvoeren gebeurt steeds op één taak; het ML-spoor maakt een andere volgorde mogelijk wanneer zijn afhankelijkheden gereed zijn.
 

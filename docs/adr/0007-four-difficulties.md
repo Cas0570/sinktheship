@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](../01-product-vision-scope.md), [spelregels](../02-game-rules.md), [stories](../03-user-stories.md), [leeswijzer](../README.md), [masterprompt](../00-masterprompt.md)
 
@@ -26,7 +26,7 @@ Moeilijkheid via verborgen voorkennis zou eenvoudiger te verhogen zijn, maar sch
 
 ## Gevolgen
 
-Impossible blijft zichtbaar uitgeschakeld zonder passend manifest. Algoritmische en statistische details volgen in batch B/C; een onvoldoende sterk model maakt v1.0 nog niet gereed.
+Impossible blijft zichtbaar uitgeschakeld zonder passend manifest. Algoritmische en statistische details staan in [06](../06-opponents.md) en [07](../07-neural-network.md); een onvoldoende sterk model maakt v1.0 nog niet gereed.
 
 ## Verificatie
 

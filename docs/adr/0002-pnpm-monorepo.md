@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Masterprompt](../00-masterprompt.md), [architectuur](../04-architecture.md), [packagegrenzen](0021-package-boundaries.md), [leeswijzer](../README.md)
 
@@ -20,7 +20,7 @@ Core, bots, sessie, UI en benchmark hebben afzonderlijke publieke API's maar moe
 
 ## Besluit
 
-Eén pnpm-workspace met applicaties en packages volgens 04, één vastgelegde pnpm-versie en lockfile. Interne dependencies gebruiken `workspace:*`; productimports lopen via expliciete rootexports. Python heeft een eigen later vast te leggen omgeving en wordt niet door pnpm als Python-package beheerd.
+Eén pnpm-workspace met applicaties en packages volgens 04, één vastgelegde pnpm-versie en lockfile. Interne dependencies gebruiken `workspace:*`; productimports lopen via expliciete rootexports. Python heeft een eigen omgeving volgens [ADR 0041](0041-python-tooling.md) en wordt niet door pnpm als Python-package beheerd.
 
 ## Onderbouwing en alternatieven
 

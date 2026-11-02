@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](../01-product-vision-scope.md), [spelregels](../02-game-rules.md), [stories](../03-user-stories.md), [leeswijzer](../README.md), [masterprompt](../00-masterprompt.md)
 
@@ -26,7 +26,7 @@ Direct netwerkspel bouwen vergroot de scope vóór het leerdoel bereikt is. Geen
 
 ## Gevolgen
 
-Serverautoriteit, protocol en room-lifecycle krijgen document 11 in batch E. `apps/server` krijgt bij de bouw uitsluitend een README met de bedoeling. UI en core blijven zonder transportdependency.
+Serverautoriteit, protocol en room-lifecycle staan in [11](../11-multiplayer-future.md). `apps/server` krijgt bij de bouw uitsluitend een README met de bedoeling. UI en core blijven zonder transportdependency.
 
 ## Verificatie
 

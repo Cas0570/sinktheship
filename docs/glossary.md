@@ -1,14 +1,14 @@
 Status: Geaccepteerd
 
-Versie: 1.4
+Versie: 1.5
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [spelregels](02-game-rules.md), [stories](03-user-stories.md), [leeswijzer](README.md)
 
 # Begrippen Nederlands ↔ Engels
 
-Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Hieronder staan de geaccepteerde begrippen uit batches A–D; de exacte ML-definities staan in document 07. Versie 1.4 voegt de goedgekeurde netwerk-, kwaliteits- en toolingbegrippen uit batch E toe.
+Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en commits. Een code-identifier blijft ook in Nederlandse tekst Engels. Deze begrippen volgen de contracten uit batches A–F; de exacte ML-definities staan in document 07. De fase-3-correcties verduidelijken requestbewijs, lokale requestvolgorde en te kwalificeren runtimeprofielen.
 
 | Nederlands | Engels / code | Betekenis |
 |---|---|---|
@@ -55,7 +55,8 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Momentopname | snapshot | Vastgelegde toestand op één moment; `SessionSnapshot` is de publieke sessieweergave, een checkpoint bevat private hervatdata. |
 | Hervatpunt | checkpoint | Geversioneerde private game-state, RNG-stromen, controller-/modelversies, receipts en eventuele inzichtdata. |
 | Publieke gebeurtenis | `PublicGameEvent` | Gefilterd event met uitsluitend toegestane payload en een publiek herleidbaar ID. |
-| Requestbewijs | receipt | Opgeslagen request-ID, intentinhoud en revision om herhaalde verwerking te voorkomen. |
+| Requestbewijs | receipt | Bewijs van een geaccepteerde request-ID, intentinhoud en revision; een lokale verlopen receipt wordt aangevuld met requestvolgorde, geen toestemming voor heruitvoering. |
+| Lokale requestvolgorde | client binding / ordinal | Unieke binding per lokale dispatchproxy met oplopend volgnummer; verlopen of oude requests worden geweigerd, ook na receipt-eviction. Geen publieke engine-revision. |
 | Annulering | cancellation / `Cancellation` | Signaal om onafgemaakt werk te stoppen; stale resultaten worden ook bij late reactie genegeerd. |
 | Replay | replay | Dezelfde beginsituatie en commandvolgorde opnieuw uitvoeren met dezelfde versies en randomness. |
 | Tegenstander | opponent / `Opponent` | Strategie die via publieke contracten acties kiest. |
@@ -83,7 +84,7 @@ Gebruik Nederlands in documentatie en Engels in code, identifiers, comments en c
 | Label | label / target | Gewenst trainingsantwoord, bijvoorbeeld de echte schepenkaart; geen toegestane modelinput. |
 | Supervised learning | supervised learning | Leren uit invoer met bekende labels. |
 | Reinforcement learning | reinforcement learning | Optioneel vervolg waarin beleid leert uit beloning; alleen na gemeten verbetering. |
-| Runtimeprofiel | runtime profile / `RuntimeProfile` | Exacte inferentieruntime, provider, flags en assetset waarvoor het model is gekwalificeerd. |
+| Runtimeprofiel | runtime profile / `RuntimeProfile` | Exacte inferentieruntime, provider, flags en assetset; bij een candidate nog te kwalificeren, bij productie gedekt door pariteits-/performancebewijs. |
 | Modelmanifest | `ModelManifest` | Geversioneerde metadata over artefact, compatibiliteit, encoding, training en evaluatie. |
 | Modeluitvoerder | `ModelRunner` | Runtimeport voor dezelfde modelinterface in browser en Node. |
 | Modelkaart | model card / `MODEL_CARD.md` | Menselijke toelichting op doel, trainingsdata, beperkingen en evaluatie van een model. |

@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Design brief](09-design-brief.md), [frontend](08-frontend.md), [architectuur](04-architecture.md), [Figma-besluit](adr/0010-figma-design-workflow.md), [mappingbesluit](adr/0047-design-code-mapping.md), [leeswijzer](README.md)
 
@@ -27,7 +27,7 @@ De officiële Figma-documentatie is op 2026-11-01 geraadpleegd. Controleer haar 
 
 Bronnen: [introductie en seats](https://developers.figma.com/docs/figma-mcp-server/), [canvasmogelijkheden](https://developers.figma.com/docs/figma-mcp-server/write-to-canvas/), [rate limits](https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/), [Code Connect-integratie](https://developers.figma.com/docs/figma-mcp-server/code-connect-integration/) en [custom rules](https://developers.figma.com/docs/figma-mcp-server/add-custom-rules/).
 
-In deze sessie zijn onder meer `use_figma`, `get_design_context`, `get_variable_defs`, `get_screenshot`, `get_metadata`, assettools, Code Connect-tools en `generate_figma_design` zichtbaar. `create_design_system_rules` staat niet in de aangeboden toollijst. Dat is een capabilitybevinding, geen uitgevoerde design- of publicatietest. Vraag bij uitvoering ook naar beschikbare prompts/resources; schrijf anders de regels zelf volgens stap 6.
+Bij de documentatiecontrole op 2026-11-01 waren onder meer `use_figma`, `get_design_context`, `get_variable_defs`, `get_screenshot`, `get_metadata`, assettools, Code Connect-tools en `generate_figma_design` zichtbaar. `create_design_system_rules` stond niet in de aangeboden toollijst. Dat is een capabilitybevinding, geen uitgevoerde design- of publicatietest. Vraag bij uitvoering ook naar beschikbare prompts/resources; schrijf anders de regels zelf volgens stap 6.
 
 ## Stap 0 — Invoer en hervatpunt vastleggen
 
@@ -47,9 +47,9 @@ Dit is de expliciete keuzevoorwaarde uit de masterprompt, geen extra inhoudelijk
 
 ## Stap 1 — Projectscope, server en skills
 
-Het voorbeeld uit de masterprompt is `codex mcp add figma --url https://mcp.figma.com/mcp`. De bij intake gecontroleerde CLI schrijft daarmee globale configuratie. Dit project vereist projectscope: bereid de Figma-entry later voor in `.codex/config.toml` met de andere zes vereiste servers, volgens document 16 en batch F. Voer het voorbeeldcommando daarom niet als projectsetup uit. De [intakebevinding](README.md#mcp-controle-bij-intake) bevat de bron en activatievolgorde. Authenticatie/secrets staan buiten Git; activeren en opnieuw testen gebeurt in fase 4.
+Het voorbeeld uit de masterprompt is `codex mcp add figma --url https://mcp.figma.com/mcp`. De bij intake gecontroleerde CLI schrijft daarmee globale configuratie. Dit project vereist projectscope: de Figma-entry staat met de andere zes vereiste servers uitgeschakeld in [.codex/config.toml](../.codex/config.toml); activatie volgt [document 16](16-tooling-mcp.md). Voer het voorbeeldcommando daarom niet als projectsetup uit. De [intakebevinding](README.md#mcp-controle-bij-intake) bevat de bron en activatievolgorde. Authenticatie/secrets staan buiten Git; activeren en opnieuw testen gebeurt in fase 4.
 
-Een MCP-verbinding installeert niet vanzelf Figma-skills. Haal de benodigde skills met hun relatieve referentiebestanden uit de officiële [Figma mcp-server-guide-repository](https://github.com/figma/mcp-server-guide). Controleer de actuele directorystructuur, herkomst en revisie; installeer alleen ontbrekende skills en behoud een werkende bestaande installatie. Leg versie/revisie en installatielocatie vast in de toolingnotities. In deze sessie zijn de benodigde Figma-skills al beschikbaar via de plugin; er is in D niets geïnstalleerd.
+Een MCP-verbinding installeert niet vanzelf Figma-skills. Haal de benodigde skills met hun relatieve referentiebestanden uit de officiële [Figma mcp-server-guide-repository](https://github.com/figma/mcp-server-guide). Controleer de actuele directorystructuur, herkomst en revisie; installeer alleen ontbrekende skills en behoud een werkende bestaande installatie. Leg versie/revisie en installatielocatie vast in de toolingnotities. Bij de documentatiecontrole op 2026-11-01 waren de benodigde Figma-skills beschikbaar via de plugin; er is in D niets geïnstalleerd. Controleer die beschikbaarheid opnieuw in de uitvoerende sessie.
 
 | Stap | Te lezen skill(s) vóór betreffende toolgebruik |
 |---|---|

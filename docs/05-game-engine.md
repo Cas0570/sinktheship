@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Regels](02-game-rules.md), [architectuur](04-architecture.md), [tegenstanders](06-opponents.md), [stories](03-user-stories.md), [ADR 0028](adr/0028-state-events-and-replay.md)
 
@@ -286,7 +286,7 @@ Properties gelden ook voor engineconfiguraties buiten de vier v1-UI-combinaties.
 
 ## Randomness en seeds
 
-Voorstel: `pcg32-xsh-rr-v1`, volgens de minimale PCG32-referentie, met lokale instances. Het snapshot bevat state en de oneven increment als elk exact 16 lowercase hextekens. Rekenen gebruikt unsigned 64-bit wraparound voor state en unsigned 32-bit voor output; TS kan intern BigInt gebruiken en Python expliciete masks. BigInt zelf wordt nooit opgeslagen. Seeding volgt de referentieroutine; ruwe seedwoorden zijn geen reeds geïnitialiseerde state.
+Gebruik het goedgekeurde `pcg32-xsh-rr-v1`, volgens de minimale PCG32-referentie, met lokale instances. Het snapshot bevat state en de oneven increment als elk exact 16 lowercase hextekens. Rekenen gebruikt unsigned 64-bit wraparound voor state en unsigned 32-bit voor output; TS kan intern BigInt gebruiken en Python expliciete masks. BigInt zelf wordt nooit opgeslagen. Seeding volgt de referentieroutine; ruwe seedwoorden zijn geen reeds geïnitialiseerde state.
 
 `Rng.int(n)` accepteert een geheel getal 1–2^32. Gebruik `limit = floor(2^32 / n) * n`, verwerp draws ≥ limit en neem de rest modulo n; ook `n = 1` verbruikt één draw. Dit vermijdt modulo-bias. Dit project verwerpt bovenaan het bereik; de PCG-C-helper verwerpt onderaan. Beide methoden zijn uniform, maar hun seedtraces zijn niet uitwisselbaar: TS en Python volgen de hier vastgelegde projectvariant.
 
@@ -315,7 +315,7 @@ Een checkpoint is één geversioneerd privaat JSON-document, bestaande uit:
 | `game` | Volledige gevalideerde `GameState` |
 | `opponents` | Per speler controller-ID/versie en eventueel exact model-ID/versie/digest en runtimeprofiel-ID volgens [07](07-neural-network.md#export-en-numerieke-pariteit); wijzigingen tijdens herstel worden geregistreerd |
 | `randomStreams` | Plaatsings- en schot-RNG-state per speler; starter staat in `game` |
-| `receipts` | Laatste maximaal 256 geaccepteerde request-IDs, canonieke intentinhoud en geaccepteerde revision |
+| `receipts` | Laatste maximaal 256 geaccepteerde lokale PlayerIntent-request-IDs, canonieke intentinhoud en geaccepteerde revision |
 | `insights` | Optionele postgame-inzichtdata per schot, gekoppeld aan de observatie vóór dat schot |
 
 Een in-flight Promise, Workerhandle, timer of half gecommit AI-resultaat wordt niet opgeslagen. Na refresh bepaalt de sessie uit fase/turn welke actie nodig is en rekent die opnieuw met de opgeslagen RNG. Modelbestanden worden niet in het checkpoint gedupliceerd.
@@ -326,12 +326,27 @@ De coördinator voert één mutatie tegelijk uit:
 2. Maak een onafhankelijke view en clone van uitsluitend de benodigde RNG-stroom. Bereken plaatsing/schot en optioneel inzicht op die kopieën.
 3. Na de await: controleer annulering, generatie, game-ID, revision en actuele fase/actor. Een verouderd resultaat wordt weggegooid, inclusief zijn verbruikte RNG.
 4. Valideer het resultaat en voer het corecommand uit. Bij afwijzing wordt niets gecommit en wordt een botcontractfout zichtbaar; kies geen willekeurige vervangende zet.
-5. Commit state, RNG, receipt en inzicht samen in geheugen. Publiceer de nieuwe `PlayerView` met opslagstatus saving.
+5. Commit state, RNG en eventueel lokaal requestbewijs en inzicht samen in geheugen. Publiceer de nieuwe `PlayerView` met opslagstatus saving.
 6. Schrijf één volledig checkpoint. Bij succes wordt status saved; bij fout unavailable met uitleg. Een opslagfout draait de geaccepteerde zet niet terug. Pas na afhandeling van die schrijfopdracht wordt de volgende mutatie gestart.
 
 De opslagqueue is geordend: een oudere write kan niet na een nieuwere write dezelfde key overschrijven. Checkpoints gebruiken een key per game-ID; een apart active-game-verwijzingsrecord wordt bij een nieuw spel pas na het eerste checkpoint veranderd. Een crash ertussen behoudt het vorige hervatbare spel; een onafgemaakte nieuwe verwijzing wordt nooit als geldige snapshot behandeld.
 
-Een herhaald request-ID met dezelfde intent levert `duplicate` zonder nieuwe events, geluiden, RNG-verbruik of schoten. Hetzelfde ID met andere inhoud wordt afgewezen. Na eviction uit de receiptcache beschermt expected revision tegen replay van een oud corecommand; UI-request-IDs bevatten een per-clientinstantie unieke prefix om hergebruik na refresh te voorkomen. De toekomstige netwerkadapter zal zijn eigen reconnection-/deduplicatievenster expliciet versioneren.
+Een herhaald request met nog beschikbaar bewijs levert `duplicate` zonder nieuwe events, geluiden, RNG-verbruik of schoten. Een verdwenen receipt betekent niet dat de intent opnieuw mag worden verwerkt. `GameCommand.expectedRevision` beschermt een oud corecommand; het beschermt op zichzelf geen oud UI-intent dat opnieuw in een command met de huidige revision zou worden omgezet. Daarvoor geldt de onderstaande lokale requestvolgorde. Het toekomstige netwerkcontract heeft zijn eigen duurzame receiptbeleid in 11.
+
+### Lokale requestvolgorde
+
+De composition root bindt bij het maken van een lokale SessionPort één nieuwe `clientInstanceId` van 32 lowercase hextekens uit de platform-entropieadapter. Hetzelfde ID wordt aan de sessie en haar enige dispatchproxy gegeven; componenten maken deze binding niet. Een nieuwe proxy na refresh, Workerherstart of rematch krijgt altijd een nieuwe prefix. Er wordt geen private engine-revision aan de UI toegevoegd.
+
+Een lokaal request-ID heeft de vorm `<clientInstanceId>:<ordinal>`. Ordinal is een positief veilig geheel getal in decimale vorm zonder voorloopnullen. De proxy begint bij 1, verhoogt eenmaal per nieuwe intent en verstuurt hoogstens één nog onbeantwoord lokaal intent tegelijk. Retry gebruikt exact hetzelfde ID en dezelfde canonieke inhoud. Botberekeningen gebruiken de bestaande interne game-/generatie-/revisioncontrole en delen deze UI-teller niet.
+
+De sessie behandelt dispatch in deze volgorde:
+
+1. Valideer vorm en de bij deze sessie gebonden prefix. Een oude/andere prefix geeft `STALE_CLIENT`, ook na herstellen uit een checkpoint.
+2. Zoek het request onder de nog lopende call en daarna in receipts. Gelijke inhoud deelt de lopende verwerking of levert na acceptatie `duplicate`; andere inhoud geeft `REQUEST_CONFLICT`. Een gedeelde afgewezen call behoudt dezelfde afwijzing.
+3. Zonder lopende call/receipt: is ordinal niet groter dan de hoogste al ontvangen ordinal van deze binding, weiger dan met `REQUEST_EXPIRED`. Dit voorkomt heruitvoering na de 256-receiptgrens. Grotere ordinals zetten die administratieve bovengrens vooruit vóór inhoudelijke verwerking; een later aangekomen lagere ordinal wordt nooit ingehaald.
+4. Valideer en verwerk pas daarna de nieuwe intent volgens de normale sessie-/coreregels. Een inhoudelijk afgewezen request verbruikt zijn ID, maar verandert geen GameState, events of RNG. Een gecorrigeerde nieuwe gebruikersactie krijgt een nieuw ID.
+
+De bovengrens is sessieadministratie in geheugen, geen publieke spelrevision. Een herstart vervangt de clientbinding voordat requests worden toegelaten, zodat terugvallen op een ouder succesvol checkpoint geen oude IDs opnieuw geldig maakt. De bewaarde receipts blijven diagnostisch bewijs; requests met een oude prefix worden niet automatisch herhaald. Bij `REQUEST_EXPIRED` of `STALE_CLIENT` ververst de UI haar zicht op de sessie en meldt dat de oude actie niet opnieuw is uitgevoerd; maak geen nieuw ID om dezelfde onzekere actie stilzwijgend alsnog te doen. Dit bewaart het bestaande `dispatch(intent, requestId)`-contract met begrensd geheugen.
 
 Bij dispose, rematch of wijziging van niveau annuleert de sessie requests en verhoogt zij de generatie. Een Worker die annulering niet tijdig verwerkt kan door de adapter worden beëindigd; de laatst gecommitte toestand blijft geldig. Denkpauzes werken op `Clock`, nooit op game-RNG of core-events.
 
@@ -353,5 +368,7 @@ Een replay gebruikt engineversie, initiële regels/seedstates en geaccepteerde c
 | SES-06 | Complete checkpoint wordt gemanipuleerd | Validatie faalt vóór publicatie; geen geheime data in foutmelding |
 | SES-07 | Zelfde view met verschillende verborgen vijandelijke vloten | Zelfde botbeslissing/inzicht bij dezelfde schot-RNG |
 | SES-08 | Sunk-type bekend maar trefferscluster ambigu | Alleen bewezen onthullingen in view; geen clusterbrede schip-ID |
+| SES-09 | Meer dan 256 geaccepteerde lokale intents; daarna het eerste ID opnieuw aanbieden | `REQUEST_EXPIRED`, geen tweede transitie of RNG-verbruik, ook wanneer de oude draft nog geldig zou zijn |
+| SES-10 | Herhaald in-flight request, gewijzigde payload, lagere ordinal en oude prefix na Workerherstart | Eén verwerking; conflict/expired/stale-client volgens de lokale requestvolgorde; geen automatische heruitgifte met nieuw ID |
 
 Koppeling: US-01, US-02, US-06, US-07, US-08, US-09, US-17, US-28 en US-29; ENG-01 t/m ENG-10 worden property-/fixturechecks. Er is nog geen engine geïmplementeerd; de beschreven checks zijn acceptatievoorwaarden voor de bouw.

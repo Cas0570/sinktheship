@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [regels](02-game-rules.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [neural network](07-neural-network.md), [leeswijzer](README.md)
 
@@ -193,7 +193,7 @@ interface SessionPort {
 }
 ```
 
-`PlayerIntent.set-placement` gebruikt `PlacementDraft` uit 05 en mag in de editor onvolledig zijn; complete plaatsbaarheid is pas vereist bij confirm. De sessie bindt de lokale actor bij constructie: de UI mag geen andere `PlayerId` meegeven. `replaceOpponent` is een expliciete fout-/herstelkeuze, geen stille fallback; de sessie bewaart de wijziging in haar matchmetadata en labelt het resultaat als gemengd niveau. Een benchmark staat dergelijke vervanging niet toe. Een nieuw spel/rematch wordt door de composition root via een nieuwe sessie gemaakt; `dispose` annuleert de oude requests.
+`PlayerIntent.set-placement` gebruikt `PlacementDraft` uit 05 en mag in de editor onvolledig zijn; complete plaatsbaarheid is pas vereist bij confirm. De sessie bindt de lokale actor en een unieke clientinstantie bij constructie: de UI mag geen andere `PlayerId` of clientbinding kiezen. De composition root maakt request-IDs volgens [de lokale requestvolgorde](05-game-engine.md#lokale-requestvolgorde); een retry behoudt ID én inhoud. De receiptgrens van 256 geeft geen toestemming om oudere intenties opnieuw uit te voeren. `replaceOpponent` is een expliciete fout-/herstelkeuze, geen stille fallback; de sessie bewaart de wijziging in haar matchmetadata en labelt het resultaat als gemengd niveau. Een benchmark staat dergelijke vervanging niet toe. Een nieuw spel/rematch wordt door de composition root via een nieuwe sessie gemaakt; `dispose` annuleert de oude requests.
 
 `getSnapshot()` geeft dezelfde objectreferentie terug zolang de zichtbare inhoud niet verandert. `rules` zijn de actuele gevalideerde publieke sessieregels, immutable en overeenkomend met `view.rulesSignature`; een setupdraft kan die niet vervangen. De snapshot bevat geen volledige engine-state of opslagpayload. `StorageAdapter.write` vervangt één key atomair of faalt; serialisatie, versies en migraties van checkpoints liggen bij de sessielaag. De overige browserrecords vallen onder de betreffende app-/adapterservice uit 08. De browser-storagebridge mag volledige checkpoints verwerken maar is niet exporteerbaar naar schermen, UI-components of bots.
 

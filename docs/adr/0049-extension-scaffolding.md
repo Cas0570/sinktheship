@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Uitbreidingsgidsen](../15-extension-guides.md), [architectuur](../04-architecture.md#registratie-en-uitbreidingsimpact), [tegenstanders](../06-opponents.md), [kwaliteit](../12-quality-testing.md)
 
@@ -28,7 +28,7 @@ Handmatig kopiëren blijft een geldige fallback en is in de gids beschreven, maa
 
 ## Gevolgen
 
-Bootstrap/generator/module-README's krijgen afzonderlijke taken in F. De zes EXT-proeven leggen de werkelijke code-/test-/docdiff vast en worden door de ontwikkelaar zonder AI uitgevoerd na implementatie. Een nieuwe policy/runtime/encoding is geen eenvoudige extensie en krijgt zijn eigen contractreview.
+Bootstrap/generator/module-README's hebben afzonderlijke taken in de [backlog](../14-backlog.md). De zes EXT-proeven leggen de werkelijke code-/test-/docdiff vast en worden door de ontwikkelaar zonder AI uitgevoerd na implementatie. Een nieuwe policy/runtime/encoding is geen eenvoudige extensie en krijgt zijn eigen contractreview.
 
 ## Verificatie
 

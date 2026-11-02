@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Architectuur en uitbreidingsgrenzen](04-architecture.md), [regels](02-game-rules.md), [tegenstanders](06-opponents.md), [ML](07-neural-network.md), [frontend](08-frontend.md), [design brief](09-design-brief.md), [Figma-playbook](10-figma-mcp-playbook.md), [kwaliteit](12-quality-testing.md), [ADR 0049](adr/0049-extension-scaffolding.md)
 
@@ -12,7 +12,7 @@ Deze gidsen beschrijven de gewenste werkwijze na implementatie van de genoemde b
 
 ## Voor elke uitbreiding
 
-Begin bij de package-README (doel, publieke API, voorbeeld en uitbreidstappen), lees het gekoppelde contract en werk op één taakbranch volgens de toekomstige AGENTS.md. Leg vast welke publieke gedragseigenschap verandert en welke bestaande invarianten gelijk blijven. Nieuwe dependencies of een nieuw contract vragen een ADR; bestaande portimplementaties binnen het contract niet opnieuw een architectuurontwerp.
+Begin bij de package-README (doel, publieke API, voorbeeld en uitbreidstappen), lees het gekoppelde contract en werk op één taakbranch volgens [AGENTS.md](../AGENTS.md). Leg vast welke publieke gedragseigenschap verandert en welke bestaande invarianten gelijk blijven. Nieuwe dependencies of een nieuw contract vragen een ADR; bestaande portimplementaties binnen het contract niet opnieuw een architectuurontwerp.
 
 De impactgrenzen tellen handmatig gewijzigde productcode; tests, documentatie, fixtures en automatisch gegenereerde catalogi worden apart zichtbaar gerapporteerd. Dit is geen uitzondering om verborgen codewijzigingen niet te tellen. Voor de maximaal toegestane impact uit NFR-01 moet de code-diff aantonen dat core/UI niet ongemerkt meeveranderen. Een nieuwe businessregel, encoding, provider of accountfunctie valt buiten de eenvoudige extensieproeven.
 
@@ -60,7 +60,7 @@ Verificatie: `pnpm test`, `pnpm test:parity`, `pnpm build`; diff bevat één con
 Lees 07 voor de concrete pipelinecommando's; deze gids herhaalt geen tweede versie daarvan. Het model moet dezelfde bekende encoding-/policy-/runtimecontracten gebruiken. Nieuwe channels/operators/providers zijn een afzonderlijke implementatie-/ADR-wijziging.
 
 1. Train/evalueer met vastgelegde config, seeds en gescheiden dataset-/development-/releaseplannen. Bewaar W&B-run of expliciete offline-runreferentie en artefactdigests; upload geen echte gebruikerspotjes.
-2. Export levert lokaal een nieuwe map `models/<model-id>/<version>/` met `model.onnx`, `manifest.json` en `MODEL_CARD.md`. Versies zijn immutable; vervang geen bytes onder dezelfde ID/versie.
+2. Export levert lokaal een kandidaatmap met `model.onnx`, `manifest.json` en `MODEL_CARD.md`, bestemd voor `models/<model-id>/<version>/`. Het exportdossier vermeldt eerlijk welke kwalificatie nog ontbreekt; gebruik voor browsermetingen de expliciete testcompositie uit 07. Een eenmaal gepubliceerde versie is immutable: vervang geen modelbytes onder dezelfde ID/versie. Vóór publicatie wordt het kandidaatdossier met de echte kwalificatierapporten aangevuld.
 3. Controleer bestandslengte/digest, encodingvorm, mask, regels/turn-/startercompatibiliteit en exact runtimeprofiel. Laat PyTorch/ORT-Python/ORT-TS en de browserprofielen de vastgelegde numerieke én beslispariteit passeren.
 4. Gebruik de developmentvergelijking om de kandidaat vast te zetten. Voer daarna de volledige holdoutbenchmark en fysieke telefoonkwalificatie uit 06/07/12 uit. Noteer ook de iPhone- en middenklasseresultaten; CPU-simulatie is geen vervanging voor de inferentie-eis.
 5. Publicatievoorbereiding maakt alleen een lokale map/promotiediff. Een kandidaat blijft buiten de productie-levelkeuze. De promotieverwijzing noemt de bestaande voorganger(s) volgens het manifest; er is exact één terminale default per compatibele context.
@@ -72,7 +72,7 @@ Verificatie: pipelinekwalificatie uit 07, `pnpm test:parity`, `pnpm build`, cata
 ## Een taal toevoegen
 
 1. Kopieer de metadata-/keystructuur naar één nieuw bestand `apps/web/src/locales/<locale>.json`, bijvoorbeeld `de.json`, met schemaVersion, BCP-47-locale, nativeName en messages volgens 08.
-2. Lever alle keys uit de resulterende catalogus, inclusief modulelabels, fout-/aria-/live-teksten en de benodigde pluralvormen. Houd interpolatievariabelen gelijk; vertaal volledige zinnen en geen HTML.
+2. Lever alle logische basiskeys uit de resulterende catalogus, inclusief modulelabels, fout-/aria-/live-teksten. Gebruik voor pluralgroepen de categorieën van de nieuwe locale volgens 08; kopieer niet blind alleen de EN/NL-suffixen. Houd de gedeclareerde interpolatievariabelen gelijk; vertaal volledige zinnen en geen HTML.
 3. Run `pnpm build` en de localevalidatie binnen `pnpm test`. Ontbrekende keys/placeholders/ongeldige locale geven een fout vóór publicatie. Maak geen handmatige wijziging aan taalmenu, enum of importlijst.
 4. Kies de taal tijdens een spel, herlaad en controleer spelstate/signatures/RNG. Meet lange labels op 320/390/768/1440 en controleer documenttaal/nummernotatie.
 5. Test een laadfout en ontbrekend asset: bestaande taal blijft bruikbaar en er verschijnt geen rauwe key. Registreer de taal als vrijgegeven nadat de vertaling inhoudelijk is gereviewd.
@@ -113,4 +113,4 @@ Een visuele pixelmatch zonder werkende bediening is geen afgeronde component. Ee
 | EXT-05 | Voeg een kleine informatiepagina met route toe | Eén module/registratie; deeplink, Back en focus werken |
 | EXT-06 | Bouw één nieuwe goedgekeurde Figma-component | Props/tokens/mapping kloppen; visueel en keyboard gecontroleerd |
 
-Per proef bewaart het rapport uitgangscommit, gevolgde stappen, werkelijke diffbestanden, uitgevoerde controles en waar de handleiding niet voldoende was. Herstel de gids in dezelfde review. Verwijder tijdelijke demo-inventory na de proef tenzij die als productwijziging is geautoriseerd. Batch F maakt afzonderlijke taken voor de generator, module-README's en deze menselijke verificatie.
+Per proef bewaart het rapport uitgangscommit, gevolgde stappen, werkelijke diffbestanden, uitgevoerde controles en waar de handleiding niet voldoende was. Herstel de gids in dezelfde review. Verwijder tijdelijke demo-inventory na de proef tenzij die als productwijziging is geautoriseerd. De [backlog](14-backlog.md) bevat afzonderlijke taken voor de generator (T48), module-README-audit (T49) en menselijke proeven (T50–T52), met voorlopige MVP-proeven in T33.

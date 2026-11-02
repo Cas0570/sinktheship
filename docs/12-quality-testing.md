@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Requirements](01-product-vision-scope.md), [stories en AT-IDs](03-user-stories.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [ML](07-neural-network.md), [frontend](08-frontend.md), [tooling](16-tooling-mcp.md), [ADR 0048](adr/0048-quality-budgets.md), [leeswijzer](README.md)
 
@@ -55,9 +55,11 @@ Streef voor `game-core` naar minimaal 90% statements/lines/functions en 85% bran
 | Uitbreiden/review | US-20/24 | Zes proeven uit 15; taak-/PR-/document-/MCP-bewijs |
 | Optionele functies | US-16/25/26/27 | Stats, geschiedenis wissen, offline model en dark mode alleen als de betreffende release ze levert |
 
-Testtitels bevatten het betreffende AT-ID en mogen meerdere relevante IDs noemen. De volledige FR/NFR → US → taak → testmatrix wordt in batch F afgerond; UI-/ML-/MP-controles zijn aanvullingen, geen vervangende nummering. De toekomstige MP-tests uit 11 blokkeren v1 niet. Statistieken en AI-inzicht zijn Should; een vrijgegeven variant moet haar criteria wel volledig halen.
+Testtitels bevatten het betreffende AT-ID en mogen meerdere relevante IDs noemen. De volledige [FR/NFR → US → taak → testmatrix](README.md#traceerbaarheid) is met batch F geleverd; UI-/ML-/MP-controles zijn aanvullingen, geen vervangende nummering. De toekomstige MP-tests uit 11 blokkeren v1 niet. Statistieken en AI-inzicht zijn Should; een vrijgegeven variant moet haar criteria wel volledig halen.
 
 De deterministische volledige Easy-flow gebruikt een apart **testbuildprofiel** met een geïnjecteerde fixtureseed. Productie bevat geen seedqueryparameter, verborgen debugmenu of global testhook. Test daarnaast een ongewijzigde productiebuild zonder seedhook op alle routes, opslag en netwerk/security. Bewaar de testflow met fixture-ID en seedplan; verwar de testbundle niet met het te deployen artefact.
+
+Hetzelfde onderscheid geldt voor candidate-modellen: de aparte kwalificatiecompositie uit 07 injecteert één exact kandidaatbestand voor T40–T42, zonder promotie voor te wenden. Bewaar modeldigest en runtimeprofiel bij de metingen. De uiteindelijke productiebuild laat uitsluitend gepromoveerde modellen toe en bevat geen candidate-selectie-ingang. Controleer na promotie ook het gewone productiepad; browserbewijs vóór promotie is geen bewijs dat een candidate al beschikbaar is voor spelers.
 
 ## Browser- en toegankelijkheidsmatrix
 

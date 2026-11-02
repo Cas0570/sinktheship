@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Frontend](08-frontend.md), [Figma-playbook](10-figma-mcp-playbook.md), [scope](01-product-vision-scope.md), [stijlbesluit](adr/0018-visual-direction-selection.md), [mappingbesluit](adr/0047-design-code-mapping.md), [leeswijzer](README.md)
 
@@ -126,7 +126,7 @@ Een app-scherm mag layoutframes/semantische containers gebruiken om instances te
 | Ongeldig | `state=invalid` | Kruis-/streeppreview en gekoppelde fouttekst |
 | Uitgeschakeld | `disabled=true`, bestaande state behouden | Inhoud inspecteerbaar; geen activatie en geen alleen-opacity-uitleg |
 
-Bij v1-`sunk-ship-type` is op het vijandelijke bord alleen het schot dat de zinkuitkomst opleverde zeker als sunk te markeren. Kleur nooit een volledig verbonden hitcluster in als gezonken schip: daarvoor ontbreekt de koppeling aan posities. Eerdere hits blijven hits tot een toegestane expliciete onthulling. Eigen schepen en de postgame-view hebben wel volledige bekende geometrie. Ontwerp bewust een voorbeeld met twee elkaar rakende schepen; zie 02/05.
+Bij v1-`information.sunk: "ship-type"` is op het vijandelijke bord alleen het schot dat de zinkuitkomst opleverde zeker als sunk te markeren. Kleur nooit een volledig verbonden hitcluster in als gezonken schip: daarvoor ontbreekt de koppeling aan posities. Eerdere hits blijven hits tot een toegestane expliciete onthulling. Eigen schepen en de postgame-view hebben wel volledige bekende geometrie. Ontwerp bewust een voorbeeld met twee elkaar rakende schepen; zie 02/05.
 
 Heatmaps tonen vóór-keuze-informatie uit een bewaarde beslissing, uitsluitend na afloop. Markeer uitgesloten acties apart en bied een tekstuele topkeuzelijst; een kleurverloop is geen toegankelijk alternatief voor getallen. Logits/Hard-scores heten scores, niet percentages of bewezen kansen. Voor Easy/Normal en niet-bewaarde beslissingen staat Er is geen inzicht beschikbaar. De maximaal 20 bewaarde beslissingen uit 08 worden expliciet vermeld.
 

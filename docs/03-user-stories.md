@@ -1,14 +1,14 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Requirements](01-product-vision-scope.md), [spelregels](02-game-rules.md), [traceerbaarheid](README.md#traceerbaarheid), [begrippen](glossary.md)
 
 # User stories en acceptatietests
 
-Elke story beschrijft één gebruikersdoel of ontwikkelaarsdoel. `AT-xx-yy` is een stabiele acceptatietestdefinitie, nog geen geïmplementeerde of uitgevoerde test. De teststrategie in batch E bepaalt de concrete testbestanden; batch F koppelt taken. Gegevens uit de tabel `RULE-xx` in document 02 worden waar relevant golden fixtures.
+Elke story beschrijft één gebruikersdoel of ontwikkelaarsdoel. `AT-xx-yy` is een stabiele acceptatietestdefinitie, nog geen geïmplementeerde of uitgevoerde test. De [teststrategie](12-quality-testing.md) bepaalt de te bouwen testlagen; de [backlog](14-backlog.md) koppelt concrete taken. Gegevens uit de tabel `RULE-xx` in document 02 worden waar relevant golden fixtures.
 
 Must-criteria gelden voor v1.0; de expliciete MVP-grenzen staan in document 01. Should- en Could-stories behouden hun eigen prioriteit. Technische kwaliteitsstories zijn verplicht voor de releaseonderdelen waarop zij betrekking hebben.
 
@@ -39,8 +39,8 @@ Eisen: FR-02, FR-03. Testvorm: unit-/propertytests en UI-tests; RULE-01 t/m RULE
 Eisen: FR-04, FR-15. Testvorm: registry-contracttests en componenttests.
 
 - **AT-03-01:** Gegeven een geldige regelset uit het ondersteunde enginecontract, als de registry wordt geraadpleegd, dan ondersteunen Easy, Normal en Hard die regels zonder een preset-ID te hoeven herkennen.
-- **AT-03-02:** Gegeven geen gevalideerd compatibel manifest, als de moeilijkheidskiezer verschijnt, dan blijft Impossible zichtbaar maar uitgeschakeld met uitleg in de gekozen taal.
-- **AT-03-03:** Gegeven een compatibel manifest, als Impossible wordt gekozen, dan begint het laden en start de wedstrijd pas na succesvolle validatie en initialisatie; in de MVP wordt een nog niet geleverde neural tegenstander niet als speelbaar gepresenteerd.
+- **AT-03-02:** Gegeven geen gevalideerd compatibel en gepromoveerd manifest, als de moeilijkheidskiezer verschijnt, dan blijft Impossible zichtbaar maar uitgeschakeld met uitleg in de gekozen taal.
+- **AT-03-03:** Gegeven een compatibel en gepromoveerd manifest, als Impossible in productie wordt gekozen, dan begint het laden en start de wedstrijd pas na succesvolle validatie en initialisatie; in de MVP wordt een nog niet geleverde neural tegenstander niet als speelbaar gepresenteerd.
 
 ## US-04
 

@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Neural network](../07-neural-network.md#pipelinecommandos-en-artefacten), [training](0034-training-and-experiments.md), [leeswijzer](../README.md)
 
@@ -34,4 +34,4 @@ Een schone ontwikkelkopie krijgt expliciete setup en een CPU-pilot. De datagener
 
 ## Verificatie
 
-AT-18-01/02/03, AT-24-02 en AT-29-01/02; clean-checkout-run, offline logging, lint en fixtures. De complete CI-indeling volgt in batch E; er bestaat nog geen Python-code om te testen.
+AT-18-01/02/03, AT-24-02 en AT-29-01/02; clean-checkout-run, offline logging, lint en fixtures. De complete CI-indeling staat in [12](../12-quality-testing.md#ci-artefacten-en-releasepoorten); er bestaat nog geen Python-code om te testen.

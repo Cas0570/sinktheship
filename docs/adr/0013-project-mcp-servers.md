@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Tooling](../16-tooling-mcp.md), [intake](../README.md#mcp-controle-bij-intake), [Figma](../10-figma-mcp-playbook.md)
 
@@ -20,7 +20,7 @@ Een tool kan zichtbaar zijn zonder juiste projectconfiguratie, accountrechten of
 
 ## Besluit
 
-Bereid de zeven entries in `.codex/config.toml` voor in batch F. Gebruik remote HTTP voor GitHub/Notion/Figma/Context7/W&B en stdio via npx voor Playwright/Chrome DevTools. Secrets blijven in procesvariabelen/OAuthopslag buiten Git. GitHub vraagt default plus projects/actions. Gebruik voor deze omgeving geïsoleerde headless browsers en ruimere starttimeouts. Activeer/verifieer pas in fase 4 volgens 16.
+De zeven entries zijn in [.codex/config.toml](../../.codex/config.toml) voorbereid en staan uit tot fase 4. Gebruik remote HTTP voor GitHub/Notion/Figma/Context7/W&B en stdio via npx voor Playwright/Chrome DevTools. Secrets blijven in procesvariabelen/OAuthopslag buiten Git. GitHub vraagt default plus projects/actions. Gebruik voor deze omgeving geïsoleerde headless browsers en ruimere starttimeouts. Activeer/verifieer pas in fase 4 volgens 16.
 
 ## Onderbouwing en alternatieven
 
