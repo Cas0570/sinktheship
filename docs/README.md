@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.20
+Versie: 0.21
 
 Laatst gewijzigd: 2026-11-02
 
@@ -546,4 +546,12 @@ De laatste workflowcontrole is afgerond: de aangeleverde screenshots tonen beide
 
 **Hervatten:** wacht op een nieuw verzoek om met de bouw te beginnen. Lees dan eerst het bord, inclusief In progress, Review en Blocked, en volg AGENTS voor de eerste beschikbare Ready-taak. De Figma-stijlkeuze blijft vóór M3 open; W&B-projectkeuze en meetvoorzieningen blijven op hun bestaande latere beslismomenten.
 
-De Notion-hoofdpagina is bij deze afronding gelezen en bevat nog de eerdere eindreviewformulering. De Notion-tools zijn vervolgens uit de sessie verwijderd; de akkoordvermelding kon daar niet worden bijgewerkt. Werk uitsluitend die formulering bij zodra de verbinding weer beschikbaar is. De reeds aangemaakte en geverifieerde handboekinhoud blijft bestaan.
+De Notion-koppeling is hersteld en de fase-4-goedkeuring is ook op de handboekhoofdpagina vastgelegd. De ontwikkelaar heeft vervolgens gevraagd alle voorbereidingen te pushen, main te beveiligen en daarna te stoppen vóór T01.
+
+De volledige bordlezing bevestigt dat geen bestaande In progress-, Review- of Blocked-taak eerst afgehandeld hoeft te worden; T01 heeft geen taakafhankelijkheden. De actuele taakstatus blijft op het bord. De nieuwe PR-grens staat in AGENTS, ADR 0050 en het [beveiligingsverslag](16-tooling-mcp.md#beveiliging-van-main). Lokale hooks zijn getest. GitHub weigert serverbeveiliging voor deze privérepository met HTTP 403 en vraagt GitHub Pro. De gewenste ruleset staat klaar; zonder actieve serverregel is de gevraagde beveiliging nog niet volledig gerealiseerd.
+
+**Startprompt voor een nieuwe chat:**
+
+> Lees AGENTS.md, docs/00-masterprompt.md en docs/README.md. Controleer eerst of de main-beveiliging actief is en de lokale Git-hooks zijn ingeschakeld. Lees via GitHub MCP het Projects-bord, inclusief In progress, Review en Blocked. Volg de taakvolgorde uit AGENTS.md en voer precies één beschikbare Ready-taak uit; als het bord ongewijzigd is, is dat T01. Werk op een taakbranch, voer de relevante checks uit, werk docs en Notion bij en open een PR met de voorgeschreven reviewsamenvatting. Zet de taak op Review en stop voor mijn beoordeling. Merge niet zonder mijn expliciete goedkeuring. Bij een ontbrekende voorwaarde: meld die en start geen andere taak.
+
+De bouw is tijdens deze voorbereiding niet gestart.

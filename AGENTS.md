@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Masterprompt](docs/00-masterprompt.md), [hervatpunt](docs/README.md), [backlog](docs/14-backlog.md), [kwaliteit](docs/12-quality-testing.md), [tooling](docs/16-tooling-mcp.md)
 
@@ -13,6 +13,12 @@ Gerelateerd: [Masterprompt](docs/00-masterprompt.md), [hervatpunt](docs/README.m
 Lees bij iedere nieuwe sessie `docs/00-masterprompt.md` en `docs/README.md`. Tijdens de documentatieopdracht gelden de fase- en batchreviews uit de masterprompt: schrijf de geautoriseerde batch volledig, controleer haar, werk de leeswijzer bij en bied haar ter review aan. Commit na akkoord. Bouwtaken, boardupdates en applicatiechecks hieronder gelden pas na de volledig afgeronde fase 4; een nog niet bestaand bord blokkeert het schrijven van documenten niet.
 
 Fase 4 begint met activatie en verificatie van alle zeven projectservers volgens `docs/16-tooling-mcp.md`. Als één daarvan niet slaagt, stop vóór externe inrichting en geef oorzaak, noodzakelijke gebruikersactie en hervatpunt. Pas na zeven geslaagde tests: repository/bord/handboek inrichten, links rapporteren, daarna bouwen. Respecteer de apart vereiste toestemming om een repository aan te maken. Een algemeen documentakkoord kiest geen Figma-stijl en verandert geen abonnement.
+
+## Verplichte branch- en PR-grens
+
+Commit of push nooit rechtstreeks naar `main`. Maak vóór wijzigingen een taakbranch; ook documentatie en configuratie gaan via een PR en worden pas na expliciete menselijke goedkeuring gemerged. Gebruik geen bypass, force-push of uitgeschakelde hooks om deze grens te omzeilen.
+
+Controleer in iedere checkout vóór wijzigingen `git config --get core.hooksPath`; activeer zo nodig de meegeleverde hooks met `git config --local core.hooksPath .githooks`. Controleer vóór de bouw de serverbeveiliging volgens [tooling](docs/16-tooling-mcp.md#beveiliging-van-main). Lokale hooks vervangen de GitHub-regel niet. Bij ontbrekende serverbeveiliging: meld de concrete blokkade en start geen bouwtaak totdat die is opgelost of de ontwikkelaar expliciet een tijdelijke uitzondering heeft gekozen. Verander niet zelfstandig de zichtbaarheid of het abonnement.
 
 ## Eén bouwtaak per keer
 

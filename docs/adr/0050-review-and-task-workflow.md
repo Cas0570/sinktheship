@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Werkinstructies](../../AGENTS.md), [roadmap](../13-roadmap.md), [backlog](../14-backlog.md), [kwaliteit](../12-quality-testing.md), [uitbreiden](../15-extension-guides.md), [ADR 0012](0012-github-projects.md)
 
@@ -12,7 +12,7 @@ Gerelateerd: [Werkinstructies](../../AGENTS.md), [roadmap](../13-roadmap.md), [b
 
 De taak-lifecycle, menselijke review, reviewsamenvatting en één actieve taak zijn vastgelegd in de masterprompt. Batch F maakt de grenzen tussen documentatiefasen, implementatie, experimenten en releasebewijs expliciet.
 
-Deze uitwerking is met batch F goedgekeurd op 2026-11-01.
+Deze uitwerking is met batch F goedgekeurd op 2026-11-01. Op 2026-11-02 vraagt de ontwikkelaar aanvullend alles te pushen, daarna directe commits naar main te blokkeren en wijzigingen uitsluitend via pull requests te mergen.
 
 ## Context
 
@@ -31,6 +31,14 @@ Een ML-experiment bewaart config, seeds, versies en artefacten; W&B bevat runinf
 Na iedere mijlpaal/release worden roadmap en Notion-release notes bijgewerkt en het bord opgeschoond. T33 controleert de MVP inclusief a11y/i18n en de dan beschikbare uitbreidingspunten. T50–T52 en T56 leveren de volledige menselijke uitbreidings-/overdrachtproef voor v1.0. Meetresultaten blijven gekoppeld aan de werkelijk geteste release- en modelversie.
 
 De huidige documentatieopdracht gebruikt haar eigen goedgekeurde batch-/fasevolgorde: geen issue/PR of appchecks vereist vóór een bord en app bestaan. Batch F levert een uitgeschakelde projectconfig; fase 4 activeert en verifieert alle zeven servers. De expliciete fase-4-stop bij een mislukte servercontrole gaat vóór de dagelijkse mogelijkheid om lokaal verder te werken.
+
+### Bescherming van main
+
+Na de laatste geautoriseerde voorbereidingspush gaat iedere wijziging, ook documentatie/configuratie, via een taakbranch en PR. De GitHub-ruleset richt zich op `refs/heads/main`: PR verplicht, geen bypass-actoren, geen force-push en geen branchverwijdering. Alle reviewgesprekken moeten afgehandeld zijn. Het gewenste profiel staat in [.github/main-ruleset.json](../../.github/main-ruleset.json); een bestand is geen bewijs van serveractivatie. De actuele uitkomst staat in [tooling](../16-tooling-mcp.md#beveiliging-van-main).
+
+De huidige GitHub-authenticatie gebruikt hetzelfde account als de ontwikkelaar. Daarom vraagt het profiel nul onafhankelijke GitHub-approvalreviews: een auteur kan zijn eigen PR niet als onafhankelijke reviewer goedkeuren. De vereiste menselijke goedkeuring vóór merge blijft onverkort gelden en wordt in het PR-gesprek vastgelegd, ook wanneer zij eerst in de chat wordt gegeven. Bij een afzonderlijk agentaccount kan later een verplichte onafhankelijke approval worden ingesteld. Er worden nog geen niet-bestaande CI-checks verplicht gemaakt; die komen met de betreffende bouwtaken.
+
+Lokale Git-hooks blokkeren gewone commits/amend en mergecommits op main en iedere push naar de remote-main-ref. Ze worden per checkout geactiveerd en laten taakbranches en fast-forward ophalen toe. Hooks kunnen technisch worden omzeild; ze beschermen niet de GitHub-website, API of andere clones. Serverregels blijven noodzakelijk. Een beheerder kan regels later veranderen; agents mogen ze niet zelfstandig uitschakelen of omzeilen.
 
 ## Onderbouwing en alternatieven
 

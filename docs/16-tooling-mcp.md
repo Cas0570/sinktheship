@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.5
+Versie: 1.6
 
 Laatst gewijzigd: 2026-11-02
 
@@ -231,6 +231,18 @@ GitHub MCP verzorgde repository/project, issues, kaarten, views en teruglezing. 
 De beschikbare API toont geen doelstatus; de screenshots zijn daarom het aanvullende bewijs voor de Done-koppelingen. De controle voldoet aan [ADR 0012](adr/0012-github-projects.md). Bij latere wijzigingen wordt via **projectmenu … → Workflows** dezelfde controle herhaald en worden de API-statussen opnieuw gelezen.
 
 De ontwikkelaar heeft de fase-4-inrichting op 2026-11-02 goedgekeurd. De eerste kaart is volgens ADR 0012 vrijgegeven en teruggelezen; actuele taakstatus blijft uitsluitend op het bord. Op verzoek van de ontwikkelaar stopt het werk na het vastleggen en committen van dit akkoord. De bouw wordt pas bij een volgend startverzoek hervat volgens AGENTS. De eerste echte merge in M0 toetst later het eventgedrag; er is geen proefissue gesloten of proef-PR gemerged. Er is nog geen applicatiecode, designgeneratie, modeltraining of app-/toesteltest uitgevoerd.
+
+## Beveiliging van main
+
+Op 2026-11-02 heeft de ontwikkelaar gevraagd de laatste voorbereidingen te pushen en daarna uitsluitend via pull requests naar main te werken. De lokale hooks in [.githooks](../.githooks/README.md) zijn getest in een tijdelijke repository: commit/amend en lokale mergecommit op main worden geweigerd; commits/pushes op een taakbranch slagen; push naar main via een andere bronref, force-push en verwijderen worden geweigerd; fast-forward ophalen blijft werken. Er zijn geen proefcommits of proefmerges in de productrepository gemaakt.
+
+**Serverbeveiliging nog geblokkeerd:** GitHub retourneert voor zowel `GET /repos/Cas0570/sinktheship/rulesets` als `GET /repos/Cas0570/sinktheship/branches/main/protection` HTTP 403: `Upgrade to GitHub Pro or make this repository public to enable this feature.` Het account heeft wel adminrechten. De repository blijft privé; er is geen abonnement gewijzigd. [GitHub documenteert](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets) dat branchregels voor private persoonlijke repositories GitHub Pro vereisen.
+
+Het reviewbare profiel staat in [.github/main-ruleset.json](../.github/main-ruleset.json): actieve branchregels voor main, verplichte PR, geen bypasses, geen force-push of verwijdering en afgehandelde reviewgesprekken. [ADR 0050](adr/0050-review-and-task-workflow.md#bescherming-van-main) motiveert de instellingen en het onderscheid tussen menselijke goedkeuring en onafhankelijke GitHub-approvals.
+
+Na activering van GitHub Pro: eerst bestaande rulesets lezen om duplicaten te voorkomen, dit profiel toepassen via de beschikbare GitHub API/gh-route, vervolgens de opgeslagen ruleset én de effectieve regels voor main teruglezen. Tot dat bewijs is er uitsluitend lokale bescherming; claim geen afgedwongen PR-grens op GitHub. Start de bouw pas na herstel of een expliciete tijdelijke uitzondering van de ontwikkelaar.
+
+De hooks worden in deze checkout pas na de laatste voorbereidingspush geactiveerd. Nieuwe clones activeren ze met `git config --local core.hooksPath .githooks`. Agents controleren deze instelling vóór wijzigingen. Alleen de lokale hooks zijn met echte tijdelijke Git-operaties getest; serverhandhaving kan pas worden gecontroleerd zodra GitHub de functie beschikbaar maakt.
 
 ## Dagelijks herstel en taakafsluiting
 
