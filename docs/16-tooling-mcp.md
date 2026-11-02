@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
 Laatst gewijzigd: 2026-11-02
 
@@ -8,7 +8,7 @@ Gerelateerd: [Intake en open punten](README.md#mcp-controle-bij-intake), [master
 
 # Projecttooling en zeven MCP-servers
 
-Dit document levert setup-, verificatie- en herstelstappen. Batch F leverde de reviewbare [.codex/config.toml](../.codex/config.toml). Op 2026-11-02 zijn de zeven entries voor fase 4 ingeschakeld; het [verificatieverslag](#verificatieverslag-2026-11-02) onderscheidt de geteste verbindingen en browserprocessen. Na zeven geslaagde tests zijn GitHub Projects en Notion ingericht; de [resterende workflowcontrole](#externe-inrichting-2026-11-02) staat hieronder.
+Dit document levert setup-, verificatie- en herstelstappen. Batch F leverde de reviewbare [.codex/config.toml](../.codex/config.toml). Op 2026-11-02 zijn de zeven entries voor fase 4 ingeschakeld; het [verificatieverslag](#verificatieverslag-2026-11-02) onderscheidt de geteste verbindingen en browserprocessen. Na zeven geslaagde tests zijn GitHub Projects en Notion ingericht; de [afgeronde workflowcontrole](#externe-inrichting-2026-11-02) staat hieronder.
 
 ## Scope en configuratiegrens
 
@@ -220,14 +220,17 @@ De volgende resultaten zijn na de zeven geslaagde MCP-tests en het afzonderlijke
 
 GitHub MCP verzorgde repository/project, issues, kaarten, views en teruglezing. Voor ontbrekende MCP-mogelijkheden is de afgesproken officiële `gh`-fallback gebruikt: versie `2.103.3`, tijdelijk buiten de repo uitgepakt uit de officiële release en gecontroleerd op de bijbehorende SHA-256. Daarmee zijn velden, labels en mijlpalen ingericht, projectprivacy/repokoppeling bevestigd en workflowmetadata gelezen. Authenticatie kwam uitsluitend uit de bestaande procesomgeving; er is geen token in Git, remote-URL of verslag geschreven.
 
-**Resterende UI-controle, geen nieuwe toestemming:** de GraphQL-query leest `Item closed` en `Pull request merged` als ingeschakeld. Ook `Auto-close issue` staat aan, terwijl [ADR 0012](adr/0012-github-projects.md) die omgekeerde afsluiting uitsluit. De beschikbare GraphQL-/MCP-interface toont geen doelstatus en biedt geen workflow-update; alleen de naam en enabled-status zijn leesbaar. Het behouden Done-optie-ID bewijst daarom op zichzelf de koppeling niet.
+**Workflowcontrole afgerond op 2026-11-02.** Bij de eerste teruglezing stond `Auto-close issue` nog aan. De ontwikkelaar heeft deze uitgezet en drie screenshots van de GitHub Projects-UI aangeleverd. Die tonen beide doelstatussen en de uitgeschakelde omgekeerde afsluiting. De aansluitende GraphQL-query bevestigt de enabled-statussen:
 
-1. Open het [project](https://github.com/users/Cas0570/projects/3), vervolgens het projectmenu **… → Workflows**.
-2. Controleer **Item closed**: ingeschakeld, doel **Status → Done**.
-3. Controleer **Pull request merged**: ingeschakeld, doel **Status → Done**.
-4. Open **Auto-close issue** en schakel deze uit. Meld de drie uitkomsten terug; de enabled-status wordt daarna opnieuw via de API gecontroleerd.
+| Workflow | Bewijs uit gebruikersscreenshots | Teruggelezen API-status |
+|---|---|---|
+| Item closed | On; Set value: Status: Done | `enabled: true` |
+| Pull request merged | On; Set value: Status: Done | `enabled: true` |
+| Auto-close issue | Off | `enabled: false` |
 
-Tot deze controle zijn de initiële kaarten niet vrijgegeven voor uitvoering. Na bevestiging: workflowmetadata teruglezen, de fase-4-review afronden en T01 bovenaan Ready zetten volgens ADR 0012. De eerste echte merge in M0 toetst later het eventgedrag; er is geen proefissue gesloten of proef-PR gemerged. Er is nog geen applicatiecode, designgeneratie, modeltraining of app-/toesteltest uitgevoerd.
+De beschikbare API toont geen doelstatus; de screenshots zijn daarom het aanvullende bewijs voor de Done-koppelingen. De controle voldoet aan [ADR 0012](adr/0012-github-projects.md). Bij latere wijzigingen wordt via **projectmenu … → Workflows** dezelfde controle herhaald en worden de API-statussen opnieuw gelezen.
+
+De fase-4-inrichting is gereed en wordt ter eindreview aangeboden. De eerste kaart is volgens ADR 0012 vrijgegeven en teruggelezen; actuele taakstatus blijft uitsluitend op het bord. Na fase-4-akkoord volgt de eerste bouwtaak volgens AGENTS. De eerste echte merge in M0 toetst later het eventgedrag; er is geen proefissue gesloten of proef-PR gemerged. Er is nog geen applicatiecode, designgeneratie, modeltraining of app-/toesteltest uitgevoerd.
 
 ## Dagelijks herstel en taakafsluiting
 

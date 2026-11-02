@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -55,4 +55,4 @@ Bij een tijdelijk onbereikbaar bord blijft lokaal werk aan de al gekozen taak mo
 
 ## Verificatie
 
-AT-24-01/02/03: 59 unieke T-ID's, één issue per definitie, juiste velden/labels/mijlpalen, werkende links en teruggelezen nummers. Controleer beide workflows in fase 4 en de automatische issue-/statusafsluiting bij de eerste echte default-branchmerge. Op 2026-11-02 zijn 59 unieke issues en kaarten, velden/labels/mijlpalen, beide views en de links teruggelezen. `Item closed` en `Pull request merged` staan aan; hun doelwaarde wordt niet door de beschikbare API getoond. `Auto-close issue` staat eveneens aan en moet via de UI uit. Fase 4 wacht op deze concrete workflowcontrole; er is geen proefmerge uitgevoerd. Het uitvoeringsverslag hierboven is het hervatpunt.
+AT-24-01/02/03: 59 unieke T-ID's, één issue per definitie, juiste velden/labels/mijlpalen, werkende links en teruggelezen nummers. Controleer beide workflows in fase 4 en de automatische issue-/statusafsluiting bij de eerste echte default-branchmerge. Op 2026-11-02 zijn 59 unieke issues en kaarten, velden/labels/mijlpalen, beide views en de links teruggelezen. De door de ontwikkelaar aangeleverde screenshots bevestigen `Item closed → Status: Done` en `Pull request merged → Status: Done`, beide On, en `Auto-close issue` Off. De aansluitende GraphQL-query bevestigt respectievelijk enabled `true`, `true` en `false`. De workflowconfiguratie is daarmee geverifieerd; eventgedrag wordt pas bij de eerste echte merge getoetst. Er is geen proefmerge uitgevoerd. Het uitvoeringsverslag hierboven is het hervatpunt.
