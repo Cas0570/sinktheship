@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.21
+Versie: 0.22
 
 Laatst gewijzigd: 2026-11-02
 
@@ -383,7 +383,7 @@ Batch A definieert 25 FR's, 14 NFR's, 29 stories en 87 acceptatietestgevallen. D
 
 | Bestemming | Link of ontbrekend gegeven |
 |---|---|
-| GitHub-repository | [Cas0570/sinktheship](https://github.com/Cas0570/sinktheship), privé; `origin` en default branch `main` |
+| GitHub-repository | [Cas0570/sinktheship](https://github.com/Cas0570/sinktheship), openbaar op expliciet verzoek; `origin` en default branch `main` |
 | GitHub Projects-bord | [SinkTheShip](https://github.com/users/Cas0570/projects/3), privé; 59 gekoppelde issues, board- en tabelview; workflowconfiguratie geverifieerd |
 | Notion-handboek | [Handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) onder de gekozen ouderpagina; vijf gids-/verslagpagina’s en [ML-experimenten](https://app.notion.com/p/27115ed9c3bf47f9924ec6600951bc9f) |
 | Figma | [SinkTheShip](https://www.figma.com/design/z5qW8mIwsPjYRTfCpk9nwP/SinkTheShip?node-id=0-1) geverifieerd met Education/Full in team SinkTheShip; Page 1 leesbaar |
@@ -548,7 +548,7 @@ De laatste workflowcontrole is afgerond: de aangeleverde screenshots tonen beide
 
 De Notion-koppeling is hersteld en de fase-4-goedkeuring is ook op de handboekhoofdpagina vastgelegd. De ontwikkelaar heeft vervolgens gevraagd alle voorbereidingen te pushen, main te beveiligen en daarna te stoppen vóór T01.
 
-De volledige bordlezing bevestigt dat geen bestaande In progress-, Review- of Blocked-taak eerst afgehandeld hoeft te worden; T01 heeft geen taakafhankelijkheden. De actuele taakstatus blijft op het bord. De nieuwe PR-grens staat in AGENTS, ADR 0050 en het [beveiligingsverslag](16-tooling-mcp.md#beveiliging-van-main). Lokale hooks zijn getest. GitHub weigert serverbeveiliging voor deze privérepository met HTTP 403 en vraagt GitHub Pro. De gewenste ruleset staat klaar; zonder actieve serverregel is de gevraagde beveiliging nog niet volledig gerealiseerd.
+De volledige bordlezing bevestigt dat geen bestaande In progress-, Review- of Blocked-taak eerst afgehandeld hoeft te worden; T01 heeft geen taakafhankelijkheden. De actuele taakstatus blijft op het bord. De nieuwe PR-grens staat in AGENTS, ADR 0050 en het [beveiligingsverslag](16-tooling-mcp.md#beveiliging-van-main). Lokale hooks zijn getest. Op expliciet verzoek is de repository vervolgens openbaar gemaakt. Ruleset 26368853 is actief zonder bypasses; de effectieve regels verplichten pull requests en blokkeren force-pushes en verwijdering van main. De eerdere abonnementsblokkade is opgelost. De vastlegging hiervan gaat via een aparte voorbereidings-PR; die moet vóór de eerste bouwtaak worden beoordeeld en gemerged.
 
 **Startprompt voor een nieuwe chat:**
 

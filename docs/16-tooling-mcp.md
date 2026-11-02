@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.6
+Versie: 1.7
 
 Laatst gewijzigd: 2026-11-02
 
@@ -210,7 +210,7 @@ De volgende resultaten zijn na de zeven geslaagde MCP-tests en het afzonderlijke
 
 | Onderdeel | Resultaat |
 |---|---|
-| Repository | [Cas0570/sinktheship](https://github.com/Cas0570/sinktheship) is privé; `main` is de default branch. De bestaande documentatiegeschiedenis is gepusht; `origin` bevat uitsluitend de HTTPS-repository-URL. |
+| Repository | [Cas0570/sinktheship](https://github.com/Cas0570/sinktheship) is na expliciet gebruikersverzoek openbaar gemaakt; `main` is de default branch. De bestaande documentatiegeschiedenis is gepusht; `origin` bevat uitsluitend de HTTPS-repository-URL. |
 | Project | [SinkTheShip, project 3](https://github.com/users/Cas0570/projects/3) is privé en gekoppeld aan de repository. De boardview groepeert op Status; de tabelview toont onder andere Milestone, Work type en Size. |
 | Issues en kaarten | Exact 59 unieke T-ID’s, issues en kaarten; korte samenvatting plus canonieke taaklink, acht projectlabels en native mijlpalen M0–M6. Alle kaartvelden zijn teruggelezen over twee pagina’s (50 + 9); de nummers en URL’s staan in [14](14-backlog.md). |
 | Typeveld | GitHub reserveert `Type`; het gelijkwaardige projectveld heet `Work type`. De vijf waarden blijven feature, ML, design, infra en docs. De onderbouwde naamcorrectie staat in [ADR 0012](adr/0012-github-projects.md). |
@@ -236,13 +236,13 @@ De ontwikkelaar heeft de fase-4-inrichting op 2026-11-02 goedgekeurd. De eerste 
 
 Op 2026-11-02 heeft de ontwikkelaar gevraagd de laatste voorbereidingen te pushen en daarna uitsluitend via pull requests naar main te werken. De lokale hooks in [.githooks](../.githooks/README.md) zijn getest in een tijdelijke repository: commit/amend en lokale mergecommit op main worden geweigerd; commits/pushes op een taakbranch slagen; push naar main via een andere bronref, force-push en verwijderen worden geweigerd; fast-forward ophalen blijft werken. Er zijn geen proefcommits of proefmerges in de productrepository gemaakt.
 
-**Serverbeveiliging nog geblokkeerd:** GitHub retourneert voor zowel `GET /repos/Cas0570/sinktheship/rulesets` als `GET /repos/Cas0570/sinktheship/branches/main/protection` HTTP 403: `Upgrade to GitHub Pro or make this repository public to enable this feature.` Het account heeft wel adminrechten. De repository blijft privé; er is geen abonnement gewijzigd. [GitHub documenteert](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets) dat branchregels voor private persoonlijke repositories GitHub Pro vereisen.
+**Serverbeveiliging actief:** de ontwikkelaar heeft op 2026-11-02 expliciet gevraagd de repository openbaar te maken om branchregels te kunnen gebruiken. Na controle van de Git-geschiedenis op tokenpatronen en aanwezige credentials is de zichtbaarheid gewijzigd naar `public`. De eerdere HTTP 403 voor de privérepository is daarmee opgelost; er is geen abonnement gewijzigd. Alleen de zichtbaarheid van de repository is gewijzigd, niet die van het Projects-bord of Notion.
 
-Het reviewbare profiel staat in [.github/main-ruleset.json](../.github/main-ruleset.json): actieve branchregels voor main, verplichte PR, geen bypasses, geen force-push of verwijdering en afgehandelde reviewgesprekken. [ADR 0050](adr/0050-review-and-task-workflow.md#bescherming-van-main) motiveert de instellingen en het onderscheid tussen menselijke goedkeuring en onafhankelijke GitHub-approvals.
+Het profiel in [.github/main-ruleset.json](../.github/main-ruleset.json) is toegepast als [ruleset 26368853](https://github.com/Cas0570/sinktheship/rules/26368853): actieve branchregels voor main, verplichte PR, geen bypasses, geen force-push of verwijdering en afgehandelde reviewgesprekken. [ADR 0050](adr/0050-review-and-task-workflow.md#bescherming-van-main) motiveert de instellingen en het onderscheid tussen menselijke goedkeuring en onafhankelijke GitHub-approvals. De vereiste onafhankelijke approvaltelling blijft nul omdat ontwikkelaar en agent hetzelfde GitHub-account gebruiken; expliciete menselijke toestemming vóór merge blijft verplicht.
 
-Na activering van GitHub Pro: eerst bestaande rulesets lezen om duplicaten te voorkomen, dit profiel toepassen via de beschikbare GitHub API/gh-route, vervolgens de opgeslagen ruleset én de effectieve regels voor main teruglezen. Tot dat bewijs is er uitsluitend lokale bescherming; claim geen afgedwongen PR-grens op GitHub. Start de bouw pas na herstel of een expliciete tijdelijke uitzondering van de ontwikkelaar.
+Verificatie: `GET /repos/Cas0570/sinktheship` bevestigt `visibility: public`; de opgeslagen ruleset bevestigt `enforcement: active`, uitsluitend `refs/heads/main` en een lege bypasslijst. `GET /repos/Cas0570/sinktheship/rules/branches/main` bevestigt de effectieve regels `pull_request`, `deletion` en `non_fast_forward`. Er zijn geen proefpushes of proefmerges op main uitgevoerd. Een repositorybeheerder kan regels later wijzigen; agents mogen die niet omzeilen of uitschakelen.
 
-De hooks worden in deze checkout pas na de laatste voorbereidingspush geactiveerd. Nieuwe clones activeren ze met `git config --local core.hooksPath .githooks`. Agents controleren deze instelling vóór wijzigingen. Alleen de lokale hooks zijn met echte tijdelijke Git-operaties getest; serverhandhaving kan pas worden gecontroleerd zodra GitHub de functie beschikbaar maakt.
+De hooks zijn in deze checkout actief via `core.hooksPath=.githooks`. Nieuwe clones activeren ze met `git config --local core.hooksPath .githooks`. Agents controleren deze instelling vóór wijzigingen. De lokale hooks zijn met echte tijdelijke Git-operaties getest; de serverregels zijn via de opgeslagen en effectieve configuratie geverifieerd.
 
 ## Dagelijks herstel en taakafsluiting
 
