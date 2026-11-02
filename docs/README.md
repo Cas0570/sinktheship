@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.24
+Versie: 0.25
 
 Laatst gewijzigd: 2026-11-02
 
@@ -39,6 +39,8 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Batch E is op 2026-11-01 goedgekeurd. Batch F is op 2026-11-01 goedgekeurd. De ontwikkelaar heeft fase 3 op 2026-11-02 goedgekeurd. De [review](#review-van-fase-3) bevat de correcties en verificatie. Fase 3 staat in commit `a317a44`. Fase 4 is afgerond; het [verificatieverslag](16-tooling-mcp.md#verificatieverslag-2026-11-02) bevat de resultaten en noodzakelijke gebruikersacties. De Notion-parentpagina en het Figma-bestand zijn bereikbaar; alle zeven verbindingstests slagen. De ontwikkelaar heeft de private repository en push afzonderlijk goedgekeurd. Repository, bord en handboek zijn ingericht en teruggelezen. Ook de [workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02) is afgerond met gebruikersscreenshots en API-teruglezing. De ontwikkelaar heeft fase 4 op 2026-11-02 goedgekeurd. De documentatie- en inrichtingsopdracht is afgerond; op verzoek stopt het werk na vastlegging en commit van dit akkoord. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
 
 Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D staat in commit `a741986` (`docs: approve batch D frontend design brief and Figma workflow`). Batch E staat in commit `67cdbd3` (`docs: approve batch E multiplayer quality extension and tooling specifications`). Batch F staat in commit `6f96816` (`docs: approve batch F roadmap backlog and project workflow`) en voegde een uitgeschakelde projectconfiguratie toe. De fase-3-correcties staan in `a317a44` (`docs: approve phase 3 consistency corrections`). Fase 4 heeft de projectprofielen geactiveerd en browser-MCP-packages via npx beschikbaar gemaakt en getest; er zijn geen applicatiedependencies geïnstalleerd. Na de verbindingstests en het repositoryakkoord zijn de externe projectgegevens ingericht zoals vastgelegd in het fase-4-hervatpunt.
+
+De [browser- en componenttesthandleiding](../tests/README.md) beschrijft de afzonderlijke fixturebuild, matrix, productiecontrole en retrydiagnostiek. De projectstatus blijft uitsluitend op het bord.
 
 ## Documentinventaris en plan voor fase 1
 

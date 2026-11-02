@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.7
+Versie: 1.8
 
 Laatst gewijzigd: 2026-11-02
 
@@ -62,11 +62,11 @@ pnpm test
 pnpm build
 ```
 
-`typecheck` compileert strict projectreferences en levert library-JS/declarations. `check:boundaries` controleert manifests, publieke imports en de importgraaf inclusief typecycli. `test:boundaries` maakt een tijdelijke schone kopie, installeert de frozen lockfile en compileert positieve/negatieve import- en omgevingsproeven; zij verwijdert de kopie na afloop. `build` voert typecheck en grenscontrole uit en levert de statische Vite-output in `apps/web/dist/`.
+`typecheck` compileert strict projectreferences en levert library-JS/declarations. `check:boundaries` controleert manifests, publieke imports en de importgraaf inclusief typecycli. `test:boundaries` maakt een tijdelijke schone kopie, installeert de frozen lockfile en compileert positieve/negatieve import- en omgevingsproeven; zij verwijdert de kopie na afloop. `build` voert typecheck en grenscontrole uit en levert de statische Vite-output in `apps/web/dist/` en controleert deze op testfixturemarkers.
 
-`pnpm lint` combineert ESLint met de grenscontrole. `pnpm test` draait de Vitest-toolingtests en daarna de geïsoleerde Node-grenssuite. Er is nog geen spelgedrag en dus geen productcoverageclaim. `pnpm format:check` controleert broncode/configuratie en de letterlijke masterprompt-hash; `pnpm format` past die broncode-opmaak toe. Handgeschreven Markdown wordt in deze bootstrap niet massaal geherformatteerd; de masterprompt staat bovendien expliciet in `.prettierignore`.
+`pnpm lint` combineert ESLint met de grenscontrole. `pnpm test` draait de Vitest-tooling- en componenttests en daarna de geïsoleerde Node-grenssuite. Er is nog geen spelgedrag en dus geen productcoverageclaim. `pnpm format:check` controleert broncode/configuratie en de letterlijke masterprompt-hash; `pnpm format` past die broncode-opmaak toe. Handgeschreven Markdown wordt in deze bootstrap niet massaal geherformatteerd; de masterprompt staat bovendien expliciet in `.prettierignore`.
 
-De [Quality-workflow](.github/workflows/quality.yml) draait `quality-ts` en `web-build` op PR’s en main-pushes. Diagnostiek en buildartefacten blijven 14 dagen beschikbaar, met commit-SHA in de naam. Browserinrichting volgt in T03. De [CI-werkwijze](docs/12-quality-testing.md#eerste-ci-poort) beschrijft controles, foutproeven en beperkingen. Python/uv, ML-training en modelbestanden volgen in het afzonderlijke [ML-spoor](docs/07-neural-network.md).
+De [Quality-workflow](.github/workflows/quality.yml) draait `quality-ts`, `web-build` en `browser-test` op PR’s en main-pushes. Diagnostiek en buildartefacten blijven 14 dagen beschikbaar, met commit-SHA in de naam. De [browsertesthandleiding](tests/README.md) beschrijft installatie, de afzonderlijke fixturebuild, 12 browserprojecten en retrydiagnostiek. De [CI-werkwijze](docs/12-quality-testing.md#eerste-ci-poort) beschrijft controles, foutproeven en beperkingen. Python/uv, ML-training en modelbestanden volgen in het afzonderlijke [ML-spoor](docs/07-neural-network.md).
 
 De versiekeuze en afbakening staan in [ADR 0002](docs/adr/0002-pnpm-monorepo.md#bootstrap-in-t01); de volledige normen blijven in [kwaliteit](docs/12-quality-testing.md).
 

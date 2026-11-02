@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -207,3 +207,9 @@ De normen uit 01 blijven gelden: initiële JS ≤200 KiB gzip exclusief lazy neu
 | UI-08 | US-23: URL-/storage-invoer als data, eigen-origin assets en geen dev-only seedbediening in productie |
 
 Tests worden tijdens de bouw geïmplementeerd met de [tooling en matrix uit 12](12-quality-testing.md). De flows zijn productspecificaties, geen al werkende schermen.
+
+## Browsertestcompositie in T03
+
+De [testbasis](../tests/README.md) bouwt een afzonderlijke React-fixtureapp buiten `apps/web`. Zij injecteert een verse, gescripte sessie met vaste snapshots in een diagnostische component. Dit is uitsluitend bewijs voor subscribe/render/bediening en testisolatie, geen implementatie of nieuwe definitie van `SessionPort`. De bestaande contracten hierboven blijven leidend voor latere productcompositie.
+
+De routes `/en` en `/nl` bestaan alleen in die testapp. Productie heeft geen testseed-query, state-injectieknop of debugglobal. Een Vite-modulegraafcontrole weigert lokale testimports en de rootbuild inspecteert de gebouwde artefacten op fixturemarkers. De productpagina blijft leeg; Figma-mapping en visuele productvergelijking horen bij de toekomstige UI-taken.

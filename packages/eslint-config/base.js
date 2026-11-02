@@ -42,12 +42,18 @@ export default defineConfig(
       '**/*.{js,mjs,cjs}',
       '**/test/**/*.{ts,tsx}',
       'scripts/**/*.{ts,tsx}',
+      'tests/e2e/**/*.ts',
       '*.config.ts',
     ],
     languageOptions: { globals: globals.node },
   },
   {
-    files: ['apps/web/src/**/*.{ts,tsx}', 'packages/ui/src/**/*.{ts,tsx}'],
+    files: [
+      'apps/web/src/**/*.{ts,tsx}',
+      'packages/ui/src/**/*.{ts,tsx}',
+      'tests/browser-app/main.mjs',
+      'tests/e2e/**/*.ts',
+    ],
     languageOptions: { globals: globals.browser },
   },
   {

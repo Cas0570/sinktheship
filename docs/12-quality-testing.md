@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.5
+Versie: 1.6
 
 Laatst gewijzigd: 2026-11-02
 
@@ -195,8 +195,16 @@ T01 toetst AT-20-03 en het installatiegedeelte van AT-24-01 met `pnpm test:bound
 
 Alle externe Actions zijn op een volledige SHA gepind met een versienotitie. De pins zijn tegen de officiële release-/commitmetadata en gebruikte action-inputs gecontroleerd. Diagnostiek (`lint.log`, `tests.log`, `vitest.xml`) en statische webbuild krijgen aparte artefacten met commit-SHA en 14 dagen retentie. Ontbrekende artefacten zijn fouten. Diagnostiek uploadt ook na een falende check; de webbuild alleen na succes. Dit is PR-bewijs, geen releasepublicatie. De latere 90-dagenrelease-/modelregeling blijft ongewijzigd.
 
-Vitest heeft nu één Node-project met echte config-/beveiligingsproeven, geen lege producttests. De bestaande geïsoleerde grenssuite blijft onderdeel van `pnpm test`. Geen `passWithNoTests` of gefocuste `.only`-tests; jsdom, Python, browsers, benchmark, coverage voor toekomstige spelcode en de release-aggregatecheck worden pas bij hun implementatie toegevoegd.
+Vitest heeft een Node-project met echte config-/beveiligingsproeven en een afzonderlijk jsdom-project voor de geïnjecteerde bootstrapfixture, geen lege producttests. De bestaande geïsoleerde grenssuite blijft onderdeel van `pnpm test`. Geen `passWithNoTests` of gefocuste `.only`-tests; Python, benchmark, coverage voor toekomstige spelcode en de release-aggregatecheck worden pas bij hun implementatie toegevoegd.
 
 Prettier controleert JS/MJS/CJS/TS/TSX, JSON, YAML, HTML en CSS. De bestaande handgeschreven Markdown-specificaties vallen buiten de automatische bootstrap-formatrun om een ongerelateerde massale documentdiff te voorkomen; hun inhoud/links blijven reviewonderdeel. De letterlijke masterprompt is aanvullend expliciet genegeerd en `scripts/check-masterprompt.mjs` vergelijkt zijn SHA-256 met de baseline uit de goedgekeurde bron. Genereer die baseline niet opnieuw om een fout weg te werken.
 
 Verificatie van de rootscripts: een tijdelijke verboden core-import moet lint laten falen, onopgemaakte code format:check, een verkeerde TS-toekenning typecheck/build en een opzettelijk onware assertion test. Herstel elke fixture vóór de groene eindrun. Configtests controleren bovendien private-state-/namespaceomzeilingen, legale viewimports en de masterprompt-bytebewaking. De concrete uitvoeringsresultaten en CI-links horen in PR/issue, niet als tweede taakstatus in dit document.
+
+## Browserpoort en componentbasis
+
+T03 voegt `browser-test` toe aan dezelfde Quality-workflow: frozen installatie, `pnpm typecheck:e2e`, installatie van de drie Playwright-browsers inclusief systeembibliotheken, `pnpm check:browser-retry` en `pnpm test:e2e`. De [testhandleiding](../tests/README.md) bevat alle lokale stappen, beperkingen en uitbreidingsinstructies. De 12 projecten combineren drie engines, 390/1440 px en EN/NL; twee smokegevallen per project controleren de vaste fixture en productie zonder testbediening. Test- en productiepreview worden afzonderlijk gebouwd en gestart, zonder bestaande server te hergebruiken.
+
+De retry-proef vereist aantoonbaar exitcode 1 na een mislukte eerste poging en geslaagde retry, plus screenshot en trace. De gewone configuratie verbiedt `.only`, gebruikt lokaal nul retries en in CI één, en laat flaky tests falen. CI uploadt HTML/JUnit, foutdiagnostiek en de afzonderlijke retry-proef ook bij falen, met 14 dagen retentie. De testbuild wordt nooit als web-buildartefact gepubliceerd.
+
+Componenttests gebruiken React Testing Library/user-event/jest-dom in jsdom, expliciete cleanup en een geïnjecteerde fixture-instantie. Productiescheiding heeft positieve/negatieve artefactproeven en een echte verboden Vite-importproef. Dit levert het infrastructuurgedeelte van AT-21-02, AT-23-03 en AT-24-02; echte productflows, alle foutstates, visuele/a11y-eisen en releasekwalificatie blijven afzonderlijk vereist. De concrete resultaten en CI-link horen in PR/issue.
