@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Masterprompt](../00-masterprompt.md), [backlog](../14-backlog.md), [werkinstructies](../../AGENTS.md), [tooling](../16-tooling-mcp.md), [ADR 0011](0011-repo-and-handbook.md)
 
@@ -10,7 +10,7 @@ Gerelateerd: [Masterprompt](../00-masterprompt.md), [backlog](../14-backlog.md),
 
 ## Besluitbasis
 
-GitHub Projects, de statussen en verplichte velden volgen uit de masterprompt. De inrichting, koppeling aan taakdefinities en controle op ingebouwde workflows worden hier voor batch F uitgewerkt. Externe inrichting volgt pas in fase 4.
+GitHub Projects, de statussen en verplichte velden volgen uit de masterprompt. De inrichting, koppeling aan taakdefinities en controle op ingebouwde workflows worden hier voor batch F uitgewerkt. Externe inrichting volgt pas in fase 4; het [uitvoeringsverslag](../16-tooling-mcp.md#externe-inrichting-2026-11-02) bevat de daadwerkelijke resultaten.
 
 Deze uitwerking is met batch F goedgekeurd op 2026-11-01.
 
@@ -27,11 +27,13 @@ Gebruik één Projects-bord met issues als primaire taakkaarten. Iedere taak kri
 | Title | `T14 · Hard met probability density`; ID blijft gelijk bij titelverfijning |
 | Status | Single select: Backlog, Ready, In progress, Review, Done, Blocked; boardkolommen op dit veld |
 | Milestone | Native issue-mijlpaal M0, M1, M2, M3, M4, M5 of M6; Projects toont ditzelfde veld |
-| Type | Project single select: feature, ML, design, infra, docs |
+| Work type | Project single select voor het taaktype: feature, ML, design, infra, docs |
 | Size | Project single select: S, M, L; L vóór uitvoering splitsen tot reviewbare taken |
 | Labels | `type:feature`, `type:ml`, `type:design`, `type:infra`, `type:docs`; daarnaast `priority:must`, `priority:should`, `priority:could` voor de releaseprioriteit |
 
-Type-label en Type-veld beschrijven dezelfde metadata. Maak geen labels voor taakstatus. T44–T47 krijgen priority:should, T57–T59 priority:could, de overige initiële taken priority:must. Should betekent niet dat de geplande afhankelijkheden zonder review vervallen. Toon een boardview per Status en een tabelview met Milestone/Type/Size; gebruik filters in plaats van een tweede bord.
+**Naamcorrectie bij inrichting (2026-11-02):** GitHub weigert een eigen single-selectveld `Type` met `Name cannot have a reserved value, Name has already been taken`. Het bedoelde taaktypeveld heet daarom `Work type`. Dit wijzigt alleen de veldnaam; de vijf waarden, labels en taakdefinities blijven behouden. Het native GitHub-issuetype vervangt dit projectveld niet.
+
+Type-label en Work type-veld beschrijven dezelfde metadata. Maak geen labels voor taakstatus. T44–T47 krijgen priority:should, T57–T59 priority:could, de overige initiële taken priority:must. Should betekent niet dat de geplande afhankelijkheden zonder review vervallen. Toon een boardview per Status en een tabelview met Milestone/Work type/Size; gebruik filters in plaats van een tweede bord.
 
 Alle 59 taken worden in fase 4 issues. Zoek vóór aanmaken op T-ID en repository en lees bestaande matches om duplicaten bij hervatten te voorkomen. Verwerk de teruggelezen issuenummers en URL's in de backlog. Begin met alle items in Backlog; zet T01 bovenaan Ready zodra de fase-4-inrichting klaar is. Andere taken worden Ready na controle van dependencies, externe voorwaarden en ontwikkelaarsprioriteit. Ready-volgorde bepaalt de keuze; automatisch vrijgeven op basis van alleen een taaknummer is niet toegestaan.
 
@@ -53,4 +55,4 @@ Bij een tijdelijk onbereikbaar bord blijft lokaal werk aan de al gekozen taak mo
 
 ## Verificatie
 
-AT-24-01/02/03: 59 unieke T-ID's, één issue per definitie, juiste velden/labels/mijlpalen, werkende links en teruggelezen nummers. Controleer beide workflows in fase 4 en de automatische issue-/statusafsluiting bij de eerste echte default-branchmerge. Op dit moment is alleen de inrichting gespecificeerd.
+AT-24-01/02/03: 59 unieke T-ID's, één issue per definitie, juiste velden/labels/mijlpalen, werkende links en teruggelezen nummers. Controleer beide workflows in fase 4 en de automatische issue-/statusafsluiting bij de eerste echte default-branchmerge. Op 2026-11-02 zijn 59 unieke issues en kaarten, velden/labels/mijlpalen, beide views en de links teruggelezen. `Item closed` en `Pull request merged` staan aan; hun doelwaarde wordt niet door de beschikbare API getoond. `Auto-close issue` staat eveneens aan en moet via de UI uit. Fase 4 wacht op deze concrete workflowcontrole; er is geen proefmerge uitgevoerd. Het uitvoeringsverslag hierboven is het hervatpunt.

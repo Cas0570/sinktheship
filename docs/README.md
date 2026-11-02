@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.17
+Versie: 0.18
 
 Laatst gewijzigd: 2026-11-02
 
@@ -8,7 +8,7 @@ Gerelateerd: [Masterprompt](00-masterprompt.md), [scope](01-product-vision-scope
 
 # SinkTheShip — leeswijzer en voortgang
 
-Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [masterprompt](00-masterprompt.md), daarna deze leeswijzer. Technische specificaties staan in de repository; het toekomstige Notion-handboek legt de werkwijze uit en verwijst ernaar. GitHub Projects wordt de enige bron voor de status van implementatietaken. De onderstaande voortgang betreft uitsluitend deze documentatieopdracht.
+Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [masterprompt](00-masterprompt.md), daarna deze leeswijzer. Technische specificaties staan in de repository; het Notion-handboek legt de werkwijze uit en verwijst ernaar. GitHub Projects is de enige bron voor de status van implementatietaken. De onderstaande voortgang betreft uitsluitend deze documentatieopdracht.
 
 ## Fase 0: begrip van de opdracht
 
@@ -34,11 +34,11 @@ Dit bestand is het hervatpunt voor de documentatieopdracht. Lees eerst de [maste
 | Fase 2 — batch E | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
 | Fase 2 — batch F | Goedgekeurd door de ontwikkelaar op 2026-11-01 |
 | Fase 3 — consistentiecheck | Goedgekeurd door de ontwikkelaar op 2026-11-02 |
-| Fase 4 — MCP-verificatie, bord en handboek | Nog niet gestart |
+| Fase 4 — MCP-verificatie, bord en handboek | Zeven MCP-tests geslaagd; privérepository, 59 issues/kaarten en handboek ingericht; laatste workflowcontrole en fase-4-review resteren |
 
-De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Batch E is op 2026-11-01 goedgekeurd. Batch F is op 2026-11-01 goedgekeurd. De ontwikkelaar heeft fase 3 op 2026-11-02 goedgekeurd. De [review](#review-van-fase-3) bevat de correcties en verificatie. Volgende actie na de commit: fase 4 beginnen met activatie en verificatie van de zeven MCP-servers. De bouw volgt pas na de externe inrichting volgens de masterprompt. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
+De ontwikkelaar heeft fase 1 op 2026-10-31 goedgekeurd. Batch A is op 2026-10-31 goedgekeurd. Batch B is op 2026-10-31 goedgekeurd. Batch C is op 2026-10-31 goedgekeurd. Batch D is op 2026-11-01 goedgekeurd. Batch E is op 2026-11-01 goedgekeurd. Batch F is op 2026-11-01 goedgekeurd. De ontwikkelaar heeft fase 3 op 2026-11-02 goedgekeurd. De [review](#review-van-fase-3) bevat de correcties en verificatie. Fase 3 staat in commit `a317a44`. Fase 4 is gestart; het [verificatieverslag](16-tooling-mcp.md#verificatieverslag-2026-11-02) bevat de resultaten en noodzakelijke gebruikersacties. De Notion-parentpagina en het Figma-bestand zijn bereikbaar; alle zeven verbindingstests slagen. De ontwikkelaar heeft de private repository en push afzonderlijk goedgekeurd. Repository, bord en handboek zijn ingericht en teruggelezen; de [laatste workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02) resteert. De bouw volgt pas na de externe inrichting volgens de masterprompt. Een algemeen akkoord op D kiest geen visuele stijl: die expliciete keuze blijft vóór M3 staan.
 
-Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D staat in commit `a741986` (`docs: approve batch D frontend design brief and Figma workflow`). Batch E staat in commit `67cdbd3` (`docs: approve batch E multiplayer quality extension and tooling specifications`). Batch F staat in commit `6f96816` (`docs: approve batch F roadmap backlog and project workflow`) en voegt een uitgeschakelde projectconfiguratie toe. Er zijn geen dependencies geïnstalleerd, verbindingen geactiveerd of externe projectgegevens aangemaakt.
+Beginsituatie: bestaande Git-repository op branch `main`, zonder commits, zonder geconfigureerde remote en zonder projectbestanden. `git init` was niet nodig. De goedgekeurde fase 0 staat in commit `7799fc8` (`docs: record approved SinkTheShip intake`). Het goedgekeurde plan staat in commit `c674689` (`docs: approve documentation plan and v1 rule presets`). Batch A staat in commit `f0a9f77` (`docs: approve batch A product scope rules and acceptance criteria`). Batch B staat in commit `ca9f4d5` (`docs: approve batch B architecture engine and opponents`). Batch C staat in commit `e54ff7c` (`docs: approve batch C neural pipeline and model contracts`). Batch D staat in commit `a741986` (`docs: approve batch D frontend design brief and Figma workflow`). Batch E staat in commit `67cdbd3` (`docs: approve batch E multiplayer quality extension and tooling specifications`). Batch F staat in commit `6f96816` (`docs: approve batch F roadmap backlog and project workflow`) en voegde een uitgeschakelde projectconfiguratie toe. De fase-3-correcties staan in `a317a44` (`docs: approve phase 3 consistency corrections`). Fase 4 heeft de projectprofielen geactiveerd en browser-MCP-packages via npx beschikbaar gemaakt en getest; er zijn geen applicatiedependencies geïnstalleerd. Na de verbindingstests en het repositoryakkoord zijn de externe projectgegevens ingericht zoals vastgelegd in het fase-4-hervatpunt.
 
 ## Documentinventaris en plan voor fase 1
 
@@ -47,10 +47,10 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | Document | Documentstatus | Toelichting |
 |---|---|---|
 | [00-masterprompt.md](00-masterprompt.md) | Geaccepteerd | Ongewijzigde bronopdracht met metadata |
-| [README.md](README.md) | Geaccepteerd | Fase 3 goedgekeurd; voortgang, correctierapport en volledige taaktraceerbaarheid |
+| [README.md](README.md) | Geaccepteerd | Fase 3 goedgekeurd; fase-4-hervatpunt, verificatie en volledige taaktraceerbaarheid |
 | [Root-README](../README.md) | Geaccepteerd | Projectingang en eerlijk onderscheid tussen huidige docs en toekomstige quick start |
 | [AGENTS.md](../AGENTS.md) | Geaccepteerd | Eén taak per keer, reviews, MCP-momenten en ongewijzigde Context7-regel |
-| [.codex/config.toml](../.codex/config.toml) | Geaccepteerd | Zeven uitgeschakelde serverprofielen; activatie in fase 4 |
+| [.codex/config.toml](../.codex/config.toml) | Geaccepteerd | Zeven ingeschakelde en geverifieerde serverprofielen; geteste browserpackages gepind |
 | [01-product-vision-scope.md](01-product-vision-scope.md) | Geaccepteerd | Fase 3: MVP bevat volledige EN/NL en toegankelijkheid; normen verwijzen naar uitgewerkte meetprofielen |
 | [02-game-rules.md](02-game-rules.md) | Geaccepteerd | Fase 3: versieherkenning vóór versiegebonden validatie; 22 referentiegevallen behouden |
 | [03-user-stories.md](03-user-stories.md) | Geaccepteerd | Fase 3: productionele Impossible vereist een promoted model; 29 stories en 87 tests behouden |
@@ -63,10 +63,10 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | [10-figma-mcp-playbook.md](10-figma-mcp-playbook.md) | Geaccepteerd | Fase 3: tool-/skillbeschikbaarheid is gedateerd; concreet configbestand gelinkt |
 | [11-multiplayer-future.md](11-multiplayer-future.md) | Toekomst | Serverautoriteit, rooms, typed protocol, reconnect, timers en misbruikgrenzen; niet bouwen in v1 |
 | [12-quality-testing.md](12-quality-testing.md) | Geaccepteerd | Fase 3: gescheiden kandidaatkwalificatie en productiecontrole; definitieve traceerbaarheid |
-| [13-roadmap.md](13-roadmap.md) | Geaccepteerd | Fase 3: batch F goedgekeurd; fase 3 en volledige fase 4 blijven voorwaarden voor bouwen |
-| [14-backlog.md](14-backlog.md) | Geaccepteerd | Fase 3: gerichte acceptatie-/testcorrecties; dezelfde 59 taken en afhankelijkheden |
+| [13-roadmap.md](13-roadmap.md) | Geaccepteerd | Fasen 2/3 goedgekeurd; volledige fase 4 blijft voorwaarde voor bouwen |
+| [14-backlog.md](14-backlog.md) | Geaccepteerd | Fase 4: 59 echte issuekoppelingen; taakdefinities en afhankelijkheden behouden |
 | [15-extension-guides.md](15-extension-guides.md) | Geaccepteerd | Fase 3: modelkwalificatie, pluralvalidatie en bestaande werkinstructies verduidelijkt |
-| [16-tooling-mcp.md](16-tooling-mcp.md) | Geaccepteerd | E goedgekeurd; F beschrijft het concrete uitgeschakelde bestand en activatie |
+| [16-tooling-mcp.md](16-tooling-mcp.md) | Geaccepteerd | Fase 4: zeven geslaagde verbindingstests, externe inrichting en resterende workflowcontrole |
 | [glossary.md](glossary.md) | Geaccepteerd | Fase 3: lokale requestvolgorde en kwalificatiebegrippen afgestemd op definitieve contracten |
 | [adr/0000-template.md](adr/0000-template.md) | Geaccepteerd | ADR-template |
 | [adr/0006-configurable-rules.md](adr/0006-configurable-rules.md) | Geaccepteerd | Batch A; besluitbasis staat in het document |
@@ -319,9 +319,9 @@ De hoofdlijnen van fase 1 en batch A zijn goedgekeurd. Q-01 is opgelost; Q-05 ma
 | ID | Open punt | Moment van oplossen |
 |---|---|---|
 | Q-01 | Opgelost: enginegrenzen, validatie met witness/inconclusive en canonieke JSON-signaturen zijn goedgekeurd | Goedgekeurd op 2026-10-31 |
-| Q-02 | Figma-account/plan/seat en designlocatie met voldoende rechten regelen; expliciet kiezen uit [Harbor, Radar of Paper Fleet](09-design-brief.md#drie-stijlrichtingen) | Rechten vóór fase 4; stijl vóór designgeneratie; nog niet gekozen |
-| Q-03 | Chrome DevTools met een werkende browserstart configureren en pagina plus console verifiëren | Headlessprofiel voorbereid in F; volledige verificatie vóór inrichting in fase 4 |
-| Q-04 | GitHub-repository en eigenaar/zichtbaarheid, Notion-parentpagina, Figma-bestand en W&B-projectbestemming vaststellen | Vóór de betreffende externe handelingen in fase 4; repository aanmaken alleen na het daarvoor gevraagde akkoord |
+| Q-02 | Toegang opgelost: Education/Full in team SinkTheShip en bestandssessie geverifieerd op 2026-11-02. Nog expliciet kiezen uit [Harbor, Radar of Paper Fleet](09-design-brief.md#drie-stijlrichtingen) | Stijl vóór designgeneratie; geen toegangsblokkade meer |
+| Q-03 | Opgelost: de huidige Chrome-tool opent een pagina en leest de console succesvol met het teruggegeven page-ID | Gecontroleerd op 2026-11-02; eerdere headful-startfout opgelost |
+| Q-04 | Repository privé aangemaakt na afzonderlijk akkoord; bord, Notion-handboek en Figma-bestand bereikbaar. W&B-entity heeft nog geen projecten. Alleen de [Projects-workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02) resteert voor de inrichting | Workflows vóór afronding fase 4; W&B-projectbestemming vóór online training |
 | Q-05 | B/C/D-contracten goedgekeurd. [Remote sessieprotocol](11-multiplayer-future.md) en [ADR 0046](adr/0046-authoritative-session.md) zijn met E goedgekeurd | Goedgekeurd op 2026-11-01; toekomstige serverimplementatie blijft buiten v1 |
 | Q-06 | Deels opgelost: ontwikkelaar koos op 2026-11-01 iPhone 16 Pro. [Meetprotocollen](12-quality-testing.md#budgetten-en-vaste-meetprofielen) zijn met E goedgekeurd. Toegang tot middenklassetoestel en eventuele Safari-traceomgeving nog vaststellen | Profielen goedgekeurd; fysieke middenklasse-/Safari-tracevoorziening vóór betreffende release-/ML-kwalificatie, niet nodig om documentatie af te ronden |
 
@@ -383,11 +383,11 @@ Batch A definieert 25 FR's, 14 NFR's, 29 stories en 87 acceptatietestgevallen. D
 
 | Bestemming | Link of ontbrekend gegeven |
 |---|---|
-| GitHub-repository | Nog niet vastgesteld; er is geen Git-remote geconfigureerd |
-| GitHub Projects-bord | Nog niet ingericht |
-| Notion-handboek | Parentpagina nog niet gekozen; nog niet ingericht |
-| Figma | Designbestand nog niet gekozen; rechten zie MCP-controle |
-| W&B | Entity `sinktheship` gevonden; project-URL nog niet vastgesteld |
+| GitHub-repository | [Cas0570/sinktheship](https://github.com/Cas0570/sinktheship), privé; `origin` en default branch `main` |
+| GitHub Projects-bord | [SinkTheShip](https://github.com/users/Cas0570/projects/3), privé; 59 gekoppelde issues, board- en tabelview; laatste workflowcontrole staat in het verslag |
+| Notion-handboek | [Handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) onder de gekozen ouderpagina; vijf gids-/verslagpagina’s en [ML-experimenten](https://app.notion.com/p/27115ed9c3bf47f9924ec6600951bc9f) |
+| Figma | [SinkTheShip](https://www.figma.com/design/z5qW8mIwsPjYRTfCpk9nwP/SinkTheShip?node-id=0-1) geverifieerd met Education/Full in team SinkTheShip; Page 1 leesbaar |
+| W&B | [Entity sinktheship](https://wandb.ai/sinktheship) geverifieerd; nog geen projecten, projectbestemming vóór online training vaststellen |
 
 ## Review van fase 0
 
@@ -526,3 +526,18 @@ Tijdelijke rekencontroles bevestigen de klassieke JSON, de 17-cellige no-touch-o
 Dit verifieert documenten en rekenvoorbeelden, niet de toekomstige software. Er zijn geen applicatie-/browser-/toesteltests uitgevoerd; er bestaat nog geen applicatie. De zeven MCP-profielen blijven uitgeschakeld en externe inrichting is niet gestart.
 
 Fase 3 is volgens [masterprompt §15](00-masterprompt.md#15-werkwijze-voor-deze-opdracht) goedgekeurd. Na de commit begint fase 4 met activatie en volledige MCP-verificatie; externe inrichting volgt pas na zeven geslaagde controles.
+
+
+## Hervatpunt fase 4 — 2026-11-02
+
+Fase 3 is goedgekeurd en gecommit als `a317a44`. De geautoriseerde MCP-activatie staat in de projectconfiguratie: zeven enabled-entries, gereviewde projectdefaults, Playwright MCP `0.0.84` en Chrome DevTools MCP `1.12.0`. De CLI leest exact deze zeven entries; trust en de benodigde GitHub-/W&B-variabelen waren al aanwezig. Context7 erft bestaande authenticatie uit de persoonlijke config; die is niet naar de repo gekopieerd.
+
+Alle zeven MCP-verbindingstests slagen. De opgegeven Notion-pagina was vóór inrichting leeg en leesbaar. Na de accountwissel meldt Figma **Cas Doorn**, Education/Full in team SinkTheShip; de bestandssessie opent en Page 1 is leesbaar. De huidige Chrome-tool opent example.com en leest de console succesvol. Het [volledige verificatieverslag](16-tooling-mcp.md#verificatieverslag-2026-11-02) bevat per server het bewijs.
+
+De ontwikkelaar heeft het aanmaken van privé `Cas0570/sinktheship` en pushen afzonderlijk goedgekeurd. De repository is aangemaakt, de geschiedenis staat op `main` en het private project 3 is eraan gekoppeld. Alle 59 taakdefinities hebben een teruggelezen issue en kaart, correcte labels/mijlpalen en ingevulde projectvelden. Boardgroepering op Status en de tabelkolommen zijn gecontroleerd. GitHub reserveert `Type`; [ADR 0012](adr/0012-github-projects.md) documenteert de gelijkwaardige veldnaam `Work type`.
+
+Het [handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) bevat de vijf gevraagde pagina’s, 50 ADR-links en de lege database ML-experimenten met de vereiste verslagvelden. Alle pagina’s en het databaseschema zijn teruggelezen. W&B heeft nog geen project; het handboek linkt naar de geverifieerde entity en verzint geen run- of projectlink.
+
+Verificatie uitgevoerd: 72 Markdown-bestanden, 1.440 lokale links/anchors, metadata, codeblokken, 50 ADR’s en 78 unieke contractdefinities. De koppeling van 39 requirements naar 29 stories, 87 geplande tests en 59 taakdefinities blijft volledig; de dependencygrafiek en releaseafhankelijkheden zijn ongewijzigd. Alle 59 issue-/kaartkoppelingen, labels, mijlpalen en veldwaarden zijn gecontroleerd. De oorspronkelijke masterprompt en AGENTS zijn behouden; TOML en whitespacecontroles slagen. Dit zijn document- en inrichtingscontroles, geen uitgevoerde applicatietests.
+
+**Volgende actie:** voltooi de [concrete Projects-workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02). Beide Done-workflows staan aan, maar de API toont hun doelstatus niet; `Auto-close issue` staat aan en moet via de UI uit. Na de terugmelding enabled-status opnieuw lezen, fase 4 ter review afronden en T01 vrijgeven volgens ADR 0012. Er is geen bouwtaak gestart. De Figma-stijlkeuze blijft vóór M3 open.

@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -20,7 +20,7 @@ Een tool kan zichtbaar zijn zonder juiste projectconfiguratie, accountrechten of
 
 ## Besluit
 
-De zeven entries zijn in [.codex/config.toml](../../.codex/config.toml) voorbereid en staan uit tot fase 4. Gebruik remote HTTP voor GitHub/Notion/Figma/Context7/W&B en stdio via npx voor Playwright/Chrome DevTools. Secrets blijven in procesvariabelen/OAuthopslag buiten Git. GitHub vraagt default plus projects/actions. Gebruik voor deze omgeving geïsoleerde headless browsers en ruimere starttimeouts. Activeer/verifieer pas in fase 4 volgens 16.
+De zeven entries zijn in [.codex/config.toml](../../.codex/config.toml) voorbereid in batch F en op 2026-11-02 ingeschakeld voor fase 4. Gebruik remote HTTP voor GitHub/Notion/Figma/Context7/W&B en stdio via npx voor Playwright/Chrome DevTools. Secrets blijven in procesvariabelen/OAuthopslag buiten Git. GitHub vraagt default plus projects/actions. Gebruik voor deze omgeving geïsoleerde headless browsers en ruimere starttimeouts. Alle zeven controles zijn op 2026-11-02 geslaagd volgens [16](../16-tooling-mcp.md#verificatieverslag-2026-11-02). De afzonderlijke toestemming voor repositorycreatie blijft vóór die handeling vereist.
 
 ## Onderbouwing en alternatieven
 

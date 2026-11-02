@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Leeswijzer](docs/README.md), [scope](docs/01-product-vision-scope.md), [roadmap](docs/13-roadmap.md), [werkinstructies](AGENTS.md)
 
@@ -10,7 +10,7 @@ Gerelateerd: [Leeswijzer](docs/README.md), [scope](docs/01-product-vision-scope.
 
 SinkTheShip wordt een browsergame om neural networks te leren begrijpen: een configureerbaar zeeslagspel met uitlegbare tegenstanders en een zelf trainbaar model. De ontwikkelaar reviewt iedere bouwtaak en moet de code daarna zelfstandig kunnen uitbreiden.
 
-De repository bevat nu specificaties, ADR's en een voorbereide MCP-configuratie. Er is nog geen speelbare app, getraind model, package-installatie of werkende ontwikkelserver. De actuele documentatiefase, besluiten en externe projectlinks staan in de [leeswijzer](docs/README.md).
+De repository bevat nu specificaties, ADR's en een geverifieerde MCP-configuratie. Er is nog geen speelbare app, getraind model, package-installatie of werkende ontwikkelserver. De actuele documentatiefase, besluiten en externe projectlinks staan in de [leeswijzer](docs/README.md).
 
 ## Wat we bouwen
 
@@ -31,7 +31,7 @@ Gebruikersaccounts worden in v1 en de eerstvolgende releases niet gebouwd of geb
 
 Lees voor de huidige opdracht [masterprompt](docs/00-masterprompt.md) → [voortgang](docs/README.md#voortgang-en-hervatten). Voor productreview: [scope](docs/01-product-vision-scope.md) → [stories](docs/03-user-stories.md) → [roadmap](docs/13-roadmap.md). Voor bouwen: [AGENTS.md](AGENTS.md) → [architectuur](docs/04-architecture.md) → de taak uit de [backlog](docs/14-backlog.md).
 
-De bouw begint pas na goedkeuring van de documentatie, de consistentiecheck en fase 4. Dan zijn alle zeven MCP-servers geverifieerd, het Projects-bord ingericht en het Notion-handboek beschikbaar. [.codex/config.toml](.codex/config.toml) is nu een reviewbaar, uitgeschakeld profiel. Authenticatie, trust, activatie en herstart staan in [tooling](docs/16-tooling-mcp.md).
+De bouw begint pas na goedkeuring van de documentatie, de consistentiecheck en fase 4. Dan zijn alle zeven MCP-servers geverifieerd, het Projects-bord ingericht en het Notion-handboek beschikbaar. [.codex/config.toml](.codex/config.toml) bevat nu zeven ingeschakelde projectprofielen. Alle zeven verbindingstests zijn geslaagd volgens het [verificatieverslag](docs/16-tooling-mcp.md#verificatieverslag-2026-11-02). De privérepository, het bord met 59 issues en het handboek zijn ingericht. Alleen de [laatste Projects-workflowcontrole](docs/16-tooling-mcp.md#externe-inrichting-2026-11-02) en fase-4-review resteren vóór de bouw.
 
 ### Quick start na implementatie
 
@@ -52,4 +52,4 @@ De [modulecatalogus](docs/04-architecture.md#modulecatalogus) beschrijft de gepl
 
 Elke module krijgt een README met doel, publieke API, voorbeeld en uitbreidingsstappen. De [zes uitbreidingsgidsen](docs/15-extension-guides.md) zijn de ingang voor een tegenstander, preset, model, taal, scherm of Figma-component. Nederlands is de documenttaal; code, identifiers, codecomments en commits zijn Engels.
 
-De repo specificeert, [GitHub Projects](docs/README.md#externe-projectlinks) houdt taakstatus bij en Notion legt de werkwijze uit met links naar de repo. Ontbrekende bestemmingen staan centraal in de leeswijzer; er worden geen fictieve projectlinks gebruikt.
+De repo specificeert, [GitHub Projects](https://github.com/users/Cas0570/projects/3) houdt taakstatus bij en het [Notion-handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) legt de werkwijze uit met links naar de repo. Alle [projectlinks en resterende beslispunten](docs/README.md#externe-projectlinks) staan in de leeswijzer.

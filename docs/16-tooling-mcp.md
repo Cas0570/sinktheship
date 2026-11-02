@@ -1,14 +1,14 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Intake en open punten](README.md#mcp-controle-bij-intake), [masterprompt](00-masterprompt.md), [Figma-playbook](10-figma-mcp-playbook.md), [kwaliteit](12-quality-testing.md), [uitbreiden](15-extension-guides.md), [ADR 0013](adr/0013-project-mcp-servers.md)
 
 # Projecttooling en zeven MCP-servers
 
-Dit document levert setup-, verificatie- en herstelstappen. Batch F levert de reviewbare [.codex/config.toml](../.codex/config.toml); fase 4 activeert en verifieert de verbindingen voordat GitHub Projects en Notion worden ingericht. De configuratie is voorbereid zonder installatie, authenticatiewijziging of externe writes.
+Dit document levert setup-, verificatie- en herstelstappen. Batch F leverde de reviewbare [.codex/config.toml](../.codex/config.toml). Op 2026-11-02 zijn de zeven entries voor fase 4 ingeschakeld; het [verificatieverslag](#verificatieverslag-2026-11-02) onderscheidt de geteste verbindingen en browserprocessen. Na zeven geslaagde tests zijn GitHub Projects en Notion ingericht; de [resterende workflowcontrole](#externe-inrichting-2026-11-02) staat hieronder.
 
 ## Scope en configuratiegrens
 
@@ -20,16 +20,16 @@ De lokaal aanwezige CLI is op 2026-11-01 `codex-cli 0.166.0`. `codex mcp --help`
 
 ### Voorbereid bestand uit batch F
 
-Het projectbestand bevat exact zeven serverentries met `enabled = false`. De voorgestelde globale permissieregels staan als comments bovenaan. Zo wordt deze documentreview niet automatisch een serveractivatie of wijziging van het huidige runtimeprofiel. Het bestand pinnt geen model of persoonlijke instelling en bevat uitsluitend tokenvariabelenamen. Context7 gebruikt voorlopig anonieme toegang; de optionele keyregel blijft een comment totdat de variabele voor het Codex-proces is ingesteld.
+Batch F bevatte exact zeven serverentries met `enabled = false` en de voorgestelde permissieregels als comments. Na goedkeuring van fase 3 zijn op 2026-11-02 alle entries op `true` gezet en de gereviewde projectdefaults geactiveerd. Het bestaande hostbeleid blijft leidend voor de lopende sessie. De geteste browser-MCP-packages zijn gepind op `@playwright/mcp@0.0.84` en `chrome-devtools-mcp@1.12.0`. Het bestand pinnt geen model of persoonlijke instelling en bevat geen secrets. Context7 heeft geen projectcredential; de effectieve configuratie erft momenteel authenticatie uit de persoonlijke config buiten Git. De optionele env-keyregel blijft een comment zolang die procesvariabele niet is ingesteld.
 
-Fase 4 zet de zeven entries aan, activeert de gereviewde permissieregels binnen het hostbeleid, regelt trust/auth en herstart. Controleer daarna ook geërfde entries en duplicaten: het bestand is geen bewijs dat de effectieve omgeving slechts zeven verbindingen heeft. `enabled = false` wordt ondersteund door de [Codex-configuratiereferentie](https://learn.chatgpt.com/docs/config-file/config-reference) en [configuratiebron](https://github.com/openai/codex/blob/main/codex-rs/config/src/mcp_types.rs), gecontroleerd met Context7 op 2026-11-01. Het parsen van TOML is alleen een documentcontrole, geen verbindingstest.
+Fase 4 vereist na deze activatie een clientherstart en volledige herverificatie; bestaande trust/auth hoeft alleen te worden hersteld als die controle faalt. Controleer daarna ook geërfde entries en duplicaten: het bestand is geen bewijs dat de effectieve omgeving slechts zeven verbindingen heeft. `enabled = false` wordt ondersteund door de [Codex-configuratiereferentie](https://learn.chatgpt.com/docs/config-file/config-reference) en [configuratiebron](https://github.com/openai/codex/blob/main/codex-rs/config/src/mcp_types.rs), gecontroleerd met Context7 op 2026-11-01. Het parsen van TOML is alleen een documentcontrole, geen verbindingstest.
 
 ### Voorgesteld Codex-permissieprofiel
 
-Voor normaal lokaal bouwen is het voorstel `workspace-write`, `on-request` en expliciet netwerk aan. Dit geeft ruimte voor projectedits, package-installatie en geautoriseerde git-/MCP-werkzaamheden, terwijl acties buiten de ingestelde grenzen nog door de client worden beoordeeld. Netwerk aan is geen impliciete toestemming om een repo te publiceren of berichten te versturen. De huidige documentsessie draait met een ander hostprofiel (`danger-full-access`, approvals `never`); dat is geen stil aangenomen toekomstige projectstandaard.
+Voor normaal lokaal bouwen zijn `workspace-write`, `on-request` en expliciet netwerk aan als projectdefaults geactiveerd. Dit geeft ruimte voor projectedits, package-installatie en geautoriseerde git-/MCP-werkzaamheden, terwijl acties buiten de ingestelde grenzen nog door de client worden beoordeeld. Netwerk aan is geen impliciete toestemming om een repo te publiceren of berichten te versturen. De huidige documentsessie draait met een ander hostprofiel (`danger-full-access`, approvals `never`); dat is geen stil aangenomen toekomstige projectstandaard.
 
 ```toml
-# Proposed project defaults, prepared in batch F; not activated here.
+# Project defaults activated on 2026-11-02; host policy takes precedence.
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 
@@ -120,7 +120,7 @@ startup_timeout_sec = 30
 tool_timeout_sec = 60
 ```
 
-Batch F kiest een anoniem Context7-profiel: de bearerregel staat alleen als comment in het projectbestand. Als dit bij verificatie onvoldoende toegang biedt, schakel dan met extern ingestelde key naar het beschreven keyprofiel en test opnieuw. Bearer-auth is ondersteund volgens de actuele [Context7-clientdocumentatie](https://github.com/upstash/context7/blob/master/docs/clients/cursor.mdx). Gebruik niet tegelijk conflicterende OAuth-/headercredentials of een literal key in de repo.
+Batch F koos een projectprofiel zonder credential: de bearerregel staat alleen als comment in het projectbestand. De controle op 2026-11-02 toont echter een geërfde Authorization-header uit de persoonlijke config. De bestaande verbinding is daardoor niet als anoniem getest; de headerwaarde is niet getoond of naar Git gekopieerd. Houd deze herkomst zichtbaar in het verificatierapport. Voor een schone omgeving zonder geërfde auth: test anoniem en schakel alleen indien nodig met extern ingestelde key naar het beschreven keyprofiel. Bearer-auth is ondersteund volgens de actuele [Context7-clientdocumentatie](https://github.com/upstash/context7/blob/master/docs/clients/cursor.mdx). Gebruik niet tegelijk conflicterende OAuth-/headercredentials of een literal key in de repo.
 
 Test: resolve React met een vraag over externe stores; kies de officiële React-library en vraag documentatie over `useSyncExternalStore` op. Geslaagd: een actueel fragment met bron en relevante API. Herstel bij quota/auth: keymodus/limiet controleren, niet herhaald dezelfde brede vraag sturen. Bij irrelevante resultaten: betere librarynaam en gerichte conceptquery; maximaal de door de tool toegestane retries. Bewaar bron/versie in de relevante doc of review.
 
@@ -177,22 +177,57 @@ Herstel: 401/keyomgeving, verkeerde entity/projectrechten of netwerk. Python-tra
 ## Fase 4: volgorde en verplicht verificatierapport
 
 1. Lees de goedgekeurde documenten en configdiff; controleer dat uitsluitend de zeven bedoelde projectservers zijn voorbereid en dat er geen secrets in staan.
-2. Regel de open bestemmingen/rechten, vertrouw de projectmap en stel externe procesvariabelen/OAuth in. Zet alle zeven `enabled`-waarden in het projectbestand op `true` en activeer de voorgestelde permissieregels voor zover het hostbeleid dat toestaat. Test het gekozen anonieme Context7-profiel of stel vooraf het keyprofiel in. Installeer noodzakelijke lokale server-/browserdependencies binnen de afgesproken setup.
+2. Regel de open bestemmingen/rechten, vertrouw de projectmap en stel externe procesvariabelen/OAuth in. Zet alle zeven `enabled`-waarden in het projectbestand op `true` en activeer de voorgestelde permissieregels voor zover het hostbeleid dat toestaat. Controleer de effectieve Context7-auth, inclusief eventuele geërfde persoonlijke instellingen; stel vooraf het gekozen env-keyprofiel in als dat nodig is. Installeer noodzakelijke lokale server-/browserdependencies binnen de afgesproken setup.
 3. Start een nieuwe Codex-sessie. Controleer `codex mcp list` of de effectieve IDE-instellingen en toolinventaris; de lijst alleen is geen testresultaat.
 4. Voer alle zeven onderstaande lezende tests uit en noteer per server datum/client-/serverversie, identiteit/bestemming, testcall, geredigeerd resultaat en status.
 5. Ga pas na zeven geslaagde controles door met repository-/Projects-/Notion-inrichting. Als een voorwaarde faalt: beschrijf exact oorzaak, benodigde gebruikersactie en hervatpunt; stop vóór die externe inrichting zoals de masterprompt voorschrijft.
 
-| Server | Verplichte read-test | Geslaagd wanneer | Fase-4-status nu |
-|---|---|---|---|
-| GitHub | get_me + inspectie projects/actions | Juiste account en beide toolsets | Nog niet uitgevoerd |
-| Notion | get_self + fetch gekozen parent | Juiste workspace én locatie leesbaar | Nog niet uitgevoerd; parent open |
-| Figma | whoami + tool-/toegangscontrole | Full seat/ondersteund plan, use_figma en juiste bestemming | Nog niet uitgevoerd; seat open |
-| Context7 | Resolve React → query docs | Actueel relevant fragment met bron | Nog niet uitgevoerd |
-| Playwright | Open pagina → snapshot | Herkenbare inhoud/accessibilitytree | Nog niet uitgevoerd |
-| Chrome DevTools | Open pagina → console met page-ID | Geldige console-response | Nog niet uitgevoerd; headlessherstel gepland |
-| W&B | List entities | Bedoelde entity zichtbaar | Nog niet uitgevoerd |
+### Verificatieverslag 2026-11-02
 
-De [intaketabel](README.md#mcp-controle-bij-intake) blijft historisch bewijs van 2026-10-31. Bovenstaande tabel wordt pas met echte fase-4-resultaten vervangen/aangevuld; een configuratiesnippet, beschikbare tool of eerdere test telt niet als nieuwe geslaagde activatie. Na iedere config-/auth-/serverversiewijziging de getroffen verbindingen en vervolgens de volledige fase-4-gate opnieuw controleren vóór inrichting.
+**Uitkomst: alle zeven verplichte verbindingstests geslaagd.** Na de accountwissel meldt Figma het Education-team **SinkTheShip** met Full seat. `create_session` op het opgegeven bestand slaagt; `get_metadata` leest pagina `0:1` (Page 1). Ook de huidige Chrome-tool opent nu example.com en leest de console succesvol. GitHub, Notion, Context7, Playwright en W&B zijn aansluitend opnieuw gecontroleerd. De eerdere account- en browserstartblokkades zijn opgelost; er is geen design gewijzigd.
+
+Lokale basis: `codex-cli 0.166.0`, Node `v26.8.1`, npm `12.0.2`. De projectmap stond al op trusted. `GITHUB_PAT` en `WANDB_API_KEY` zijn in de procesomgeving aanwezig; `CONTEXT7_API_KEY` ontbreekt. Er zijn alleen aanwezigheids-/configuratiekenmerken bekeken, geen tokenwaarden. `codex mcp list --json` toont na activatie exact de zeven bedoelde servers, alle enabled; de twee browserentries bevatten de headless- en isolated-flags. De lijst meldt OAuth voor Figma/Notion en bearer-auth voor GitHub/Context7/W&B. Dat is configuratiebewijs, geen vervanging voor de tooltests.
+
+| Server | Uitgevoerde call(s) | Waargenomen resultaat | Actuele verificatiestatus |
+|---|---|---|---|
+| GitHub | `get_me({})`; toolinventaris | Account `Cas0570`; `projects_list/get/write` en `actions_list/get` aanwezig | Geslaagd; bestemmingsrechten later gericht toetsen |
+| Notion | `notion_get_self({})`; `notion_fetch` op de opgegeven pagina-ID | Workspace **Ruimte van Cas**, gebruiker Cas; [SinkTheShip](https://app.notion.com/p/40c275fb04ba801092a7d17e14684844) is bereikbaar en leeg | Verbinding en gekozen ouderpagina geslaagd |
+| Figma | `whoami({})`; `create_session`; `get_metadata` met sessionId en node `0:1`; toolinventaris | Account **Cas Doorn**, team **SinkTheShip**, Education (`student`), **Full**; `use_figma` aanwezig. [Bestand SinkTheShip](https://www.figma.com/design/z5qW8mIwsPjYRTfCpk9nwP/SinkTheShip?node-id=0-1) opent succesvol; lege Page 1 leesbaar | Geslaagd voor plan, seat en bestandstoegang |
+| Context7 | `resolve_library_id` React → `query_docs` op `/reactjs/react.dev` | Relevant bronfragment over `useSyncExternalStore`, subscribe-cleanup en stabiele snapshots | Geslaagd; bestaande geërfde auth behouden |
+| Playwright | `browser_navigate` naar example.com → `browser_snapshot`; daarna dezelfde calls in vers stdio-proces | Titel Example Domain en accessibilitysnapshot ontvangen. Npm-package `0.0.84`; initialize meldt Playwright `1.65.0-alpha-2026-10-30` | Geslaagd, ook in de huidige toolverbinding; packageversie gepind |
+| Chrome DevTools | Huidige tool: `new_page` naar example.com → `list_console_messages` met teruggegeven `pageId: 2` | Pagina opent als Example Domain; console geeft succesvol een lege berichtenlijst. Eerdere afzonderlijke headless-test gebruikte MCP `1.12.0`; lokale Google Chrome `140.0.7339.80` beschikbaar | Geslaagd in de huidige client |
+| W&B | `list_entities_tool({})` | Entity `sinktheship` verschijnt als user en team; projectbestemming nog open | Geslaagd |
+
+De remote serverversies worden door deze hosttools niet getoond; er is geen versienummer verzonnen. De browserproeven gebruikten geïsoleerde tijdelijke mappen en zijn afgesloten. Het door de bestaande Playwright-tool gemaakte tijdelijke snapshot is opgeruimd. De tijdelijke testclient en outputs zijn geen applicatiecode en staan niet in de repository.
+
+De ontwikkelaar heeft het aanmaken van de private repository en pushen op 2026-11-02 afzonderlijk goedgekeurd. De uitvoering en het resterende hervatpunt volgen hieronder. De aparte Figma-stijlkeuze blijft vóór M3; de geslaagde verbindingscontrole kiest geen stijl en levert geen ontwerp op.
+
+De [intaketabel](README.md#mcp-controle-bij-intake) blijft historisch bewijs van 2026-10-31. Op 2026-11-02 zijn eerst Starter/View, ontbrekende bestandsrechten en een headful-startfout vastgesteld. De latere accountwissel en werkende headless-client hebben die blokkades aantoonbaar opgelost. Na een volgende wijziging van actieve config/auth/serverversies de getroffen verbindingen en vervolgens de volledige fase-4-gate opnieuw controleren vóór inrichting. De ingangsvoorwaarde is nu gehaald; fase 4 is pas afgerond na repository-, bord- en handboekinrichting.
+
+## Externe inrichting 2026-11-02
+
+De volgende resultaten zijn na de zeven geslaagde MCP-tests en het afzonderlijke repositoryakkoord uitgevoerd en teruggelezen:
+
+| Onderdeel | Resultaat |
+|---|---|
+| Repository | [Cas0570/sinktheship](https://github.com/Cas0570/sinktheship) is privé; `main` is de default branch. De bestaande documentatiegeschiedenis is gepusht; `origin` bevat uitsluitend de HTTPS-repository-URL. |
+| Project | [SinkTheShip, project 3](https://github.com/users/Cas0570/projects/3) is privé en gekoppeld aan de repository. De boardview groepeert op Status; de tabelview toont onder andere Milestone, Work type en Size. |
+| Issues en kaarten | Exact 59 unieke T-ID’s, issues en kaarten; korte samenvatting plus canonieke taaklink, acht projectlabels en native mijlpalen M0–M6. Alle kaartvelden zijn teruggelezen over twee pagina’s (50 + 9); de nummers en URL’s staan in [14](14-backlog.md). |
+| Typeveld | GitHub reserveert `Type`; het gelijkwaardige projectveld heet `Work type`. De vijf waarden blijven feature, ML, design, infra en docs. De onderbouwde naamcorrectie staat in [ADR 0012](adr/0012-github-projects.md). |
+| Notion | [Handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) onder de opgegeven ouderpagina; Start hier, Werken met de codebase, Uitbreiden, Beslissingen en Release notes zijn teruggelezen. Beslissingen linkt naar alle 50 ADR’s. |
+| Experimentverslagen | [ML-experimenten](https://app.notion.com/p/27115ed9c3bf47f9924ec6600951bc9f) bevat onderzoeksvraag, aanpak, resultaat en runlink, plus datum, commit, modelversie, seeds/configuratie, artefacten, lokale runreferentie en beperkingen. Er zijn geen fictieve experimenten aangemaakt. |
+| W&B | De entity [sinktheship](https://wandb.ai/sinktheship) is bereikbaar en heeft volgens `query_wandb_entity_projects` nog geen projecten. Het handboek linkt naar de bestaande entity; projectkeuze en eventuele aanmaak volgen vóór online training. |
+
+GitHub MCP verzorgde repository/project, issues, kaarten, views en teruglezing. Voor ontbrekende MCP-mogelijkheden is de afgesproken officiële `gh`-fallback gebruikt: versie `2.103.3`, tijdelijk buiten de repo uitgepakt uit de officiële release en gecontroleerd op de bijbehorende SHA-256. Daarmee zijn velden, labels en mijlpalen ingericht, projectprivacy/repokoppeling bevestigd en workflowmetadata gelezen. Authenticatie kwam uitsluitend uit de bestaande procesomgeving; er is geen token in Git, remote-URL of verslag geschreven.
+
+**Resterende UI-controle, geen nieuwe toestemming:** de GraphQL-query leest `Item closed` en `Pull request merged` als ingeschakeld. Ook `Auto-close issue` staat aan, terwijl [ADR 0012](adr/0012-github-projects.md) die omgekeerde afsluiting uitsluit. De beschikbare GraphQL-/MCP-interface toont geen doelstatus en biedt geen workflow-update; alleen de naam en enabled-status zijn leesbaar. Het behouden Done-optie-ID bewijst daarom op zichzelf de koppeling niet.
+
+1. Open het [project](https://github.com/users/Cas0570/projects/3), vervolgens het projectmenu **… → Workflows**.
+2. Controleer **Item closed**: ingeschakeld, doel **Status → Done**.
+3. Controleer **Pull request merged**: ingeschakeld, doel **Status → Done**.
+4. Open **Auto-close issue** en schakel deze uit. Meld de drie uitkomsten terug; de enabled-status wordt daarna opnieuw via de API gecontroleerd.
+
+Tot deze controle zijn de initiële kaarten niet vrijgegeven voor uitvoering. Na bevestiging: workflowmetadata teruglezen, de fase-4-review afronden en T01 bovenaan Ready zetten volgens ADR 0012. De eerste echte merge in M0 toetst later het eventgedrag; er is geen proefissue gesloten of proef-PR gemerged. Er is nog geen applicatiecode, designgeneratie, modeltraining of app-/toesteltest uitgevoerd.
 
 ## Dagelijks herstel en taakafsluiting
 
@@ -200,4 +235,4 @@ Lees vóór writes de actuele issue-/pagina-/designstate. Repo-docs zijn technis
 
 Een toolcall die technisch slaagt maar een foutobject teruggeeft telt als failure. Maak onderscheid tussen ontbrekende tool, authprobleem, onvoldoende rechten, quotum, browserstartfout en onjuiste resource. Een geen-resultatenzoekopdracht bewijst niet dat een object nergens bestaat. Verberg geen gemiste verplichte update achter een groen lokaal testresultaat.
 
-De fase-4-stop is strenger dan dagelijks doorwerken: het is een expliciete voorwaarde uit [masterprompt §15](00-masterprompt.md#15-werkwijze-voor-deze-opdracht). Dit document vraagt nu geen herstelacties of herauthenticatie; het maakt ze concreet voor het afgesproken moment.
+De fase-4-stop is strenger dan dagelijks doorwerken: het is een expliciete voorwaarde uit [masterprompt §15](00-masterprompt.md#15-werkwijze-voor-deze-opdracht). De actuele noodzakelijke gebruikersacties en het hervatpunt staan in het verificatieverslag hierboven.

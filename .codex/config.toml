@@ -1,17 +1,18 @@
 # Status: Geaccepteerd
-# Version: 1.0
-# Last modified: 2026-11-01
+# Version: 1.1
+# Last modified: 2026-11-02
 # Related: ../docs/16-tooling-mcp.md, ../AGENTS.md, ../docs/README.md
-# Review artifact. Enable all seven servers during phase 4, then restart and verify.
+# Phase 4 activation authorized and all seven servers verified on 2026-11-02.
+# Reload and reverify after changes to active configuration or authentication.
 # Trust, OAuth credentials and token values belong outside this repository.
-# Proposed defaults: uncomment during phase 4, subject to host policy.
-# approval_policy = "on-request"
-# sandbox_mode = "workspace-write"
-# [sandbox_workspace_write]
-# network_access = true
+# Project defaults remain subject to the current client and managed host policy.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+[sandbox_workspace_write]
+network_access = true
 
 [mcp_servers.github]
-enabled = false
+enabled = true
 url = "https://api.githubcopilot.com/mcp/"
 bearer_token_env_var = "GITHUB_PAT"
 http_headers = { "X-MCP-Toolsets" = "default,projects,actions" }
@@ -19,41 +20,42 @@ startup_timeout_sec = 30
 tool_timeout_sec = 60
 
 [mcp_servers.notion]
-enabled = false
+enabled = true
 url = "https://mcp.notion.com/mcp"
 startup_timeout_sec = 30
 tool_timeout_sec = 60
 
 [mcp_servers.figma]
-enabled = false
+enabled = true
 url = "https://mcp.figma.com/mcp"
 startup_timeout_sec = 30
 tool_timeout_sec = 120
 
 [mcp_servers.context7]
-enabled = false
+enabled = true
 url = "https://mcp.context7.com/mcp"
-# Anonymous by default. Enable only after provisioning this process variable:
+# No project-specific credential. Existing user-config authentication may be inherited.
+# Enable this environment reference only after provisioning the process variable:
 # bearer_token_env_var = "CONTEXT7_API_KEY"
 startup_timeout_sec = 30
 tool_timeout_sec = 60
 
 [mcp_servers.playwright]
-enabled = false
+enabled = true
 command = "npx"
-args = ["-y", "@playwright/mcp@latest", "--headless", "--isolated"]
+args = ["-y", "@playwright/mcp@0.0.84", "--headless", "--isolated"]
 startup_timeout_sec = 60
 tool_timeout_sec = 120
 
 [mcp_servers.chrome-devtools]
-enabled = false
+enabled = true
 command = "npx"
-args = ["-y", "chrome-devtools-mcp@latest", "--headless=true", "--isolated", "--no-usage-statistics", "--no-performance-crux"]
+args = ["-y", "chrome-devtools-mcp@1.12.0", "--headless=true", "--isolated", "--no-usage-statistics", "--no-performance-crux"]
 startup_timeout_sec = 60
 tool_timeout_sec = 120
 
 [mcp_servers.wandb]
-enabled = false
+enabled = true
 url = "https://mcp.withwandb.com/mcp"
 bearer_token_env_var = "WANDB_API_KEY"
 startup_timeout_sec = 30

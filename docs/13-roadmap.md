@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -12,7 +12,7 @@ De roadmap beschrijft opleveringen en afhankelijkheden, geen taakstatus. GitHub 
 
 ## Voorwaarde voor de bouw
 
-Batch F is goedgekeurd; de consistente documentset en de fase-4-inrichting moeten vóór de bouw zijn afgerond volgens de masterprompt. Fase 4 verifieert alle zeven MCP-servers vóór repository-/bord-/handboekinrichting. De [voorbereide configuratie](../.codex/config.toml) schakelt nu geen server in. Daarna worden de 59 taakdefinities als issues gekoppeld en worden echte projectlinks vastgelegd. Deze inrichting is de huidige opdracht, geen bouwtaak die afhankelijk zou zijn van een nog niet bestaand bord.
+Batch F en fase 3 zijn goedgekeurd; de fase-4-inrichting moet vóór de bouw zijn afgerond volgens de masterprompt. Fase 4 verifieert alle zeven MCP-servers vóór repository-/bord-/handboekinrichting. De [projectconfiguratie](../.codex/config.toml) schakelt nu zeven servers in; de [verificatie](16-tooling-mcp.md#verificatieverslag-2026-11-02) is voor alle zeven verbindingen geslaagd. De privérepository, het Projects-bord met 59 gekoppelde issues en het Notion-handboek zijn ingericht; de [echte projectlinks](README.md#externe-projectlinks) zijn vastgelegd. De [laatste workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02) en fase-4-review moeten nog worden afgerond. Deze inrichting is de huidige opdracht, geen bouwtaak die afhankelijk zou zijn van een nog niet bestaand bord.
 
 De eerste bouwtaak is T01. T17 kan pas Ready worden na de expliciete stijlkeuze en de vereiste Figma-rechten. Uitvoeren gebeurt steeds op één taak; het ML-spoor maakt een andere volgorde mogelijk wanneer zijn afhankelijkheden gereed zijn.
 

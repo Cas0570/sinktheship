@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -8,7 +8,7 @@ Gerelateerd: [Scope](01-product-vision-scope.md), [stories en tests](03-user-sto
 
 # Backlog — taakdefinities
 
-Deze 59 taken zijn specificaties voor de latere bouw. Status staat uitsluitend in GitHub Projects; de checklists hieronder zijn acceptatiecriteria, geen voortgangslijst. Ook na realisatie blijven deze criteria als norm staan. Issues krijgen in fase 4 de titel `Txx · titel`, een korte samenvatting en een link naar de betreffende definitie; de volledige definitie blijft in deze repo. Het issuenummer wordt dan per taak ingevuld.
+Deze 59 taken zijn specificaties voor de latere bouw. Status staat uitsluitend in GitHub Projects; de checklists hieronder zijn acceptatiecriteria, geen voortgangslijst. Ook na realisatie blijven deze criteria als norm staan. De 59 issues zijn op 2026-11-02 aangemaakt met de titel `Txx · titel`, een korte samenvatting en een link naar de betreffende definitie; de volledige definitie blijft in deze repo. De teruggelezen issuenummers en links staan per taak hieronder. Het taaktype heet op het bord `Work type`, omdat GitHub `Type` reserveert; betekenis en waarden blijven gelijk volgens [ADR 0012](adr/0012-github-projects.md).
 
 Iedere taak volgt de [Definition of Done](12-quality-testing.md) en [taak-lifecycle](../AGENTS.md), inclusief relevante tests, eigen module-README, API-/docupdates, PR en reviewsamenvatting. Die algemene eisen worden hieronder niet 59 keer herhaald. Docs en US-links geven context; genoemde AT-gevallen zijn de concrete bijdrage aan de [traceerbaarheidsmatrix](README.md#traceerbaarheid). Sommige acceptatiegevallen lopen door meerdere taken: een unitfixture alleen sluit een browser- of menselijke proef niet af.
 
@@ -109,7 +109,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** De importgrafiek en het onderscheid tussen browser-, Node- en pure TS-configuratie.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#1](https://github.com/Cas0570/sinktheship/issues/1)
 
 ## T02
 
@@ -136,7 +136,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen lege of overgeslagen suite die als gerealiseerde productdekking wordt gepresenteerd.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#2](https://github.com/Cas0570/sinktheship/issues/2)
 
 ## T03
 
@@ -163,7 +163,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** De scheiding tussen testbuild, productiebuild en Playwright MCP.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#3](https://github.com/Cas0570/sinktheship/issues/3)
 
 ## T04
 
@@ -190,7 +190,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen tweede taakstatuslijst en geen documentatie die alvast niet-bestaande code belooft.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#4](https://github.com/Cas0570/sinktheship/issues/4)
 
 ## T05
 
@@ -217,7 +217,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Welke velden spelbetekenis hebben en welke uitsluitend presentatie zijn.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#5](https://github.com/Cas0570/sinktheship/issues/5)
 
 ## T06
 
@@ -244,7 +244,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen verwarring tussen een snelle heuristiek en bewijs van plaatsbaarheid.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#6](https://github.com/Cas0570/sinktheship/issues/6)
 
 ## T07
 
@@ -271,7 +271,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Integersemantiek en nul onbedoelde koppelingen tussen de stromen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#7](https://github.com/Cas0570/sinktheship/issues/7)
 
 ## T08
 
@@ -298,7 +298,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Einde midden in een beurt en atomiciteit van afwijzingen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#8](https://github.com/Cas0570/sinktheship/issues/8)
 
 ## T09
 
@@ -325,7 +325,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Afwezigheid van private koppelingen, ook via metadata of objectreferenties.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#9](https://github.com/Cas0570/sinktheship/issues/9)
 
 ## T10
 
@@ -352,7 +352,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Migratiegrens en onafhankelijkheid van browser- of tegenstanderimplementaties.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#10](https://github.com/Cas0570/sinktheship/issues/10)
 
 ## T11
 
@@ -379,7 +379,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Uniformiteit over complete gelabelde vloten, niet alleen uniforme keuzes per schip.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#11](https://github.com/Cas0570/sinktheship/issues/11)
 
 ## T12
 
@@ -406,7 +406,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Dezelfde catalogus voor web en benchmark en geen private state in descriptorhooks.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#12](https://github.com/Cas0570/sinktheship/issues/12)
 
 ## T13
 
@@ -433,7 +433,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Of de strategie uitsluitend informatie uit de observatie gebruikt.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#13](https://github.com/Cas0570/sinktheship/issues/13)
 
 ## T14
 
@@ -460,7 +460,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Dubbeltellingen, gelijke scheepslengten en betekenis van de inzichtwaarden.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#14](https://github.com/Cas0570/sinktheship/issues/14)
 
 ## T15
 
@@ -487,7 +487,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Onafhankelijke eenheden voor latere intervallen en scheiding ontwikkel-/kwalificatieseeds.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#15](https://github.com/Cas0570/sinktheship/issues/15)
 
 ## T16
 
@@ -514,7 +514,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen selectie van alleen gunstige seeds, presets of metrieken.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#16](https://github.com/Cas0570/sinktheship/issues/16)
 
 ## T17
 
@@ -541,7 +541,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Onderscheid tussen toestemming voor documentatie en de daadwerkelijke stijlkeuze.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#17](https://github.com/Cas0570/sinktheship/issues/17)
 
 ## T18
 
@@ -568,7 +568,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Ontbrekende fout- of toetsenbordstates; geen willekeurige extra componentnamen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#18](https://github.com/Cas0570/sinktheship/issues/18)
 
 ## T19
 
@@ -595,7 +595,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Touchtargets en het onderscheid tussen raak, zeker gezonken en ambigue clustercellen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#19](https://github.com/Cas0570/sinktheship/issues/19)
 
 ## T20
 
@@ -622,7 +622,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen ontbrekende empty/error/loading-state of te vroege onthulling van vijandelijke schepen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#20](https://github.com/Cas0570/sinktheship/issues/20)
 
 ## T21
 
@@ -649,7 +649,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Semantiek en controlled props; containers houden domeinbeslissingen buiten ui.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#21](https://github.com/Cas0570/sinktheship/issues/21)
 
 ## T22
 
@@ -676,7 +676,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen vereiste draghandeling en geen dubbele activatie bij touch/keyboard.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#22](https://github.com/Cas0570/sinktheship/issues/22)
 
 ## T23
 
@@ -703,7 +703,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Eigenaarschap van state en monotone revisies zonder afhankelijkheid van React.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#23](https://github.com/Cas0570/sinktheship/issues/23)
 
 ## T24
 
@@ -730,7 +730,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Welke toestand is geaccepteerd versus duurzaam opgeslagen; geen private checkpoint in getSnapshot.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#24](https://github.com/Cas0570/sinktheship/issues/24)
 
 ## T25
 
@@ -757,7 +757,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Locklevensduur, first-write-pointervolgorde en geen verlies door concurrerende settingsupdates.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#25](https://github.com/Cas0570/sinktheship/issues/25)
 
 ## T26
 
@@ -784,7 +784,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen privédata via store/subscription, en ondubbelzinnig ownership van dispose/retry.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#26](https://github.com/Cas0570/sinktheship/issues/26)
 
 ## T27
 
@@ -811,7 +811,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen tweede spelstate in React en toevoeging van één locale zonder extra registratiecode.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#27](https://github.com/Cas0570/sinktheship/issues/27)
 
 ## T28
 
@@ -838,7 +838,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Setupdata versus onveranderlijke actieve regels en geen misleidende MVP-modelbeschikbaarheid.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#28](https://github.com/Cas0570/sinktheship/issues/28)
 
 ## T29
 
@@ -865,7 +865,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Focusherstel, dubbele events en leesbare reden bij afwijzing.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#29](https://github.com/Cas0570/sinktheship/issues/29)
 
 ## T30
 
@@ -892,7 +892,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** De juiste eindview, focus en het onderscheid tussen denkpauze en daadwerkelijk rekenwerk.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#30](https://github.com/Cas0570/sinktheship/issues/30)
 
 ## T31
 
@@ -919,7 +919,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Uitleg over Impossible en duidelijk onderscheid tussen geplande en beschikbare functies.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#31](https://github.com/Cas0570/sinktheship/issues/31)
 
 ## T32
 
@@ -946,7 +946,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** CSP versus Worker/WASM en de grens tussen SPA-routes en echte bestandspaden.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#32](https://github.com/Cas0570/sinktheship/issues/32)
 
 ## T33
 
@@ -974,7 +974,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen WebKit-emulatie als bewijs voor echte iOS-Safari en geen groen rapport bij ontbrekend toestelbewijs.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#33](https://github.com/Cas0570/sinktheship/issues/33)
 
 ## T34
 
@@ -1001,7 +1001,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Implementatieverschillen die ondanks oppervlakkig gelijke einduitslag de observaties veranderen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#34](https://github.com/Cas0570/sinktheship/issues/34)
 
 ## T35
 
@@ -1028,7 +1028,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen impliciete transpose, normalisatie of labelinformatie in de input.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#35](https://github.com/Cas0570/sinktheship/issues/35)
 
 ## T36
 
@@ -1055,7 +1055,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Lekkage tussen sterk gerelateerde states uit dezelfde wedstrijd of opstelling.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#36](https://github.com/Cas0570/sinktheship/issues/36)
 
 ## T37
 
@@ -1082,7 +1082,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Of de ontwikkelaar input, labels, loss en veranderbare parameters kan uitleggen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#37](https://github.com/Cas0570/sinktheship/issues/37)
 
 ## T38
 
@@ -1109,7 +1109,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Argmax/tie-breaking/masking en of het beoordeelde bestand exact het geëxporteerde bestand is.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#38](https://github.com/Cas0570/sinktheship/issues/38)
 
 ## T39
 
@@ -1136,7 +1136,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Het onderscheid tussen syntactisch geldig, compatibel en voor release gekwalificeerd.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#39](https://github.com/Cas0570/sinktheship/issues/39)
 
 ## T40
 
@@ -1163,7 +1163,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** CSP/WASM-paden, geheugeneigenaarschap en geen main-thread-inferentiefallback.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#40](https://github.com/Cas0570/sinktheship/issues/40)
 
 ## T41
 
@@ -1190,7 +1190,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen dubbel schot, verloren RNG of verborgen niveauwisseling tijdens herstel.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#41](https://github.com/Cas0570/sinktheship/issues/41)
 
 ## T42
 
@@ -1217,7 +1217,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen iPhone 16 Pro-meting als vervanging voor de afgesproken gemiddelde telefoon; alle bewijslinks horen bij dezelfde digest.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#42](https://github.com/Cas0570/sinktheship/issues/42)
 
 ## T43
 
@@ -1244,7 +1244,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Begrip van de modelkeuze en reproduceerbaarheid zonder impliciete kennis uit de chats.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#43](https://github.com/Cas0570/sinktheship/issues/43)
 
 ## T44
 
@@ -1271,7 +1271,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Definities van schot/treffer/zinken en geen dubbele telling van events.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#44](https://github.com/Cas0570/sinktheship/issues/44)
 
 ## T45
 
@@ -1298,7 +1298,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Effecten veranderen geen engine-/RNG-toestand en lopen niet door na uitschakelen/dispose.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#45](https://github.com/Cas0570/sinktheship/issues/45)
 
 ## T46
 
@@ -1325,7 +1325,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Historische legalShots versus onthulde eindvloot en geen RNG-verbruik bij inzage.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#46](https://github.com/Cas0570/sinktheship/issues/46)
 
 ## T47
 
@@ -1352,7 +1352,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** De speler moet de betekenis kunnen uitleggen zonder de visualisatie als zekerheid te lezen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#47](https://github.com/Cas0570/sinktheship/issues/47)
 
 ## T48
 
@@ -1379,7 +1379,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Eenvoudige onderhoudbare catalogusaanpassing en geen verborgen dependencies.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#48](https://github.com/Cas0570/sinktheship/issues/48)
 
 ## T49
 
@@ -1406,7 +1406,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Of een onbekende ontwikkelaar de juiste extensieplek kan vinden zonder chatgeschiedenis.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#49](https://github.com/Cas0570/sinktheship/issues/49)
 
 ## T50
 
@@ -1433,7 +1433,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen extra registraties of verborgen adapterwijzigingen die de impactnorm omzeilen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#50](https://github.com/Cas0570/sinktheship/issues/50)
 
 ## T51
 
@@ -1460,7 +1460,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** De gids geeft werkende stappen, geen kennis die alleen de oorspronkelijke AI had.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#51](https://github.com/Cas0570/sinktheship/issues/51)
 
 ## T52
 
@@ -1487,7 +1487,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen handmatige centrale modelcatalogus of verborgen codewijziging per model.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#52](https://github.com/Cas0570/sinktheship/issues/52)
 
 ## T53
 
@@ -1514,7 +1514,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Automatische scores ondersteunen de handmatige controle; zij vervangen haar niet.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#53](https://github.com/Cas0570/sinktheship/issues/53)
 
 ## T54
 
@@ -1541,7 +1541,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** rAF-afstand is geen zelfstandig framewerkbewijs; ontbrekende tracevoorziening is geen geslaagde meting.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#54](https://github.com/Cas0570/sinktheship/issues/54)
 
 ## T55
 
@@ -1568,7 +1568,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Dezelfde artefactdigest tussen de geteste build en de beoogde release.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#55](https://github.com/Cas0570/sinktheship/issues/55)
 
 ## T56
 
@@ -1595,7 +1595,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Compleet bewijs versus alleen taakafsluiting; eventuele scopewijziging vraagt expliciet documentbesluit.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#56](https://github.com/Cas0570/sinktheship/issues/56)
 
 ## T57
 
@@ -1622,7 +1622,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Opslagcap en privacy zonder dubbel gebruik van de actieve checkpointkey.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#57](https://github.com/Cas0570/sinktheship/issues/57)
 
 ## T58
 
@@ -1649,7 +1649,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Activatiemoment en scheiding tussen shellcache, modelcache en spelopslag.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#58](https://github.com/Cas0570/sinktheship/issues/58)
 
 ## T59
 
@@ -1676,4 +1676,4 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 
 **Reviewfocus:** Geen losse hardcoded donkere kleuren die token- en componentdekking omzeilen.
 
-**GitHub-issue:** Nog niet aangemaakt; nummer en link worden in fase 4 ingevuld.
+**GitHub-issue:** [#59](https://github.com/Cas0570/sinktheship/issues/59)
