@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.5
+Versie: 1.6
 
 Laatst gewijzigd: 2026-11-02
 
@@ -10,7 +10,7 @@ Gerelateerd: [Leeswijzer](docs/README.md), [scope](docs/01-product-vision-scope.
 
 SinkTheShip wordt een browsergame om neural networks te leren begrijpen: een configureerbaar zeeslagspel met uitlegbare tegenstanders en een zelf trainbaar model. De ontwikkelaar reviewt iedere bouwtaak en moet de code daarna zelfstandig kunnen uitbreiden.
 
-De repository bevat nu specificaties, ADR's en een geverifieerde MCP-configuratie. Er is nog geen speelbare app, getraind model, package-installatie of werkende ontwikkelserver. De actuele documentatiefase, besluiten en externe projectlinks staan in de [leeswijzer](docs/README.md).
+De repository bevat specificaties, ADR's, de geverifieerde MCP-configuratie en een compileerbare pnpm-workspace met Vite-startserver. De pagina is bewust leeg: er is nog geen speelbare app of getraind model. De actuele documentatiefase, besluiten en externe projectlinks staan in de [leeswijzer](docs/README.md).
 
 ## Wat we bouwen
 
@@ -31,7 +31,7 @@ Gebruikersaccounts worden in v1 en de eerstvolgende releases niet gebouwd of geb
 
 Lees voor de huidige opdracht [masterprompt](docs/00-masterprompt.md) → [voortgang](docs/README.md#voortgang-en-hervatten). Voor productreview: [scope](docs/01-product-vision-scope.md) → [stories](docs/03-user-stories.md) → [roadmap](docs/13-roadmap.md). Voor bouwen: [AGENTS.md](AGENTS.md) → [architectuur](docs/04-architecture.md) → de taak uit de [backlog](docs/14-backlog.md).
 
-De bouw begint pas na goedkeuring van de documentatie, de consistentiecheck en fase 4. Dan zijn alle zeven MCP-servers geverifieerd, het Projects-bord ingericht en het Notion-handboek beschikbaar. [.codex/config.toml](.codex/config.toml) bevat nu zeven ingeschakelde projectprofielen. Alle zeven verbindingstests zijn geslaagd volgens het [verificatieverslag](docs/16-tooling-mcp.md#verificatieverslag-2026-11-02). De repository, het bord met 59 issues en het handboek zijn ingericht. Ook de [Projects-workflows](docs/16-tooling-mcp.md#externe-inrichting-2026-11-02) zijn geverifieerd. De ontwikkelaar heeft fase 4 op 2026-11-02 goedgekeurd. De documentatie- en inrichtingsopdracht is afgerond; op verzoek van de ontwikkelaar stopt het werk na het vastleggen en committen van dit akkoord. De bouw is nog niet gestart.
+De bouw begint pas na goedkeuring van de documentatie, de consistentiecheck en fase 4. Dan zijn alle zeven MCP-servers geverifieerd, het Projects-bord ingericht en het Notion-handboek beschikbaar. [.codex/config.toml](.codex/config.toml) bevat nu zeven ingeschakelde projectprofielen. Alle zeven verbindingstests zijn geslaagd volgens het [verificatieverslag](docs/16-tooling-mcp.md#verificatieverslag-2026-11-02). De repository, het bord met 59 issues en het handboek zijn ingericht. Ook de [Projects-workflows](docs/16-tooling-mcp.md#externe-inrichting-2026-11-02) zijn geverifieerd. De ontwikkelaar heeft fase 4 op 2026-11-02 goedgekeurd. De documentatie- en inrichtingsopdracht is afgerond. De voorbereidende [PR #60](https://github.com/Cas0570/sinktheship/pull/60) is na menselijk akkoord gemerged. Bouwtaken volgen de bordvolgorde en PR-afspraken.
 
 ### Git voorbereiden
 
@@ -43,23 +43,34 @@ git config --local core.hooksPath .githooks
 
 Maak wijzigingen op een taakbranch en open een pull request; merge pas na menselijke goedkeuring. De [hooks](.githooks/README.md) blokkeren lokale commits en pushes naar main. Controleer ook de [actuele serverbeveiliging](docs/16-tooling-mcp.md#beveiliging-van-main) vóór de eerste bouwtaak; de openbare repository heeft een actieve ruleset die pull requests verplicht en directe pushes, force-pushes en verwijdering van main blokkeert.
 
-### Quick start na implementatie
+### Quick start
 
-Onderstaande commando's zijn het te leveren contract voor [T01](docs/14-backlog.md#t01) en de opvolgende taken. Ze werken nog niet in deze docs-only repository. T01 legt ondersteunde Node- en pnpm-versies vast; het ML-spoor legt Python en uv vast. Gebruik daarna de versies en lockfiles uit de repository.
+Gebruik **Node 26.8.1** (`.node-version`/`.nvmrc`) en **pnpm 10.33.3** (`packageManager`). De exacte engines worden tijdens installatie gecontroleerd. Gebruik je eigen Node-versiebeheerder en installeer zo nodig `pnpm@10.33.3`; een upgrade is een afzonderlijke gereviewde wijziging.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-`pnpm dev` moet de lokale webapp starten en de URL tonen. De frozen installatie gebruikt de bestaande lockfile en weigert een ontbrekende of verouderde lockfile; zie de [pnpm-installatiedocumentatie](https://pnpm.io/cli/install), via Context7 gecontroleerd op 2026-11-01. Voor de ontwikkelaar die met ML begint, beschrijft [document 07](docs/07-neural-network.md) de afzonderlijke dataset-, train-, evaluatie-, export- en publicatiecommando's. De ML-omgeving wordt met de vastgelegde uv-lockfile geïnstalleerd; installatie en training zijn geen vereiste om een bestaande webbuild te spelen.
+Open de getoonde loopback-URL. De HTML-ingang is bewust leeg met titel SinkTheShip; dit bewijst de ontwikkelserver, nog geen spel-UI. Stop met Ctrl+C. Installeren vereist registrytoegang wanneer de pnpm-store niet compleet is.
 
-De dagelijkse controlecommando's worden `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm test` en `pnpm build`. Browser-, pariteits-, benchmark- en releasechecks volgen de [kwaliteitsmatrix](docs/12-quality-testing.md); voer de checks uit die bij de wijziging horen. Deze pagina claimt geen geslaagde runs.
+```sh
+pnpm typecheck
+pnpm check:boundaries
+pnpm test:boundaries
+pnpm build
+```
+
+`typecheck` compileert strict projectreferences en levert library-JS/declarations. `check:boundaries` controleert manifests, publieke imports en de importgraaf inclusief typecycli. `test:boundaries` maakt een tijdelijke schone kopie, installeert de frozen lockfile en compileert positieve/negatieve import- en omgevingsproeven; zij verwijdert de kopie na afloop. `build` voert typecheck en grenscontrole uit en levert de statische Vite-output in `apps/web/dist/`.
+
+`pnpm lint`, `pnpm format:check`, Vitest en CI worden door T02 geleverd; browserinrichting volgt in T03. Deze commando's worden nu niet als werkend aangeboden. De huidige grenssuite gebruikt de ingebouwde Node-test-runner zonder extra testdependency. Python/uv, ML-training en modelbestanden volgen in het afzonderlijke [ML-spoor](docs/07-neural-network.md).
+
+De versiekeuze en afbakening staan in [ADR 0002](docs/adr/0002-pnpm-monorepo.md#bootstrap-in-t01); de volledige normen blijven in [kwaliteit](docs/12-quality-testing.md).
 
 ## Code vinden en uitbreiden
 
-De [modulecatalogus](docs/04-architecture.md#modulecatalogus) beschrijft de geplande packages en importgrenzen. `game-core` beheert de regels; `opponents` de strategieën; `game-session` het sessieverloop; `opponent-neural` de modelcontracten; `ui` de presentational componenten; `benchmark` de evaluatie. `apps/web` verbindt ze. `apps/server` krijgt in v1 alleen een README.
+De [modulecatalogus](docs/04-architecture.md#modulecatalogus) beschrijft de packages en importgrenzen. De package-ingangen bestaan; domein-API’s volgen in de eigen taken. `game-core` beheert de regels; `opponents` de strategieën; `game-session` het sessieverloop; `opponent-neural` de modelcontracten; `ui` de presentational componenten; `benchmark` de evaluatie. `apps/web` verbindt ze. `apps/server` krijgt in v1 alleen een README.
 
-Elke module krijgt een README met doel, publieke API, voorbeeld en uitbreidingsstappen. De [zes uitbreidingsgidsen](docs/15-extension-guides.md) zijn de ingang voor een tegenstander, preset, model, taal, scherm of Figma-component. Nederlands is de documenttaal; code, identifiers, codecomments en commits zijn Engels.
+Elke module heeft een README met doel, publieke API, voorbeeld en uitbreidingsstappen. De [zes uitbreidingsgidsen](docs/15-extension-guides.md) zijn de ingang voor een tegenstander, preset, model, taal, scherm of Figma-component. Nederlands is de documenttaal; code, identifiers, codecomments en commits zijn Engels.
 
 De repo specificeert, [GitHub Projects](https://github.com/users/Cas0570/projects/3) houdt taakstatus bij en het [Notion-handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) legt de werkwijze uit met links naar de repo. Alle [projectlinks en resterende beslispunten](docs/README.md#externe-projectlinks) staan in de leeswijzer.

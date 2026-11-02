@@ -1,0 +1,26 @@
+{
+  "name": "@sinktheship/benchmark",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@sinktheship/game-core": "workspace:*",
+    "@sinktheship/game-session": "workspace:*",
+    "@sinktheship/opponents": "workspace:*",
+    "@sinktheship/opponent-neural": "workspace:*"
+  },
+  "devDependencies": {
+    "@sinktheship/tsconfig": "workspace:*",
+    "@types/node": "26.6.6"
+  }
+}

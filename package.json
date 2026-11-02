@@ -1,0 +1,23 @@
+{
+  "name": "sinktheship",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.3",
+  "engines": {
+    "node": "26.8.1",
+    "pnpm": "10.33.3"
+  },
+  "scripts": {
+    "dev": "pnpm typecheck && pnpm --filter @sinktheship/web dev",
+    "typecheck": "tsc --build",
+    "check:boundaries": "node scripts/check-boundaries.mjs && depcruise --config .dependency-cruiser.cjs packages/*/src apps/web/src",
+    "test:boundaries": "node --test scripts/boundaries.test.mjs",
+    "build": "pnpm typecheck && pnpm check:boundaries && pnpm --filter @sinktheship/web build"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "dependency-cruiser": "18.7.1",
+    "@types/node": "26.6.6"
+  }
+}
