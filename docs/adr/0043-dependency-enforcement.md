@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -34,7 +34,7 @@ Nieuwe dependencies vereisen aanpassing van manifest én toegestane graaf met AD
 
 ## Verificatie
 
-US-07, US-20/24: negatieve fixtures voor React in core, cross-package relative/deep imports, typecycli, verboden state-import en namespaceomzeiling; legale imports moeten wel slagen. De packagegrenschecks zijn actief in T01; symbolische lintregels volgen in T02 en bij de concrete domein-API’s.
+US-07, US-20/24: negatieve fixtures voor React in core, cross-package relative/deep imports, typecycli, verboden state-import en namespaceomzeiling; legale imports moeten wel slagen. De packagegrenschecks zijn actief in T01; symbolische lintregels zijn in T02 getest en groeien mee met de concrete domein-API’s.
 
 ## Uitvoering van de packagegrens in T01
 
@@ -42,4 +42,4 @@ US-07, US-20/24: negatieve fixtures voor React in core, cross-package relative/d
 
 De core mag geen dependencies, optionalDependencies of peerDependencies hebben; ontwikkelconfiguratie blijft dev-only. Publieke rootexports verwijzen naar gebouwde JS/declarations. Configpackages hebben expliciete extra configexports. Dependency-cruiser controleert ook type-only cycli. De geïsoleerde positieve/negatieve fixtures staan in `scripts/boundaries.test.mjs` en draaien via `pnpm test:boundaries`.
 
-T02 voegt ESLint toe voor verboden globals (zoals `Math.random`/`Date`) en symbolische toegangsrechten. T01 claimt deze toekomstige lintregels niet: het pure compilerprofiel weert nu al DOM, Node en timers, maar ES-globals bestaan nog. De product-API’s zijn leeg; tests op privéstate-symbolen worden zinvol zodra die contracten bestaan.
+T02 levert ESLint voor verboden globals (zoals `Math.random`/`Date`) en symbolische toegangsrechten; positieve en negatieve configfixtures controleren deze regels. T01 claimt deze toekomstige lintregels niet: het pure compilerprofiel weert nu al DOM, Node en timers, maar ES-globals bestaan nog. De product-API’s zijn leeg; tests op privéstate-symbolen worden zinvol zodra die contracten bestaan.

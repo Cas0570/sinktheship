@@ -1,1 +1,1 @@
-export const packageName = "@sinktheship/eslint-config";
+export const packageName = '@sinktheship/eslint-config';

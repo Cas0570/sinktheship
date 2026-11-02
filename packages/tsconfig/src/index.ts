@@ -1,1 +1,1 @@
-export const packageName = "@sinktheship/tsconfig";
+export const packageName = '@sinktheship/tsconfig';

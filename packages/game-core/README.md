@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-11-02
 
@@ -24,4 +24,4 @@ Compilerprofiel: `pure`. Toegestane interne productdependencies: geen. Voeg impl
 
 ## Controle
 
-Vanaf de root: `pnpm typecheck`, `pnpm check:boundaries` en `pnpm test:boundaries`. De grenssuite controleert deze package-ingang en compilerconfiguratie. Eigen gedrags-/componenttests volgen zodra deze package gedrag levert; T02 levert de gedeelde test- en lintinrichting.
+Vanaf de root: `pnpm typecheck`, `pnpm check:boundaries` en `pnpm test:boundaries`. De grenssuite controleert deze package-ingang en compilerconfiguratie. Eigen gedrags-/componenttests volgen zodra deze package gedrag levert; De gedeelde test- en lintinrichting is beschikbaar via `pnpm test` en `pnpm lint`; zij claimt nog geen productgedrag voor deze lege API.

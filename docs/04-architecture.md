@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.5
+Versie: 1.6
 
 Laatst gewijzigd: 2026-11-02
 
@@ -107,7 +107,7 @@ Browseradapters staan aanvankelijk onder `apps/web/src/adapters`; de ONNX Web-ru
 | Geen onbedoelde browsercode in Node of omgekeerd | Afzonderlijke entrypoints/adapters en compilerprofielen; de gemeenschappelijke packages hebben geen runtime-detectie met geheime alternatieve algoritmen |
 | Consistente buildvolgorde | TypeScript project references met `composite` en declarations voor librarypackages; build met `tsc --build` |
 
-Project references regelen de buildgraaf; zij vervangen de importregels niet. Bij dependency-cruiser staat `tsPreCompilationDeps` aan en worden ook typecycli verboden. Negatieve architectuurfixtures voegen bijvoorbeeld tijdelijk een React-import aan core of een deep import aan een bot toe; de check moet dan falen. De package-/import-/profielcontroles zijn lokaal uitvoerbaar via `pnpm check:boundaries` en `pnpm test:boundaries`; CI en symbolische lintregels volgen in T02. Zie [uitvoering T01](adr/0043-dependency-enforcement.md#uitvoering-van-de-packagegrens-in-t01).
+Project references regelen de buildgraaf; zij vervangen de importregels niet. Bij dependency-cruiser staat `tsPreCompilationDeps` aan en worden ook typecycli verboden. Negatieve architectuurfixtures voegen bijvoorbeeld tijdelijk een React-import aan core of een deep import aan een bot toe; de check moet dan falen. De package-/import-/profielcontroles zijn lokaal uitvoerbaar via `pnpm check:boundaries` en `pnpm test:boundaries`; T02 voegt CI en geteste symbolische lintregels toe. Zie [uitvoering T01](adr/0043-dependency-enforcement.md#uitvoering-van-de-packagegrens-in-t01).
 
 Bronnen via Context7, geraadpleegd op 2026-10-31: [pnpm workspaces](https://github.com/pnpm/pnpm.io/blob/main/docs/workspaces.md), [TypeScript project references](https://www.typescriptlang.org/docs/handbook/project-references.html), [dependency-cruiser opties](https://github.com/sverweij/dependency-cruiser/blob/main/doc/options-reference.md) en [regels](https://github.com/sverweij/dependency-cruiser/blob/main/doc/rules-reference.md). Zie [ADR 0043](adr/0043-dependency-enforcement.md).
 

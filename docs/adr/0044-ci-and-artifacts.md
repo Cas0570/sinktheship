@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Kwaliteit](../12-quality-testing.md#ci-artefacten-en-releasepoorten), [ML](../07-neural-network.md), [benchmark](0030-benchmark-and-promotion.md)
 
@@ -32,4 +32,10 @@ Pin Actions en toolchains, gebruik minimale readrechten en geen secrets voor onb
 
 ## Verificatie
 
-AT-18-03, AT-19-01/02/03, AT-22-01, AT-23-03, AT-24-02 en AT-29-01/02/03; injecteer falende/geskipte vereiste job, ontbrekend artefact en testbuild in releasepad. Nog geen workflow geactiveerd.
+AT-18-03, AT-19-01/02/03, AT-22-01, AT-23-03, AT-24-02 en AT-29-01/02/03; injecteer falende/geskipte vereiste job, ontbrekend artefact en testbuild in releasepad. De eerste TS-/webjobs worden in T02 geactiveerd; overige lagen volgen bij hun implementatie.
+
+## Uitvoering in T02
+
+De [Quality-workflow](../../.github/workflows/quality.yml) levert `quality-ts` en `web-build`. Checkout v7.0.1, setup-node v7.1.0 en upload-artifact v7.0.2 staan op volledige, via de officiële repositories teruggelezen commit-SHA’s. pnpm wordt exact geïnstalleerd, zonder extra setup-Action. Tokens blijven read-only; credentials worden niet in de checkout bewaard; er zijn geen secrets, deploys of cachewrites. Pipefail bewaart de echte foutcode bij logcapture.
+
+Het [eerste CI-profiel](../12-quality-testing.md#eerste-ci-poort) specificeert rapporten, 14-dagenretentie en de nog niet toepasselijke lagen. Er wordt geen release-aggregatepoort of releaseartefact geclaimd voor deze bootstrap. CI-resultaten worden vóór review via GitHub teruggelezen.

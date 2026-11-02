@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Kwaliteit](../12-quality-testing.md), [Python-tooling](0041-python-tooling.md), [dependencygrenzen](0043-dependency-enforcement.md), [stories](../03-user-stories.md)
 
@@ -32,4 +32,10 @@ Testingdependencies blijven uit de productiecore. Geen coveragegaming of tests d
 
 ## Verificatie
 
-Alle relevante AT-groepen uit 12; negatieve projectie-/importfixtures, shrink-replay en browserfailure-injectie. De suite is ontworpen, nog niet gebouwd.
+Alle relevante AT-groepen uit 12; negatieve projectie-/importfixtures, shrink-replay en browserfailure-injectie. De productlagen blijven ontworpen; de toolingtests zijn in T02 gebouwd.
+
+## Uitvoering in T02
+
+Vitest 5.0.5 draait één Node-project voor de gedeelde lintconfig en masterpromptbewaking, met JUnit-output. Vite 8.3.5 is ook als root-testtooldependency gedeclareerd om de Vitest-peer expliciet te leveren; de webbuild houdt dezelfde versie. De bestaande Node-grenssuite blijft intact en wordt aansluitend uitgevoerd. Dit voorkomt een onnodige herschrijving van T01-tests en geeft geen productcoverage voor nog lege domeinpackages. DOM-/React-, property- en browsersuites volgen wanneer het betreffende gedrag bestaat. Het eerste domeingedrag krijgt de oorspronkelijke coverage-eisen uit 12.
+
+Bronnen via Context7 op 2026-11-02: [Vitest-projects](https://vitest.dev/guide/projects) en [reporters](https://vitest.dev/guide/reporters). Versie/engines/peers zijn uit npm gelezen en de gepinde toolchain is daadwerkelijk getest.
