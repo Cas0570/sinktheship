@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -39,3 +39,11 @@ Alle relevante AT-groepen uit 12; negatieve projectie-/importfixtures, shrink-re
 Vitest 5.0.5 draait één Node-project voor de gedeelde lintconfig en masterpromptbewaking, met JUnit-output. Vite 8.3.5 is ook als root-testtooldependency gedeclareerd om de Vitest-peer expliciet te leveren; de webbuild houdt dezelfde versie. De bestaande Node-grenssuite blijft intact en wordt aansluitend uitgevoerd. Dit voorkomt een onnodige herschrijving van T01-tests en geeft geen productcoverage voor nog lege domeinpackages. DOM-/React-, property- en browsersuites volgen wanneer het betreffende gedrag bestaat. Het eerste domeingedrag krijgt de oorspronkelijke coverage-eisen uit 12.
 
 Bronnen via Context7 op 2026-11-02: [Vitest-projects](https://vitest.dev/guide/projects) en [reporters](https://vitest.dev/guide/reporters). Versie/engines/peers zijn uit npm gelezen en de gepinde toolchain is daadwerkelijk getest.
+
+## Uitvoering in T03
+
+De eerder gekozen browser-/componenttools zijn gepind in de root-devDependencies: Playwright Test 1.64.1, Testing Library React 16.3.3, DOM 10.4.2, user-event 14.6.8, jest-dom 7.0.1 en jsdom 30.1.3. React en ReactDOM 19.3.1 leveren de testapp en de expliciete Testing Library-peers, gelijk aan de bestaande React-versie; geen nieuwe productiecoredependency. Node 26.8.1 voldoet aan de opgehaalde enginevereisten.
+
+De fixtureapp is een aparte Vite-entry in plaats van een runtime-testmodus in de productieapp. Dit voorkomt dat seedbediening of fixturecode door een verkeerd ingestelde omgevingsvariabele in productie terechtkomt. Een scripted transcript is voldoende voor de infrastructuurproef; echte RNG/SessionPort-contracten worden niet vooruitlopend nagebouwd. De browserpoort faalt ook bij een geslaagde diagnostische retry. Dit wordt met foutinjectie gecontroleerd.
+
+Bronnen via Context7 op 2026-11-02: [Playwright-configuratie](https://playwright.dev/docs/test-configuration), [React useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore), [Testing Library React API](https://testing-library.com/docs/react-testing-library/api), [user-event setup](https://testing-library.com/docs/user-event/setup) en [jsdom](https://github.com/jsdom/jsdom). De [testhandleiding](../../tests/README.md) beschrijft de uitvoering en grenzen.

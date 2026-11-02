@@ -9,6 +9,14 @@ export default defineConfig({
     projects: [
       {
         test: {
+          name: 'component',
+          environment: 'jsdom',
+          include: ['tests/component/**/*.test.mjs'],
+          setupFiles: ['tests/component/setup.mjs'],
+        },
+      },
+      {
+        test: {
           name: 'node',
           environment: 'node',
           include: [
