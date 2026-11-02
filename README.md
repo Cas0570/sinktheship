@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
 Laatst gewijzigd: 2026-11-02
 
@@ -31,7 +31,7 @@ Gebruikersaccounts worden in v1 en de eerstvolgende releases niet gebouwd of geb
 
 Lees voor de huidige opdracht [masterprompt](docs/00-masterprompt.md) → [voortgang](docs/README.md#voortgang-en-hervatten). Voor productreview: [scope](docs/01-product-vision-scope.md) → [stories](docs/03-user-stories.md) → [roadmap](docs/13-roadmap.md). Voor bouwen: [AGENTS.md](AGENTS.md) → [architectuur](docs/04-architecture.md) → de taak uit de [backlog](docs/14-backlog.md).
 
-De bouw begint pas na goedkeuring van de documentatie, de consistentiecheck en fase 4. Dan zijn alle zeven MCP-servers geverifieerd, het Projects-bord ingericht en het Notion-handboek beschikbaar. [.codex/config.toml](.codex/config.toml) bevat nu zeven ingeschakelde projectprofielen. Alle zeven verbindingstests zijn geslaagd volgens het [verificatieverslag](docs/16-tooling-mcp.md#verificatieverslag-2026-11-02). De privérepository, het bord met 59 issues en het handboek zijn ingericht. Ook de [Projects-workflows](docs/16-tooling-mcp.md#externe-inrichting-2026-11-02) zijn geverifieerd. De inrichting is gereed voor de fase-4-review; na akkoord kan de bouw beginnen.
+De bouw begint pas na goedkeuring van de documentatie, de consistentiecheck en fase 4. Dan zijn alle zeven MCP-servers geverifieerd, het Projects-bord ingericht en het Notion-handboek beschikbaar. [.codex/config.toml](.codex/config.toml) bevat nu zeven ingeschakelde projectprofielen. Alle zeven verbindingstests zijn geslaagd volgens het [verificatieverslag](docs/16-tooling-mcp.md#verificatieverslag-2026-11-02). De privérepository, het bord met 59 issues en het handboek zijn ingericht. Ook de [Projects-workflows](docs/16-tooling-mcp.md#externe-inrichting-2026-11-02) zijn geverifieerd. De ontwikkelaar heeft fase 4 op 2026-11-02 goedgekeurd. De documentatie- en inrichtingsopdracht is afgerond; op verzoek van de ontwikkelaar stopt het werk na het vastleggen en committen van dit akkoord. De bouw is nog niet gestart.
 
 ### Quick start na implementatie
 

@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
 Laatst gewijzigd: 2026-11-02
 
@@ -12,7 +12,7 @@ De roadmap beschrijft opleveringen en afhankelijkheden, geen taakstatus. GitHub 
 
 ## Voorwaarde voor de bouw
 
-Batch F en fase 3 zijn goedgekeurd; de fase-4-inrichting moet vóór de bouw zijn afgerond volgens de masterprompt. Fase 4 verifieert alle zeven MCP-servers vóór repository-/bord-/handboekinrichting. De [projectconfiguratie](../.codex/config.toml) schakelt nu zeven servers in; de [verificatie](16-tooling-mcp.md#verificatieverslag-2026-11-02) is voor alle zeven verbindingen geslaagd. De privérepository, het Projects-bord met 59 gekoppelde issues en het Notion-handboek zijn ingericht; de [echte projectlinks](README.md#externe-projectlinks) zijn vastgelegd. De [workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02) is afgerond met gebruikersscreenshots en teruggelezen API-statussen. De inrichting is gereed voor de fase-4-review; na akkoord kan de bouw beginnen. Deze inrichting is de huidige opdracht, geen bouwtaak die afhankelijk zou zijn van een nog niet bestaand bord.
+Batch F, fase 3 en fase 4 zijn goedgekeurd; de vereiste inrichting vóór de bouw is afgerond. Fase 4 verifieert alle zeven MCP-servers vóór repository-/bord-/handboekinrichting. De [projectconfiguratie](../.codex/config.toml) schakelt nu zeven servers in; de [verificatie](16-tooling-mcp.md#verificatieverslag-2026-11-02) is voor alle zeven verbindingen geslaagd. De privérepository, het Projects-bord met 59 gekoppelde issues en het Notion-handboek zijn ingericht; de [echte projectlinks](README.md#externe-projectlinks) zijn vastgelegd. De [workflowcontrole](16-tooling-mcp.md#externe-inrichting-2026-11-02) is afgerond met gebruikersscreenshots en teruggelezen API-statussen. De ontwikkelaar heeft fase 4 op 2026-11-02 goedgekeurd en gevraagd na vastlegging en commit te stoppen. Daarmee is de documentatie- en inrichtingsopdracht afgerond. Bij een volgend verzoek om de bouw te starten geldt de taakvolgorde op het bord; er is nog geen bouwtaak gestart.
 
 De eerste bouwtaak is T01. T17 kan pas Ready worden na de expliciete stijlkeuze en de vereiste Figma-rechten. Uitvoeren gebeurt steeds op één taak; het ML-spoor maakt een andere volgorde mogelijk wanneer zijn afhankelijkheden gereed zijn.
 
