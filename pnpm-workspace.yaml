@@ -1,0 +1,10 @@
+packages:
+  - packages/*
+  - apps/web
+
+engineStrict: true
+packageManagerStrictVersion: true
+managePackageManagerVersions: false
+autoInstallPeers: false
+strictPeerDependencies: true
+onlyBuiltDependencies: []

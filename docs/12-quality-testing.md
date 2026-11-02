@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
 Laatst gewijzigd: 2026-11-02
 
@@ -8,7 +8,7 @@ Gerelateerd: [Requirements](01-product-vision-scope.md), [stories en AT-IDs](03-
 
 # Kwaliteit, tests en vrijgave
 
-Dit is de centrale verificatiespecificatie. Requirements blijven normatief in 01, de 87 acceptatietests in 03 en algoritme-/modelcriteria in 05–07. Dit document legt vast hoe zij aantoonbaar worden gecontroleerd. Er is nog geen applicatie om te testen; alle scripts en rapportpaden hieronder zijn te bouwen contracten, geen bestaande geslaagde checks.
+Dit is de centrale verificatiespecificatie. Requirements blijven normatief in 01, de 87 acceptatietests in 03 en algoritme-/modelcriteria in 05–07. Dit document legt vast hoe zij aantoonbaar worden gecontroleerd. Er is nog geen speelbare applicatie. T01 levert `pnpm typecheck`, `pnpm check:boundaries`, `pnpm test:boundaries`, `pnpm dev` en `pnpm build`; overige scripts en rapportpaden hieronder blijven te bouwen contracten.
 
 ## Testlagen en gekozen tooling
 
@@ -184,3 +184,7 @@ Conventional Commits met taak-ID, bijvoorbeeld `feat(T14): add density target sc
 - De ontwikkelaar heeft gereviewd; pas merge en gecontroleerde Projects-workflow maken de taak Done. Een groene test is geen zelfstandig mergeakkoord.
 
 MVP vereist Easy–Hard, beide talen, alle toepasselijke Must/NFR-poorten en eerlijke unavailable-state voor neural. V1.0 voegt de gekwalificeerde neural pipeline/compatibele modellen en browserbudgetten toe. Should/Could-keuzes worden bij de release expliciet vermeld, zonder niet-gebouwde functionaliteit voor te wenden. Budget-/profielafwijkingen vragen een gemotiveerde ADR en review vóór vrijgave.
+
+## Lokale workspacecontrole
+
+T01 toetst AT-20-03 en het installatiegedeelte van AT-24-01 met `pnpm test:boundaries`: frozen installatie en build in een tijdelijke kopie, alle toegestane imports, rootexports, configuratie laden, verboden deep/relatieve/omgekeerde imports, core-runtime-dependencies, typecycli en pure/browser/Node-profielen. `pnpm dev` wordt daarnaast met een HTTP-rookproef gecontroleerd. Dit vervangt geen menselijke uitbreidingsproef, speltest, browserkwalificatie of CI-bewijs. De suite stopt bij mislukte setup, zodat ontbrekende dependencies niet als geslaagde negatieve importtest worden verward.

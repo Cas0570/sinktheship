@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-10-31
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Architectuur](../04-architecture.md), [pure core](0003-framework-free-core.md), [packagegrenzen](0021-package-boundaries.md), [leeswijzer](../README.md)
 
@@ -30,8 +30,16 @@ Bronnen via Context7, 2026-10-31: [TypeScript project references](https://www.ty
 
 ## Gevolgen
 
-Nieuwe dependencies vereisen aanpassing van manifest én toegestane graaf met ADR-review. Geen brede testuitzondering die productie-imports alsnog toestaat; testhelpers krijgen expliciete testscope. Configpackages behouden hun eigen laad-/validatiechecks. Geen installatie of CI-configuratie in deze batch.
+Nieuwe dependencies vereisen aanpassing van manifest én toegestane graaf met ADR-review. Geen brede testuitzondering die productie-imports alsnog toestaat; testhelpers krijgen expliciete testscope. Configpackages behouden hun eigen laad-/validatiechecks. T01 installeert de grenscontrole; T02 levert de CI-configuratie.
 
 ## Verificatie
 
-US-07, US-20/24: negatieve fixtures voor React in core, cross-package relative/deep imports, typecycli, verboden state-import en namespaceomzeiling; legale imports moeten wel slagen. Checks zijn gepland, nog niet actief.
+US-07, US-20/24: negatieve fixtures voor React in core, cross-package relative/deep imports, typecycli, verboden state-import en namespaceomzeiling; legale imports moeten wel slagen. De packagegrenschecks zijn actief in T01; symbolische lintregels volgen in T02 en bij de concrete domein-API’s.
+
+## Uitvoering van de packagegrens in T01
+
+`pnpm check:boundaries` combineert dependency-cruiser met een kleine TypeScript-AST-/manifestcontrole. De graaf staat in `scripts/package-graph.json` en volgt 04. De extra controle is nodig omdat de opgeloste bestandsnaam alleen niet toont of een import via een verboden `src`-/`dist`-specifier of een relatief pad liep. Zij controleert ook type-importexpressies, re-exports, letterlijke dynamische imports, workspaceprotocollen, gedeclareerde dependencies en bijpassende projectreferences. Niet-letterlijke modulepaden en lokale TS-pathaliases zijn niet toegestaan.
+
+De core mag geen dependencies, optionalDependencies of peerDependencies hebben; ontwikkelconfiguratie blijft dev-only. Publieke rootexports verwijzen naar gebouwde JS/declarations. Configpackages hebben expliciete extra configexports. Dependency-cruiser controleert ook type-only cycli. De geïsoleerde positieve/negatieve fixtures staan in `scripts/boundaries.test.mjs` en draaien via `pnpm test:boundaries`.
+
+T02 voegt ESLint toe voor verboden globals (zoals `Math.random`/`Date`) en symbolische toegangsrechten. T01 claimt deze toekomstige lintregels niet: het pure compilerprofiel weert nu al DOM, Node en timers, maar ES-globals bestaan nog. De product-API’s zijn leeg; tests op privéstate-symbolen worden zinvol zodra die contracten bestaan.

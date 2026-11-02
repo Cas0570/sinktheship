@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -8,7 +8,7 @@ Gerelateerd: [Architectuur en uitbreidingsgrenzen](04-architecture.md), [regels]
 
 # Zelfstandig uitbreiden
 
-Deze gidsen beschrijven de gewenste werkwijze na implementatie van de genoemde bouwstenen. De repository bevat nu documentatie; de codepaden en pnpm-scripts hieronder zijn geplande contracten. De bouwtaken leveren én verifiëren ze. Een uitbreiding is pas zelfstandig uitvoerbaar bewezen wanneer de ontwikkelaar de proef zonder AI kan doen en de feitelijke diff binnen de aangegeven grenzen blijft.
+Deze gidsen beschrijven de gewenste werkwijze na implementatie van de genoemde bouwstenen. De workspacegrenzen en de quick start bestaan; de domeincodepaden en uitbreidingsscripts hieronder blijven geplande contracten. De bouwtaken leveren én verifiëren ze. Een uitbreiding is pas zelfstandig uitvoerbaar bewezen wanneer de ontwikkelaar de proef zonder AI kan doen en de feitelijke diff binnen de aangegeven grenzen blijft.
 
 ## Voor elke uitbreiding
 

@@ -1,0 +1,30 @@
+{
+  "extends": "@sinktheship/tsconfig/browser.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist/types",
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "emitDeclarationOnly": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "references": [
+    {
+      "path": "../../packages/game-core"
+    },
+    {
+      "path": "../../packages/game-session"
+    },
+    {
+      "path": "../../packages/opponents"
+    },
+    {
+      "path": "../../packages/opponent-neural"
+    },
+    {
+      "path": "../../packages/ui"
+    }
+  ]
+}

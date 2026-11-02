@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
 Laatst gewijzigd: 2026-11-02
 
@@ -28,8 +28,18 @@ De masterprompt bepaalt pnpm. De [officiële workspacedocumentatie](https://gith
 
 ## Gevolgen
 
-Iedere package heeft README, API, eigen tests en gedeelde config. De buildgraaf volgt gedeclareerde imports. Er wordt nu geen manifest, lockfile of dependency-installatie aangemaakt; setup is een latere bouwtaak.
+Iedere package heeft README, API, eigen tests en gedeelde config. De buildgraaf volgt gedeclareerde imports. De bootstrap hieronder levert manifests, lockfile en installatie voor T01.
 
 ## Verificatie
 
-US-20/US-24; toekomstige clean-checkout-installatie, package-exportchecks en verboden-importfixtures. De structuur is gedocumenteerd, nog niet opgebouwd.
+US-20/US-24; clean-checkout-installatie, package-exportchecks en verboden-importfixtures worden lokaal gecontroleerd met de grenssuite uit T01.
+
+## Bootstrap in T01
+
+De workspace gebruikt Node **26.8.1** en pnpm **10.33.3**, gelijk aan de geverifieerde lokale toolchain. Dit zijn exacte reproduceerbaarheidspins, geen claim dat dit altijd de nieuwste of aanbevolen LTS-versies zijn. Node voldoet aan de engines van Vite en dependency-cruiser. pnpm-enginecontrole en strikte packageManager-versiecontrole voorkomen onbedoeld installeren met een andere toolchain.
+
+De bestaande besluiten worden ingevuld met TypeScript **5.9.3** (compiler én parser-API voor grenschecks), Vite **8.3.5**, dependency-cruiser **18.7.1**, `@types/node` **26.6.6** en React **19.3.1** als UI-peer/provider. TypeScript 5.9.3 biedt de benodigde references en exports; een sprong naar de inmiddels beschikbare 7.x is niet nodig voor bootstrap en wordt niet stilzwijgend meegenomen. De dependencies zijn beperkt tot de reeds gekozen middelen uit ADR 0001/0043; Node-typen ondersteunen het Node-compilerprofiel. Lockfile en manifests leggen directe en transitieve versies vast.
+
+Geen frameworkscaffolder: een lege HTML-/TS-entry voorkomt demo-UI buiten T01. React-rendering, Tailwind en i18n worden in de frontendtaken ingericht. `eslint-config` heeft een laadbare lege configexport voor T02. Python, modeldata en fixtures hebben alleen hun afzonderlijke documentatiegrens; `apps/server` bevat uitsluitend een README.
+
+Bronnen op 2026-11-02 via Context7: [workspaces](https://pnpm.io/workspaces), [compilerreferences](https://www.typescriptlang.org/docs/handbook/project-references.html), [Vite-ingang](https://vite.dev/guide/) en [dependency-cruiser](https://github.com/sverweij/dependency-cruiser/blob/main/doc/options-reference.md). Versies en engines zijn daarnaast uit de npm-registry gelezen; de clean-install-/compileproeven controleren de combinatie daadwerkelijk.

@@ -1,0 +1,32 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "packages/game-core"
+    },
+    {
+      "path": "packages/opponents"
+    },
+    {
+      "path": "packages/game-session"
+    },
+    {
+      "path": "packages/opponent-neural"
+    },
+    {
+      "path": "packages/ui"
+    },
+    {
+      "path": "packages/benchmark"
+    },
+    {
+      "path": "packages/tsconfig"
+    },
+    {
+      "path": "packages/eslint-config"
+    },
+    {
+      "path": "apps/web"
+    }
+  ]
+}

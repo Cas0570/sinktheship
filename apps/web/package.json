@@ -1,0 +1,23 @@
+{
+  "name": "@sinktheship/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "typecheck": "tsc --build"
+  },
+  "dependencies": {
+    "@sinktheship/game-core": "workspace:*",
+    "@sinktheship/game-session": "workspace:*",
+    "@sinktheship/opponents": "workspace:*",
+    "@sinktheship/opponent-neural": "workspace:*",
+    "@sinktheship/ui": "workspace:*",
+    "react": "19.3.1"
+  },
+  "devDependencies": {
+    "@sinktheship/tsconfig": "workspace:*",
+    "vite": "8.3.5"
+  }
+}

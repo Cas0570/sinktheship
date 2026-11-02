@@ -1,0 +1,20 @@
+{
+  "name": "@sinktheship/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./base.json": "./base.json",
+    "./pure.json": "./pure.json",
+    "./node.json": "./node.json",
+    "./browser.json": "./browser.json"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "typecheck": "tsc --build"
+  }
+}

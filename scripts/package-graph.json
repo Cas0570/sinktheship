@@ -1,0 +1,30 @@
+{
+  "game-core": [],
+  "opponents": [
+    "game-core"
+  ],
+  "game-session": [
+    "game-core",
+    "opponents"
+  ],
+  "opponent-neural": [
+    "game-core",
+    "opponents"
+  ],
+  "ui": [],
+  "benchmark": [
+    "game-core",
+    "game-session",
+    "opponents",
+    "opponent-neural"
+  ],
+  "tsconfig": [],
+  "eslint-config": [],
+  "web": [
+    "game-core",
+    "game-session",
+    "opponents",
+    "opponent-neural",
+    "ui"
+  ]
+}

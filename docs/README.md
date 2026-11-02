@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.22
+Versie: 0.23
 
 Laatst gewijzigd: 2026-11-02
 
@@ -555,3 +555,7 @@ De volledige bordlezing bevestigt dat geen bestaande In progress-, Review- of Bl
 > Lees AGENTS.md, docs/00-masterprompt.md en docs/README.md. Controleer eerst of de main-beveiliging actief is en de lokale Git-hooks zijn ingeschakeld. Lees via GitHub MCP het Projects-bord, inclusief In progress, Review en Blocked. Volg de taakvolgorde uit AGENTS.md en voer precies één beschikbare Ready-taak uit; als het bord ongewijzigd is, is dat T01. Werk op een taakbranch, voer de relevante checks uit, werk docs en Notion bij en open een PR met de voorgeschreven reviewsamenvatting. Zet de taak op Review en stop voor mijn beoordeling. Merge niet zonder mijn expliciete goedkeuring. Bij een ontbrekende voorwaarde: meld die en start geen andere taak.
 
 De bouw is tijdens deze voorbereiding niet gestart.
+
+## Ingang voor de bouw
+
+De voorbereidings-PR [#60](https://github.com/Cas0570/sinktheship/pull/60) is op 2026-11-02 na expliciet akkoord gemerged. De historische fase-4-stop hierboven beschrijft de eerdere overdracht. De actuele [quick start](../README.md#quick-start) beschrijft de workspace, compilerprofielen en grenscontroles; [ADR 0002](adr/0002-pnpm-monorepo.md#bootstrap-in-t01) legt de pins vast. Implementatiestatus blijft uitsluitend op het Projects-bord. Een lege Vite-ingang is geen speelbare app; UI-, lint-/CI- en ML-inrichting volgen in hun eigen taken.
