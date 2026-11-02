@@ -13,11 +13,21 @@
     "typecheck": "tsc --build",
     "check:boundaries": "node scripts/check-boundaries.mjs && depcruise --config .dependency-cruiser.cjs packages/*/src apps/web/src",
     "test:boundaries": "node --test scripts/boundaries.test.mjs",
-    "build": "pnpm typecheck && pnpm check:boundaries && pnpm --filter @sinktheship/web build"
+    "build": "pnpm typecheck && pnpm check:boundaries && pnpm --filter @sinktheship/web build",
+    "lint": "eslint . --max-warnings 0 && pnpm check:boundaries",
+    "format:check": "node scripts/check-masterprompt.mjs && prettier --check \"**/*.{js,mjs,cjs,ts,tsx,json,yaml,yml,html,css}\"",
+    "format": "prettier --write \"**/*.{js,mjs,cjs,ts,tsx,json,yaml,yml,html,css}\" && node scripts/check-masterprompt.mjs",
+    "test": "vitest run && pnpm test:boundaries",
+    "check:masterprompt": "node scripts/check-masterprompt.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3",
     "dependency-cruiser": "18.7.1",
-    "@types/node": "26.6.6"
+    "@types/node": "26.6.6",
+    "@sinktheship/eslint-config": "workspace:*",
+    "eslint": "10.14.0",
+    "prettier": "3.9.10",
+    "vitest": "5.0.5",
+    "vite": "8.3.5"
   }
 }

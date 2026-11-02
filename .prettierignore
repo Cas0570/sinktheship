@@ -1,0 +1,6 @@
+# Preserve the literal source assignment, including explicit formatter invocations.
+docs/00-masterprompt.md
+node_modules/
+**/dist/
+.artifacts/
+pnpm-lock.yaml

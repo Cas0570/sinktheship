@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
-Laatst gewijzigd: 2026-11-01
+Laatst gewijzigd: 2026-11-02
 
 Gerelateerd: [Kwaliteit](../12-quality-testing.md#commando-contract-en-codeconventies), [taalafspraak](0014-document-and-code-language.md), [dependencygrenzen](0043-dependency-enforcement.md)
 
@@ -28,8 +28,16 @@ Een geïntegreerde tool zoals Biome kan lint/format combineren, maar de gekozen 
 
 ## Gevolgen
 
-Nieuwe lintregels worden verklaard ingevoerd, niet met brede suppressions afgezwakt. Een schema-/APIwijziging moet ook de docs en module-README veranderen. Root-scripts in 12 worden later geïmplementeerd; deze ADR installeert geen formatter en herformatteert niet de letterlijke bron.
+Nieuwe lintregels worden verklaard ingevoerd, niet met brede suppressions afgezwakt. Een schema-/APIwijziging moet ook de docs en module-README veranderen. De T02-rootscripts realiseren het contract uit 12 en herformatteren niet de letterlijke bron.
 
 ## Verificatie
 
 AT-20-01/03, AT-23-03 en AT-24-02; controleer een bewuste rule-failure, uniforme configs, echte exitcodes en behoud van bronhash.
+
+## Uitvoering in T02
+
+De bestaande keuze is ingevuld met ESLint 10.14.0, `@eslint/js` 10.0.1, typescript-eslint 8.72.1, globals 17.14.0 en Prettier 3.9.10. De aanbevolen JS-/TS-configs en expliciete platform-globals vragen deze ondersteunende packages; zij voegen geen productruntime toe. ESLint/TypeScript zijn peers van de configpackage, met dezelfde pins in de workspace. typescript-eslint ondersteunt de bestaande TypeScript 5.9.3; er is geen compilerupgrade.
+
+Rootscripts voeren uitsluitend checks uit behalve het expliciete `pnpm format`. De broncode/configuratie uit T01 krijgt één mechanische formatterpass. Bestaande Markdown wordt niet massaal herschreven; de scope en bronhashbescherming staan in [kwaliteit](../12-quality-testing.md#eerste-ci-poort). De core- en private-state-regels worden met echte ESLint-fixtures getest. Dit realiseert het bestaande besluit zonder tweede formatter of lintframework.
+
+Actuele flat-config-/parser-/formatterdocumentatie is via Context7 geraadpleegd op 2026-11-02; versies en peer-enginecompatibiliteit zijn uit de npm-registry gelezen. [typescript-eslint](https://typescript-eslint.io/getting-started/) en [Prettier CLI](https://prettier.io/docs/cli).

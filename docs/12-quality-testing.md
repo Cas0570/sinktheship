@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.4
+Versie: 1.5
 
 Laatst gewijzigd: 2026-11-02
 
@@ -8,7 +8,7 @@ Gerelateerd: [Requirements](01-product-vision-scope.md), [stories en AT-IDs](03-
 
 # Kwaliteit, tests en vrijgave
 
-Dit is de centrale verificatiespecificatie. Requirements blijven normatief in 01, de 87 acceptatietests in 03 en algoritme-/modelcriteria in 05–07. Dit document legt vast hoe zij aantoonbaar worden gecontroleerd. Er is nog geen speelbare applicatie. T01 levert `pnpm typecheck`, `pnpm check:boundaries`, `pnpm test:boundaries`, `pnpm dev` en `pnpm build`; overige scripts en rapportpaden hieronder blijven te bouwen contracten.
+Dit is de centrale verificatiespecificatie. Requirements blijven normatief in 01, de 87 acceptatietests in 03 en algoritme-/modelcriteria in 05–07. Dit document legt vast hoe zij aantoonbaar worden gecontroleerd. Er is nog geen speelbare applicatie. T01 levert `pnpm typecheck`, `pnpm check:boundaries`, `pnpm test:boundaries`, `pnpm dev` en `pnpm build`; T02 voegt lint, format:check, test en de eerste CI-jobs toe. Overige scripts en rapportpaden hieronder blijven te bouwen contracten.
 
 ## Testlagen en gekozen tooling
 
@@ -188,3 +188,15 @@ MVP vereist Easy–Hard, beide talen, alle toepasselijke Must/NFR-poorten en eer
 ## Lokale workspacecontrole
 
 T01 toetst AT-20-03 en het installatiegedeelte van AT-24-01 met `pnpm test:boundaries`: frozen installatie en build in een tijdelijke kopie, alle toegestane imports, rootexports, configuratie laden, verboden deep/relatieve/omgekeerde imports, core-runtime-dependencies, typecycli en pure/browser/Node-profielen. `pnpm dev` wordt daarnaast met een HTTP-rookproef gecontroleerd. Dit vervangt geen menselijke uitbreidingsproef, speltest, browserkwalificatie of CI-bewijs. De suite stopt bij mislukte setup, zodat ontbrekende dependencies niet als geslaagde negatieve importtest worden verward.
+
+## Eerste CI-poort
+
+[Quality](../.github/workflows/quality.yml) draait op iedere PR en push naar main, zonder padfilters. `quality-ts` installeert de frozen lockfile en draait format/hash, typecheck, lint/dependencygrenzen en tests. `web-build` bouwt dezelfde checkout onafhankelijk. Beide gebruiken Ubuntu 24.04, gepinde Node/pnpm, uitsluitend `contents: read`, checkout zonder bewaarde credentials, geen repositorysecrets en geen gedeelde dependencycache. `pull_request_target` wordt niet gebruikt. Bash met pipefail voorkomt dat het bewaren van logs een falende check groen maakt.
+
+Alle externe Actions zijn op een volledige SHA gepind met een versienotitie. De pins zijn tegen de officiële release-/commitmetadata en gebruikte action-inputs gecontroleerd. Diagnostiek (`lint.log`, `tests.log`, `vitest.xml`) en statische webbuild krijgen aparte artefacten met commit-SHA en 14 dagen retentie. Ontbrekende artefacten zijn fouten. Diagnostiek uploadt ook na een falende check; de webbuild alleen na succes. Dit is PR-bewijs, geen releasepublicatie. De latere 90-dagenrelease-/modelregeling blijft ongewijzigd.
+
+Vitest heeft nu één Node-project met echte config-/beveiligingsproeven, geen lege producttests. De bestaande geïsoleerde grenssuite blijft onderdeel van `pnpm test`. Geen `passWithNoTests` of gefocuste `.only`-tests; jsdom, Python, browsers, benchmark, coverage voor toekomstige spelcode en de release-aggregatecheck worden pas bij hun implementatie toegevoegd.
+
+Prettier controleert JS/MJS/CJS/TS/TSX, JSON, YAML, HTML en CSS. De bestaande handgeschreven Markdown-specificaties vallen buiten de automatische bootstrap-formatrun om een ongerelateerde massale documentdiff te voorkomen; hun inhoud/links blijven reviewonderdeel. De letterlijke masterprompt is aanvullend expliciet genegeerd en `scripts/check-masterprompt.mjs` vergelijkt zijn SHA-256 met de baseline uit de goedgekeurde bron. Genereer die baseline niet opnieuw om een fout weg te werken.
+
+Verificatie van de rootscripts: een tijdelijke verboden core-import moet lint laten falen, onopgemaakte code format:check, een verkeerde TS-toekenning typecheck/build en een opzettelijk onware assertion test. Herstel elke fixture vóór de groene eindrun. Configtests controleren bovendien private-state-/namespaceomzeilingen, legale viewimports en de masterprompt-bytebewaking. De concrete uitvoeringsresultaten en CI-links horen in PR/issue, niet als tweede taakstatus in dit document.
