@@ -1,6 +1,6 @@
-Status: Concept
+Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-11-03
 
@@ -10,7 +10,7 @@ Gerelateerd: [Regels](../02-game-rules.md), [T05](../14-backlog.md#t05), [T06](.
 
 ## Besluitbasis
 
-Implementatievoorstel ter review met T05. Het bestaande vereiste van een plaatsbaarheidsbewijs vóór spelstart blijft ongewijzigd.
+Goedgekeurd door de ontwikkelaar op 2026-11-03 bij de review van [PR #66](https://github.com/Cas0570/sinktheship/pull/66). Het bestaande vereiste van een plaatsbaarheidsbewijs vóór spelstart blijft ongewijzigd.
 
 ## Context
 
@@ -36,4 +36,4 @@ Alleen game-core krijgt runtimecode, zonder externe dependency, RNG, klok of amb
 
 ## Verificatie
 
-T05 draagt bij aan AT-02-01/02/03 en AT-28-01 met grenzen, versieprioriteit, ondersteunde policies, canonieke fixture en reproduceerbare properties. Een onplaatsbare 2×2-no-touch-vloot bewijst expliciet dat `schema-valid` geen plaatsbaarheidsclaim doet. T06 moet de witness-/zoekbudgetuitkomsten toevoegen. Reviewbesluit voor dit voorstel hoort bij de T05-PR, niet bij een nieuwe productkeuze.
+T05 draagt bij aan AT-02-01/02/03 en AT-28-01 met grenzen, versieprioriteit, ondersteunde policies, canonieke fixture en reproduceerbare properties. Een onplaatsbare 2×2-no-touch-vloot bewijst expliciet dat `schema-valid` geen plaatsbaarheidsclaim doet. T06 moet de witness-/zoekbudgetuitkomsten toevoegen. Het menselijke akkoord is vastgelegd in de T05-PR.

@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.27
+Versie: 0.28
 
 Laatst gewijzigd: 2026-11-03
 
@@ -121,7 +121,7 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | [adr/0049-extension-scaffolding.md](adr/0049-extension-scaffolding.md) | Geaccepteerd | Fase 3: goedgekeurde besluitbasis; fase-3-precisering en actuele contractverwijzingen |
 | [adr/0012-github-projects.md](adr/0012-github-projects.md) | Geaccepteerd | Batch F; enige statusbron, velden/labels en ingebouwde workflows |
 | [adr/0050-review-and-task-workflow.md](adr/0050-review-and-task-workflow.md) | Geaccepteerd | Batch F; één taak, reviewbewijs, leerproeven en overdracht |
-| [adr/0051-staged-rule-validation.md](adr/0051-staged-rule-validation.md) | Concept | T05-review; schemavalidatie zonder plaatsbaarheidsclaim |
+| [adr/0051-staged-rule-validation.md](adr/0051-staged-rule-validation.md) | Geaccepteerd | T05; schemavalidatie zonder plaatsbaarheidsclaim |
 
 ### Documentstructuur
 
