@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.2
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Architectuur](../../docs/04-architecture.md), [Uitbreiden](../../docs/15-extension-guides.md)
 
@@ -14,9 +14,14 @@ Tegenstandercontracten en klassieke strategieën. De packagegrens bestaat; domei
 
 De rootexport is bewust leeg. Importeer toekomstige API uitsluitend via `@sinktheship/opponents`; nooit via `src/` of `dist/`.
 
-```ts
-import {} from "@sinktheship/opponents";
+Dit uitvoerbare voorbeeld controleert alleen de package-ingang, niet toekomstig spelgedrag. Voer het uit vanaf de repositoryroot na installatie:
+
+```sh
+pnpm typecheck
+pnpm --filter @sinktheship/opponents exec node --input-type=module -e 'import * as api from "@sinktheship/opponents"; console.log(Object.keys(api));'
 ```
+
+Verwacht `[]`: `src/index.ts` bevat uitsluitend `export {}`. Dit is een inspectie van de eigen package; productafnemers gebruiken later benoemde publieke imports.
 
 ## Grenzen en uitbreiden
 
@@ -24,4 +29,6 @@ Compilerprofiel: `pure`. Toegestane interne productdependencies: game-core. Voeg
 
 ## Controle
 
-Vanaf de root: `pnpm typecheck`, `pnpm check:boundaries` en `pnpm test:boundaries`. De grenssuite controleert deze package-ingang en compilerconfiguratie. Eigen gedrags-/componenttests volgen zodra deze package gedrag levert; De gedeelde test- en lintinrichting is beschikbaar via `pnpm test` en `pnpm lint`; zij claimt nog geen productgedrag voor deze lege API.
+Vanaf de root: `pnpm typecheck`, `pnpm check:boundaries` en `pnpm test:boundaries`. De grenssuite controleert deze package-ingang en compilerconfiguratie. Eigen gedrags-/componenttests volgen zodra deze package gedrag levert. De gedeelde test- en lintinrichting is beschikbaar via `pnpm test` en `pnpm lint`; zij claimt nog geen productgedrag voor deze lege API.
+
+Pure gedragstests komen onder `test/**/*.test.ts` en worden gevonden door het Node-project in `vitest.config.mjs`. Voor DOM/componentgedrag gebruik je het afzonderlijke jsdom-project en de [testhandleiding](../../tests/README.md#uitbreiden). Voeg geen lege tests toe om dekking te suggereren.

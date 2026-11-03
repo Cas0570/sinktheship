@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 0.25
+Versie: 0.26
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Masterprompt](00-masterprompt.md), [scope](01-product-vision-scope.md), [spelregels](02-game-rules.md), [stories](03-user-stories.md), [begrippen](glossary.md)
 
@@ -560,6 +560,8 @@ De bouw is tijdens deze voorbereiding niet gestart.
 
 ## Ingang voor de bouw
 
-De voorbereidings-PR [#60](https://github.com/Cas0570/sinktheship/pull/60) is op 2026-11-02 na expliciet akkoord gemerged. De historische fase-4-stop hierboven beschrijft de eerdere overdracht. De actuele [quick start](../README.md#quick-start) beschrijft de workspace, compilerprofielen en grenscontroles; [ADR 0002](adr/0002-pnpm-monorepo.md#bootstrap-in-t01) legt de pins vast. Implementatiestatus blijft uitsluitend op het Projects-bord. Een lege Vite-ingang is geen speelbare app; UI-, lint-/CI- en ML-inrichting volgen in hun eigen taken.
+De voorbereidings-PR [#60](https://github.com/Cas0570/sinktheship/pull/60) is op 2026-11-02 na expliciet akkoord gemerged. De historische fase-4-stop hierboven beschrijft de eerdere overdracht. De actuele [quick start](../README.md#quick-start) beschrijft de workspace, compilerprofielen en grenscontroles; [ADR 0002](adr/0002-pnpm-monorepo.md#bootstrap-in-t01) legt de pins vast. Implementatiestatus blijft uitsluitend op het Projects-bord. Een lege Vite-ingang is geen speelbare app; UI- en ML-inrichting volgen in hun eigen taken.
 
 De [eerste CI-poort](12-quality-testing.md#eerste-ci-poort) beschrijft de beschikbare lint-/format-/testchecks, artefacten en de expliciet nog niet gebouwde testlagen. De [lintconfig-README](../packages/eslint-config/README.md) is de ingang voor het uitbreiden van toolingregels. Status en uitvoeringsbewijs blijven op het bord en in de gekoppelde PR/issue.
+
+De [bijdragehandleiding](../CONTRIBUTING.md) verbindt de schone checkout, huidige module-ingangen, proefreview en PR-overdracht. De [PR-template](../.github/pull_request_template.md) vraagt concreet uitvoeringsbewijs. De module-README’s onderscheiden gerealiseerde configexports en lege domeiningangen van geplande contracten.

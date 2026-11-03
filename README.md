@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.8
+Versie: 1.9
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Leeswijzer](docs/README.md), [scope](docs/01-product-vision-scope.md), [roadmap](docs/13-roadmap.md), [werkinstructies](AGENTS.md)
 
@@ -70,6 +70,8 @@ De [Quality-workflow](.github/workflows/quality.yml) draait `quality-ts`, `web-b
 
 De versiekeuze en afbakening staan in [ADR 0002](docs/adr/0002-pnpm-monorepo.md#bootstrap-in-t01); de volledige normen blijven in [kwaliteit](docs/12-quality-testing.md).
 
+Voor de volledige route vanaf een schone clone tot review: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Code vinden en uitbreiden
 
 De [modulecatalogus](docs/04-architecture.md#modulecatalogus) beschrijft de packages en importgrenzen. De package-ingangen bestaan; domein-API’s volgen in de eigen taken. `game-core` beheert de regels; `opponents` de strategieën; `game-session` het sessieverloop; `opponent-neural` de modelcontracten; `ui` de presentational componenten; `benchmark` de evaluatie. `apps/web` verbindt ze. `apps/server` krijgt in v1 alleen een README.
@@ -77,3 +79,17 @@ De [modulecatalogus](docs/04-architecture.md#modulecatalogus) beschrijft de pack
 Elke module heeft een README met doel, publieke API, voorbeeld en uitbreidingsstappen. De [zes uitbreidingsgidsen](docs/15-extension-guides.md) zijn de ingang voor een tegenstander, preset, model, taal, scherm of Figma-component. Nederlands is de documenttaal; code, identifiers, codecomments en commits zijn Engels.
 
 De repo specificeert, [GitHub Projects](https://github.com/users/Cas0570/projects/3) houdt taakstatus bij en het [Notion-handboek](https://app.notion.com/p/40c275fb04ba81da945cee04d24413bb) legt de werkwijze uit met links naar de repo. Alle [projectlinks en resterende beslispunten](docs/README.md#externe-projectlinks) staan in de leeswijzer.
+
+| Ingang | README |
+|---|---|
+| `game-core` | [Doel, huidige exports, voorbeeld en controles](packages/game-core/README.md) |
+| `opponents` | [Doel, huidige exports, voorbeeld en controles](packages/opponents/README.md) |
+| `game-session` | [Doel, huidige exports, voorbeeld en controles](packages/game-session/README.md) |
+| `opponent-neural` | [Doel, huidige exports, voorbeeld en controles](packages/opponent-neural/README.md) |
+| `ui` | [Doel, huidige exports, voorbeeld en controles](packages/ui/README.md) |
+| `benchmark` | [Doel, huidige exports, voorbeeld en controles](packages/benchmark/README.md) |
+| `tsconfig` | [Doel, huidige exports, voorbeeld en controles](packages/tsconfig/README.md) |
+| `eslint-config` | [Doel, huidige exports, voorbeeld en controles](packages/eslint-config/README.md) |
+| `apps/web` | [Ingang en grenzen](apps/web/README.md) |
+| `apps/server` | [Ingang en grenzen](apps/server/README.md) |
+| Testinfrastructuur | [Component-/browserfixtures en uitbreiding](tests/README.md) |
