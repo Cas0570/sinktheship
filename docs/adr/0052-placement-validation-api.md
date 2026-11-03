@@ -1,6 +1,6 @@
-Status: Concept
+Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-11-03
 
@@ -12,7 +12,7 @@ Gerelateerd: [Regels](../02-game-rules.md#geometrie-api), [engine](../05-game-en
 
 T06 moet zowel complete witnesses als gedeeltelijke plaatsingsvoorstellen controleren. Het bestaande regelcontract legt de geometrie en bewijsuitkomsten vast, maar nog niet de publieke helpernamen en plaatsingsfoutcodes. Een mislukte rotatie mag geen bestaande draft wijzigen.
 
-## Besluitvoorstel
+## Besluit
 
 Ontsluit pure `isWithinBoard`, `getShipCells` en `rotateShip` en één `validatePlacement` met standaard complete controle en een expliciete gedeeltelijke modus. Resultaat en foutcodes staan uitsluitend in document 02. Regels moeten vooraf schema-gecontroleerd zijn. Geef bij succes een onafhankelijke plaatsingskopie. Helpers muteren niets; de caller accepteert een voorstel pas na validatie. Enginecommands en UI-transacties vallen buiten T06.
 
@@ -26,4 +26,4 @@ Geen nieuwe dependencies, RNG, klok of cache. `valid` uit gedeeltelijke plaatsin
 
 ## Verificatie
 
-RULE-01–06, RULE-17/18, exacte budgetgrenzen, inputimmutability, rotatie/transpositie, 2×2/26×26 en een onafhankelijke kleine-bord-oracle. De PR levert uitvoeringsbewijs; menselijke goedkeuring van deze aanvullende API volgt met de review.
+RULE-01–06, RULE-17/18, exacte budgetgrenzen, inputimmutability, rotatie/transpositie, 2×2/26×26 en een onafhankelijke kleine-bord-oracle. [PR #67](https://github.com/Cas0570/sinktheship/pull/67) levert het uitvoeringsbewijs. De ontwikkelaar heeft de wijziging en deze aanvullende API op 2026-11-03 expliciet goedgekeurd en opdracht gegeven te mergen.
