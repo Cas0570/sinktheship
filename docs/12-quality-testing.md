@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.6
+Versie: 1.7
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Requirements](01-product-vision-scope.md), [stories en AT-IDs](03-user-stories.md), [engine](05-game-engine.md), [tegenstanders](06-opponents.md), [ML](07-neural-network.md), [frontend](08-frontend.md), [tooling](16-tooling-mcp.md), [ADR 0048](adr/0048-quality-budgets.md), [leeswijzer](README.md)
 
@@ -39,7 +39,7 @@ Voor kritieke goedkope properties: 1.000 runs per property per PR. Voor duurdere
 
 Een verdeeltest op willekeurige samples is geen bewijs van uniformiteit. Gebruik de exacte kleine enumeraties uit 06 om de sampler te controleren; statistische rooksignalen mogen alleen aanvullende diagnostiek zijn. Timeouts mogen geen trage maar geldige vloten uit benchmarknoemers verwijderen.
 
-Streef voor `game-core` naar minimaal 90% statements/lines/functions en 85% branches, met 100% van de benoemde invariant-/randgevalfixtures. Coverage wordt bij de eerste implementatie ingesteld en bewaakt; percentages mogen geen reden zijn voor waardeloze tests. Generated assets, type-only modules en externe runtimes vallen buiten coverage met een expliciete lijst. Verlaag een grens alleen met onderbouwde review en ADR-aanpassing, nooit om een falende PR te laten slagen.
+Streef voor `game-core` naar minimaal 90% statements/lines/functions en 85% branches, met 100% van de benoemde invariant-/randgevalfixtures. De eerste regelimplementatie bewaakt deze coverage via `pnpm test`, met rapporten in `.artifacts/coverage/` en uitsluiting van uitsluitend type-only `rules.ts` en exportbarrel `index.ts` (ADR 0040). Coverage wordt bij verdere implementatie uitgebreid; percentages mogen geen reden zijn voor waardeloze tests. Generated assets, type-only modules en externe runtimes vallen buiten coverage met een expliciete lijst. Verlaag een grens alleen met onderbouwde review en ADR-aanpassing, nooit om een falende PR te laten slagen.
 
 ## Kernflows, fouten en traceerbaarheid
 
