@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
 Laatst gewijzigd: 2026-11-03
 
@@ -126,7 +126,7 @@ type RuleSchemaValidationResult =
   | Extract<RuleValidationResult, { readonly status: "invalid" | "unsupported" }>;
 ```
 
-`schema-valid` staat geen spelstart toe en bevat geen witness. Het volledige `validateRuleSet` hierboven blijft het contract voor T06. De voorcontrole geeft de eerste fout in vaste volgorde, met `$` als rootpad, punten voor velden en `[index]` voor vlootelementen; bij succes krijgt de caller een onafhankelijke kopie. `getRuleSignatures` vereist schema-gecontroleerde data, muteert niets en bewijst zelf geen geldigheid. De typed factory `createV1RuleSet(contactRule = "allow", extraShotOnHit = false)` accepteert `allow`/`no-touch` en levert verse v1-data; onbekende JSON gaat altijd eerst door de voorcontrole. Deze gefaseerde API is goedgekeurd in [ADR 0051](adr/0051-staged-rule-validation.md).
+`schema-valid` staat geen spelstart toe en bevat geen witness. Het volledige `validateRuleSet` hierboven levert nu het plaatsbaarheidsbewijs. De voorcontrole geeft de eerste fout in vaste volgorde, met `$` als rootpad, punten voor velden en `[index]` voor vlootelementen; bij succes krijgt de caller een onafhankelijke kopie. `getRuleSignatures` vereist schema-gecontroleerde data, muteert niets en bewijst zelf geen geldigheid. De typed factory `createV1RuleSet(contactRule = "allow", extraShotOnHit = false)` accepteert `allow`/`no-touch` en levert verse v1-data; onbekende JSON gaat altijd eerst door de voorcontrole. Deze gefaseerde API is goedgekeurd in [ADR 0051](adr/0051-staged-rule-validation.md).
 
 ## Validatie en toegestane combinaties
 
@@ -270,9 +270,17 @@ Er wordt in v1 geen digest berekend; exacte canonieke strings vermijden een hash
 
 Een gelijke strategiesignatuur is noodzakelijk maar niet voldoende voor modelgebruik. Het manifest moet ook de encoding, runtimevoorwaarden en toegestane beurtpolicy/-versie, quota en extra-schotvarianten dekken. Onbekende policies zijn niet automatisch ondersteund. De compatibiliteitsresolver vergelijkt gevalideerde data, niet alleen door een extern bestand opgegeven strings. De eerste modelrelease ondersteunt Klassiek; hergebruik voor Nog eens bij raak wordt per variant geëvalueerd.
 
+## Geometrie-API
+
+De [game-core-README](../packages/game-core/README.md#plaatsing-en-bewijs) beschrijft de uitgewerkte aanroepvoorbeelden. `validatePlacement(rules, input, complete = true)` vereist schema-gecontroleerde regels en valideert onbekende plaatsingsdata. Succes levert `{ status: "valid", placement }` met een onafhankelijke kopie; mislukking levert `{ status: "invalid", issues }`. In de expliciete gedeeltelijke modus (`complete = false`) betekent succes uitsluitend geldige draftgeometrie. De bestaande complete `Placement`-vorm verandert niet; de engine bewaakt in T08 bevestiging en spelstart.
+
+De eerste fout volgt de invoervolgorde van schepen: vorm → bekend/uniek ID → startvorm/gehele coördinaten → oriëntatie → grenzen → overlap → contact; na alle schepen volgt compleetheid. `PlacementIssue.code` is `INVALID_SHAPE`, `UNKNOWN_SHIP_ID`, `DUPLICATE_SHIP_ID`, `MISSING_SHIP`, `INVALID_COORDINATE`, `INVALID_ORIENTATION`, `OUT_OF_BOUNDS`, `OVERLAP` of `FORBIDDEN_CONTACT`. Paden gebruiken `$`, `$.ships[index]` en waar relevant `.shipId`, `.start` of `.orientation`; ontbrekende schepen gebruiken `$.ships`. Het zijn gegevens voor vertalingen, geen gebruikerscopy.
+
+`isWithinBoard(coord, board)` controleert gehele coördinaten en bordgrenzen. `getShipCells(ship, length)` geeft cellen zonder clipping voor geldige getypeerde scheepsdata en positieve gehele lengte. `rotateShip(ship)` retourneert een verse plaatsing met dezelfde startcel en verwisselde richting. Een caller valideert de voorgestelde draft vóór vervanging; bij afwijzing blijft de oude draft intact. Zie [ADR 0052](adr/0052-placement-validation-api.md).
+
 ## Randgevallen en referentiegevallen
 
-Deze IDs zijn toekomstige golden-fixturegevallen, nog geen bestaande JSON-fixtures of geslaagde enginetests. De fixturebestanden worden in M1 gemaakt en later door TypeScript en Python gedeeld.
+RULE-01–06 staan als onafhankelijke JSON-gevallen in [plaatsingsfixtures](../fixtures/rules/placement.json) en worden in TypeScript getest; RULE-17/18 hebben expliciete bewijs-/budgettests. Overige IDs blijven referentiegevallen voor hun implementatietaken. Pythonpariteit wordt later toegevoegd.
 
 | ID | Gegeven / actie | Verwachte uitkomst |
 |---|---|---|

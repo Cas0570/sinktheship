@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "contacts": ["allow", "no-orthogonal", "no-touch"],
+  "cases": [
+    {
+      "id": "RULE-01",
+      "lengths": [5, 4, 3, 3, 2],
+      "ids": ["carrier", "battleship", "cruiser", "submarine", "destroyer"],
+      "board": {
+        "rows": 10,
+        "cols": 10
+      },
+      "ships": [
+        {
+          "shipId": "carrier",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "battleship",
+          "start": {
+            "row": 2,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "cruiser",
+          "start": {
+            "row": 4,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "submarine",
+          "start": {
+            "row": 6,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "destroyer",
+          "start": {
+            "row": 8,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["valid", "valid", "valid"]
+    },
+    {
+      "id": "RULE-02",
+      "lengths": [2],
+      "ids": ["a"],
+      "board": {
+        "rows": 10,
+        "cols": 10
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 9
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["OUT_OF_BOUNDS", "OUT_OF_BOUNDS", "OUT_OF_BOUNDS"]
+    },
+    {
+      "id": "RULE-03",
+      "lengths": [1, 1],
+      "ids": ["a", "b"],
+      "board": {
+        "rows": 2,
+        "cols": 2
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "b",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["OVERLAP", "OVERLAP", "OVERLAP"]
+    },
+    {
+      "id": "RULE-04",
+      "lengths": [1, 1],
+      "ids": ["a", "b"],
+      "board": {
+        "rows": 2,
+        "cols": 2
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "b",
+          "start": {
+            "row": 0,
+            "col": 1
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["valid", "FORBIDDEN_CONTACT", "FORBIDDEN_CONTACT"]
+    },
+    {
+      "id": "RULE-05",
+      "lengths": [1, 1],
+      "ids": ["a", "b"],
+      "board": {
+        "rows": 2,
+        "cols": 2
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "b",
+          "start": {
+            "row": 1,
+            "col": 1
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["valid", "valid", "FORBIDDEN_CONTACT"]
+    },
+    {
+      "id": "RULE-06-missing",
+      "lengths": [1, 1],
+      "ids": ["a", "b"],
+      "board": {
+        "rows": 2,
+        "cols": 2
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["MISSING_SHIP", "MISSING_SHIP", "MISSING_SHIP"]
+    },
+    {
+      "id": "RULE-06-duplicate",
+      "lengths": [1, 1],
+      "ids": ["a", "b"],
+      "board": {
+        "rows": 2,
+        "cols": 2
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "a",
+          "start": {
+            "row": 1,
+            "col": 1
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": [
+        "DUPLICATE_SHIP_ID",
+        "DUPLICATE_SHIP_ID",
+        "DUPLICATE_SHIP_ID"
+      ]
+    },
+    {
+      "id": "RULE-06-unknown",
+      "lengths": [1, 1],
+      "ids": ["a", "b"],
+      "board": {
+        "rows": 2,
+        "cols": 2
+      },
+      "ships": [
+        {
+          "shipId": "a",
+          "start": {
+            "row": 0,
+            "col": 0
+          },
+          "orientation": "horizontal"
+        },
+        {
+          "shipId": "c",
+          "start": {
+            "row": 1,
+            "col": 1
+          },
+          "orientation": "horizontal"
+        }
+      ],
+      "expected": ["UNKNOWN_SHIP_ID", "UNKNOWN_SHIP_ID", "UNKNOWN_SHIP_ID"]
+    }
+  ]
+}

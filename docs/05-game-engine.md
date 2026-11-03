@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Regels](02-game-rules.md), [architectuur](04-architecture.md), [tegenstanders](06-opponents.md), [stories](03-user-stories.md), [ADR 0028](adr/0028-state-events-and-replay.md)
 
@@ -264,6 +264,8 @@ De eventprojector gebruikt dezelfde onthullingsfunctie als de view. `placement-u
 ## Plaatsbaarheidsvalidatie
 
 De vier vrijgegeven configuraties gebruiken de gevalideerde witness uit 02. Voor andere configuraties onderzoekt de validator schepen op aflopende lengte en daarna ASCII-ID. Kandidaten staan horizontaal vóór verticaal, per oriëntatie rij-major; lengte 1 heeft alleen horizontaal. DFS verwerpt overlap/contact direct. Een zoekknoop is iedere onderzochte kandidaatplaatsing, ook een direct verworpen kandidaat. De eerste complete oplossing bewijst validiteit; volledige uitputting bewijst onplaatsbaarheid.
+
+De implementatie staat in `validateRuleSet` via de publieke game-core-export. Alleen binnenboordse kandidaatplaatsingen worden opgesomd. De limiet moet een positief veilig geheel getal zijn; een ongeldige limiet is een programmeringsfout (`RangeError`) vóór regelvalidatie. Deze technische fout bevat geen producttekst.
 
 De v1-compositie stelt voor algemene invoer `maxSearchNodes = 1_000_000` in. Wanneer de volgende kandidaat de limiet zou overschrijden volgt `inconclusive`; geen tijdafhankelijke stopuitkomst. De Worker voert de zoekopdracht uit. Deze validator zoekt één bewijs en gebruikt geen randomness; hij is een andere operatie dan de uniforme vlootsampler uit 06. De limiet is een projectkeuze, geen gemeten prestatienorm.
 

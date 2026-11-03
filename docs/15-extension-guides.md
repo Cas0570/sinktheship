@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Architectuur en uitbreidingsgrenzen](04-architecture.md), [regels](02-game-rules.md), [tegenstanders](06-opponents.md), [ML](07-neural-network.md), [frontend](08-frontend.md), [design brief](09-design-brief.md), [Figma-playbook](10-figma-mcp-playbook.md), [kwaliteit](12-quality-testing.md), [ADR 0049](adr/0049-extension-scaffolding.md)
 
@@ -44,7 +44,7 @@ Voorwaarden: de gedeelde Opponent-suite, builtin-catalogus, uniforme sampler en 
 
 ## Een regel-preset toevoegen
 
-Voorwaarden: configdiscovery en de validator/witness uit 02 bestaan. Een preset is data, geen nieuwe TurnPolicy-implementatie.
+De validator/witness uit 02 bestaat via de [game-core-API](../packages/game-core/README.md#plaatsing-en-bewijs); configdiscovery en de botproeven hieronder blijven voorwaarden voor de volledige uitbreiding. Een preset is data, geen nieuwe TurnPolicy-implementatie.
 
 1. Maak één object onder de geplande map `packages/game-core/src/presets/` met ID, labelkey en volledige RuleSet-data. De build/composition ontdekt configbestanden; de pure core gebruikt de resulterende registry zonder runtime-filesystemtoegang.
 2. Voeg de label-/uitlegvertalingen toe volgens de bestaande EN/NL-keystructuur. Gebruik nooit de zichtbare presetnaam in de signature.
