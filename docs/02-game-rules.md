@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.1
+Versie: 1.3
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [stories](03-user-stories.md), [begrippen](glossary.md), [presets-ADR](adr/0022-v1-presets.md), [signaturen-ADR](adr/0023-rule-signatures.md), [validatie-ADR](adr/0024-ruleset-validation.md)
 
@@ -111,6 +111,22 @@ declare function getRuleSignatures(rules: RuleSet): RuleSignatures;
 ```
 
 `nameKey` is een vertaalkey, geen vertaalde tekst of spelregel. Elk vlootexemplaar heeft een unieke `id`; twee schepen met dezelfde lengte blijven verschillende exemplaren. `Placement` is een complete vloot. De plaatsingseditor mag tijdelijk een deelverzameling bijhouden, maar een wedstrijd start uitsluitend met twee complete geldige plaatsingen.
+
+## Beschikbare voorcontrole in T05
+
+De [publieke game-core-API](../packages/game-core/README.md) levert `validateRuleSetSchema(input: unknown): RuleSchemaValidationResult`. Deze doorloopt de hieronder vastgelegde controles tot en met lengte en oppervlakte, maar bewijst geen plaatsbaarheid. De aanvullende typevorm is:
+
+```ts
+type RuleSchemaValidationResult =
+  | {
+      readonly status: "schema-valid";
+      readonly rules: RuleSet;
+      readonly signatures: RuleSignatures;
+    }
+  | Extract<RuleValidationResult, { readonly status: "invalid" | "unsupported" }>;
+```
+
+`schema-valid` staat geen spelstart toe en bevat geen witness. Het volledige `validateRuleSet` hierboven blijft het contract voor T06. De voorcontrole geeft de eerste fout in vaste volgorde, met `$` als rootpad, punten voor velden en `[index]` voor vlootelementen; bij succes krijgt de caller een onafhankelijke kopie. `getRuleSignatures` vereist schema-gecontroleerde data, muteert niets en bewijst zelf geen geldigheid. De typed factory `createV1RuleSet(contactRule = "allow", extraShotOnHit = false)` accepteert `allow`/`no-touch` en levert verse v1-data; onbekende JSON gaat altijd eerst door de voorcontrole. Deze gefaseerde API is goedgekeurd in [ADR 0051](adr/0051-staged-rule-validation.md).
 
 ## Validatie en toegestane combinaties
 

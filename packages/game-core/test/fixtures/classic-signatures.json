@@ -1,0 +1,4 @@
+{
+  "rulesSignature": "rules/v1:{\"board\":{\"cols\":10,\"rows\":10},\"contactRule\":\"allow\",\"fleet\":[{\"id\":\"battleship\",\"length\":4},{\"id\":\"carrier\",\"length\":5},{\"id\":\"cruiser\",\"length\":3},{\"id\":\"destroyer\",\"length\":2},{\"id\":\"submarine\",\"length\":3}],\"information\":{\"hit\":\"hit-only\",\"sunk\":\"ship-type\"},\"schemaVersion\":1,\"startingPlayer\":\"random\",\"turn\":{\"extraShotOnHit\":false,\"policyId\":\"fixed\",\"policyVersion\":1,\"quota\":{\"count\":1,\"kind\":\"fixed\"}}}",
+  "strategySignature": "strategy/v1:{\"board\":{\"cols\":10,\"rows\":10},\"contactRule\":\"allow\",\"fleet\":[{\"id\":\"battleship\",\"length\":4},{\"id\":\"carrier\",\"length\":5},{\"id\":\"cruiser\",\"length\":3},{\"id\":\"destroyer\",\"length\":2},{\"id\":\"submarine\",\"length\":3}],\"information\":{\"hit\":\"hit-only\",\"sunk\":\"ship-type\"}}"
+}

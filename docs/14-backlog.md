@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.2
+Versie: 1.3
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [stories en tests](03-user-stories.md), [roadmap](13-roadmap.md), [kwaliteit](12-quality-testing.md), [werkinstructies](../AGENTS.md), [bordbesluit](adr/0012-github-projects.md)
 
@@ -209,7 +209,7 @@ T44–T47 leveren de geplande Should-functies. T57–T59 zijn expliciet optionel
 **Acceptatiecriteria:**
 
 - [ ] Ongeldige en niet-ondersteunde invoer krijgen verschillende uitkomsten; v1-keuzes leveren exact vier regelsignaturen en twee strategiesignaturen.
-- [ ] IDs, namen, taal en niet-betekenisvolle volgorde veranderen de signatuur niet; betekenisvolle velden wel.
+- [ ] Preset-IDs, namen, taal en niet-betekenisvolle volgorde veranderen de signatuur niet; betekenisvolle velden, inclusief vloot-IDs volgens 02, wel.
 
 **Afhankelijkheden:** [T02](#t02)
 

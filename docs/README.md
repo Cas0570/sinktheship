@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.26
+Versie: 0.28
 
 Laatst gewijzigd: 2026-11-03
 
@@ -121,6 +121,7 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | [adr/0049-extension-scaffolding.md](adr/0049-extension-scaffolding.md) | Geaccepteerd | Fase 3: goedgekeurde besluitbasis; fase-3-precisering en actuele contractverwijzingen |
 | [adr/0012-github-projects.md](adr/0012-github-projects.md) | Geaccepteerd | Batch F; enige statusbron, velden/labels en ingebouwde workflows |
 | [adr/0050-review-and-task-workflow.md](adr/0050-review-and-task-workflow.md) | Geaccepteerd | Batch F; één taak, reviewbewijs, leerproeven en overdracht |
+| [adr/0051-staged-rule-validation.md](adr/0051-staged-rule-validation.md) | Geaccepteerd | T05; schemavalidatie zonder plaatsbaarheidsclaim |
 
 ### Documentstructuur
 
@@ -565,3 +566,6 @@ De voorbereidings-PR [#60](https://github.com/Cas0570/sinktheship/pull/60) is op
 De [eerste CI-poort](12-quality-testing.md#eerste-ci-poort) beschrijft de beschikbare lint-/format-/testchecks, artefacten en de expliciet nog niet gebouwde testlagen. De [lintconfig-README](../packages/eslint-config/README.md) is de ingang voor het uitbreiden van toolingregels. Status en uitvoeringsbewijs blijven op het bord en in de gekoppelde PR/issue.
 
 De [bijdragehandleiding](../CONTRIBUTING.md) verbindt de schone checkout, huidige module-ingangen, proefreview en PR-overdracht. De [PR-template](../.github/pull_request_template.md) vraagt concreet uitvoeringsbewijs. De module-README’s onderscheiden gerealiseerde configexports en lege domeiningangen van geplande contracten.
+
+
+De [game-core-README](../packages/game-core/README.md) beschrijft de eerste regel-API en reproduceerbare tests. De schemavoorcontrole uit [ADR 0051](adr/0051-staged-rule-validation.md) staat los van de volledige plaatsbaarheidsvalidatie. De [testtooling-ADR](adr/0040-test-tooling.md) beschrijft de propertytestpins en coveragepoort. Taakstatus en reviewbesluit blijven op GitHub.
