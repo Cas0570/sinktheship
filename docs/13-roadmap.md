@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.4
+Versie: 1.5
 
-Laatst gewijzigd: 2026-11-02
+Laatst gewijzigd: 2026-11-03
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [backlog](14-backlog.md), [kwaliteit](12-quality-testing.md), [neural network](07-neural-network.md), [leeswijzer](README.md), [ADR 0050](adr/0050-review-and-task-workflow.md)
 
@@ -92,3 +92,13 @@ Deze voorwaarden blokkeren niet het afronden van de documentatie. Er zijn geen a
 Daarna kan een afzonderlijke multiplayerrelease worden gepland: eerst private rooms met serverautoriteit/reconnect, vervolgens quick play. Het [toekomstontwerp](11-multiplayer-future.md) levert de grenzen, maar krijgt pas bij die releasekeuze server-/transporttaken, hostingbesluiten, tests en een actuele beveiligingsreview. `apps/server/README.md` is in v1 het enige serverbestand. Er is geen v1-taak die online matchmaking of accounts bouwt.
 
 Gebruikersaccounts worden in v1 en de eerstvolgende releases niet gebouwd of gebruikt. Dit is een bewuste keuze voor nu; accounts kunnen in een latere release worden toegevoegd.
+
+## Gerealiseerde mijlpaal M0 — 2026-11-03
+
+Het ontwikkelfundament is opgeleverd met commit [7e15370](https://github.com/Cas0570/sinktheship/commit/7e15370ac7370a2aea56a20428e6b9b9a21d560f), na menselijke review en merge van [PR 61](https://github.com/Cas0570/sinktheship/pull/61), [62](https://github.com/Cas0570/sinktheship/pull/62), [63](https://github.com/Cas0570/sinktheship/pull/63) en [64](https://github.com/Cas0570/sinktheship/pull/64). Dit is een interne mijlpaal, geen applicatierelease, tag of deployment.
+
+Gerealiseerd: gepinde workspace, publieke package-ingangen en importgrenzen, lint/type-/unit-/component-/browserchecks, gescheiden test- en productiebuilds, modulehandleidingen en bijdrage-/PR-werkwijze. De echte merges bevestigen de issueafsluiting en automatische bordworkflow. De [Notion-release notes](https://www.notion.so/40c275fb04ba81198f61dd2b0e4c3ce1) beschrijven de mogelijkheden en beperkingen.
+
+Bewijs: [T04 CI](https://github.com/Cas0570/sinktheship/actions/runs/41604995548) met drie geslaagde jobs en [T03 browsermatrix](https://github.com/Cas0570/sinktheship/actions/runs/41511327236) met 24 geslaagde gevallen. De [T04-proefreview](https://github.com/Cas0570/sinktheship/pull/64) bevat de schone-checkoutcontrole, 33 Vitest-tests, 29 grenscontroles, exportvoorbeelden en documentlinks. CI-artefacten hebben 14 dagen retentie.
+
+De productpagina en domein-API's zijn nog leeg. Er is geen spel-, model-, fysieke toestel- of menselijke uitbreidingskwalificatie geclaimd. WebKit draait in Ubuntu-CI; de lokale Manjaro-bibliotheken ontbreken. Volgend werk en actuele taakstatus blijven uitsluitend op het Projects-bord.
