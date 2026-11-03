@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.28
+Versie: 0.30
 
 Laatst gewijzigd: 2026-11-03
 
@@ -121,6 +121,7 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | [adr/0049-extension-scaffolding.md](adr/0049-extension-scaffolding.md) | Geaccepteerd | Fase 3: goedgekeurde besluitbasis; fase-3-precisering en actuele contractverwijzingen |
 | [adr/0012-github-projects.md](adr/0012-github-projects.md) | Geaccepteerd | Batch F; enige statusbron, velden/labels en ingebouwde workflows |
 | [adr/0050-review-and-task-workflow.md](adr/0050-review-and-task-workflow.md) | Geaccepteerd | Batch F; één taak, reviewbewijs, leerproeven en overdracht |
+| [adr/0052-placement-validation-api.md](adr/0052-placement-validation-api.md) | Geaccepteerd | T06; geometriehelpers, draftcontrole en veilige zoeklimiet |
 | [adr/0051-staged-rule-validation.md](adr/0051-staged-rule-validation.md) | Geaccepteerd | T05; schemavalidatie zonder plaatsbaarheidsclaim |
 
 ### Documentstructuur
@@ -569,3 +570,5 @@ De [bijdragehandleiding](../CONTRIBUTING.md) verbindt de schone checkout, huidig
 
 
 De [game-core-README](../packages/game-core/README.md) beschrijft de eerste regel-API en reproduceerbare tests. De schemavoorcontrole uit [ADR 0051](adr/0051-staged-rule-validation.md) staat los van de volledige plaatsbaarheidsvalidatie. De [testtooling-ADR](adr/0040-test-tooling.md) beschrijft de propertytestpins en coveragepoort. Taakstatus en reviewbesluit blijven op GitHub.
+
+De [plaatsings-API](../packages/game-core/README.md#plaatsing-en-bewijs) ontsluit geometrie, draftcontrole en deterministisch plaatsbaarheidsbewijs. [ADR 0052](adr/0052-placement-validation-api.md) motiveert de aanvullende API. Gedeelde plaatsingsfixtures en begrensde bewijsproeven staan bij de coretests; enginecommands en Pythonpariteit volgen afzonderlijk.
