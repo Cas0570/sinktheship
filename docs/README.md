@@ -123,7 +123,6 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | [adr/0050-review-and-task-workflow.md](adr/0050-review-and-task-workflow.md) | Geaccepteerd | Batch F; één taak, reviewbewijs, leerproeven en overdracht |
 | [adr/0052-placement-validation-api.md](adr/0052-placement-validation-api.md) | Geaccepteerd | T06; geometriehelpers, draftcontrole en veilige zoeklimiet |
 | [adr/0051-staged-rule-validation.md](adr/0051-staged-rule-validation.md) | Geaccepteerd | T05; schemavalidatie zonder plaatsbaarheidsclaim |
-
 | [adr/0053-rng-seeding-api.md](adr/0053-rng-seeding-api.md) | Concept | T07; expliciete seedparen, herstel en onafhankelijke RNG-instances |
 
 ### Documentstructuur
