@@ -1,0 +1,16 @@
+{
+  "algorithm": "pcg32-xsh-rr-v1",
+  "initStateHex": "000000000000002a",
+  "initSequenceHex": "0000000000000036",
+  "initialStateHex": "185706b82c2e03f8",
+  "incrementHex": "000000000000006d",
+  "outputsHex": [
+    "a15c02b7",
+    "7b47f409",
+    "ba1d3330",
+    "83d2f293",
+    "bfa4784b",
+    "cbed606e"
+  ],
+  "finalStateHex": "beb6d0b73fdb974a"
+}
