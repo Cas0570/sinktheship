@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.32
+Versie: 0.33
 
 Laatst gewijzigd: 2026-11-04
 
@@ -575,3 +575,5 @@ De [game-core-README](../packages/game-core/README.md) beschrijft de eerste rege
 De [plaatsings-API](../packages/game-core/README.md#plaatsing-en-bewijs) ontsluit geometrie, draftcontrole en deterministisch plaatsbaarheidsbewijs. [ADR 0052](adr/0052-placement-validation-api.md) motiveert de aanvullende API. Gedeelde plaatsingsfixtures en begrensde bewijsproeven staan bij de coretests; enginecommands en Pythonpariteit volgen afzonderlijk.
 
 De [RNG-handleiding](../packages/game-core/README.md#reproduceerbare-randomness) beschrijft PCG32, expliciete seedparen, gescheiden stromen en herstelbare snapshots. De aanvullende [seed-/factory-API](adr/0053-rng-seeding-api.md) is op 2026-11-04 goedgekeurd; de bestaande integer- en stroomgrenzen uit document 05 blijven leidend.
+
+De [commandhandleiding](../packages/game-core/README.md#een-wedstrijd-uitvoeren) beschrijft spelstart, de geïnjecteerde dependencies, afwijzingen, private events en de testproef. Het [enginecontract](05-game-engine.md#commands-en-events) blijft eigenaar van state-/command-/beurtsemantiek; taakstatus en reviewbesluit staan uitsluitend op GitHub.
