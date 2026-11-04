@@ -29,3 +29,23 @@ export type { Rng, RngState, RngFactory, RngSeed } from './rng.js';
 export { createRng, rngFactory } from './rng.js';
 export type { RandomSeedPlan, RandomStreams } from './random-streams.js';
 export { createRandomStreams } from './random-streams.js';
+export type {
+  PrivateShotRecord,
+  TurnState,
+  GameBase,
+  PlacingState,
+  PlayingState,
+  FinishedState,
+  GameState,
+  GameAction,
+  GameCommand,
+  EventPayload,
+  GameEvent,
+  CommandError,
+  EngineResult,
+  TurnContext,
+  TurnPolicy,
+  TurnPolicyRegistry,
+} from './game-types.js';
+export { createGame, applyCommand } from './engine.js';
+export { fixedTurnPolicy, turnPolicies } from './turn-policy.js';

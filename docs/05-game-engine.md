@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.4
+Versie: 1.5
 
 Laatst gewijzigd: 2026-11-04
 
@@ -194,7 +194,7 @@ declare function applyCommand(
 ): EngineResult;
 ```
 
-`createGame` neemt een geldig validatieresultaat, game-ID, engineversie en starter-RNG-state aan en maakt revision 0 met lege drafts. De dependencyfactory maakt uitsluitend een nieuwe lokale RNG uit de aangeleverde state. Die clone mag muteren; inputstate en externe RNG-instances veranderen niet. Zo blijft `applyCommand` deterministisch en zonder externe bijwerkingen. Beurtpolicies zijn eveneens pure functies; `fixed@1` is de enige geregistreerde v1-policy.
+`createGame(validated, gameId, engineVersion, starterRng): PlacingState` neemt een geldig validatieresultaat, game-ID, engineversie en starter-RNG-state aan en maakt revision 0 met lege drafts. De dependencyfactory maakt uitsluitend een nieuwe lokale RNG uit de aangeleverde state. Die clone mag muteren; inputstate en externe RNG-instances veranderen niet. Zo blijft `applyCommand` deterministisch en zonder externe bijwerkingen. Beurtpolicies zijn eveneens pure functies; `fixed@1` is de enige geregistreerde v1-policy. De publieke exports `fixedTurnPolicy` en `turnPolicies` leveren deze implementatie en de exacte ID-/versieresolutie. Een ontbrekende policy in de geïnjecteerde registry is een compositiefout (`TypeError`). Starterloting gebruikt `int(2)`, met 0 voor player-1 en 1 voor player-2.
 
 | Command | Voorwaarden en effect | Interne events in volgorde |
 |---|---|---|
@@ -381,4 +381,4 @@ Een replay gebruikt engineversie, initiële regels/seedstates en geaccepteerde c
 | SES-09 | Meer dan 256 geaccepteerde lokale intents; daarna het eerste ID opnieuw aanbieden | `REQUEST_EXPIRED`, geen tweede transitie of RNG-verbruik, ook wanneer de oude draft nog geldig zou zijn |
 | SES-10 | Herhaald in-flight request, gewijzigde payload, lagere ordinal en oude prefix na Workerherstart | Eén verwerking; conflict/expired/stale-client volgens de lokale requestvolgorde; geen automatische heruitgifte met nieuw ID |
 
-Koppeling: US-01, US-02, US-06, US-07, US-08, US-09, US-17, US-28 en US-29; ENG-01 t/m ENG-10 worden property-/fixturechecks. Er is nog geen engine geïmplementeerd; de beschreven checks zijn acceptatievoorwaarden voor de bouw.
+Koppeling: US-01, US-02, US-06, US-07, US-08, US-09, US-17, US-28 en US-29; ENG-01 t/m ENG-10 worden property-/fixturechecks. De commandengine en `fixed@1` zijn geïmplementeerd; de [modulehandleiding](../packages/game-core/README.md#een-wedstrijd-uitvoeren) beschrijft de concrete factory, foutgrenzen en reproduceerbare commandtests. Views/projectie, checkpointvalidatie, replay en asynchrone sessietransacties blijven afzonderlijke bouwtaken; de SES-gevallen zijn daarvoor acceptatievoorwaarden.

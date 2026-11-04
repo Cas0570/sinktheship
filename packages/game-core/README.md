@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.6
+Versie: 1.7
 
 Laatst gewijzigd: 2026-11-04
 
@@ -8,7 +8,7 @@ Gerelateerd: [Regels](../../docs/02-game-rules.md), [architectuur](../../docs/04
 
 # game-core
 
-Pure spelregels en engine. De eerste implementatie levert regeltypes, schemavalidatie, vier v1-configuraties en canonieke signaturen. Daarnaast levert zij geometrie, plaatsingscontrole en deterministisch plaatsbaarheidsbewijs. Enginecommands volgen in hun eigen taak.
+Pure spelregels en engine. De eerste implementatie levert regeltypes, schemavalidatie, vier v1-configuraties en canonieke signaturen. Daarnaast levert zij geometrie, plaatsingscontrole en deterministisch plaatsbaarheidsbewijs. De commandengine verwerkt plaatsing, starterloting, schoten, quota en het wedstrijdeinde volgens het contract in document 05.
 
 ## Publieke API en voorbeeld
 
@@ -60,7 +60,7 @@ De signaturefixture in `test/fixtures/classic-signatures.json` is onafhankelijk 
 
 `validatePlacement` vereist schema-gecontroleerde regels. De standaardmodus vereist ieder vloot-ID exact eenmaal. `complete = false` accepteert ook een lege of gedeeltelijke draft, maar controleert nog steeds IDs, vorm, gehele coördinaten, richting, grenzen, overlap en contact. Een `valid` draftresultaat is alleen in de complete modus een complete vloot. `PlacementDraft` (uit het enginecontract), `PlacementIssue` en `PlacementValidationResult` zijn publieke types; foutcodes/paden staan in [document 02](../../docs/02-game-rules.md#geometrie-api). Cellen binnen hetzelfde schip gelden niet als verboden onderling contact.
 
-De getypeerde geometriehelpers vereisen geldige scheepsdata; `getShipCells` vereist een positieve gehele lengte. Rotatie om de startcel wisselt horizontaal/verticaal. Zij schuift een schip niet automatisch terug binnen het bord. Valideer de voorgestelde plaatsing en vervang de oude draft alleen bij succes. De functies muteren geen input; een toekomstige enginecommand bewaakt de daadwerkelijke stateovergang.
+De getypeerde geometriehelpers vereisen geldige scheepsdata; `getShipCells` vereist een positieve gehele lengte. Rotatie om de startcel wisselt horizontaal/verticaal. Zij schuift een schip niet automatisch terug binnen het bord. Valideer de voorgestelde plaatsing en vervang de oude draft alleen bij succes. De functies muteren geen input; `applyCommand` bewaakt de daadwerkelijke stateovergang.
 
 ```ts
 import { createV1RuleSet, validateRuleSet, validatePlacement } from '@sinktheship/game-core';
@@ -95,4 +95,42 @@ const choice = candidate.int(100);
 
 `createRandomStreams(RandomSeedPlan)` maakt vijf onafhankelijke instances: `starter`, `placement['player-1'/'player-2']` en `strategy['player-1'/'player-2']`. Geef iedere caller uitsluitend zijn eigen stroom. Browserentropie blijft een platformadapter; benchmarkseedparen staan expliciet in een privaat seedplan. Er is geen afleiding uit een publieke game-ID of gedeelde botseed. De [API-keuze](../../docs/adr/0053-rng-seeding-api.md) is met T07 op 2026-11-04 goedgekeurd.
 
-De [golden vector](../../fixtures/rng/pcg32.json) controleert referentieseeding, zes outputs en checkpoints. Tests dekken JSON-restore, unsigned wraparound, upper-tail rejection, ongeldige invoer en onafhankelijke stromen. Een weggeworpen RNG-kopie wordt getest met klok-/cancelcalls ertussen. De echte commandafwijzing en async sessietransactie volgen in T08/T23; Pythonpariteit volgt in T34. PCG-bronvermelding en Apache-licentie staan in `src/rng.ts` en [de licentiekopie](../../licenses/pcg-apache-2.0.txt).
+De [golden vector](../../fixtures/rng/pcg32.json) controleert referentieseeding, zes outputs en checkpoints. Tests dekken JSON-restore, unsigned wraparound, upper-tail rejection, ongeldige invoer en onafhankelijke stromen. Een weggeworpen RNG-kopie wordt getest met klok-/cancelcalls ertussen. De commandafwijzing is in de enginesuite getest; de async sessietransactie volgt in T23; Pythonpariteit volgt in T34. PCG-bronvermelding en Apache-licentie staan in `src/rng.ts` en [de licentiekopie](../../licenses/pcg-apache-2.0.txt).
+
+
+## Een wedstrijd uitvoeren
+
+`createGame(validated, gameId, engineVersion, starterRng)` neemt uitsluitend het `valid`-resultaat van de volledige regelvalidator aan. Zij maakt revision 0, eventsequence 1, lege drafts en een onafhankelijke kopie van regels/signaturen/RNG. Het is een getypeerde factory, geen checkpointparser. De caller levert per nieuwe wedstrijd/rematch een nieuwe game-ID en private randomness; de pure core genereert die niet zelf.
+
+`applyCommand(state, command, { rngFactory, turnPolicies })` verwerkt `set-placement`, `confirm-placement` en `fire`. Importeer beide dependencies uit dezelfde publieke package-export. `fixedTurnPolicy` implementeert het goedgekeurde `fixed@1`; `turnPolicies.get(id, version)` resolveert alleen die exacte combinatie. Een ontbrekende geregistreerde policy is een compositiefout (`TypeError`), geen ongeldige spelersactie. `createGame` weigert lege IDs/engineversies en ongeldige RNG-snapshots als programmeerfout.
+
+```ts
+import {
+  applyCommand, createGame, createRng, createV1RuleSet,
+  rngFactory, turnPolicies, validateRuleSet,
+} from '@sinktheship/game-core';
+
+const validated = validateRuleSet(createV1RuleSet(), { maxSearchNodes: 1 });
+if (validated.status === 'valid') {
+  // Fixed seeds and witness are only for this reproducible example.
+  const starter = createRng({
+    initStateHex: '000000000000002a',
+    initSequenceHex: '0000000000000036',
+  });
+  const state = createGame(validated, 'example-game', '0.0.0', starter.exportState());
+  const result = applyCommand(state, {
+    gameId: state.gameId,
+    commandId: 'example-command-1',
+    expectedRevision: state.revision,
+    actor: 'player-1',
+    action: { type: 'set-placement', placement: validated.witness },
+  }, { rngFactory, turnPolicies });
+  // accepted: revision 1 and one placement-updated event; state stays unchanged.
+}
+```
+
+Een geaccepteerd resultaat bevat de volgende state en interne events. Alleen dat resultaat wordt gecommit. Een afwijzing bevat uitsluitend een foutcode, zonder state/events of RNG-verbruik. De envelope weigert onbekende/ontbrekende velden, lege IDs en ongeldige revisions; spel-ID, revision, actor/fase en actievoorwaarden volgen in die volgorde. Ongeldige draftgeometrie geeft `INVALID_PLACEMENT`; bevestigen van een onvolledige draft geeft `INCOMPLETE_FLEET`. Niet-gehele of buitenboordse numerieke schotcoördinaten geven `OUT_OF_BOUNDS`.
+
+De tweede bevestiging loot alleen bij `startingPlayer: random`, met `int(2)` (0 → player-1, 1 → player-2); een vaste starter verbruikt niets. Na een winnend schot wordt geen beurtpolicy meer aangeroepen: het eindquota is het vorige quota min één, zonder bonus. Historie en events bevatten private scheeps-IDs en mogen niet naar UI/bots; projectie volgt in T09. State/events zijn readonly JSON-data. Onaangeroerde interne deeltakken kunnen structureel worden gedeeld; consumers mogen ze niet muteren. Snapshotparsing/replay en sessiepersistentie volgen in T10/T23/T24.
+
+De enginesuite dekt RULE-07–11/19/22, alle vier v1-varianten en 1.000 gegenereerde complete wedstrijden met seed 20261104. Een onafhankelijk bord-/quotamodel controleert treffers, zinken, winnaar, beurt en restant. Bevroren invoer, herhaalde uitvoering, eventvolgorde en ongebruikte RNG-/policyspies controleren determinisme en afwijzingsatomiciteit. Uitvoeren: `pnpm test`; gerichte diagnostiek: `pnpm exec vitest run packages/game-core/test/engine.test.ts --coverage.enabled=false`. De volledige suite blijft vereist voor de globale coveragepoort.

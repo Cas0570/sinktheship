@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.4
+Versie: 1.5
 
-Laatst gewijzigd: 2026-11-03
+Laatst gewijzigd: 2026-11-04
 
 Gerelateerd: [Scope](01-product-vision-scope.md), [stories](03-user-stories.md), [begrippen](glossary.md), [presets-ADR](adr/0022-v1-presets.md), [signaturen-ADR](adr/0023-rule-signatures.md), [validatie-ADR](adr/0024-ruleset-validation.md)
 
@@ -280,7 +280,7 @@ De eerste fout volgt de invoervolgorde van schepen: vorm → bekend/uniek ID →
 
 ## Randgevallen en referentiegevallen
 
-RULE-01–06 staan als onafhankelijke JSON-gevallen in [plaatsingsfixtures](../fixtures/rules/placement.json) en worden in TypeScript getest; RULE-17/18 hebben expliciete bewijs-/budgettests. Overige IDs blijven referentiegevallen voor hun implementatietaken. Pythonpariteit wordt later toegevoegd.
+RULE-01–06 staan als onafhankelijke JSON-gevallen in [plaatsingsfixtures](../fixtures/rules/placement.json) en worden in TypeScript getest; RULE-17/18 hebben expliciete bewijs-/budgettests. De [enginesuite](../packages/game-core/test/engine.test.ts) dekt RULE-07–11/19/22, met rematch als nieuwe corestate uit aangeleverde ID/randomness. De sessie- en UI-integratie van rematch blijft afzonderlijk. Overige IDs blijven referentiegevallen voor hun implementatietaken. Pythonpariteit wordt later toegevoegd.
 
 | ID | Gegeven / actie | Verwachte uitkomst |
 |---|---|---|
