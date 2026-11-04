@@ -1,6 +1,6 @@
-Status: Concept
+Status: Geaccepteerd
 
-Versie: 1.0
+Versie: 1.1
 
 Laatst gewijzigd: 2026-11-04
 
@@ -26,4 +26,4 @@ Geen dependencies, ambient randombron of tijd. PCG is niet cryptografisch. De Ty
 
 ## Verificatie
 
-Officiële 42/54-vector, onafhankelijke checkpointberekening, JSON-restore, bounded upper-tail rejection, wraparound, ongeldige input zonder verbruik, vijf afzonderlijke instances en weggeworpen speculative kopieën. Deze ADR en API worden met T07 ter menselijke review aangeboden.
+Officiële 42/54-vector, onafhankelijke checkpointberekening, JSON-restore, bounded upper-tail rejection, wraparound, ongeldige input zonder verbruik, vijf afzonderlijke instances en weggeworpen speculative kopieën. De ontwikkelaar heeft T07 en deze aanvullende API op 2026-11-04 expliciet goedgekeurd. [PR #68](https://github.com/Cas0570/sinktheship/pull/68) bevat review, akkoord en uitvoeringsbewijs.

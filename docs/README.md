@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 0.31
+Versie: 0.32
 
 Laatst gewijzigd: 2026-11-04
 
@@ -123,7 +123,7 @@ Alle paden hieronder zijn relatief aan de repositoryroot. Alle in fase 1 gepland
 | [adr/0050-review-and-task-workflow.md](adr/0050-review-and-task-workflow.md) | Geaccepteerd | Batch F; één taak, reviewbewijs, leerproeven en overdracht |
 | [adr/0052-placement-validation-api.md](adr/0052-placement-validation-api.md) | Geaccepteerd | T06; geometriehelpers, draftcontrole en veilige zoeklimiet |
 | [adr/0051-staged-rule-validation.md](adr/0051-staged-rule-validation.md) | Geaccepteerd | T05; schemavalidatie zonder plaatsbaarheidsclaim |
-| [adr/0053-rng-seeding-api.md](adr/0053-rng-seeding-api.md) | Concept | T07; expliciete seedparen, herstel en onafhankelijke RNG-instances |
+| [adr/0053-rng-seeding-api.md](adr/0053-rng-seeding-api.md) | Geaccepteerd | T07; expliciete seedparen, herstel en onafhankelijke RNG-instances |
 
 ### Documentstructuur
 
@@ -574,4 +574,4 @@ De [game-core-README](../packages/game-core/README.md) beschrijft de eerste rege
 
 De [plaatsings-API](../packages/game-core/README.md#plaatsing-en-bewijs) ontsluit geometrie, draftcontrole en deterministisch plaatsbaarheidsbewijs. [ADR 0052](adr/0052-placement-validation-api.md) motiveert de aanvullende API. Gedeelde plaatsingsfixtures en begrensde bewijsproeven staan bij de coretests; enginecommands en Pythonpariteit volgen afzonderlijk.
 
-De [RNG-handleiding](../packages/game-core/README.md#reproduceerbare-randomness) beschrijft PCG32, expliciete seedparen, gescheiden stromen en herstelbare snapshots. De aanvullende [seed-/factory-API](adr/0053-rng-seeding-api.md) staat ter review; de bestaande integer- en stroomgrenzen uit document 05 blijven leidend.
+De [RNG-handleiding](../packages/game-core/README.md#reproduceerbare-randomness) beschrijft PCG32, expliciete seedparen, gescheiden stromen en herstelbare snapshots. De aanvullende [seed-/factory-API](adr/0053-rng-seeding-api.md) is op 2026-11-04 goedgekeurd; de bestaande integer- en stroomgrenzen uit document 05 blijven leidend.

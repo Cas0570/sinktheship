@@ -1,6 +1,6 @@
 Status: Geaccepteerd
 
-Versie: 1.5
+Versie: 1.6
 
 Laatst gewijzigd: 2026-11-04
 
@@ -93,6 +93,6 @@ const choice = candidate.int(100);
 // Discarding candidate leaves rng unchanged.
 ```
 
-`createRandomStreams(RandomSeedPlan)` maakt vijf onafhankelijke instances: `starter`, `placement['player-1'/'player-2']` en `strategy['player-1'/'player-2']`. Geef iedere caller uitsluitend zijn eigen stroom. Browserentropie blijft een platformadapter; benchmarkseedparen staan expliciet in een privaat seedplan. Er is geen afleiding uit een publieke game-ID of gedeelde botseed. De [API-keuze](../../docs/adr/0053-rng-seeding-api.md) staat ter review in T07.
+`createRandomStreams(RandomSeedPlan)` maakt vijf onafhankelijke instances: `starter`, `placement['player-1'/'player-2']` en `strategy['player-1'/'player-2']`. Geef iedere caller uitsluitend zijn eigen stroom. Browserentropie blijft een platformadapter; benchmarkseedparen staan expliciet in een privaat seedplan. Er is geen afleiding uit een publieke game-ID of gedeelde botseed. De [API-keuze](../../docs/adr/0053-rng-seeding-api.md) is met T07 op 2026-11-04 goedgekeurd.
 
 De [golden vector](../../fixtures/rng/pcg32.json) controleert referentieseeding, zes outputs en checkpoints. Tests dekken JSON-restore, unsigned wraparound, upper-tail rejection, ongeldige invoer en onafhankelijke stromen. Een weggeworpen RNG-kopie wordt getest met klok-/cancelcalls ertussen. De echte commandafwijzing en async sessietransactie volgen in T08/T23; Pythonpariteit volgt in T34. PCG-bronvermelding en Apache-licentie staan in `src/rng.ts` en [de licentiekopie](../../licenses/pcg-apache-2.0.txt).
