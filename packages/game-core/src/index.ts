@@ -25,3 +25,7 @@ export type {
   PlacementValidationResult,
 } from './placement.js';
 export { validateRuleSet } from './validate-placement-existence.js';
+export type { Rng, RngState, RngFactory, RngSeed } from './rng.js';
+export { createRng, rngFactory } from './rng.js';
+export type { RandomSeedPlan, RandomStreams } from './random-streams.js';
+export { createRandomStreams } from './random-streams.js';

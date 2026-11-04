@@ -1,8 +1,8 @@
 Status: Geaccepteerd
 
-Versie: 1.3
+Versie: 1.4
 
-Laatst gewijzigd: 2026-11-03
+Laatst gewijzigd: 2026-11-04
 
 Gerelateerd: [Regels](02-game-rules.md), [architectuur](04-architecture.md), [tegenstanders](06-opponents.md), [stories](03-user-stories.md), [ADR 0028](adr/0028-state-events-and-replay.md)
 
@@ -306,6 +306,14 @@ Bronnen: [PCG-referentie](https://www.pcg-random.org/download.html) en [seeding/
 | Benchmarkdata/CI-bootstrap | Benchmarkdriver | Niet naar de te evalueren strategieën |
 
 De browser-compositie verkrijgt per private stroom afzonderlijke entropie van de platformadapter, niet uit een publieke game-ID of gedeelde basis-seed die de bot kan reconstrueren. De benchmark legt expliciete seedparen per stroom in een seedplan vast; geen language-eigen `hash()` voor afleiding. Debug-/replayartefacten zijn geprivilegieerd. RNG-toestanden worden samen met het geaccepteerde effect gecommit.
+
+### Seed- en factory-API in T07
+
+De implementatie ontsluit `createRng(seed: RngSeed): Rng`, `rngFactory: RngFactory` en `createRandomStreams(plan: RandomSeedPlan): RandomStreams` via de publieke core-export. `RngSeed` heeft `initStateHex` en `initSequenceHex`, beide exact 16 lowercase hextekens. De seedingroutine leidt daar de interne state en oneven increment uit af. Zoals in PCG vervalt de hoogste bit van initSequence bij de shift; dit is geen extra onafhankelijke streambit.
+
+`RandomSeedPlan` heeft `starter: RngSeed` en twee `Readonly<Record<PlayerId, RngSeed>>`-velden `placement` en `strategy`. `RandomStreams` heeft dezelfde vorm met `Rng`-instances. Ook gelijke seedparen leveren afzonderlijke mutable instances, maar vanzelfsprekend dezelfde reeks. De caller levert private seedparen; deze factory genereert geen entropie of masterseedhash.
+
+Seed-/snapshotwoorden worden op vorm gecontroleerd; restore weigert onbekende algoritmes en even increments met `TypeError`. `int` weigert ongeldige grenzen met `RangeError` vóór enige draw. Snapshots zijn verse JSON-data en restore maakt een onafhankelijke instance. Exceptions zijn programmeer-/checkpointfouten die adapters naar productfouten moeten vertalen. [ADR 0053](adr/0053-rng-seeding-api.md) motiveert deze aanvullende API. Command-/sessietransacties blijven verantwoordelijk voor atomair committen; T07 levert geen coördinator.
 
 ## Checkpoints en async transacties
 
